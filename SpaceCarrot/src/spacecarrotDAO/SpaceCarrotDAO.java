@@ -61,7 +61,7 @@ public class SpaceCarrotDAO {
 	
 	public SpaceCarrotVO getInfo(String name1) throws SQLException {
 		SpaceCarrotVO scv = null;
-		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE name = ?";
+		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE name=?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, name1);
 		rs = pstmt.executeQuery();
