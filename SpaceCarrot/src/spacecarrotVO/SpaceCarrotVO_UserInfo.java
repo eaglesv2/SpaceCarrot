@@ -1,6 +1,6 @@
 package spacecarrotVO;
 
-public class SpaceCarrotVO {
+public class SpaceCarrotVO_UserInfo {
 	private int userSerial;
 	private String userName;
 	private String userID;
@@ -9,10 +9,10 @@ public class SpaceCarrotVO {
 	private String userBirth;
 	private String userTel;
 	
-	public SpaceCarrotVO() {
+	public SpaceCarrotVO_UserInfo() {
 		
 	}
-	public SpaceCarrotVO(int userSerial, String userName, String userID, String userPW, String userGender, String userBirth, String userTel) {
+	public SpaceCarrotVO_UserInfo(int userSerial, String userName, String userID, String userPW, String userGender, String userBirth, String userTel) {
 		this.userSerial = userSerial;
 		this.userName = userName;
 		this.userID = userID;

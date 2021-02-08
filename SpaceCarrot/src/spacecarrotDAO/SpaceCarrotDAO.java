@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import spacecarrotDBConn.SpaceCarrotDBConn;
-import spacecarrotVO.SpaceCarrotVO;
+import spacecarrotVO.SpaceCarrotVO_UserInfo;
 
 public class SpaceCarrotDAO {
 	private static Connection con;
@@ -36,9 +36,9 @@ public class SpaceCarrotDAO {
 		}
 	}
 	
-	public ArrayList<SpaceCarrotVO> getAllInfo() throws SQLException{
+	public ArrayList<SpaceCarrotVO_UserInfo> getAllInfo() throws SQLException{
 		// 유저 전체 목록과 유저 정보를 불러오는 메소드
-		ArrayList<SpaceCarrotVO> scarray = new ArrayList<SpaceCarrotVO>();
+		ArrayList<SpaceCarrotVO_UserInfo> scarray = new ArrayList<SpaceCarrotVO_UserInfo>();
 		String sql = "SELECT * FROM spacecarrot.SC_USERLIST ORDER BY UserSerial";
 		
 		pstmt = con.prepareStatement(sql);
@@ -52,16 +52,16 @@ public class SpaceCarrotDAO {
 			String userBirth = rs.getString("UserBirth");
 			String userTel = rs.getString("UserTel");
 			
-			SpaceCarrotVO scv = new SpaceCarrotVO(userSerial, userName, userID, userPW, userGender, userBirth, userTel);
+			SpaceCarrotVO_UserInfo scv = new SpaceCarrotVO_UserInfo(userSerial, userName, userID, userPW, userGender, userBirth, userTel);
 			
 			scarray.add(scv);
 		}
 		return scarray;
 	}
 	
-	public SpaceCarrotVO getInfo(String name1) throws SQLException {
-		SpaceCarrotVO scv = null;
-		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE name=?";
+	public SpaceCarrotVO_UserInfo getInfo(String name1) throws SQLException {
+		SpaceCarrotVO_UserInfo scv = null;
+		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE name= ?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, name1);
 		rs = pstmt.executeQuery();
@@ -73,7 +73,7 @@ public class SpaceCarrotDAO {
 			String userGender = rs.getString(5);
 			String userBirth = rs.getString(6);
 			String userTel = rs.getString(7);
-			scv = new SpaceCarrotVO(userSerial, userName, userID, userPW, userGender, userBirth, userTel);
+			scv = new SpaceCarrotVO_UserInfo(userSerial, userName, userID, userPW, userGender, userBirth, userTel);
 		}else {
 			scv = null;
 		}
