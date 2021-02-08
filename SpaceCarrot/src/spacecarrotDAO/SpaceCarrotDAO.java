@@ -10,9 +10,9 @@ import spacecarrotDBConn.SpaceCarrotDBConn;
 import spacecarrotVO.SpaceCarrotVO_UserInfo;
 
 public class SpaceCarrotDAO {
-	private static Connection con;
-	static PreparedStatement pstmt = null;
-	static ResultSet rs = null;
+	private Connection con;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	
 	public SpaceCarrotDAO() throws ClassNotFoundException, SQLException {
 		con = new SpaceCarrotDBConn().getConnection();
@@ -59,11 +59,11 @@ public class SpaceCarrotDAO {
 		return scarray;
 	}
 	
-	public SpaceCarrotVO_UserInfo getInfo(String name1) throws SQLException {
+	public SpaceCarrotVO_UserInfo getInfo(String search_name) throws SQLException {
 		SpaceCarrotVO_UserInfo scv = null;
-		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE name= ?";
+		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE UserName= ?";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, name1);
+		pstmt.setString(1, search_name);
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
 			int userSerial = rs.getInt(1);
@@ -80,56 +80,68 @@ public class SpaceCarrotDAO {
 		return scv;
 	}
 	
-	public static void insertUserInfo(int input_userSerial, String input_userName, String input_userID,
-			String input_userPW, String input_userGender, String input_userBirth, String input_userTel) throws SQLException {
+	public boolean insertUserInfo(int input_userSerial, String input_userName, String input_userID,
+			String input_userPW, String input_userGender, String input_userBirth, String input_userTel){
 		// 입력된 ID를 토대로 해당 유저의 정보를 원하는만큼 가져오는 메소드
 		// public boolean?
-		String sql = "INSERT INTO spacecarrot.SC_USERLIST "
-				+ "(UserSerial, UserName, UserID, UserPW, UserGender, UserBirth, UserTel) VALUES(?, ?, ?, ?, ?, ?, ?);";
-
-		pstmt = con.prepareStatement(sql);
-
-		pstmt.setInt(1, input_userSerial);
-		pstmt.setString(2, input_userName);
-		pstmt.setString(3, input_userID);
-		pstmt.setString(4, input_userPW);
-		pstmt.setString(5, input_userGender);
-		pstmt.setString(6, input_userBirth);
-		pstmt.setString(7, input_userTel);
-		ResultSet rs = pstmt.executeQuery();
-
-		rs.close();
-		pstmt.close();
-	}
-	
-	public static void updateUserInfo(String update_userPW, String update_userBirth, String update_userTel, int userSerial) throws SQLException {
-		// 유저 정보 수정하는 메소드 (비밀번호, 생일, 전화번호)
-		 String sql = "UPDATE spacecarrot.SC_USERLIST SET UserPW=?, UserBirth=?, UserTel=? WHERE UserSerial=?";
-		 
-		 pstmt = con.prepareStatement(sql);
-		 
-		 pstmt.setString(1, update_userPW);
-		 pstmt.setString(2, update_userBirth);
-		 pstmt.setString(3, update_userTel);
-		 pstmt.setInt(4, userSerial);
-		 pstmt.executeUpdate();
-	}
-	
-	public static void deleteUserInfo(int userSerial) throws SQLException {
-		// 유저 정보 삭제하는 메소드
-		String sql = "DELETE from spacecarrot.SC_USERLIST WHERE UserSerial=?";
+		String sql = "INSERT INTO SpaceCarrot.SC_USERLIST VALUES(?, ?, ?, ?, ?, ?, ?)";
 		
-		 pstmt = con.prepareStatement(sql);
-		 pstmt.setInt(1, userSerial);
-		 pstmt.executeUpdate();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, input_userSerial);
+			pstmt.setString(2, input_userName);
+			pstmt.setString(3, input_userID);
+			pstmt.setString(4, input_userPW);
+			pstmt.setString(5, input_userGender);
+			pstmt.setString(6, input_userBirth);
+			pstmt.setString(7, input_userTel);
+			rs = pstmt.executeQuery();
+		} catch(SQLException e){
+			System.out.println("insert Exception");
+			return false;
+		}
+		return true;
 	}
 	
-	public static boolean checkOverlapID(String input_userID) throws SQLException {
+	public boolean updateUserInfo(String update_userPW, String update_userBirth, String update_userTel, int userSerial) {
+		// 유저 정보 수정하는 메소드 (비밀번호, 생일, 전화번호)
+		 String sql = "UPDATE SpaceCarrot.SC_USERLIST SET UserPW=?, UserBirth=?, UserTel=? WHERE UserSerial=?";
+		 
+		 try {
+			 pstmt = con.prepareStatement(sql);
+			 pstmt.setString(1, update_userPW);
+			 pstmt.setString(2, update_userBirth);
+			 pstmt.setString(3, update_userTel);
+			 pstmt.setInt(4, userSerial);
+			 pstmt.executeUpdate();
+		 } catch(SQLException e){
+				System.out.println("update Exception");
+				return false;
+			}
+			return true;
+	}
+	
+	public boolean deleteUserInfo(int userSerial) {
+		// 유저 정보 삭제하는 메소드
+		String sql = "DELETE from SpaceCarrot.SC_USERLIST WHERE UserSerial=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, userSerial);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println("delete Exception");
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkOverlapID(String input_userID) throws SQLException {
 		// 입력된 ID 중복체크하는 메소드
 		// true면 이미 존재하는 아이디, false면 새로운 아이디
 		boolean result = true; // true 그대로 전달될 경우 중복된 아이디 <- 버그발생 가능
 
-		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE UserID = ?";
+		String sql = "SELECT * FROM SpaceCarrot.SC_USERLIST WHERE UserID = ?";
 
 		pstmt = con.prepareStatement(sql);
 
@@ -146,7 +158,7 @@ public class SpaceCarrotDAO {
 		return result;
 	}
 	
-	public static boolean checkPW(String input_userPW, String check_userPW) {
+	public boolean checkPW(String input_userPW, String check_userPW) {
 		// 비밀번호와 비밀번호 확인란에 입력한 값이 일치하는지 확인하는 메소드
 		// true면 비밀번호 일치, false면 불일치 
 		if(input_userPW.equals(check_userPW)) {
