@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import spacecarrotDAO.SpaceCarrotDAO;
+import spacecarrotDAO.SpaceCarrotDAO_UserInfo;
 
 /**
  * Servlet implementation class DBInsert
@@ -51,10 +51,10 @@ public class DBInsert extends HttpServlet {
 		String userGender = request.getParameter("usergender");
 		String userBirth = request.getParameter("userbirth");
 		String userTel = request.getParameter("usertel");
-		SpaceCarrotDAO scv = null;
+		SpaceCarrotDAO_UserInfo scv = null;
 		
 		try {
-			scv = new SpaceCarrotDAO();
+			scv = new SpaceCarrotDAO_UserInfo();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
