@@ -39,7 +39,7 @@ public class SpaceCarrotDAO {
 	public ArrayList<SpaceCarrotVO> getAllInfo() throws SQLException{
 		// 유저 전체 목록과 유저 정보를 불러오는 메소드
 		ArrayList<SpaceCarrotVO> scarray = new ArrayList<SpaceCarrotVO>();
-		String sql = "SELECT * FROM SC_USERLIST ORDER BY UserSerial";
+		String sql = "SELECT * FROM spacecarrot.SC_USERLIST ORDER BY UserSerial";
 		
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
@@ -57,6 +57,27 @@ public class SpaceCarrotDAO {
 			scarray.add(scv);
 		}
 		return scarray;
+	}
+	
+	public SpaceCarrotVO getInfo(String name1) throws SQLException {
+		SpaceCarrotVO scv = null;
+		String sql = "SELECT * FROM spacecarrot.SC_USERLIST WHERE name = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, name1);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			int userSerial = rs.getInt(1);
+			String userName = rs.getString(2);
+			String userID = rs.getString(3);
+			String userPW = rs.getString(4);
+			String userGender = rs.getString(5);
+			String userBirth = rs.getString(6);
+			String userTel = rs.getString(7);
+			scv = new SpaceCarrotVO(userSerial, userName, userID, userPW, userGender, userBirth, userTel);
+		}else {
+			scv = null;
+		}
+		return scv;
 	}
 	
 	public static void insertUserInfo(int input_userSerial, String input_userName, String input_userID,
