@@ -32,6 +32,26 @@ public class SpaceCarrotVO_Board_Commerce {
 		this.Views = Views;
 	}
 	
+	public SpaceCarrotVO_Board_Commerce(int Num, String Subject, Blob RepImage, int Price, Date RefDate, int Views) {
+		this.Num = Num;
+		this.Subject = Subject;
+		this.RepImage = RepImage;
+		this.Price = Price;
+		this.Views = Views;
+	}
+	
+	public SpaceCarrotVO_Board_Commerce(String Category, String Subject, String UserID, Blob RepImage, int Price,
+			int Amount, String Content, Date RegDate) {
+		this.Category = Category;
+		this.Subject = Subject;
+		this.UserID = UserID;
+		this.RepImage = RepImage;
+		this.Price = Price;
+		this.Amount = Amount;
+		this.Content = Content;
+		this.RegDate = RegDate;
+	}
+	
 	// getter, setter
 	
 	public int getNum() {

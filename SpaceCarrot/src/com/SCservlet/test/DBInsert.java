@@ -61,7 +61,7 @@ public class DBInsert extends HttpServlet {
 		}
 		
 		
-		Boolean b = scv.insertUserInfo(userSerial, userName, userID, userPW, userGender, userBirth, userTel);
+		Boolean b = scv.insertUserInfo(userName, userID, userPW, userGender, userBirth, userTel);
 		
 		
 		if(b) {//true면 insert 되었으므로
