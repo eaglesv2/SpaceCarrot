@@ -21,6 +21,7 @@ public class SpaceCarrotVO_UserInfo {
 		this.userBirth = userBirth;
 		this.userTel = userTel;
 	}
+	
 	public int getUserSerial() {
 		return userSerial;
 	}

@@ -21,7 +21,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 	private static final String DB_DBNAME_SUFFIX = ".";
 	
 	// 각 컬럼명을 상수로 정의해놓은 부분 "BOARD_COMMERCE";
-	private static final String DB_TABLE_USERLIST = "BOARD_COMMERCE"; // 중고거래 게시판 테이블 명
+	private static final String DB_TABLE_BOARD_COMMERCE = "BOARD_COMMERCE"; // 중고거래 게시판 테이블 명
 	public static final String COL_POSTNUM = "Num"; // 게시글 번호
 	public static final String COL_CATEGORY = "Category"; // 게시글 카테고리
 	public static final String COL_SUBJECT = "Subject"; // 게시글 제목
@@ -59,7 +59,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 	public ArrayList<SpaceCarrotVO_Board_Commerce> getAllPost_Commerce() throws SQLException{
 		//중고거래 게시판 거래 글 목록 불러오는 메소드 (대표이미지, 제목, 가격, 시간)
 		ArrayList<SpaceCarrotVO_Board_Commerce> scarray = new ArrayList<SpaceCarrotVO_Board_Commerce>();
-		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " ORDER BY " + COL_REGDATE + "DESC";
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " ORDER BY " + COL_REGDATE + "DESC";
 		
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
@@ -79,9 +79,9 @@ public class SpaceCarrotDAO_Board_Commerce {
 	}
 	
 	public SpaceCarrotVO_Board_Commerce getOnePost_Commerce(int postNum) throws SQLException {
-		//중고거래 게시판 글 선택했을 때 게시글 정보 불러오는 메소드 (카테고리, 제목, 작성자, 이미지, 가격, 수량, 글 내용, 작성일)
+		//중고거래 게시판 글 선택했을 때 게시글 정보 불러오는 메소드 (카테고리, 제목, 작성자, 이미지, 가격, 수량, 글 내용, 작성일) 
 		SpaceCarrotVO_Board_Commerce scv = null;
-		String sql = "SELECT * FROM " +  DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_POSTNUM + " = ?";
+		String sql = "SELECT * FROM " +  DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " WHERE " + COL_POSTNUM + " = ?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, postNum);
 		rs = pstmt.executeQuery();
@@ -95,7 +95,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 			String content = rs.getString(COL_CONTENT);
 			Date regDate = rs.getDate(COL_REGDATE);
 			scv = new SpaceCarrotVO_Board_Commerce(category, subject, UserID, repImage, price, amount, content, regDate);
-		}else {
+		} else {
 			scv = null;
 		}
 		return scv;
@@ -103,8 +103,8 @@ public class SpaceCarrotDAO_Board_Commerce {
 	
 	public boolean insertPost_Commerce(String input_category, String input_subject, String input_userID,
 									   Blob input_repImage, int input_price, int input_amount, String input_content) {
-		// 게시물 작성시 게시물 정보 DB에 저장
-		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + "("  + 
+		// 게시물 작성시 게시물 정보 DB에 저장  // 게시글넘버x, 작성일x, 조회수 x 디폴트가 있음
+		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + "("  + 
 					 COL_CATEGORY + ", " + COL_SUBJECT + ", " + COL_USERID + ", " + COL_REPIMAGE  + ", "
 					 + COL_PRICE + ", " + COL_AMOUNT  + ", " + COL_CONTENT + ") VALUES(?, ?, ?, ?, ?, ?, ?)";
 		
@@ -128,7 +128,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 	public boolean updatePost_Commerce(int postNum, String update_category, String update_subject, Blob update_repImage, 
 									   int update_price, int update_amount, String update_content) {
 		// 게시물 수정하는 메소드
-		String sql = "UPDATE " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " SET " +
+		String sql = "UPDATE " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " SET " +
 				     COL_CATEGORY + " = ?, " + COL_SUBJECT + " = ?, " + COL_REPIMAGE + " = ?, " +
 				     COL_PRICE + " = ?, " + COL_AMOUNT + " = ?, " + COL_CONTENT + " = ? WHERE " + COL_POSTNUM + " = ?";
 		
@@ -151,7 +151,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 	
 	public boolean deletePost_Commerce(int postNum) {
 		// 중고거래 게시물을 삭제하는 메소드
-		String sql = "DELETE FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_POSTNUM + " = ?";
+		String sql = "DELETE FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " WHERE " + COL_POSTNUM + " = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);

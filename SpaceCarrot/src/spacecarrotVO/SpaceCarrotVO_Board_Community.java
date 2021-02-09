@@ -1,85 +1,108 @@
 package spacecarrotVO;
 
+import java.sql.Blob;
 import java.util.Date;
 
 public class SpaceCarrotVO_Board_Community {
-	private int Num; // 게시글 ID
-	private String Subject; // 게시글제목
-	private String UserID; // 유저ID
-	private String Content; // 게시글내용
-	private String FileName; // 첨부파일
-	private Date RegDate; // 등록일
-	private int Views; // 조회수
+	private int postNum; // 게시글 ID
+	private String subject; // 게시글제목
+	private String userID; // 유저ID
+	private String content; // 게시글내용
+	private Blob fileName; // 첨부파일
+	private Date regDate; // 등록일
+	private int views; // 조회수
 	
 	public SpaceCarrotVO_Board_Community() { // 생성자
 		
 	}
 	
-	public SpaceCarrotVO_Board_Community(int Num, String Subject, String UserID, String Content, String FileName, Date RegDate, int Views) {
-		this.Num = Num;
-		this.Subject = Subject;
-		this.UserID = UserID;
-		this.Content = Content;
-		this.FileName = FileName;
-		this.RegDate = RegDate;
-		this.Views = Views;
+	public SpaceCarrotVO_Board_Community(int postNum, String subject, String userID, String content, 
+			Blob fileName, Date regDate, int views) {
+		this.postNum = postNum;
+		this.subject = subject;
+		this.userID = userID;
+		this.content = content;
+		this.fileName = fileName;
+		this.regDate = regDate;
+		this.views = views;
+	}
+
+
+	
+	public SpaceCarrotVO_Board_Community(int postNum, String subject, String userID, Date regDate, int views) {
+		this.postNum = postNum;
+		this.subject = subject;
+		this.userID = userID;
+		this.regDate = regDate;
+		this.views = views;
+	}
+
+	public SpaceCarrotVO_Board_Community(String subject, String userID, String content, Blob fileName,
+										Date regDate, int views) {
+		this.subject = subject;
+		this.userID = userID;
+		this.content = content;
+		this.fileName = fileName;
+		this.regDate = regDate;
+		this.views = views;
 	}
 
 	// getter, setter
 	
-	public int getNum() {
-		return Num;
+	public int getPostNum() {
+		return postNum;
 	}
 
-	public void setNum(int num) {
-		Num = num;
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
 
 	public String getSubject() {
-		return Subject;
+		return subject;
 	}
 
 	public void setSubject(String subject) {
-		Subject = subject;
+		this.subject = subject;
 	}
 
 	public String getUserID() {
-		return UserID;
+		return userID;
 	}
 
 	public void setUserID(String userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
 
 	public String getContent() {
-		return Content;
+		return content;
 	}
 
 	public void setContent(String content) {
-		Content = content;
+		this.content = content;
 	}
 
-	public String getFileName() {
-		return FileName;
+	public Blob getFileName() {
+		return fileName;
 	}
 
-	public void setFileName(String fileName) {
-		FileName = fileName;
+	public void setFileName(Blob fileName) {
+		this.fileName = fileName;
 	}
 
 	public Date getRegDate() {
-		return RegDate;
+		return regDate;
 	}
 
 	public void setRegDate(Date regDate) {
-		RegDate = regDate;
+		this.regDate = regDate;
 	}
 
 	public int getViews() {
-		return Views;
+		return views;
 	}
 
 	public void setViews(int views) {
-		Views = views;
+		this.views = views;
 	}
+
 }

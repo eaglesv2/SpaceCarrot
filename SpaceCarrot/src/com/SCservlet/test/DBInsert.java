@@ -44,7 +44,6 @@ public class DBInsert extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		response.setCharacterEncoding("EUC-KR");
 		
-		int userSerial = Integer.parseInt(request.getParameter("userserial"));
 		String userName = request.getParameter("username");
 		String userID = request.getParameter("userid");
 		String userPW = request.getParameter("userpw");
