@@ -4,94 +4,136 @@ import java.sql.Blob;
 import java.util.Date;
 
 public class SpaceCarrotVO_Board_Commerce {
-	private int Num; // 게시글넘버
-	private String Category; // 카테고리
-	private String Subject; // 글제목
-	private String UserID; // 글쓴이
-	private Blob RepImage; // 대표이미지 Represent 줄여서 Rep
-	private int Price; // 가격
-	private int Amount; // 수량
-	private String Content; // 설명
-	private Date RegDate; // 등록일
-	private int Views; // 조회수
+	private int postNum; // 게시글넘버
+	private String category; // 카테고리
+	private String subject; // 글제목
+	private String userID; // 글쓴이
+	private Blob repImage; // 대표이미지 Represent 줄여서 Rep
+	private int price; // 가격
+	private int amount; // 수량
+	private String content; // 설명
+	private Date regDate; // 등록일
+	private int views; // 조회수
 	
 	public SpaceCarrotVO_Board_Commerce() { // 생성자
 		
 	}
-	public SpaceCarrotVO_Board_Commerce(int Num, String Category, String Subject, String UserID,
-			Blob RepImage, int Price, int Amount, String Content, Date RegDate, int Views) {
-		this.Num = Num;
-		this.Category = Category;
-		this.Subject = Subject;
-		this.UserID = UserID;
-		this.RepImage = RepImage;
-		this.Price = Price;
-		this.Amount = Amount;
-		this.Content = Content;
-		this.RegDate = RegDate;
-		this.Views = Views;
+	
+	public SpaceCarrotVO_Board_Commerce(int postNum, String category, String subject, String userID, Blob repImage, 
+										int price, int amount, String content, Date regDate, int views) {
+		this.postNum = postNum;
+		this.category = category;
+		this.subject = subject;
+		this.userID = userID;
+		this.repImage = repImage;
+		this.price = price;
+		this.amount = amount;
+		this.content = content;
+		this.regDate = regDate;
+		this.views = views;
 	}
 	
+	public SpaceCarrotVO_Board_Commerce(int postNum, String subject, Blob repImage, int price, Date regDate, int views) {
+		this.postNum = postNum;
+		this.subject = subject;
+		this.repImage = repImage;
+		this.price = price;
+		this.regDate = regDate;
+		this.views = views;
+	}
+	
+	public SpaceCarrotVO_Board_Commerce(String category, String subject, String userID, Blob repImage, int price,
+										int amount, String content, Date regDate) {
+		this.category = category;
+		this.subject = subject;
+		this.userID = userID;
+		this.repImage = repImage;
+		this.price = price;
+		this.amount = amount;
+		this.content = content;
+		this.regDate = regDate;
+	}
+
 	// getter, setter
 	
-	public int getNum() {
-		return Num;
+	public int getPostNum() {
+		return postNum;
 	}
-	public void setNum(int num) {
-		Num = num;
+
+	public void setPostNum(int postNum) {
+		this.postNum = postNum;
 	}
+
 	public String getCategory() {
-		return Category;
+		return category;
 	}
+
 	public void setCategory(String category) {
-		Category = category;
+		this.category = category;
 	}
+
 	public String getSubject() {
-		return Subject;
+		return subject;
 	}
+
 	public void setSubject(String subject) {
-		Subject = subject;
+		this.subject = subject;
 	}
+
 	public String getUserID() {
-		return UserID;
+		return userID;
 	}
+
 	public void setUserID(String userID) {
-		UserID = userID;
+		this.userID = userID;
 	}
+
 	public Blob getRepImage() {
-		return RepImage;
+		return repImage;
 	}
+
 	public void setRepImage(Blob repImage) {
-		RepImage = repImage;
+		this.repImage = repImage;
 	}
+
 	public int getPrice() {
-		return Price;
+		return price;
 	}
+
 	public void setPrice(int price) {
-		Price = price;
+		this.price = price;
 	}
+
 	public int getAmount() {
-		return Amount;
+		return amount;
 	}
+
 	public void setAmount(int amount) {
-		Amount = amount;
+		this.amount = amount;
 	}
+
 	public String getContent() {
-		return Content;
+		return content;
 	}
+
 	public void setContent(String content) {
-		Content = content;
+		this.content = content;
 	}
-	public int getViews() {
-		return Views;
-	}
-	public void setViews(int views) {
-		Views = views;
-	}
+
 	public Date getRegDate() {
-		return RegDate;
+		return regDate;
 	}
+
 	public void setRegDate(Date regDate) {
-		RegDate = regDate;
+		this.regDate = regDate;
 	}
+
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
+	}
+
 }

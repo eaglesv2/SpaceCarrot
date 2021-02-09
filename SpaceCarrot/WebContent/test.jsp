@@ -10,10 +10,6 @@
 <form action = "DBInsert" method = "post">
 	<table border = 2>
 		<tr>
-			<td>회원번호</td>
-			<td><input type = "text" name = "userserial"></td>
-		</tr>
-		<tr>
 			<td>이름</td>
 			<td><input type = "text" name = "username"></td>
 		</tr>

@@ -44,7 +44,6 @@ public class DBInsert extends HttpServlet {
 		request.setCharacterEncoding("EUC-KR");
 		response.setCharacterEncoding("EUC-KR");
 		
-		int userSerial = Integer.parseInt(request.getParameter("userserial"));
 		String userName = request.getParameter("username");
 		String userID = request.getParameter("userid");
 		String userPW = request.getParameter("userpw");
@@ -61,7 +60,7 @@ public class DBInsert extends HttpServlet {
 		}
 		
 		
-		Boolean b = scv.insertUserInfo(userSerial, userName, userID, userPW, userGender, userBirth, userTel);
+		Boolean b = scv.insertUserInfo(userName, userID, userPW, userGender, userBirth, userTel);
 		
 		
 		if(b) {//true면 insert 되었으므로

@@ -96,21 +96,22 @@ public class SpaceCarrotDAO_UserInfo {
 		return scv;
 	}
 	
-	public boolean insertUserInfo(int input_userSerial, String input_userName, String input_userID,
+	public boolean insertUserInfo(String input_userName, String input_userID,
 			String input_userPW, String input_userGender, String input_userBirth, String input_userTel){
-		// 입력된 ID를 토대로 해당 유저의 정보를 원하는만큼 가져오는 메소드
+		// 회원가입시 유저의 입력 정보를 DB에 저장하는 메소드
 		// public boolean?
-		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " VALUES(?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + "(" +  
+					 COL_USERNAME + ", " + COL_USERID + ", " + COL_USERPW + ", " + COL_USERGENDER + ", " +
+					 COL_USERBIRTH + ", " + COL_USERTEL + ") VALUES(?, ?, ?, ?, ?, ?)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, input_userSerial);
-			pstmt.setString(2, input_userName);
-			pstmt.setString(3, input_userID);
-			pstmt.setString(4, input_userPW);
-			pstmt.setString(5, input_userGender);
-			pstmt.setString(6, input_userBirth);
-			pstmt.setString(7, input_userTel);
+			pstmt.setString(1, input_userName);
+			pstmt.setString(2, input_userID);
+			pstmt.setString(3, input_userPW);
+			pstmt.setString(4, input_userGender);
+			pstmt.setString(5, input_userBirth);
+			pstmt.setString(6, input_userTel);
 			rs = pstmt.executeQuery();
 		} catch(SQLException e){
 			System.out.println("insert Exception");
