@@ -15,7 +15,7 @@ import spacecarrotDAO.SpaceCarrotDAO_UserInfo;
 /**
  * Servlet implementation class DBInsert
  */
-@WebServlet("/DBInsert")
+@WebServlet("/DBInsert/*")
 public class DBInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
