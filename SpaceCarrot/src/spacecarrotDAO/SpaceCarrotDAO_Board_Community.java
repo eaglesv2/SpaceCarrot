@@ -150,4 +150,22 @@ public class SpaceCarrotDAO_Board_Community {
       }
       return true;
    }
+   
+   public boolean hitUpdate_Community(int postNum) {
+	   // 게시물 조회수 업데이트
+	   String sql = "UPDATE " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " SET " + COL_VIEWS + " = " + COL_VIEWS + " + 1 " + "WHERE " + COL_POSTNUM + " = ? ";
+	   
+	   try {
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setInt(1, postNum);
+		   pstmt.executeUpdate();
+		   System.out.println("hitUpdate Success");
+	   } catch(SQLException e) {
+		   System.out.println("hitUpdate Exception");
+		   return false;
+	   }
+	   return true;
+   }
+   
+   
 }

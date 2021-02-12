@@ -1,7 +1,7 @@
 
 #container{
     margin: 0 auto;
-    width: 1080px;
+    width: 1080;
     border: 2px solid black;
 }
 
@@ -71,3 +71,4 @@
     justify-content: space-around;
     background-color: cyan;
 }
+
