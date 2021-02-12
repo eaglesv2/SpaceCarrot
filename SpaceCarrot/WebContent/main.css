@@ -1,5 +1,4 @@
 
-
 #container{
     margin: 0 auto;
     width: 1080;
@@ -26,7 +25,6 @@
 #content3 h1{
     height: 10px;
     border: 2px solid black;
-    
 }
 
 .card{
@@ -64,7 +62,6 @@
     display: flex;
     justify-content: space-around;
     background-color: cadetblue;
-    
 }
 
 #content5{
