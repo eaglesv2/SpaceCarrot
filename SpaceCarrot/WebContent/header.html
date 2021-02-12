@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 	#skipNavi { position : absolute;
 				left : 0;
 				top : 0;
@@ -28,23 +29,27 @@
 											font-size : 12px;
 											text-align : center;
 										   }
-	
-	div ul { padding-top : 10px; } /* 상단 여백 10px */
-	div ul li { display : inline; /* 가로나열 */
-				vertical-align : middle; /* 수직높이 가운데 정렬 */
-				padding : 0 30px; /* 메뉴 간격 30px */
-			  }
-	#h1 { vertical-align : middle; /* 수직높이 가운데 정렬 */
-		  font-size : 24px; /* h2 size */
-		  font-weight : bold;
-		  color : #000000; 
-		  padding : 0 30px; /* 메뉴 간격 30px */
-		}
-	#h2 { vertical-align : top;  /* 회원가입 로그인 마이페이지 */
-		  font-size : 16px;
-		  font-weight : normal;
-		  float : right; 
-		}
+	#header { width : 1080px; 
+			  height : 100px;
+			}
+
+	#header ul li { display : inline; /* 가로나열 */
+					vertical-align : middle; /* 수직높이 가운데 정렬 */
+			      }
+	#img { padding-right : 55px; }
+	.menu { font-size : 16pt; 
+		    font-weight : bold;
+		    color : #000000; 
+		    float : left;
+		  }
+	.menu ul li { padding-right : 50px; }  /* 메뉴 간격 50px */
+	.menu ul li:last-child { padding : 0px; }
+	.login { vertical-align : top;  /* 회원가입 로그인 마이페이지 */
+		     font-size : 12pt;
+		     font-weight : normal;
+		     padding-right : 7px;
+		     float : right;
+		   }
 	a { text-decoration : none; /* a태그 밑줄 + 색 바뀌는거 초기화 */
 		color : #000000; 
 	  }
@@ -54,15 +59,25 @@
 	<div id = "skipNavi">
 		<a href = "#">메뉴 바로가기</a>
 	</div>
-	<div>
-		<ul>
-			<li><img src = "img/MainLogo.png" alt = "우주당근"></li>
-			<li id = "h1"><a href = "#">커뮤니티</a></li>
-			<li id = "h1"><a href = "#">볼거리</a></li>
-			<li id = "h1"><a href = "#">먹거리</a></li>
-			<li id = "h1"><a href = "#">중고거래</a></li>
-			<li id = "h2"><a href = "#">회원가입</a> · <a href = "#">로그인</a> · <a href = "#">마이페이지</a></li>
-		</ul>
+	<div id = "header">
+		<div class = "menu">
+			<ul>
+				<li id = img><img src = "img/MainLogo.png" alt = "우주당근"></li>
+				<li><a href = "#">커뮤니티</a></li>
+				<li><a href = "#">볼거리</a></li>
+				<li><a href = "#">먹거리</a></li>
+				<li><a href = "#">중고거래</a></li>
+			</ul>
+		</div>
+		<div class = "login">
+			<ul>
+				<li><a href = "#">회원가입</a></li>
+				<li>·</li>
+				<li><a href = "#">로그인</a></li>
+				<li>·</li>
+				<li><a href = "#">마이페이지</a></li>	
+			</ul>
+		</div>
 	</div>
 </body>
 </html>
