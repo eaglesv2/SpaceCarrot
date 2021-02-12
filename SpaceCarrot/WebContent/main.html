@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+   
+    <script>
+        $(document).ready(function(){
+            var main = $('.bxslider').bxSlider({
+                mode: 'fade',
+                auto:true,
+                controls:true,
+                speed:500
+
+            })
+        });
+        $(document).ready(function(){    
+            $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        })
+      </script>
+    <title>Document</title>
+</head>
+<body>
+  
+    
+    <div id="container">
+        <div id="header">
+
+        </div>
+        <div id="content1">
+            <ul class="bxslider">
+                <li><img src="img/FoodBanner.jpg" alt=""></li>
+                <li><img src="img/AttractionsBanner.jpg" alt=""></li>
+                <li><img src="img/CommunityBanner.jpg" alt=""></li>
+                <li><img src="img/CommerceBanner.jpg" alt=""></li>
+            </ul>
+        </div>
+        <div id="content2">
+            게시판
+        </div>
+        <div id="content3">
+            
+            <div class="card">
+                <img src="/bread.jpg" alt="사진1">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/cafe.jpg" alt="사진2">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/menu.jpg" alt="사진3">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/mountin.jpg" alt="사진4">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+        </div>
+        <hr>
+        <div id="content4">
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+        </div>
+        <div id="content5">
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+            <div class="card">
+                <img src="/mountin.jpg" alt="">
+                <h2>제목</h2>
+                <p>가격</p>
+            </div>
+
+        </div>
+  
+        <div id="footer">
+
+        </div>
+     
+    </div>
+</body>
+</html>
