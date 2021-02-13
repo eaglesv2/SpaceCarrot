@@ -19,20 +19,16 @@
                  /* border : 2px solid black; */
                  }
 	  /* 중고거래 타이틀 */
-      #title { width : 1080px; 
-      		   height : 70px;
-      		   background-color : #fc585e; 
-      		 }
-      #title p { margin:0; }
-      #title ul li { color : white;
-                     font-size : 18pt;
-                     font-weight : bold;
-                     font-family : "나눔고딕";
-                     text-align: center;
-                     padding-top : 25px;
-                     margin: 0px;
-                     display : block;
-                }
+      #title ul li { list-style: none; }
+      .title_wrap { text-align: center; }
+	  .title_wrap p { color: #fff; 
+				  	  background-color: #fc585e; 
+				  	  padding : 25px 0px;
+				  	  font-size : 16pt;
+				  	  font-weight: bold; 
+				  	  display: block; 
+				 	  margin: 0 auto;
+				    }
                 
       #wrap { margin : 0 auto;
               width : 715px;
@@ -47,89 +43,118 @@
       #category ul li { list-style : none;
                     	color : #000000;
                    		float : left;
-                    	/*vertical-align : middle;*/
                     	text-align: center;
                     	padding-right :40px;
                  	  }
       #category ul li:last-child{ padding : 0; }
       #category .menuLink { text-decoration : none;
-                        color : #000000;
-                        display : block;
-                        font-size : 11.5pt;
-                        font-weight : bold;
-                     }
+                       	    color : #000000;
+                       	    display : block;
+                       	    font-size : 11.5pt;
+                       	    font-weight : bold;
+                    	  }
       #category .menuLink:hover { text-decoration : underline; 
                            text-underline-position : under;
                           }     
                           
-      /* 판매버튼 + 검색창 */            
-      #sellButton { width : 100px;
-      				height : 56px;
-                    background-color: #fc585e;        
-                    cursor : pointer;
-                    flaot : left;
-                    margin-right : 30px;
-                  }
-	  #sellButton p { margin : 0; padding-left : 0px; }
-      #sellButton ul li { list-style : none; 
-       					  font-size : 12pt;
-       					  color : white;
-       					  font-weight : bold;
-                     	  padding : 5px;
-                     	  margin: 0px;
-                     	  display : block;
-      					  text-align : center;
-                   		  text-decoration : none;
-                         }
-      #search { float : left; }
-      #search ul li { list-style : none; }
-      #search ul li span { boarder : 3px solid #fc585e; }
-      .searchSpace { width : 400px;
-      			 	 height : 50px;
-      			 	 boarder : 0px;
-      			 	 font-size : 12pt;
-      			 	 line-height : 50px;  
-      			 	 outline: none;
-      			   }
-      .searchIcon { background-color : #fc585e;
-      				padding : 8px 20px; 
-      				height : 50px;
-      				line-height : 50px;
-      			  }
+      /* 판매버튼 + 검색창 */
+      #sell_btn { float: left; 
+      			  margin-bottom: 40px;
+      			  margin-right: 30px;
+      			  height: 60px; 
+      			  width: 100px;
+      			  vertical-align: center:
+      			}
+      #sell_btn button { color: #fff;
+      					 background-color: #fc585e; 
+      					 outline: none;
+	  			 		 border: 0; 
+	  			 		 width: 100%; 
+	  			 		 height: 100%;
+	  			 		 padding: 10px;
+	  			 		 font-weight: bold;
+	  			 		 font-size: 11.5pt;
+	  			 		 
+	  			 	}
+				 	   
+	  #search { width: 570px; 
+	  			height: 55px; 
+	  			border: 3px solid #fc585e; 
+	  			float: left;
+	  			margin-bottom: 40px;
+	  			 }
+      #search input { border: 0;
+      				  padding: 10px;
+      				  outline: none;
+				  	  width: 470px;
+				  	  height: 30px;
+				  	  float: left;
+				  	  font-size: 12pt;
+				  	  text-align: right;
+				  	  margin-right: 0px;
+				  	}
+	  #search button { margin-left: 0px;
+	 			 	   background-color: #fc585e;
+	  			  	   width: 80px;
+	  			  	   height: 56px;
+	  			  	   padding-top: 5px;
+	  			  	   float: left;
+	  			  	   outline: none;
+	  			  	   border: 0;
+	  			 	 }
+
       
        /* 중고물품 목록 */
+       #items { width: 715px; height: 950px; } /* 왼쪽정렬 해결해야함 ㅠㅠ! */
       .goods { float : left;
-               width : 230px;
+               width : 210px;
                height : 280px;
                border: 1px solid #eeeeee;
                margin-right : 12px;
                margin-bottom : 12px;
                list-style : none; 
+               margin-left:0px;
              }
-      #layer1 li:last-child { padding : 0px; }
-      .goods img { width : 230px;
+      .goods img { width : 210px;
                    height : 200px;
-                   border: 1px solid #eeeeee;
+                   border-bottom: 1px solid #eeeeee;
                  }
       .goods p { margin-top : 10px;
                  margin-left : 10px;
                  font-size : 12pt;
                  float : left;
                }
-      .price { margin-top : 12px;
-               margin-left : 10px;
+      .price { margin-left : 10px;
                margin-bottom : 15px; 
                font-size : 11pt;
                clear : left;
                float : left;
              }
-      .time { margin-top : 12px;
-              margin-right : 10px;
+      .time { margin-right : 10px;
               margin-bottom : 15px;
               font-size : 10pt;
               float : right;
            }
- 
+           
+       /* 페이지번호 */
+       #page_number { margin-top: 40px; }
+       #page_number ul li { list-style: none;
+       				  		display: inline;
+       					  }
+       #page_number ul li a { padding: 4px;
+							  margin-right: 20px;
+							  /* height: 50px; */
+							  width: 15px;
+							  color: #000;
+							  font-size: 12pt;
+							  text-align: center;
+							  text-decoration: none;
+      						}
+       #page_number ul li a:hover, ul li a:focus { color: #fff;
+												   border: 1px solid #000;
+												   border-radius: 50%;
+												   background-color: #000;
+												 }
 </style>
 </head>
 <meta charset="EUC-KR">
@@ -144,7 +169,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li><p>중고거래</p></li>
+				<li class = "title_wrap"><p>중고거래</p></li>
 			</ul>
        	</div>
        	
@@ -161,37 +186,31 @@
        		</div>
        		
        		<div>
-       			<div id = "sellButton">
-       				<ul>
-       					<li><p><a href = "#">판매하기</a></p></li>
-       				</ul>
+       			<div id = "sell_btn">
+       				<button>판매하기</button>
        			</div>
        			<div id = "search">
-       				<ul>
-       					<li>
-       						<input type = "text" class = "searchSpace">
-       						<button class = "searchIcon" type = "submit"><img src = "img/SearchIcon.png"></button>
-       					</li>
-       				</ul>
+       					<input type = "text" name = "searchArea">
+       					<button><img src = "../img/SearchButton.png"></button>
        			</div>
        		</div>
        		
-       		<div>
-       			<ul id = "layer1">
+       		<div id = "items">
+       			<ul>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품1">
+       					<img src = "../img/MainLogo.png" alt = "물품1">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품2">
+       					<img src = "../img/MainLogo.png" alt = "물품2">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품3">
+       					<img src = "../img/MainLogo.png" alt = "물품3">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
@@ -199,19 +218,19 @@
        			</ul>
        			<ul>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품4">
+       					<img src = "../img/MainLogo.png" alt = "물품4">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품5">
+       					<img src = "../img/MainLogo.png" alt = "물품5">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품6">
+       					<img src = "../img/MainLogo.png" alt = "물품6">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
@@ -219,19 +238,19 @@
        			</ul>
        			<ul>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품7">
+       					<img src = "../img/MainLogo.png" alt = "물품7">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품8">
+       					<img src = "../img/MainLogo.png" alt = "물품8">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        				<li class = "goods">
-       					<img src = "img/MainLogo.png" alt = "물품9">
+       					<img src = "../img/MainLogo.png" alt = "물품9">
        					<p>제목</p>
        					<span class = "price"><%-- <% price %>원 --%>가격</span>
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
@@ -239,6 +258,20 @@
        			</ul>
        		</div>
        		
+       		<div id = "page_number">
+       			<ul>
+       				<li><a href="#"><</a></li>
+					<li><a href="#">1</a></li>  
+    				<li><a href="#">2</a></li>  
+    				<li><a href="#">3</a></li>  
+   					<li><a href="#">4</a></li>  
+    				<li><a href="#">5</a></li>  
+   					<li><a href="#">6</a></li>  
+   					<li><a href="#">7</a></li>  
+    				<li><a href="#">8</a></li>
+    				<li><a href="#">></a></li>
+       			</ul>
+       		</div>
        </div>
        <div id = "footer">
        
