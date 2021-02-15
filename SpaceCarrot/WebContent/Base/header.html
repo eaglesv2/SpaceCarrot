@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="reset.css" />
 <style>
 	#skipNavi { position : absolute;
 				left : 0;
@@ -28,26 +29,29 @@
 											text-align : center;
 										   }
 	#header { width : 1080px; 
-			  height : 100px;
+			  height : 110px;
 			}
 
 	#header ul li { display : inline; /* 가로나열 */
 					vertical-align : middle; /* 수직높이 가운데 정렬 */
 			      }
-	.menu img { padding-right : 55px; }
 	.menu { font-size : 16pt; 
 		    font-weight : bold;
 		    color : #000000; 
 		    float : left;
 		  }
-	.menu ul li { padding-right : 50px; }  /* 메뉴 간격 50px */
+	.menu img { padding: 17px 0px 7px 17px; }
+	.menu ul li { padding-right : 40px; }  /* 메뉴 간격 50px */
+	.menu ul li:first-child { padding-right: 55px; }
 	.menu ul li:last-child { padding : 0px; }
 	.login { vertical-align : top;  /* 회원가입 로그인 마이페이지 */
 		     font-size : 12pt;
 		     font-weight : normal;
+		     padding-top : 10px;
 		     padding-right : 7px;
 		     float : right;
 		   }
+	.login ul li:last-child { padding: 0px; }
 	a { text-decoration : none; /* a태그 밑줄 + 색 바뀌는거 초기화 */
 		color : #000000; 
 	  }
