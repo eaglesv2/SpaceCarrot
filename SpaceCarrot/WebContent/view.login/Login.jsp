@@ -5,10 +5,11 @@
 <head>
 <meta charset="EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../Base/reset.css" />
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../BaseFrame/header.html");
-		$("#footer").load("../BaseFrame/footer.html");
+		$("#header").load("../Base/header.html");
+		$("#footer").load("../Base/footer.html");
 	})
 </script>
 <style>
@@ -38,7 +39,7 @@
              	  margin-left : 350px;
     		    }
     #login_form table { border-spacing: 0;
-    				    margin: 0;
+    				    margin-bottom: 10px;
     				    padding: 0; 
     				    border: 0;
     				  }
@@ -47,7 +48,7 @@
 							  color: #4c4c4c; 
 							  height: 30px; 
 							  padding: 10px; 
-							  width: 300px; 
+							  width: 250px; 
 						    }
     #login_form table th { text-align : center; }
    	#login_form table th span { color: #404040;
@@ -55,7 +56,7 @@
    							    display: inline-block; 
    							    padding: 0 20px 0 0; 
    							   }
-   	#btn { margin-left: 50px; }
+   	#btn { margin-left: 60px; }
 	#btn ul li { list-style: none; }
 	.login_btn_wrap { text-align: center; 
 			   		  margin: 20px 30px 30px;
@@ -89,7 +90,7 @@
 				  		 display: block; 
 				 		 text-align: center; 
 				 		 margin: 0 auto;
-				 	}
+				 	   }
 
 </style>
 <title>로그인</title>

@@ -4,19 +4,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../Base/reset.css" />
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("header.html");
-		$("#footer").load("footer.html");
+		$("#header").load("../Base/header.html");
+		$("#footer").load("../Base/footer.html");
 	})
 </script>
 <style>
       #container { margin : 0 auto;
                    width : 1080px;
-                 /* border : 2px solid black; */
+                   border : 2px solid black;
                  }
 	  /* 중고거래 타이틀 */
       #title ul li { list-style: none; }
@@ -36,7 +35,9 @@
               margin-left : 183px;
             } 
       /* 카테고리 메뉴 */
-      #category { height : 40px; }   
+      #category { height : 40px; 
+      			  margin-top: 20px;
+      			   }   
       #category ul { height : 40x; 
       			     padding : 0;
       			   }    
@@ -44,60 +45,67 @@
                     	color : #000000;
                    		float : left;
                     	text-align: center;
-                    	padding-right :40px;
+                    	vertical-align: middle;
+                    	padding-right :35px;
                  	  }
       #category ul li:last-child{ padding : 0; }
       #category .menuLink { text-decoration : none;
                        	    color : #000000;
                        	    display : block;
-                       	    font-size : 11.5pt;
+                       	    font-size : 12pt;
                        	    font-weight : bold;
                     	  }
-      #category .menuLink:hover { text-decoration : underline; 
-                           text-underline-position : under;
-                          }     
+      /* #category .menuLink:hover { text-decoration : underline; 
+                           		  text-underline-position : under;
+                          		} */
+      .digital_tab:after { content: "";
+      					   display: block;
+      					   width: 85px;
+      					   text-align: center;
+      					   border-bottom : 2px solid #000;
+      					   margin-top: 8px;
+      					 }
                           
       /* 판매버튼 + 검색창 */
       #sell_btn { float: left; 
       			  margin-bottom: 40px;
       			  margin-right: 30px;
-      			  height: 60px; 
-      			  width: 100px;
+      			  height: 56px; 
+      			  width: 113px;
       			  vertical-align: center:
       			}
       #sell_btn button { color: #fff;
       					 background-color: #fc585e; 
       					 outline: none;
-	  			 		 border: 0; 
+	  			 		 border: 3px solid #fc585e; 
 	  			 		 width: 100%; 
 	  			 		 height: 100%;
 	  			 		 padding: 10px;
-	  			 		 font-weight: bold;
-	  			 		 font-size: 11.5pt;
-	  			 		 
+	  			 		 font-size: 18px;
+	  			 		 font-weight: bold;		 
 	  			 	}
 				 	   
-	  #search { width: 570px; 
-	  			height: 55px; 
+	  #search { width: 565px; 
+	  			height: 50px; 
 	  			border: 3px solid #fc585e; 
 	  			float: left;
 	  			margin-bottom: 40px;
 	  			 }
       #search input { border: 0;
-      				  padding: 10px;
+      				  padding: 10px 10px 0px 0px;
       				  outline: none;
-				  	  width: 470px;
+				  	  width: 480px;
 				  	  height: 30px;
 				  	  float: left;
-				  	  font-size: 12pt;
+				  	  font-size: 16pt;
 				  	  text-align: right;
 				  	  margin-right: 0px;
 				  	}
 	  #search button { margin-left: 0px;
 	 			 	   background-color: #fc585e;
-	  			  	   width: 80px;
-	  			  	   height: 56px;
-	  			  	   padding-top: 5px;
+	  			  	   width: 75px;
+	  			  	   height: 50px;
+	  			  	   padding: 6px 7px 10px 7px;
 	  			  	   float: left;
 	  			  	   outline: none;
 	  			  	   border: 0;
@@ -106,23 +114,25 @@
       
        /* 중고물품 목록 */
        #items { width: 715px; height: 950px; } /* 왼쪽정렬 해결해야함 ㅠㅠ! */
+      .row li:last-child { margin-right: 0px; }
       .goods { float : left;
-               width : 210px;
+               width : 227px;
                height : 280px;
                border: 1px solid #eeeeee;
-               margin-right : 12px;
+               margin-right : 14px;
                margin-bottom : 12px;
                list-style : none; 
-               margin-left:0px;
+               margin-left: 0px;
              }
-      .goods img { width : 210px;
-                   height : 200px;
+      .goods img { width : 227px;
+                   height : 210px;
                    border-bottom: 1px solid #eeeeee;
                  }
-      .goods p { margin-top : 10px;
-                 margin-left : 10px;
-                 font-size : 12pt;
-                 float : left;
+      .goods p { margin-top: 10px;
+                 margin-left: 10px;
+                 margin-bottom: 12px;
+                 font-size: 12pt;
+                 float: left;
                }
       .price { margin-left : 10px;
                margin-bottom : 15px; 
@@ -142,7 +152,7 @@
        				  		display: inline;
        					  }
        #page_number ul li a { padding: 4px;
-							  margin-right: 20px;
+							  margin-right: 10px;
 							  /* height: 50px; */
 							  width: 15px;
 							  color: #000;
@@ -177,7 +187,7 @@
        		<div id = "category">
        			<ul>
        				<li><a class="menuLink" href="#">의류/패션</a></li>
-       				<li><a class="menuLink" href="#">디지털/가전</a></li>
+       				<li class = "digital_tab"><a class="menuLink" href="#">디지털/가전</a></li>
        				<li><a class="menuLink" href="#">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="#">생활/문구/가구</a></li>
        				<li><a class="menuLink" href="#">스포츠/레저</a></li>
@@ -196,7 +206,7 @@
        		</div>
        		
        		<div id = "items">
-       			<ul>
+       			<ul class = "row">
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품1">
        					<p>제목</p>
@@ -216,7 +226,7 @@
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        			</ul>
-       			<ul>
+       			<ul class = "row">
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품4">
        					<p>제목</p>
@@ -236,7 +246,7 @@
        					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
        				</li>
        			</ul>
-       			<ul>
+       			<ul class = "row">
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품7">
        					<p>제목</p>

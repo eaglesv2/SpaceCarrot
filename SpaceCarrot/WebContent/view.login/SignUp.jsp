@@ -5,10 +5,11 @@
 <head>
 <meta charset="EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../Base/reset.css" />
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../BaseFrame/header.html");
-		$("#footer").load("../BaseFrame/footer.html");
+		$("#header").load("../Base/header.html");
+		$("#footer").load("../Base/footer.html");
 	})
 </script>
 <style>
@@ -68,6 +69,7 @@
    						}
    	.gender { line-height : 30px; }
    	
+   	#btn { margin-left : 50px; }
     #btn ul li { list-style: none; }
 	.complete_btn_wrap { text-align: center; 
 			   			 margin: 20px 30px 30px;
