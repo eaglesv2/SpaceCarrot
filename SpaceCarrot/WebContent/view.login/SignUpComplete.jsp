@@ -33,57 +33,62 @@
             width : 715px;
             height : 500px;
             text-align : center;
-            margin-left : 203px;
+            margin-left : 200px;
           } 			  
 	#msg { margin-top: 50px; 
 		   font-weight: bold;
 		   font-size: 15pt; }
-	#btn { margin-left: 180px; }
+	#btn { margin-left: 185px; }
 	#btn ul li { list-style: none; }
 	.home_btn_wrap { text-align: center; 
 			   	     margin: 20px 30px 30px;
 			   		 float: left;
 			  	   }
-	.home_btn_wrap a { color: #fff; 
-				  	   background-color: #fc585e;
-				  	   border: 3px solid #fc585e; 
-				 	   font-weight: bold; 
-				  	   padding: 10px;  
-				 	   height: 20px; 
-				 	   line-height: 20px; 
-				 	   width: 70px; 
-				  	   display: block; 
-				 	   text-align: center; 
-				 	   margin: 0 auto;
-					 }
-	.home_btn_wrap a.wide { width:587px;
-					   		margin: 0 0 0 20px;
-				 		  }
+	.home_btn_wrap button { color: #fff; 
+				  	  		background-color: #fc585e;
+				  	   		border: 3px solid #fc585e;
+				  	   		font-size: 12pt;
+				 	   		font-weight: bold; 
+				  	   		padding: 10px;  
+				 	   		height: 50px; 
+				 	   		vertical-align: middle;
+				 	   		width: 100px; 
+				  	   		display: block; 
+				 	   		text-align: center; 
+				 	   		margin: 0 auto;
+					 	  }
 					 
 	.login_btn_wrap { text-align: center; 
 			   		  margin: 20px 0 30px;
 			   		  float: left;
 			   		  
 			  		 }
-	.login_btn_wrap a { color: #fc585e; 
-				  		 background-color: #fff; 
-				  		 border: 3px solid #fc585e; 
-				 		 font-weight: bold; 
-				  	  	 padding: 10px;  
-				 	     height: 20px; 
-				  		 line-height: 20px; 
-				 		 width: 140px; 
-				  		 display: block; 
-				 		 text-align: center; 
-				 		 margin: 0 auto;
-				 	}
- 	.login_btn_wrap a.wide { width:587px;
-					  	 	  margin: 0 0 0 20px;
-					 		}	
+	.login_btn_wrap button { color: #fc585e; 
+				  		 	 background-color: #fff; 
+				  		 	 border: 3px solid #fc585e; 
+				  		 	 font-size: 12pt;
+				 		 	 font-weight: bold; 
+				  	  	 	 padding: 10px;  
+				 	     	 height: 50px; 
+				  		 	 vertical-align: middle;
+				 		 	 width: 150px; 
+				  		 	 display: block; 
+				 		 	 text-align: center; 
+				 		 	 margin: 0 auto;
+				 		   }	
+
 </style>
 <title>회원가입 완료</title>
 </head>
 <body>
+	    <%
+        //넘어오는 값 한글 인코딩 처리하기
+        request.setCharacterEncoding("UTF-8");
+    	response.setCharacterEncoding("UTF-8");
+       
+        //nickname에 해당하는 value가져오기
+        String nickname = request.getParameter("nickname");   
+   		%>
 	<div id = "container">
         <div id = "header">
 
@@ -97,15 +102,15 @@
        	
        	<div id = "wrap">
        		<div id = "msg">
-       			<%-- <%= id %> --%>아이디 님 회원가입을 축하드립니다
+       			<%= nickname %> 님 회원가입을 축하드립니다
        		</div>
        		<div id = "btn">
         		<ul>
 					<li class = "home_btn_wrap">
-						<a href = "#">홈으로</a>
+						<button onclick = "main.html">홈으로</button>
 					</li>
 					<li class = "login_btn_wrap">
-						<a href = "#">로그인 하러 가기</a>
+						<button onclick = "Login.jsp">로그인 하러 가기</button>
 					</li>
 				</ul>
        		</div>
