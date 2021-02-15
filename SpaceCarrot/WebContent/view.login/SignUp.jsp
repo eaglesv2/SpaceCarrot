@@ -139,16 +139,17 @@
 			</ul>
        	</div>
        	
+	<form action="DBInsert.do" method="post">
        	<div id = "join_form">
 			<table>
               	<tbody>
 					<tr>
 						<th><span>아이디</span></th>
-						<td><input type="text" placeholder="ID 를 입력하세요."></td>
+						<td><input type="text" name="userid" placeholder="ID 를 입력하세요."></td>
                 	</tr>
                 	<tr>
                   		<th><span>비밀번호</span></th>
-                  		<td><input type="password" placeholder="비밀번호를 입력해주세요."></td>
+                  		<td><input type="password" name="userpw" placeholder="비밀번호를 입력해주세요."></td>
                 	</tr>
                 	<tr>
                  		 <th><span>비밀번호 확인</span></th>
@@ -156,23 +157,23 @@
                		 </tr>
                		 <tr>
                   		<th><span>이름</span></th>
-                  		<td><input type="text" placeholder=""></td>
+                  		<td><input type="text" name="username" placeholder=""></td>
                 	</tr>
                 	<tr>
                   		<th><span>성별</span></th>
                   		<td class = "gender">
-                  			<input type="radio" name = "gender" value = "F">여자 
+                  			<input type="radio" name = "usergender" value = "F">여자 
                   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  			<input type="radio" name = "gender" value = "M">남자
+                  			<input type="radio" name = "usergender" value = "M">남자
                   		</td>
                 	</tr>
                 	<tr>
                  		 <th><span>생일</span></th>
-                  		 <td><input type="text" placeholder="ex)1994-10-14"></td>
+                  		 <td><input type="text" name="userbirth" placeholder="ex)1994-10-14"></td>
                		 </tr>
                		 <tr>
                  		 <th><span>전화번호</span></th>
-                  		<td><input type="text" placeholder="ex)010-5402-6873"></td>
+                  		<td><input type="text" name="usertel" placeholder="ex)010-5402-6873"></td>
                		 </tr>
 				</tbody>
 			</table>
@@ -196,6 +197,7 @@
        	<div id = "footer">
        	
        	</div>
+    </form>
 	</div>
 </body>
 </html>

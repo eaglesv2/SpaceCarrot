@@ -63,13 +63,13 @@ public class DBInsert extends HttpServlet {
 		Boolean b = scv.insertUserInfo(userName, userID, userPW, userGender, userBirth, userTel);
 		
 		
-		if(b) {//true면 insert 되었으므로
+		/*if(b) {//true면 insert 되었으므로
 			request.setAttribute("result1", "입력good");
 		} else {
 			request.setAttribute("result1", "입력오류");
-		}
+		}*/
 		
-		RequestDispatcher rd1 = request.getRequestDispatcher("result.jsp");
+		RequestDispatcher rd1 = request.getRequestDispatcher("SignUpCompete.jsp");
 		rd1.forward(request, response);
 	}
 

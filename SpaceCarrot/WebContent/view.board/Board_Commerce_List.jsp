@@ -9,8 +9,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("header.html");
-		$("#footer").load("footer.html");
+		$("#header").load("../BaseFrame/header.html");
+		$("#footer").load("../BaseFrame/footer.html");
 	})
 </script>
 <style>
@@ -187,7 +187,7 @@
        		
        		<div>
        			<div id = "sell_btn">
-       				<button>판매하기</button>
+       				<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
        			</div>
        			<div id = "search">
        					<input type = "text" name = "searchArea">
