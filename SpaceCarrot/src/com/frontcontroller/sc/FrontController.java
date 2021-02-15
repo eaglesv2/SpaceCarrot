@@ -50,7 +50,7 @@ public class FrontController extends HttpServlet {
 		
 		switch(c) {
 		
-		case "/UserInfoInsert.do" :
+		case "/view.login/UserInfoInsert.do" :
 			u1 = new UserInfoInsert();
 			
 			try {
