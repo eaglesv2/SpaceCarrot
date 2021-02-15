@@ -18,7 +18,7 @@
                    width : 1080px;
                  /* border : 2px solid black; */
                  }
-	  /* 중고거래 타이틀 */
+	  /* 커뮤니티 타이틀 */
       #title ul li { list-style: none; }
       .title_wrap { text-align: center; }
 	  .title_wrap p { color: #fff; 
@@ -59,7 +59,7 @@
                            text-underline-position : under;
                           }     
                           
-      /* 판매버튼 + 검색창 */
+      /* 글쓰기버튼 + 검색창 */
       #btn {
       	margin-bottom:100px;
       }
@@ -110,7 +110,7 @@
 	  			 	 }
 
       
-       /* 중고물품 목록 */
+       /* 게시글 목록 */
        #board_wrap { width: 800px; height: 550px; 
        				 margin: 0 auto;
     				 /* box-sizing: border-box; */} /* 왼쪽정렬 해결해야함 ㅠㅠ! */
