@@ -62,35 +62,36 @@
 			   		  margin: 20px 30px 30px;
 			   		  float: left; 
 			   		} 
-	.login_btn_wrap a { color: #fff; 
-			  	   		background-color: #fc585e;
-			  		    border: 3px solid #fc585e; 
-			 	     	font-weight: bold; 
-			  	  		padding: 10px;  
-			 	   		height: 20px; 
-			 	  		line-height: 20px; 
-			 	  		width: 70px; 
-			  	  		display: block; 
-			 	  		text-align: center; 
-			 	 		margin: 0 auto;
-					  }
+	.login_btn_wrap button { color: #fff; 
+				  	  		 background-color: #fc585e;
+				  	   		 border: 3px solid #fc585e;
+				  	   		 font-size: 12pt;
+				 	   		 font-weight: bold; 
+				  	   		 padding: 10px;  
+				 	   		 height: 50px; 
+				 	   		 vertical-align: middle;
+				 	   		 width: 100px; 
+				  	   		 display: block; 
+				 	   		 text-align: center; 
+				 	   		 margin: 0 auto;
+					 	   }
 	.signup_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
 			   		   float: left;
-			   		  
 			  		 }
-	.signup_btn_wrap a { color: #fc585e; 
-				  		 background-color: #fff; 
-				  		 border: 3px solid #fc585e; 
-				 		 font-weight: bold; 
-				  	  	 padding: 10px;  
-				 	     height: 20px; 
-				  		 line-height: 20px; 
-				 		 width: 70px; 
-				  		 display: block; 
-				 		 text-align: center; 
-				 		 margin: 0 auto;
-				 	   }
+	.signup_btn_wrap button { color: #fc585e;
+							  background-color: #fff; 
+				  			  border: 3px solid #fc585e;
+				  		 	  font-size: 12pt;
+				 	   		  font-weight: bold; 
+				  	   		  padding: 10px;  
+				 	   		  height: 50px; 
+				 	   		  vertical-align: middle;
+				 	   		  width: 100px; 
+				  	   		  display: block; 
+				 	   		  text-align: center; 
+				 	   		  margin: 0 auto;
+				 	   		}
 
 </style>
 <title>로그인</title>
@@ -123,10 +124,10 @@
 			<div id = "btn">
 				<ul>
 					<li class = "login_btn_wrap">
-						<a href = "#">로그인</a>
+						<button type = "submit" onclick = "main.html">로그인</button>
 					</li>
 					<li class = "signup_btn_wrap">
-						<a href = "#">회원가입</a>
+						<button onclick = "SignUp.jsp">회원가입</button>
 					</li>
 				</ul>
 			</div>
