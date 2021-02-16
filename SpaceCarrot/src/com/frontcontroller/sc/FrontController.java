@@ -1,6 +1,8 @@
 package com.frontcontroller.sc;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
+
+import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
 
 /**
  * Servlet implementation class FrontController
@@ -62,6 +66,41 @@ public class FrontController extends HttpServlet {
 			
 			str = "SignUpComplete.jsp";
 			break;
+			
+		case "/Write_Community.do" :
+			// 커뮤니티 글쓰기 insert 진행중..
+			String category = request.getParameter("category");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			
+			System.out.println(category);
+			System.out.println(title);
+			System.out.println(content);
+			
+			String testuserID = "tuche24";
+			String testuserNickName = "hiyo";
+			
+			System.out.println(testuserID);
+			
+			SpaceCarrotDAO_Board_Community boarddao = null;
+			
+			try {
+				boarddao = new SpaceCarrotDAO_Board_Community();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			
+			boolean daoexecute = boarddao.insertPost_Community(category, testuserID, testuserNickName, title, content);
+			
+			if(daoexecute){
+				System.out.println("dao insert success");
+				str = "Community_List.jsp";
+				break;
+			} else {
+				System.out.println("dao failed");
+				str = "Community_List.jsp";
+				break;
+			}
 		}
 		
 		RequestDispatcher rd1 = request.getRequestDispatcher(str);
