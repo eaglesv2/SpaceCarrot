@@ -180,16 +180,16 @@
 			    <ul>
         			<li><span>번호</span><span>제목</span><span>작성자</span><span>조회수</span><span>작성일</span></li>
 
-			        <li><span>10</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>9</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>8</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>7</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>6</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>5</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>4</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>3</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>2</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>
-			        <li><span>1</span><span><a href="#">제목</a></span><span><a href="#">김단성사</a></span><span>2</span><span>21.02.15</span></li>        			
+			        <li><span>10</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>9</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>8</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>7</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>6</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>5</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>4</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>3</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>2</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>1</span><span><a href="Mypage_Modify_Board_Commerce.jsp">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>        			
     			</ul>
 			</div>
        		
