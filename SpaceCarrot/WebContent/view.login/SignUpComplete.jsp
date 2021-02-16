@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <script>        
@@ -17,7 +17,7 @@
                  width: 1080px;
                }
                
-	  /* х╦©Ь╟║ют ©о╥А е╦юлф╡ */
+	  /* М ▄Л⌡░Й╟─Л·┘ Л≥└Кё▄ М┐─Л²╢М▀─ */
 
     #title ul li { list-style: none; }
     .title_wrap { text-align: center; }
@@ -78,15 +78,15 @@
 				 		   }	
 
 </style>
-<title>х╦©Ь╟║ют ©о╥А</title>
+<title>М ▄Л⌡░Й╟─Л·┘ Л≥└Кё▄</title>
 </head>
 <body>
 	    <%
-        //Ёя╬Н©ю╢б ╟╙ гя╠ш юндз╣Ы цЁ╦╝го╠Б
+        //К└≤Л√╢Л≤╓К┼■ Й╟▓ М∙°Й╦─ Л²╦Л╫■К■╘ Л╡≤К╕╛М∙≤Й╦╟
         request.setCharacterEncoding("UTF-8");
     	response.setCharacterEncoding("UTF-8");
        
-        //nickname©║ гь╢Гго╢б value╟║а╝©ю╠Б
+        //nicknameЛ≈░ М∙╢К▀╧М∙≤К┼■ valueЙ╟─Л═╦Л≤╓Й╦╟
         String nickname = request.getParameter("nickname");   
    		%>
 	<div id = "container">
@@ -96,21 +96,21 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>х╦©Ь╟║ют ©о╥А</p></li>
+				<li class = "title_wrap"><p>М ▄Л⌡░Й╟─Л·┘ Л≥└Кё▄</p></li>
 			</ul>
        	</div>
        	
        	<div id = "wrap">
        		<div id = "msg">
-       			<%= nickname %> ╢т х╦©Ь╟║ютю╩ цЮго╣Е╦Ё╢о╢ы
+       			<%= nickname %> К▀≤ М ▄Л⌡░Й╟─Л·┘Л²└ Л╤∙М∙≤К⌠°К╕╫К▀┬К▀╓
        		</div>
        		<div id = "btn">
         		<ul>
 					<li class = "home_btn_wrap">
-						<button onclick = "main.html">х╗ю╦╥н</button>
+						<button onclick = "location.href='../MainPage/main.html'">М≥┬Л°╪К║°</button>
 					</li>
 					<li class = "login_btn_wrap">
-						<button onclick = "Login.jsp">╥н╠вюн го╥╞ ╟║╠Б</button>
+						<button onclick = "location.href='Login.jsp'">К║°Й╥╦Л²╦ М∙≤К÷╛ Й╟─Й╦╟</button>
 					</li>
 				</ul>
        		</div>
