@@ -47,14 +47,17 @@ public class FrontController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
+//		System.out.println(request.getRequestURI());
+//		System.out.println(request.getContextPath());
+		
 		String c = request.getRequestURI().substring(request.getContextPath().length());
+//		System.out.println(c);
 		
 		String str = null;
 		UserImpl u1 = null;
-		
 		switch(c) {
 		
-		case "/UserInfoInsert.do" :
+		case "/view.login/UserInfoInsert.do" :
 			u1 = new UserInfoInsert();
 			
 			try {
@@ -64,10 +67,10 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			str = "SignUpComplete.jsp";
+			str = "/view.login/SignUpComplete.jsp";
 			break;
 			
-		case "/Write_Community.do" :
+		case "/view.community/Write_Community.do" :
 			// 커뮤니티 글쓰기 insert 진행중..
 			String category = request.getParameter("category");
 			String title = request.getParameter("title");
@@ -81,7 +84,6 @@ public class FrontController extends HttpServlet {
 			String testuserNickName = "hiyo";
 			
 			System.out.println(testuserID);
-			
 			SpaceCarrotDAO_Board_Community boarddao = null;
 			
 			try {
@@ -91,18 +93,17 @@ public class FrontController extends HttpServlet {
 			}
 			
 			boolean daoexecute = boarddao.insertPost_Community(category, testuserID, testuserNickName, title, content);
-			
 			if(daoexecute){
 				System.out.println("dao insert success");
-				str = "Community_List.jsp";
+				str = "/view.community/Community_List.jsp";
 				break;
 			} else {
 				System.out.println("dao failed");
-				str = "Community_List.jsp";
+				str = "/view.community/Community_List.jsp";
 				break;
 			}
 		}
-		
+	
 		RequestDispatcher rd1 = request.getRequestDispatcher(str);
 		rd1.forward(request, response);
 	}
