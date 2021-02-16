@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../Base/reset.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../BaseFrame/header.html");
-		$("#footer").load("../BaseFrame/footer.html");
+		$("#header").load("../Base/header.html");
+		$("#footer").load("../Base/footer.html");
 	})
 </script>
 <style>
@@ -20,7 +21,9 @@
                  }
 	  /* 커뮤니티 타이틀 */
       #title ul li { list-style: none; }
-      .title_wrap { text-align: center; }
+      .title_wrap { text-align: center;
+      				margin-bottom:35px;				
+      }
 	  .title_wrap p { color: #fff; 
 				  	  background-color: #fc585e; 
 				  	  padding : 25px 0px;
@@ -37,7 +40,7 @@
             } 
       /* 카테고리 메뉴 */
       #category { height : 40px;
-      			  margin-left : 250px;
+      			  margin-left : 230px;
       }   
       #category ul { height : 40x; 
       			     padding : 0;
@@ -111,8 +114,9 @@
 
       
        /* 게시글 목록 */
-       #board_wrap { width: 800px; height: 550px; 
+       #board_wrap { width: 710px; height: 550px; 
        				 margin: 0 auto;
+					 right:500px;
     				 /* box-sizing: border-box; */} /* 왼쪽정렬 해결해야함 ㅠㅠ! */
        a { text-decoration: none;
 		   color: #404040;
@@ -131,12 +135,13 @@
 		}
 
 		#board_wrap ul li:first-child {
-			border-top: 2px solid #6a6a6a;
-		    border-bottom: 2px solid #6a6a6a;
+			border-top: 3px solid #6a6a6a;
+		    border-bottom: 3px solid #6a6a6a;
+		    font-weight: bold;
 		}
 
 		#board_wrap ul li:last-child {
-		    border-bottom: 2px solid #6a6a6a;
+		    border-bottom: 3px solid #6a6a6a;
 		}
 		
 		#board_wrap ul li:nth-child(n+2):nth-child(-n+10) {
@@ -146,12 +151,12 @@
 		#board_wrap ul li span:first-child {
 			display: inline-block;
 		    float: left;
-		    padding-right:218px;
+		    padding-right:188px;
 		}
 
 		#board_wrap ul li span:nth-child(2) {
 			display: inline-block;
-		    padding-right:220px;
+		    padding-right:200px;
 		}
 		#board_wrap ul li span:nth-child(3) {
 			display: inline-block;
@@ -159,7 +164,7 @@
 		}
 		#board_wrap ul li span:nth-child(4) {
 			display: inline-block;
-		    padding-right:30px;
+		    padding-right:20px;
 		}
 		#board_wrap ul li span:last-child {
 		    display: inline-block;
@@ -256,10 +261,10 @@
        			</ul>
        		</div>
        
+		</div>
        		<div id = "footer">
        
        		</div>
-		</div>
 	</div>
 </body>
 </html>
