@@ -4,7 +4,7 @@ import java.util.List;
 
 import spacecarrotVO.SpaceCarrotVO_Board_Community;
 
-public class ArticlePage {
+public class Community_ArticlePage {
 
 	private int total; // 게시글 총 수
 	private int currentPage; // 현재 페이지
@@ -13,7 +13,7 @@ public class ArticlePage {
 	private int startPage; // 시작 페이지
 	private int endPage; // 끝페이지
 
-	public ArticlePage(int total, int currentPage, int size, List<SpaceCarrotVO_Board_Community> content) {
+	public Community_ArticlePage(int total, int currentPage, int size, List<SpaceCarrotVO_Board_Community> content) {
 		// 게시글 총 수, 현재 페이지, 게시글 사이즈, VO
 		this.total = total;
 		this.currentPage = currentPage;

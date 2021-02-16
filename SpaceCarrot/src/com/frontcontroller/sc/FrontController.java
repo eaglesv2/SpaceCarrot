@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
 
-import article.service.ArticlePage;
-import article.service.ListArticleService;
+import article.service.Community_ArticlePage;
+import article.service.Community_ListArticleService;
 import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
 
 /**
@@ -72,18 +72,19 @@ public class FrontController extends HttpServlet {
 			break;
 			
 		case "/view.community/Write_Community.do" :
-			// 커뮤니티 글쓰기 insert 진행중..
+			// 커뮤니티 글쓰기 insert 정리 진행중.. 
 			
-			ListArticleService listService = new ListArticleService();
+			Community_ListArticleService listService = new Community_ListArticleService();
 			
+			// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
 			String pageNoVal = request.getParameter("pageNo");
 			int pageNo = 1;
 			if(pageNoVal != null) {
 				pageNo = Integer.parseInt(pageNoVal);
 			}
 			
-			ArticlePage articlePage = null;
-			
+			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다  
+			Community_ArticlePage articlePage = null;
 			try {
 				articlePage= listService.getArticlePage(pageNo);
 			} catch (ClassNotFoundException e1) {
@@ -91,15 +92,16 @@ public class FrontController extends HttpServlet {
 				e1.printStackTrace();
 			}
 			
-			
 			String category = request.getParameter("category");
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			
+			/* 테스트용
 			System.out.println(category);
 			System.out.println(title);
-			System.out.println(content);
+			System.out.println(content);*/
 			
+			// 받아올 유저 정보
 			String testuserID = "tuche24";
 			String testuserNickName = "hiyo";
 			

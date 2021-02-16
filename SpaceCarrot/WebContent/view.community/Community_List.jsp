@@ -191,6 +191,13 @@
 <title>커뮤니티_목록</title>
 </head>
 <body>
+	<!-- 디자인 할 예정.. 날짜도 수정예정.. -->
+	<!-- frontController에서 parameter를 못 받아왔을 시 리다이렉트로 파라미터를 가지고 온다 -->
+	<c:if test="${empty articlePage}">
+		<% RequestDispatcher rd = request.getRequestDispatcher("Write_Community.do");
+		rd.forward(request, response); 
+		System.out.print("redirect success"); %>
+	</c:if>
 	
 	<div id = "container">
         <div id = "header">
@@ -232,11 +239,13 @@
 			    		<td>조회수</td>
 			    		<td>작성일</td>
 			    	</tr>
+			    	<!-- articlePage 파라미터에 글이 없을 시에 출력 -->
 			   		<c:if test="${articlePage.hasNoArticles()}">
 			   			<tr>
 			   				<td colspan="4"> 게시글이 없습니다. </td>
 			   			</tr>
 			   		</c:if>
+			   		<!-- articlePage의 content 파라미터를 반복한다 -->
 			   		<c:forEach var="article" items="${articlePage.content}">
 			   			<tr>
 			   				<td>${article.postNum}</td>
@@ -246,28 +255,29 @@
 			   				<td>${article.regDate}</td>
 			   			</tr>
 			   		</c:forEach>
-			   		
+			   		<!-- 게시판 이동 항목 -->
+			   		<c:if test="${articlePage.hasArticles()}">
+			   			<tr>
+			   				<td colspan="5">
+			   					<!-- 현재페이지가 5 이상일 시 이전 링크-->
+			   					<c:if test="${articlePage.startPage > 5}">
+			   					<a href="Write_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+			   					</c:if>
+			   					<!-- startPage to endPage -->
+			   					<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
+			   					<a href="Write_Community.do?pageNo=${pNo}">[${pNo}]</a>
+			   					</c:forEach>
+			   					<!-- endPage가 총페이지보다 작을 시에 다음 링크 -->
+			   					<c:if test="${articlePage.endPage < articlePage.totalPages}">
+			   					<a href="Write_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+			   					</c:if>
+			   				</td>
+			   			</tr>
+			   		</c:if>
 			    </table>
 			</div>
 			
 			
-       		
-       		<!-- <div id = "page_number">
-       			<ul>
-       				<li><a href="Community_List?pageNum=5"><</a></li>
-					<li><a href="Community_List?pageNum=6">1</a></li>  
-    				<li><a href="Community_List?pageNum=7">2</a></li>  
-    				<li><a href="Community_List?pageNum=8">3</a></li>  
-   					<li><a href="#">4</a></li>  
-    				<li><a href="#">5</a></li>  
-   					<li><a href="#">6</a></li>  
-   					<li><a href="#">7</a></li>  
-    				<li><a href="#">8</a></li>
-    				<li><a href="#">></a></li>
-       			</ul>
-       		</div> -->
-       		
-       
        		<div id = "footer">
        
        		</div>
