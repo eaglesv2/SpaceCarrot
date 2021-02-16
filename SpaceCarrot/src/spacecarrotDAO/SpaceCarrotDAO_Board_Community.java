@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,7 +62,7 @@ public class SpaceCarrotDAO_Board_Community {
    
 
    
-   public ArrayList<SpaceCarrotVO_Board_Community> getAllPost_Community() throws SQLException{
+   /*public ArrayList<SpaceCarrotVO_Board_Community> getAllPost_Community() throws SQLException{
       //커뮤니티 게시판 거래 글 목록 불러오는 메소드 (게시글넘버, 제목, 작성자, 작성시간, 조회수)
       ArrayList<SpaceCarrotVO_Board_Community> scarray = new ArrayList<SpaceCarrotVO_Board_Community>();
       String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY " + COL_REGDATE + " DESC";
@@ -80,7 +81,7 @@ public class SpaceCarrotDAO_Board_Community {
          scarray.add(scv);
       }
       return scarray;
-   }
+   }*/
    
    public ResultSet getAllPost_Community2() throws SQLException{
 	      //커뮤니티 게시판 거래 글 목록 불러오는 메소드 (게시글넘버, 제목, 작성자, 작성시간, 조회수)
@@ -256,9 +257,10 @@ public class SpaceCarrotDAO_Board_Community {
 			   	,rs.getString(COL_USERID),rs.getString(COL_USERNICKNAME),rs.getString(COL_CONTENT),toDate(rs.getTimestamp(COL_REGDATE)),rs.getInt(COL_VIEWS));
    }
    
-   private Date toDate(Timestamp timestamp) {
-	   return new Date(timestamp.getTime());
-   }
+   private String toDate(Date regDate) {
+		String sDate = new SimpleDateFormat("MM.dd").format(regDate);
+		return sDate;
+	}
    
    public List<SpaceCarrotVO_Board_Community> select_Search_Category(String input_Category, int startRow, int size) throws SQLException{
 		   // 특정카테고리를 찾는 메소드
@@ -284,7 +286,7 @@ public class SpaceCarrotDAO_Board_Community {
 	}
 	
    public List<SpaceCarrotVO_Board_Community> select_Search(String input_Search, int startRow, int size) throws SQLException{
-		   // 특정 제목을 찾는 메소드
+		   // 특정 제목을 찾는 메소드 like % ? % 를 쓰기 위해서 concat을 사용했다
 	   String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY 
 			   + " WHERE " + COL_SUBJECT + " like concat ('%', ?, '%') ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
 	   

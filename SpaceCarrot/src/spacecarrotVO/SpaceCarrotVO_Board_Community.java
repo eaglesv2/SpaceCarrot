@@ -11,7 +11,7 @@ public class SpaceCarrotVO_Board_Community {
 	private String userID; // 유저ID
 	private String userNickName; // 유저닉네임
 	private String content; // 게시글내용
-	private Date regDate; // 등록일
+	private String regDate; // 등록일
 	private int views; // 조회수
 	
 	public SpaceCarrotVO_Board_Community(String category, String title, String content) { // 생성자
@@ -21,7 +21,7 @@ public class SpaceCarrotVO_Board_Community {
 	}
 	
 	public SpaceCarrotVO_Board_Community(int postNum, String category, String subject, String userID, String userNickName, String content, 
-			Date regDate, int views) {
+			String regDate, int views) {
 		this.postNum = postNum;
 		this.category = category;
 		this.subject = subject;
@@ -32,7 +32,7 @@ public class SpaceCarrotVO_Board_Community {
 		this.views = views;
 	}
 
-	public SpaceCarrotVO_Board_Community(int postNum, String subject, String userID, Date regDate, int views) {
+	public SpaceCarrotVO_Board_Community(int postNum, String subject, String userID, String regDate, int views) {
 		this.postNum = postNum;
 		this.subject = subject;
 		this.userID = userID;
@@ -90,12 +90,12 @@ public class SpaceCarrotVO_Board_Community {
 		this.content = content;
 	}
 
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
 
 	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+		this.regDate = toSdate(regDate);
 	}
 
 	public int getViews() {
@@ -106,4 +106,8 @@ public class SpaceCarrotVO_Board_Community {
 		this.views = views;
 	}
 
+	private String toSdate(Date regDate) {
+		String sDate = new SimpleDateFormat("MM.dd").format(regDate);
+		return sDate;
+	}
 }
