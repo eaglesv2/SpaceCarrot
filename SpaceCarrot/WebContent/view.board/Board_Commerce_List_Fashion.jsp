@@ -188,7 +188,7 @@
        	<div id = "wrap">
        		<div id = "category">
        			<ul>
-       				<li class = "fashion_tab"><a class="menuLink" href="#">의류/패션</a></li>
+       				<li class = "fashion_tab"><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
@@ -199,7 +199,7 @@
        		
        		<div>
        			<div id = "sell_btn">
-       				<button>판매하기</button>
+       				<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
        			</div>
        			<div id = "search">
        					<input type = "text" name = "searchArea">
