@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <script>        
@@ -17,7 +17,7 @@
                  width : 1080px;
                }
                
-	  /* ·Î±×ÀÎ Å¸ÀÌÆ² */
+	  /* ë¡œê·¸ì¸ íƒ€ì´í‹€ */
 
     #title ul li { list-style: none; }
     .title_wrap { text-align: center; }
@@ -30,7 +30,7 @@
 				 	margin: 0 auto;
 				  }
 	
-	/* ·Î±×ÀÎ ÀÔ·Â ºÎºĞ */ 
+	/* ë¡œê·¸ì¸ ì…ë ¥ ë¶€ë¶„ */ 
     #login_form { margin : 0 auto;
               	  width : 715px;
               	  height : 500px;
@@ -74,6 +74,7 @@
 				  	   		 display: block; 
 				 	   		 text-align: center; 
 				 	   		 margin: 0 auto;
+				 	   		 
 					 	   }
 	.signup_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
@@ -94,7 +95,7 @@
 				 	   		}
 
 </style>
-<title>·Î±×ÀÎ</title>
+<title>ë¡œê·¸ì¸</title>
 </head>
 <body>
 	<div id = "container">
@@ -104,7 +105,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>·Î±×ÀÎ</p></li>
+				<li class = "title_wrap"><p>ë¡œê·¸ì¸</p></li>
 			</ul>
        	</div>
         
@@ -112,22 +113,22 @@
         	<table>
               	<tbody>
 					<tr>
-						<th><span>¾ÆÀÌµğ</span></th>
-						<td><input type="text" placeholder="¾ÆÀÌµğ"></td>
+						<th><span>ì•„ì´ë””</span></th>
+						<td><input type="text" placeholder="ì•„ì´ë””"></td>
                 	</tr>
                 	<tr>
-                  		<th><span>ºñ¹Ğ¹øÈ£</span></th>
-                  		<td><input type="password" placeholder="ºñ¹Ğ¹øÈ£"></td>
+                  		<th><span>ë¹„ë°€ë²ˆí˜¸</span></th>
+                  		<td><input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸"></td>
                 	</tr>
                 </tbody>
 			</table>
 			<div id = "btn">
 				<ul>
 					<li class = "login_btn_wrap">
-						<button type = "submit" onclick = "main.html">·Î±×ÀÎ</button>
+						<button type = "submit" onclick = "main.html">ë¡œê·¸ì¸</button>
 					</li>
 					<li class = "signup_btn_wrap">
-						<button onclick = "SignUp.jsp">È¸¿ø°¡ÀÔ</button>
+						<button onclick = "SignUp.jsp">íšŒì›ê°€ì…</button>
 					</li>
 				</ul>
 			</div>
