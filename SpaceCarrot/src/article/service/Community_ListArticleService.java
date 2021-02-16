@@ -9,7 +9,7 @@ import spacecarrotVO.SpaceCarrotVO_Board_Community;
 public class Community_ListArticleService {
 
 	private SpaceCarrotDAO_Board_Community boardDao = null;
-	private int size = 5; // 한 페이지에 나타낼 게시글 수
+	private int size = 7; // 한 페이지에 나타낼 게시글 수
 
 	public Community_ArticlePage getArticlePage(int pageNum) throws ClassNotFoundException {
 		// pageNum에 해당하는 게시글 목록을 구한다. select() 첫번째 파라미터는 조회할 레코드의 시작행이다.
