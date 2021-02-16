@@ -1,7 +1,6 @@
 package com.frontcontroller.sc;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
 
+import article.service.ArticlePage;
+import article.service.ListArticleService;
 import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
 
 /**
@@ -72,6 +73,25 @@ public class FrontController extends HttpServlet {
 			
 		case "/view.community/Write_Community.do" :
 			// 커뮤니티 글쓰기 insert 진행중..
+			
+			ListArticleService listService = new ListArticleService();
+			
+			String pageNoVal = request.getParameter("pageNo");
+			int pageNo = 1;
+			if(pageNoVal != null) {
+				pageNo = Integer.parseInt(pageNoVal);
+			}
+			
+			ArticlePage articlePage = null;
+			
+			try {
+				articlePage= listService.getArticlePage(pageNo);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
 			String category = request.getParameter("category");
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
@@ -83,7 +103,6 @@ public class FrontController extends HttpServlet {
 			String testuserID = "tuche24";
 			String testuserNickName = "hiyo";
 			
-			System.out.println(testuserID);
 			SpaceCarrotDAO_Board_Community boarddao = null;
 			
 			try {
@@ -93,6 +112,9 @@ public class FrontController extends HttpServlet {
 			}
 			
 			boolean daoexecute = boarddao.insertPost_Community(category, testuserID, testuserNickName, title, content);
+			
+			request.setAttribute("articlePage", articlePage);
+				
 			if(daoexecute){
 				System.out.println("dao insert success");
 				str = "/view.community/Community_List.jsp";

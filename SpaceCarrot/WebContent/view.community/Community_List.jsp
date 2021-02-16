@@ -1,4 +1,3 @@
-<%@page import="com.util.MyUtil"%>
 <%@page import="spacecarrotVO.SpaceCarrotVO_Board_Community"%>
 <%@page import="java.util.List"%>
 <%@page import="spacecarrotDAO.SpaceCarrotDAO_Board_Community"%>
@@ -192,43 +191,6 @@
 <title>커뮤니티_목록</title>
 </head>
 <body>
-	<%
-	MyUtil myutil = new MyUtil();
-	
-	// 넘어온 페이지번호
-	String pageNum = request.getParameter("pageNum");
-	// 첫시작시 현재페이지 1
-	int currentPage = 1;
-	// 넘어온 페이지 번호가 존재할 경우 현재 페이지에 값 넣어주기
-	if(pageNum!=null){
-		currentPage = Integer.parseInt(pageNum);
-	}
-	
-	SpaceCarrotDAO_Board_Community boarddao = new SpaceCarrotDAO_Board_Community();
-	int total = boarddao.selectCount();
-	
-	
-	ResultSet rs = boarddao.getAllPost_Community2();
-	
-	// 한페이지에 표시할 데이터의 갯수
-	int numPerPage = 5;
-	
-	// 전체페이지수 구하기
-	int pageCount = total/numPerPage;
-	
-	// 데이터베이스에서 가져올 rownum의 시작과 끝
-	int start = (currentPage-1)*numPerPage+1;
-	int end = currentPage*numPerPage;
-	// 데이터베이스에서 해당페이지를 가져온다
-	List<SpaceCarrotVO_Board_Community> lists = boarddao.select(start, end);
-	//검색
-	String param = " ";
-	//페이징 처리
-	String listUrl = "Community_List.jsp"+ param;
-	String pageIndexList = myutil.pageIndexList(currentPage, total, listUrl);
-	System.out.print("error5");
-	%>
-	
 	
 	<div id = "container">
         <div id = "header">
@@ -270,35 +232,25 @@
 			    		<td>조회수</td>
 			    		<td>작성일</td>
 			    	</tr>
-			    	
-			   	<% if(total==0){ %>
-			   		<tr>
-			    		<td colspan="5">게시글이 존재하지 않습니다
-			    	</tr>
-			    <%
-			   	} else { 
-			   		while(rs.next()){
-			   			int board_no = rs.getInt("Num");
-			   			String board_title = rs.getString("Subject");
-			   			String board_userID = rs.getString("UserID");
-			   			String board_views =  rs.getString("Views");
-			   			Date board_date = rs.getDate("RegDate");
-			    %>
-			    <tr>
-			    	<td><%= board_no %></td>
-			    	<td><%= board_title %></td>
-			    	<td><%= board_userID %></td>
-			    	<td><%= board_views %></td>
-			    	<td><%= board_date %></td>
-			    </tr>
-			    <%
-			   		}
-			   	}
-			    %>
+			   		<c:if test="${articlePage.hasNoArticles()}">
+			   			<tr>
+			   				<td colspan="4"> 게시글이 없습니다. </td>
+			   			</tr>
+			   		</c:if>
+			   		<c:forEach var="article" items="${articlePage.content}">
+			   			<tr>
+			   				<td>${article.postNum}</td>
+			   				<td><c:out value="${article.subject}"></c:out></td>
+			   				<td>${article.userNickName}</td>
+			   				<td>${article.views}</td>
+			   				<td>${article.regDate}</td>
+			   			</tr>
+			   		</c:forEach>
+			   		
 			    </table>
 			</div>
 			
-			<%= pageIndexList %>
+			
        		
        		<!-- <div id = "page_number">
        			<ul>
