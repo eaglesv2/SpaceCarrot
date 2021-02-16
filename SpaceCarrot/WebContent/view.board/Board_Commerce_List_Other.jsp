@@ -15,7 +15,7 @@
 <style>
       #container { margin : 0 auto;
                    width : 1080px;
-                   border : 2px solid black;
+                   /* border : 2px solid black; */
                  }
 	  /* 중고거래 타이틀 */
       #title ul li { list-style: none; }
@@ -54,6 +54,7 @@
                        	    display : block;
                        	    font-size : 12pt;
                        	    font-weight : bold;
+                       	    cursor: pointer;
                     	  }
       /* #category .menuLink:hover { font-size: 12.5pt; } */
       .other_tab:after { content: "";
@@ -70,7 +71,7 @@
       			  margin-right: 30px;
       			  height: 56px; 
       			  width: 113px;
-      			  vertical-align: center:
+      			  vertical-align: center;
       			}
       #sell_btn button { color: #fff;
       					 background-color: #fc585e; 
@@ -80,7 +81,8 @@
 	  			 		 height: 100%;
 	  			 		 padding: 10px;
 	  			 		 font-size: 18px;
-	  			 		 font-weight: bold;		 
+	  			 		 font-weight: bold;
+	  			 		 cursor: pointer; 
 	  			 	}
 				 	   
 	  #search { width: 565px; 
@@ -107,6 +109,7 @@
 	  			  	   float: left;
 	  			  	   outline: none;
 	  			  	   border: 0;
+	  			  	   cursor: pointer;
 	  			 	 }
 
       
@@ -158,11 +161,11 @@
 							  text-align: center;
 							  text-decoration: none;
       						}
-       #page_number ul li a:hover, ul li a:focus { color: #fff;
-												   border: 1px solid #000;
-												   border-radius: 50%;
-												   background-color: #000;
-												 }
+       #page_number ul li a:hover, #page_number ul li a:focus { color: #fff;
+												   				border: 1px solid #000;
+												  				border-radius: 50%;
+												   				background-color: #000;
+												 			  }
 </style>
 </head>
 <meta charset="EUC-KR">

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <script>        
@@ -17,7 +17,7 @@
                  width : 1080px;
                }
                
-	  /* È¸¿ø°¡ÀÔ Å¸ÀÌÆ² */
+	  /* íšŒì›ê°€ì… íƒ€ì´í‹€ */
 
     #title ul li { list-style: none; }
     .title_wrap { text-align: center; }
@@ -67,6 +67,8 @@
    	#join_form table td { padding: 6px 0;
    						  position: relative;
    						}
+   	#join_form table .check { padding : 0px; }
+   	
    	.gender { line-height : 30px; }
    	
    	#btn { margin-left : 50px; }
@@ -124,7 +126,7 @@
 							font-size: 13px; 
 							font-weight: bold;}	 
 </style>
-<title>È¸¿ø°¡ÀÔÆû</title>
+<title>íšŒì›ê°€ì…í¼</title>
 </head>
 <body>
 	<div id = "container">
@@ -134,7 +136,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>È¸¿ø°¡ÀÔ</p></li>
+				<li class = "title_wrap"><p>íšŒì›ê°€ì…</p></li>
 			</ul>
        	</div>
        	
@@ -143,55 +145,61 @@
 			<table>
               	<tbody>
 					<tr>
-						<th><span>¾ÆÀÌµğ</span></th>
-						<td><input type="text" placeholder="ID ¸¦ ÀÔ·ÂÇÏ¼¼¿ä." name = "id"></td>
+						<th><span>ì•„ì´ë””</span></th>
+						<td><input type="text" placeholder="ID ë¥¼ ì…ë ¥í•˜ì„¸ìš”." id = "user_id" name = "id" required></td>
+						
                 	</tr>
                 	<tr>
-                  		<th><span>ºñ¹Ğ¹øÈ£</span></th>
-                  		<td><input type="password" placeholder="ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." name = "pw"></td>
+                		<td class = "check" colspan = 2>
+                			<td><div id = "id_check"></div>
+                		</td>
                 	</tr>
                 	<tr>
-                 		 <th><span>ºñ¹Ğ¹øÈ£ È®ÀÎ</span></th>
-                  		<td><input type="password" placeholder="ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇÏ¼¼¿ä" name = "pwcheck"></td>
+                  		<th><span>ë¹„ë°€ë²ˆí˜¸</span></th>
+                  		<td><input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”." id = "user_pw" name = "pw"></td>
+                	</tr>
+                	<tr>
+                 		 <th><span>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</span></th>
+                  		<td><input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì„¸ìš”" name = "pwcheck"></td>
                		 </tr>
                		 <tr>
-                  		<th><span>ÀÌ¸§</span></th>
+                  		<th><span>ì´ë¦„</span></th>
                   		<td><input type="text" placeholder="" name = "name"></td>
                 	</tr>
                 	 <tr>
-                  		<th><span>´Ğ³×ÀÓ</span></th>
+                  		<th><span>ë‹‰ë„¤ì„</span></th>
                   		<td><input type="text" placeholder="" name = "nickname"></td>
                 	</tr>
                 	<tr>
-                  		<th><span>¼ºº°</span></th>
+                  		<th><span>ì„±ë³„</span></th>
                   		<td class = "gender">
-                  			<input type="radio" name = "gender" value = "F">¿©ÀÚ 
+                  			<input type="radio" name = "gender" value = "F">ì—¬ì 
                   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  			<input type="radio" name = "gender" value = "M">³²ÀÚ
+                  			<input type="radio" name = "gender" value = "M">ë‚¨ì
                   		</td>
                 	</tr>
                 	<tr>
-                 		 <th><span>»ıÀÏ</span></th>
+                 		 <th><span>ìƒì¼</span></th>
                   		 <td><input type="text" placeholder="ex)1994-10-14" name = "birth"></td>
                		 </tr>
                		 <tr>
-                 		 <th><span>ÀüÈ­¹øÈ£</span></th>
+                 		 <th><span>ì „í™”ë²ˆí˜¸</span></th>
                   		<td><input type="text" placeholder="ex)010-5402-6873" name = "tel"></td>
                		 </tr>
 				</tbody>
 			</table>
             <div class="exform_txt">
-            	<span>Ç¥½Ã´Â ÇÊ¼öÀûÀ¸·Î ÀÔ·ÂÇØÁÖ¼Å¾ß °¡ÀÔÀÌ °¡´ÉÇÕ´Ï´Ù.</span>
+            	<span>í‘œì‹œëŠ” í•„ìˆ˜ì ìœ¼ë¡œ ì…ë ¥í•´ì£¼ì…”ì•¼ ê°€ì…ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.</span>
             </div>
 		
         
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button type = "submit" onclick = "SignUpComplete.jsp">¿Ï·á</button>
+						<button type = "submit" onclick = "location.href='SignUpComplete.jsp'">ì™„ë£Œ</button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<button type = "reset" onclick = "main.html">Ãë¼Ò</button>
+						<button type = "reset" onclick = "location.href='main.html'">ì·¨ì†Œ</button>
 					</li>
 				</ul>
        		</div>
