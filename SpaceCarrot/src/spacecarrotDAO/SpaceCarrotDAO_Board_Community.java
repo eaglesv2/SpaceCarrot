@@ -210,7 +210,7 @@ public class SpaceCarrotDAO_Board_Community {
    }
    
    public int selectCount() {
-	   // 게시글 수
+	   // 게시글 수 int로 반환 메서드
 	   Statement stmt = null;
 	   String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY;
 	   
@@ -232,7 +232,7 @@ public class SpaceCarrotDAO_Board_Community {
    }
    
    public List<SpaceCarrotVO_Board_Community> select(int startRow, int size) throws SQLException{
-	   
+	   // 1번부터 size 만큼의 게시글 수를 List에 담는 메소드
 	   String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
 	   
 	   try {
@@ -251,12 +251,57 @@ public class SpaceCarrotDAO_Board_Community {
    }
    
    private SpaceCarrotVO_Board_Community convertArticle(ResultSet rs) throws SQLException {
+	   // ResultSet을 VO에 담는 메소드
 	   return new SpaceCarrotVO_Board_Community(rs.getInt(COL_POSTNUM),rs.getString(COL_CATEGORY),rs.getString(COL_SUBJECT)
 			   	,rs.getString(COL_USERID),rs.getString(COL_USERNICKNAME),rs.getString(COL_CONTENT),toDate(rs.getTimestamp(COL_REGDATE)),rs.getInt(COL_VIEWS));
    }
    
    private Date toDate(Timestamp timestamp) {
 	   return new Date(timestamp.getTime());
+   }
+   
+   public List<SpaceCarrotVO_Board_Community> select_Search_Category(String input_Category, int startRow, int size) throws SQLException{
+		   // 특정카테고리를 찾는 메소드
+	   String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY 
+			   + " WHERE " + COL_CATEGORY + " = ? ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
+	   
+	   try {
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, input_Category);
+		   pstmt.setInt(2, startRow);
+		   pstmt.setInt(3, size);
+		   rs = pstmt.executeQuery();
+		   List<SpaceCarrotVO_Board_Community> result = new ArrayList<SpaceCarrotVO_Board_Community>();
+		   while(rs.next()) {
+			   result.add(convertArticle(rs));
+			   System.out.println("select_Search success");
+		   }
+		   return result;
+	   } finally {
+		   
+	   }
+	   
+	}
+	
+   public List<SpaceCarrotVO_Board_Community> select_Search(String input_Search, int startRow, int size) throws SQLException{
+		   // 특정 제목을 찾는 메소드
+	   String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY 
+			   + " WHERE " + COL_SUBJECT + " like concat ('%', ?, '%') ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
+	   
+	   try {
+		   pstmt = con.prepareStatement(sql);
+		   pstmt.setString(1, input_Search);
+		   pstmt.setInt(2, startRow);
+		   pstmt.setInt(3, size);
+		   rs = pstmt.executeQuery();
+		   List<SpaceCarrotVO_Board_Community> result = new ArrayList<SpaceCarrotVO_Board_Community>();
+		   while(rs.next()) {
+			   result.add(convertArticle(rs));
+		   }
+		   return result;
+	   } finally {
+		   
+	   }
    }
    
 }

@@ -212,12 +212,20 @@
        	
        	<div id = "wrap">
        		<div id = "category">
+       		<form action="Category_Community.do" method="post">
        			<ul>
+       				<li><input type="submit" name="category" value="자유" /></li>
+       				<li><input type="submit" name="category" value="정보" /></li>
+       				<li><input type="submit" name="category" value="QnA" /></li>
+       				<li><input type="submit" name="category" value="리뷰" /></li>
+       			</ul>
+       			<!-- <ul>
        				<li><a class="menuLink" href="#">자유</a></li>
        				<li><a class="menuLink" href="#">정보</a></li>
        				<li><a class="menuLink" href="#">Q&A</a></li>
        				<li><a class="menuLink" href="#">리뷰</a></li>
-       			</ul>
+       			</ul> -->
+       		</form>
        		</div>
        		
        		<div id="btn">
@@ -225,8 +233,10 @@
        				<button style="cursor:pointer;" onclick="location='Community_Write.jsp'">글쓰기</button>
        			</div>
        			<div id = "search">
+       			<form action="Search_Community.do" method="post">
        					<input type = "text" name = "searchArea">
-       					<button><img src = "../img/SearchButton.png"></button>
+       					<button type = "submit"><img src = "../img/SearchButton.png"></button>
+       			</form>
        			</div>
        		</div>
        		

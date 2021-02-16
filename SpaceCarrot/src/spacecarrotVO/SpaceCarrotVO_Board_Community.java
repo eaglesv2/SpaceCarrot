@@ -1,5 +1,7 @@
 package spacecarrotVO;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SpaceCarrotVO_Board_Community {
@@ -30,8 +32,6 @@ public class SpaceCarrotVO_Board_Community {
 		this.views = views;
 	}
 
-
-	
 	public SpaceCarrotVO_Board_Community(int postNum, String subject, String userID, Date regDate, int views) {
 		this.postNum = postNum;
 		this.subject = subject;
@@ -105,9 +105,5 @@ public class SpaceCarrotVO_Board_Community {
 	public void setViews(int views) {
 		this.views = views;
 	}
-
-
-
-	
 
 }
