@@ -1,6 +1,7 @@
 package com.frontcontroller.sc;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
+
+import article.service.Community_ArticlePage;
+import article.service.Community_ListArticleService;
+import article.service.Community_ListArticleService_Search;
+import article.service.Community_ListArticleService_SearchCategory;
+import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
 
 /**
  * Servlet implementation class FrontController
@@ -48,6 +55,22 @@ public class FrontController extends HttpServlet {
 		String str = null;
 		UserImpl u1 = null;
 		
+		// request로 받아올 parameter
+		String category = null;
+		String title = null;
+		String content = null;
+		String testuserID = null;
+		String testuserNickName = null; 
+		String pageNoVal = null;
+		int pageNo = 0;
+		boolean daoexecute = false;
+		// CommunityList에 필요한 객체
+		Community_ListArticleService listService = null;
+		SpaceCarrotDAO_Board_Community boarddao = null;
+		Community_ArticlePage articlePage = null;
+		
+		
+		
 		switch(c) {
 		
 		case "/view.login/UserInfoInsert.do" :
@@ -60,10 +83,130 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			str = "SignUpComplete.jsp";
+			str = "/view.login/SignUpComplete.jsp";
 			break;
+			
+		case "/view.community/Write_Community.do" :
+			
+			category = request.getParameter("category");
+			title = request.getParameter("title");
+			content = request.getParameter("content");
+			testuserID = "tuche24";
+			testuserNickName = "hiyo";
+			
+			
+			// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+			pageNoVal = request.getParameter("pageNo");
+			pageNo = 1;
+			if(pageNoVal != null) {
+				pageNo = Integer.parseInt(pageNoVal);
+			}
+			
+			try {
+				boarddao = new SpaceCarrotDAO_Board_Community();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			
+			daoexecute = boarddao.insertPost_Community(category, testuserID, testuserNickName, title, content);
+			
+			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+			listService = new Community_ListArticleService();
+			
+			try {
+				articlePage= listService.getArticlePage(pageNo);
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
+			request.setAttribute("articlePage", articlePage);
+				
+			if(daoexecute){
+				System.out.println("dao insert success");
+				str = "/view.community/Community_List.jsp";
+				break;
+			} else {
+				System.out.println("dao failed");
+				str = "/view.community/Community_List.jsp";
+				break;
+			}
+			
+		case "/view.community/Category_Community.do" :
+			
+			category = request.getParameter("category");
+			title = request.getParameter("title");
+			content = request.getParameter("content");
+			testuserID = "tuche24";
+			testuserNickName = "hiyo";
+					
+			// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+			pageNoVal = request.getParameter("pageNo");
+			pageNo = 1;
+			if(pageNoVal != null) {
+				pageNo = Integer.parseInt(pageNoVal);
+			}
+			
+			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+			Community_ListArticleService_SearchCategory listService_Search_Category = new Community_ListArticleService_SearchCategory();
+			
+			try {
+				articlePage= listService_Search_Category.getArticlePage(pageNo, category);
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
+			request.setAttribute("articlePage", articlePage);
+				
+			if(daoexecute){
+				System.out.println("dao insert success");
+				str = "/view.community/Community_List.jsp";
+				break;
+			} else {
+				System.out.println("dao failed");
+				str = "/view.community/Community_List.jsp";
+				break;
+			}
+			
+		case "/view.community/Search_Community.do" :
+			
+			String searchArea = request.getParameter("searchArea");
+			category = request.getParameter("category");
+			title = request.getParameter("title");
+			content = request.getParameter("content");
+			testuserID = "tuche24";
+			testuserNickName = "hiyo";
+			
+			// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+			pageNoVal = request.getParameter("pageNo");
+			pageNo = 1;
+			if(pageNoVal != null) {
+				pageNo = Integer.parseInt(pageNoVal);
+			}
+			
+			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+			Community_ListArticleService_Search listService_Search = new Community_ListArticleService_Search();
+			
+			try {
+				articlePage= listService_Search.getArticlePage(pageNo, searchArea);
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
+			request.setAttribute("articlePage", articlePage);
+				
+			if(daoexecute){
+				System.out.println("dao insert success");
+				str = "/view.community/Community_List.jsp";
+				break;
+			} else {
+				System.out.println("dao failed");
+				str = "/view.community/Community_List.jsp";
+				break;
+			}
+			
+			
 		}
-		
+	
 		RequestDispatcher rd1 = request.getRequestDispatcher(str);
 		rd1.forward(request, response);
 	}

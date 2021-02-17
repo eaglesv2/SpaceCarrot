@@ -6,12 +6,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../Base/reset.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
-		$("#footer").load("../Base/footer.html");
+		$("#header").load("../BaseFrame/header.html");
+		$("#footer").load("../BaseFrame/footer.html");
 	})
 </script>
 <style>
@@ -30,7 +29,6 @@
 				  	  display: block; 
 				 	  margin: 0 auto;
 				    }
-
      /* 글쓰기 서브타이틀 */       
      #subtitle ul li { list-style: none; }
      .subtitle_wrap { text-align: center; }
@@ -82,10 +80,8 @@
    	#board_form table th span { color: #404040;
    							   font-size: 15px; 
    							   display: inline-block; 
-   							   padding: 0 20px 0 0;
-   							   font-weight:bold; 
+   							   padding: 0 20px 0 0; 
    							  }
-
    	#board_form table td { padding: 6px 0;
    						  position: relative;
    						}
@@ -132,10 +128,9 @@
  	.cancel_btn_wrap a.wide { width:587px;
 					  	 	  margin: 0 0 0 20px;
 					 		}	
-
 </style>
 </head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>커뮤니티_글쓰기</title>
 </head>
 <body>
@@ -157,6 +152,7 @@
        			</li>
        		</ul>
        	</div>
+       	<form action="Write_Community.do" method="post">
        	<div id = "board_form">
 			<table>
               	<tbody>
@@ -164,8 +160,10 @@
 						<th><span>카테고리</span></th>
 						<td>
 							<select name="category">
-							<option value="커뮤니티" selected>커뮤니티<br>
-							<option value="중고거래">중고거래<br>
+							<option value="자유" selected>자유
+							<option value="정보">정보
+							<option value="QnA">QnA
+							<option value="리뷰">리뷰
 							</select>
 						</td>
 						
@@ -184,14 +182,15 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<a href = "#">완료</a>
+						<input type="submit" value="완료" />
 					</li>
 					<li class = "cancel_btn_wrap">
-						<a href = "#">취소</a>
+						<input type="reset" value="취소" />
 					</li>
 				</ul>
        		</div>
        	</div>
+       	</form>
        	
        <div id = "footer">
        
