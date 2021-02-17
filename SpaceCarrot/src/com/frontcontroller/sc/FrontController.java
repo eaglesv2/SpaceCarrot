@@ -71,8 +71,6 @@ public class FrontController extends HttpServlet {
 		SpaceCarrotDAO_Board_Community boarddao = null;
 		Community_ArticlePage articlePage = null;
 		
-		
-		
 		switch(c) {
 		
 		case "/view.login/UserInfoInsert.do" :

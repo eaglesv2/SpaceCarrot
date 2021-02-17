@@ -54,7 +54,8 @@
     				 
     #board_form table select { text-align:center;
     						   width:230px;
-    
+    						   height:35px;
+    						   padding: .5em .5em;
     }
     
     #board_form table option { font-size: 13pt;
@@ -73,7 +74,8 @@
  	
  	#content { height: 500px;
 			   width: 622px;
- 	
+			   font-size: 11.5pt;
+ 			   padding: .8em .5em;
  	}
  	
     #board_form table th { text-align : center; }
@@ -85,49 +87,42 @@
    	#board_form table td { padding: 6px 0;
    						  position: relative;
    						}
-   	
+   	#btn { margin-left : 190px; }
     #btn ul li { list-style: none; }
 	.complete_btn_wrap { text-align: center; 
 			   			 margin: 20px 30px 30px;
-			   			 margin-left : 200px;
 			   			 float: left;
 			  		   }
-	.complete_btn_wrap a { color: #fff; 
-				  		   background-color: #fc585e;
-				  		   border: 3px solid #fc585e; 
-				 		   font-weight: bold; 
-				  		   padding: 10px;  
-				 		   height: 30px; 
-				  		   line-height: 30px; 
-				 		   width: 100px; 
-				  		   display: block; 
-				 		   text-align: center; 
-				 		   margin: 0 auto;
-				 		 }
-	.complete_btn_wrap a.wide { width:587px;
-					   			margin: 0 0 0 20px;
-					 		  }
-					 
+	.complete_btn_wrap button { color: #fff; 
+				  		   		background-color: #fc585e;
+				  		   		border: 3px solid #fc585e; 
+				  		   		font-size: 12pt;
+				 		   		font-weight: bold; 
+				  		   		padding: 10px;  
+				 		   		height: 56px; 
+				  		   		vertical-align: middle;
+				 		  		width: 100px; 
+				  		  		display: block; 
+				 		   		text-align: center; 
+				 		  		margin: 0 auto;
+				 		 	  }
 	.cancel_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
 			   		   float: left;
-			   		  
 			  		 }
-	.cancel_btn_wrap a { color: #fc585e; 
-				  		 background-color: #fff; 
-				  		 border: 3px solid #fc585e; 
-				 		 font-weight: bold; 
-				  	  	 padding: 10px;  
-				 	     height: 30px; 
-				  		 line-height: 30px; 
-				 		 width: 100px; 
-				  		 display: block; 
-				 		 text-align: center; 
-				 		 margin: 0 auto;
-				 	}
- 	.cancel_btn_wrap a.wide { width:587px;
-					  	 	  margin: 0 0 0 20px;
-					 		}	
+	.cancel_btn_wrap button { color: #fc585e; 
+				  		 	  background-color: #fff; 
+				  			  border: 3px solid #fc585e;
+				  			  font-size: 12pt;
+				 			  font-weight: bold; 
+				  	  		  padding: 10px;  
+				 	     	  height: 56px; 
+				  		 	  vertical-align: middle;
+				 		 	  width: 100px; 
+				  		 	  display: block; 
+				 		 	  text-align: center; 
+				 		 	  margin: 0 auto;
+				 			}	
 </style>
 </head>
 <meta charset="UTF-8">
@@ -174,7 +169,9 @@
                 	</tr>
                 	<tr>
                  		 <th><span>내용</span></th>
-                  		 <td><input id="content" type="text" name="content" placeholder=""></td>
+                  		 <td><!-- <input id="content" type="text" name="content" placeholder=""> -->
+                  		 <textarea name="content" id="content" ></textarea> 
+                  		 </td>
                		 </tr>
 				</tbody>
 			</table>		
@@ -182,10 +179,10 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<input type="submit" value="완료" />
+						<Button type="submit">완료</Button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<input type="reset" value="취소" />
+						<Button type="reset">취소</Button>
 					</li>
 				</ul>
        		</div>
