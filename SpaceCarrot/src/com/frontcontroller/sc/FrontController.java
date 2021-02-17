@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
+import com.userinfo.sc.UserLogin;
 
 import article.service.Community_ArticlePage;
 import article.service.Community_ListArticleService;
@@ -84,6 +86,40 @@ public class FrontController extends HttpServlet {
 			}
 			
 			str = "/view.login/SignUpComplete.jsp";
+			break;
+			
+		case "/view.login/idOverLapCheck.do" : // 아이디 중복체크!!!!!!!!!!!!!!!!!!!!!!!
+			u1 = new UserIDCheck();
+			
+			try {
+				u1.userinfo(request, response);
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			
+			str = "/view.login/SignUp.jsp";
+			break;
+		
+		case "/view.login/UserLogin.do" :
+			u1 = new UserLogin();
+			
+			try {
+				u1.userinfo(request, response);
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			int result = Integer.parseInt(request.getParameter("result"));
+			request.setAttribute("result", result);
+			
+			if(result == 1) {
+				str = "/MainPage/main.html";
+			}
+			else { 
+				str = "/view.login/Login.jsp";	
+			}
+
 			break;
 			
 		case "/view.community/Write_Community.do" :
@@ -203,8 +239,6 @@ public class FrontController extends HttpServlet {
 				str = "/view.community/Community_List.jsp";
 				break;
 			}
-			
-			
 		}
 	
 		RequestDispatcher rd1 = request.getRequestDispatcher(str);

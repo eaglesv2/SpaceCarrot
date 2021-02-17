@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import spacecarrotDAO.SpaceCarrotDAO_UserInfo;
 
-public class UserInfoInsert implements UserImpl {
+public class UserIDCheck implements UserImpl {
 	public void userinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");
@@ -13,14 +13,11 @@ public class UserInfoInsert implements UserImpl {
 		
 		SpaceCarrotDAO_UserInfo sc = null;	
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String nickname = request.getParameter("nickname");
-		String gender = request.getParameter("gender");
-		String birth = request.getParameter("birth");
-		String tel = request.getParameter("tel");
 		
 		sc = new SpaceCarrotDAO_UserInfo();
-		sc.insertUserInfo(name, id, pw, nickname, gender, birth, tel);
+		Boolean b1 =  sc.checkOverlapID(id);
+		
+		request.setAttribute("id", id);
+		request.setAttribute("result", b1);
 	}
 }

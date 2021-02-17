@@ -5,12 +5,114 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="userReg.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/header.html");
 		$("#footer").load("../Base/footer.html");
-	})
+		
+		//아이디 정규식
+		$("input[name=id]").blur(function() {
+			$.ajax({ 
+				type: 'post',
+				dataType: 'json',
+				url: 'idOverLapCheck.do',
+				data: { id: $("input[name=id]").val() },
+				
+				success: function(json) {
+					if(result == true) {
+						$("#id_check").text("사용 가능한 아이디입니다.");
+						$("#id_check").css("color","lime");
+						$(".idCheck").val("1");
+					} else {
+						$("#id_check").text("이미 사용중인 아이디입니다.");
+						$("#id_check").css("color","red");
+						$("input[name=id]").focus();
+					}
+				}
+			})
+			
+			var id = $("input[name=id]").val();
+			var num = id.search(/[0-9]/g);
+			var eng = id.search(/[a-z]/ig);
+
+			if(id.length < 5 || id.length > 15) {
+				$("#id_check").text("아이디는 5~15자로 입력해주세요.");
+				$("#id_check").css("color","red");	
+			} else if(num < 0 || eng < 0) {
+				$("#id_check").text("아이디는 영문 소문자와 숫자를 혼합하여 입력해주세요.");
+				$("#id_check").css("color","red");
+			} else {
+				$("#id_check").text("사용 가능한 아이디입니다.");
+				$("#id_check").css("color","lime");
+			}
+		})
+		
+		//아이디 중복 검사
+		
+		//비밀번호 정규식
+		$("input[name=pw]").blur(function() {
+			var pw = $("input[name=pw]").val();
+			var num = pw.search(/[0-9]/g);
+			var eng = pw.search(/[a-zA-Z]/ig);
+			var spe = pw.search(/[!@#$%^&+=]/gi);
+			
+			if(pw.length < 6 || pw.length > 15) {
+				$("#standard_pw_check").text("비밀번호는 6~15자로 입력해주세요.");
+				$("#standard_pw_check").css("color","red");			
+			} else if (pw.search(/\s/) != -1) {
+				$("#standard_pw_check").text("비밀번호는 공백 없이 입력해주세요");
+				$("#standard_pw_check").css("color","red");	
+			} else if (num > 0 && eng > 0 && spe < 0) {
+				$("#standard_pw_check").text("특수문자는 ' ! @ # $ % ^ & + = '만 사용할 수 있습니다.");
+				$("#standard_pw_check").css("color","red");	
+			} else if (num < 0 || eng < 0 || spe < 0) {//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함
+				$("#standard_pw_check").text("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. \n 특수문자는 ' ! @ # $ % ^ & + = '만 사용할 수 있습니다."); //줄바꿈 알아내야함
+				$("#standard_pw_check").css("color","red");	
+			} else {
+				$("#standard_pw_check").text("사용 가능한 비밀번호입니다.");
+				$("#standard_pw_check").css("color","lime");
+			}
+		})
+		
+		//비밀번호 확인란 일치 여부
+		$("input[name=pwcheck]").blur(function() {
+			
+			if($("input[name=pw]").val() == $("input[name=pwcheck]").val()) {
+				$("#pw_check").text("비밀번호가 일치합니다.");
+				$("#pw_check").css("color","lime");
+				$("#submit").attr("disabled", false);
+				$(".pwCheck2").val("1");
+			} else {
+				$("#pw_check").text("비밀번호가 일치하지 않습니다.");
+				$("#pw_check").css("color","red");
+				$("#submit").attr("disabled", true);
+			}
+		})
+		
+		function checkSubmit() {
+			var idCheck = $(".idCheck");
+		    var pwCheck2 = $(".pwCheck2");
+		    
+		    if(idCheck.val() == '1'){
+		        res = true;
+		    }else{
+		        res = false;
+		    }
+		    if(pwCheck2.val() == '1'){
+		        res = true;
+		    }else{
+		        res = false;
+		    }
+		    
+		    if(res == false){
+		        alert("회원가입 폼을 정확히 채워 주세요.");
+		    }
+		    return res;
+		}
+	});
+		
 </script>
 <style>
 	#container { margin : 0 auto;
@@ -49,6 +151,7 @@
 							 padding: 10px; 
 							 width: 300px; 
 						   }
+						   
 	#join_form table input[type="radio"] { width: 15px; height: 15px; }	 
 	#join_form table input[type="radio"]:checked { background: #f95427; }  
     #join_form table th { text-align : center; }
@@ -67,7 +170,7 @@
    	#join_form table td { padding: 6px 0;
    						  position: relative;
    						}
-   	#join_form table .check { padding : 0px; }
+   	#join_form table .check { padding : 0px; height: 0px; font-size: 11pt;}
    	
    	.gender { line-height : 30px; }
    	
@@ -90,6 +193,7 @@
 				  		  		display: block; 
 				 		   		text-align: center; 
 				 		  		margin: 0 auto;
+				 		  		cursor: pointer;
 				 		 	  }
 	.cancel_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
@@ -108,6 +212,7 @@
 				  		 	  display: block; 
 				 		 	  text-align: center; 
 				 		 	  margin: 0 auto;
+				 		 	  cursor: pointer;
 				 			}
 
 	.exform_txt{ padding:20px 0 10px 50px; 
@@ -151,17 +256,27 @@
                 	</tr>
                 	<tr>
                 		<td class = "check" colspan = 2>
-                			<td><div id = "id_check"></div>
+                			<div id = "id_check"></div>
                 		</td>
                 	</tr>
                 	<tr>
                   		<th><span>비밀번호</span></th>
                   		<td><input type="password" placeholder="비밀번호를 입력해주세요." id = "user_pw" name = "pw"></td>
                 	</tr>
+                	 <tr>
+                		<td class = "check" colspan = 2>
+                			<div id = "standard_pw_check"></div>
+                		</td>
+                	</tr>
                 	<tr>
                  		 <th><span>비밀번호 확인</span></th>
                   		<td><input type="password" placeholder="비밀번호를 확인하세요" name = "pwcheck"></td>
                		 </tr>
+               		 <tr>
+                		<td class = "check" colspan = 2>
+                			<div id = "pw_check"></div>
+                		</td>
+                	</tr>
                		 <tr>
                   		<th><span>이름</span></th>
                   		<td><input type="text" placeholder="" name = "name"></td>
@@ -196,7 +311,7 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button type = "submit" onclick = "location.href='SignUpComplete.jsp'">완료</button>
+						<button id = "submit" type = "submit" onclick = "location.href='SignUpComplete.jsp'">완료</button>
 					</li>
 					<li class = "cancel_btn_wrap">
 						<button type = "reset" onclick = "location.href='main.html'">취소</button>
@@ -205,6 +320,10 @@
        		</div>
        	</div><!-- join_form E  -->
        	</form>
+       	        <div class="formCheck">
+            <input type="hidden" name="idCheck" class="idCheck">
+            <input type="hidden" name="pw2Check" class="pwCheck2">
+        </div>
        	<div id = "footer">
        	
        	</div>

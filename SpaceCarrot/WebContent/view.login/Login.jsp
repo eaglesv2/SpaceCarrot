@@ -12,6 +12,14 @@
 		$("#footer").load("../Base/footer.html");
 	})
 </script>
+<% int result = Integer.parseInt((String)request.getAttribute("result"));
+   String errMsg = null;
+   if(result == 0) {
+	   errMsg = "비밀번호가 일치하지 않습니다.";
+   } else if(result == -1) {
+	   errMsg = "아이디가 존재하지 않습니다.";
+   }
+%>
 <style>
 	#container { margin : 0 auto;
                  width : 1080px;
@@ -56,6 +64,7 @@
    							    display: inline-block; 
    							    padding: 0 20px 0 0; 
    							   }
+   	#login_form table .check { padding : 0px; height: 0px; font-size: 11pt; color: red;}
    	#btn { margin-left: 60px; }
 	#btn ul li { list-style: none; }
 	.login_btn_wrap { text-align: center; 
@@ -74,7 +83,7 @@
 				  	   		 display: block; 
 				 	   		 text-align: center; 
 				 	   		 margin: 0 auto;
-				 	   		 
+				 	   		 cursor: pointer;
 					 	   }
 	.signup_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
@@ -92,6 +101,7 @@
 				  	   		  display: block; 
 				 	   		  text-align: center; 
 				 	   		  margin: 0 auto;
+				 	   		  cursor: pointer;
 				 	   		}
 
 </style>
@@ -109,23 +119,29 @@
 			</ul>
        	</div>
         
+        <form action = "UserLogin.do" method = "post">
         <div id = "login_form">
         	<table>
               	<tbody>
 					<tr>
 						<th><span>아이디</span></th>
-						<td><input type="text" placeholder="아이디"></td>
+						<td><input type="text" placeholder="아이디" name="id"></td>
                 	</tr>
                 	<tr>
                   		<th><span>비밀번호</span></th>
-                  		<td><input type="password" placeholder="비밀번호"></td>
+                  		<td><input type="password" placeholder="비밀번호" name="pw"></td>
+                	</tr>
+                	 <tr>
+                		<td class = "check" colspan = 2>
+                			<div id = "login_check"><%=errMsg %></div>
+                		</td>
                 	</tr>
                 </tbody>
 			</table>
 			<div id = "btn">
 				<ul>
 					<li class = "login_btn_wrap">
-						<button type = "submit" onclick = "main.html">로그인</button>
+						<button type = "submit" onclick = "loginCheck()">로그인</button>
 					</li>
 					<li class = "signup_btn_wrap">
 						<button onclick = "SignUp.jsp">회원가입</button>
@@ -133,6 +149,7 @@
 				</ul>
 			</div>
         </div>
+        </form>
         
         <div id = "footer">
         
