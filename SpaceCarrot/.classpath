@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_271">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_231">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/pc/Desktop/DBDriver/mariadb-java-client-2.7.0.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="E:/Java_LUJ/eclipse-jee-photon-R-win32-x86_64/eclipse/mariadb-java-client-2.7.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JavaEssence"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Practice"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Project"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/room4"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/test"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/WebPr"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
