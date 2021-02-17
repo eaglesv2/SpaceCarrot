@@ -352,14 +352,14 @@ margin-top: 7px;
 		
 
 		<div id="content-daet1">
-			<span id="nick">닉네임</span><img id="img1" src="../img/ja.png"
+			<span id="nick">닉네임</span><img id="img1" src="../img/ja1.png"
 				alt="자물쇠">
 		<span id = a2><a href="">수정</a>&nbsp<a href="">삭제</a></span> 
 			<div id="daet">9000원에 거래는 어려운가요?</div>
 		</div>
 
 		<div id="content-daet2">
-			<span id="nick">└ 닉네임</span><img id="img1" src="../img/ja.png"
+			<span id="nick">└ 닉네임</span><img id="img1" src="../img/ja1.png"
 				alt="자물쇠">
 			<div id="daet2">그건 조금 어려울것 같네요</div>
 		</div>
