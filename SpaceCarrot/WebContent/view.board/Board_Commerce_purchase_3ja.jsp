@@ -321,7 +321,7 @@ margin-top: 7px;
 		
 <div id = "content-daet2">		
 		<div id="nick">└ 닉네임</div>
-		<div id="daet2">그건 조금 어려울것 같네요</div>
+		<div id="daet2">그건 조금 어려울것 같네요ㅜ</div>
 </div>
 
 
