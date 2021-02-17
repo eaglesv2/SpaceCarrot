@@ -342,7 +342,7 @@ font-weight:700;
 		<div id="content-daet1">
 			<span id="nick">닉네임</span><img id="img1" src="../img/ja.png"
 				alt="자물쇠">
-			<div id="daet">9000원에 거래는 어려운가요?</div>
+			<div id="daet">9000원에 거래는 어려운가요??</div>
 		</div>
 
 		<div id="content-daet2">
