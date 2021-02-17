@@ -6,6 +6,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- frontController에서 parameter를 못 받아왔을 시 리다이렉트로 파라미터를 가지고 온다 -->
+<!-- 이것때문인지 모르겠는데 화면 넘길때 잡음? 잡화면이 생김 -->
+<!-- 막 움직일 시 500오류 뜸 -->
+<c:if test="${empty articlePage}">
+	<% RequestDispatcher rd = request.getRequestDispatcher("Write_Community.do");
+	rd.forward(request, response); 
+	System.out.print("redirect success"); %>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,37 +46,36 @@
 				    }
                 
       #wrap { margin : 0 auto;
-              width : 715px;
+              width : 100%;
               text-align : center;
-              margin-left : 183px;
+              margin-top: 20px;
             } 
       /* 카테고리 메뉴 */
       #category { height : 40px;
-      			  margin-left : 250px;
       }   
-      #category ul { height : 40x; 
+      #category ul { height : 40px; 
       			     padding : 0;
+      			     margin-left: 340px;
       			   }    
       #category ul li { list-style : none;
                     	color : #000000;
                    		float : left;
                     	text-align: center;
-                    	padding-right :40px;
+                    	padding-right :70px;
                  	  }
-      #category ul li:last-child{ padding : 0; }
-      #category .menuLink { text-decoration : none;
-                       	    color : #000000;
-                       	    display : block;
-                       	    font-size : 11.5pt;
-                       	    font-weight : bold;
-                    	  }
-      #category .menuLink:hover { text-decoration : underline; 
-                           text-underline-position : under;
-                          }     
+      #category ul li input { height : 30px;
+      						font-size: 11.5pt;
+      						background-color: white;
+      						font-style: bold;
+      						border: 1px solid white;
+      }
+      
                           
       /* 글쓰기버튼 + 검색창 */
       #btn {
-      	margin-bottom:100px;
+      	margin-top:15px;
+      	margin-bottom:60px;
+      	margin-left: 160px;
       }
       
       #write_btn { float: left; 
@@ -103,7 +110,7 @@
 				  	  height: 30px;
 				  	  float: left;
 				  	  font-size: 12pt;
-				  	  text-align: right;
+				  	  text-align: left;
 				  	  margin-right: 0px;
 				  	}
 	  #search button { margin-left: 0px;
@@ -117,88 +124,38 @@
 	  			 	 }
       
        /* 게시글 목록 */
-       #board_wrap { width: 800px; height: 550px; 
-       				 margin: 0 auto;
-    				 /* box-sizing: border-box; */} /* 왼쪽정렬 해결해야함 ㅠㅠ! */
-       a { text-decoration: none;
-		   color: #404040;
+       #board_wrap { width: 1080px;
+       				 margin-top: 125px;
+       				 vertical-align: center;
+       				 text-align: center;
+       				 margin-left: 50px;
+    				 }
+       table { border : 2px solid black;
+       }
+       th { border : 2px solid black; 
+       		height : 30px;
+       		vertical-align: middle;
+       		color: #fff;
+  			background: #e7708d;}
+       td { border : 2px solid black; 
+       		height : 30px;
+       		vertical-align: middle;
+       }
+       col { }
+ 	   
+ 	   tr:nth-child(2n-1) {	
+			background: #fdf3f5;
 		}
-		li {
-		    list-style: none;
-		}
-		/* #board_wrap ul { width: 100%;
-		}
- */
-		#board_wrap ul li {
-		    line-height: 50px; /*li 세로 간격*/
-		    padding-left: 10px;
-		}
-		#board_wrap ul li:first-child {
-			border-top: 2px solid #6a6a6a;
-		    border-bottom: 2px solid #6a6a6a;
-		}
-		#board_wrap ul li:last-child {
-		    border-bottom: 2px solid #6a6a6a;
-		}
-		
-		#board_wrap ul li:nth-child(n+2):nth-child(-n+10) {
-			border-bottom: 1px solid #000;
-		}
-		#board_wrap ul li span:first-child {
-			display: inline-block;
-		    float: left;
-		    padding-right:218px;
-		}
-		#board_wrap ul li span:nth-child(2) {
-			display: inline-block;
-		    padding-right:220px;
-		}
-		#board_wrap ul li span:nth-child(3) {
-			display: inline-block;
-		    padding-right:40px;
-		}
-		#board_wrap ul li span:nth-child(4) {
-			display: inline-block;
-		    padding-right:30px;
-		}
-		#board_wrap ul li span:last-child {
-		    display: inline-block;
-		    float: right;
-		    padding-right:20px;
-		}
- 
-       /* 페이지번호 */
-       #page_number { margin-top: 50px; }
-       #page_number ul li { list-style: none;
-       				  		display: inline;
-       					  }
-       #page_number ul li a { padding: 4px;
-							  margin-right: 20px;
-							  /* height: 50px; */
-							  width: 15px;
-							  color: #000;
-							  font-size: 12pt;
-							  text-align: center;
-							  text-decoration: none;
-      						}
-       #page_number ul li a:hover, ul li a:focus { color: #fff;
-												   border: 1px solid #000;
-												   border-radius: 50%;
-												   background-color: #000;
-												 }
+ 	   
+       
+       
 </style>
 </head>
 <meta charset="UTF-8">
 <title>커뮤니티_목록</title>
 </head>
 <body>
-	<!-- 디자인 할 예정.. 날짜도 수정예정.. -->
-	<!-- frontController에서 parameter를 못 받아왔을 시 리다이렉트로 파라미터를 가지고 온다 -->
-	<c:if test="${empty articlePage}">
-		<% RequestDispatcher rd = request.getRequestDispatcher("Write_Community.do");
-		rd.forward(request, response); 
-		System.out.print("redirect success"); %>
-	</c:if>
+
 	
 	<div id = "container">
         <div id = "header">
@@ -210,7 +167,7 @@
 				<li class = "title_wrap"><p>커뮤니티</p></li>
 			</ul>
        	</div>
-       	
+       
        	<div id = "wrap">
        		<div id = "category">
        		<form action="Category_Community.do" method="post">
@@ -220,12 +177,6 @@
        				<li><input type="submit" name="category" value="QnA" /></li>
        				<li><input type="submit" name="category" value="리뷰" /></li>
        			</ul>
-       			<!-- <ul>
-       				<li><a class="menuLink" href="#">자유</a></li>
-       				<li><a class="menuLink" href="#">정보</a></li>
-       				<li><a class="menuLink" href="#">Q&A</a></li>
-       				<li><a class="menuLink" href="#">리뷰</a></li>
-       			</ul> -->
        		</form>
        		</div>
        		
@@ -242,13 +193,20 @@
        		</div>
        		
        		<div id="board_wrap">
-			    <table border="1">
+			    <table>
+			    	<colgroup>
+			    		<col width="100px">
+			    		<col width="600px">
+			    		<col width="100px">
+			    		<col width="100px">
+			    		<col width="100px">
+			    	</colgroup>
 			    	<tr>
-			    		<td>번호</td>
-			    		<td>제목</td>
-			    		<td>작성자</td>
-			    		<td>조회수</td>
-			    		<td>작성일</td>
+			    		<th>번호</th>
+			    		<th>제목</th>
+			    		<th>작성자</th>
+			    		<th>조회수</th>
+			    		<th>작성일</th>
 			    	</tr>
 			    	<!-- articlePage 파라미터에 글이 없을 시에 출력 -->
 			   		<c:if test="${articlePage.hasNoArticles()}">
