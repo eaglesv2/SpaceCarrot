@@ -12,12 +12,10 @@ public class UserIDCheck implements UserImpl {
 		response.setCharacterEncoding("UTF-8");
 		
 		SpaceCarrotDAO_UserInfo sc = null;	
-		String id = request.getParameter("id");
+		String id = request.getParameter("id").trim();
 		
 		sc = new SpaceCarrotDAO_UserInfo();
-		Boolean b1 =  sc.checkOverlapID(id);
-		
-		request.setAttribute("id", id);
-		request.setAttribute("result", b1);
+		response.getWriter().write(sc.checkOverlapID(id) + "");
+	
 	}
 }

@@ -160,10 +160,9 @@ public class SpaceCarrotDAO_UserInfo {
 		return true;
 	}
 	
-	public boolean checkOverlapID(String input_userID) throws SQLException {
+	public int checkOverlapID(String input_userID) throws SQLException {
 		// 입력된 ID 중복체크하는 메소드
-		// true면 이미 존재하는 아이디, false면 새로운 아이디
-		boolean result = true; // true 그대로 전달될 경우 중복된 아이디 <- 버그발생 가능
+		// 0이면 이미 존재하는 아이디, 1이면 새로운 아이디
 
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERID + " = ?";
 
@@ -172,14 +171,11 @@ public class SpaceCarrotDAO_UserInfo {
 		pstmt.setString(1, input_userID);
 		rs = pstmt.executeQuery();
 
-		if (!rs.last()) {
-			result = false;
-		}
-
-		rs.close();
-		pstmt.close();
-		
-		return result;
+		if (rs.next()) {
+			return 0; // 0  이미 존재하는 아이디
+		} else {
+			return 1; // 1 사용 가능한 아이디
+		}		
 	}
 	
 	public boolean checkOverlapNickName(String input_userNickName) throws SQLException {
@@ -209,7 +205,6 @@ public class SpaceCarrotDAO_UserInfo {
 		// 1이면 인증 성공, 0이면 비밀번호가 틀린 경우, -1이면 해당 아이디가 존재하지 않은 경우
 		
 		String dbPW = ""; //db에서 꺼낸 비밀번호를 담을 변수
-		int result;
 		
 		String sql = "SELECT " + COL_USERPW + " FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERID + " = ?";
 		
@@ -222,12 +217,11 @@ public class SpaceCarrotDAO_UserInfo {
 			dbPW = rs.getString(COL_USERPW);
 			
 			if(dbPW.equals(pw))
-				result = 1; // 입력된 비밀번호과 DB에서 꺼내온 비번 비교. 같으면 인증 성공
+				return 1; // 입력된 비밀번호과 DB에서 꺼내온 비번 비교. 같으면 인증 성공
 			else
-				result = 0; // 입력된 비밀번호과 DB에서 꺼내온 비번 비교. 다를 경우 인증 실패
+				return 0; // 입력된 비밀번호과 DB에서 꺼내온 비번 비교. 다를 경우 인증 실패
 		} else { 
-			result = -1; // 해당 아이디가 없을 경우
+			return -1; // 해당 아이디가 없을 경우
 		}
-		return result;
 	}
 }

@@ -16,8 +16,7 @@ public class UserLogin implements UserImpl {
 		String pw = request.getParameter("pw");
 		
 		sc = new SpaceCarrotDAO_UserInfo();
-		int result = sc.loginCheck(id, pw);
-		
-		request.setAttribute("result", result);
+		response.getWriter().write(sc.loginCheck(id, pw) + "");
+
 	}
 }

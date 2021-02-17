@@ -6,20 +6,33 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
-<script>        
+<script type="text/javascript">        
 	$(document).ready(function(){    
 		$("#header").load("../Base/header.html");
 		$("#footer").load("../Base/footer.html");
+		
+		function loginCheck() {
+			var id =  $("input[name=id]").val();
+			var pw =  $("input[name=pw]").val();
+			$.ajax({
+				type: 'POST',
+				url: 'UserLogin.do',
+				data: { id : id, pw : pw },
+				success: function(result) {
+					if(result == 0) {
+						$("#login_check").text("비밀번호가 일치하지 않습니다.");
+						$("#login_check").css("color","red");
+						document.location.href = "Login.jsp";
+					} else if(result == -1) {
+						$("#login_check").text("존재하지 않는 아이디입니다.");
+						$("#login_check").css("color","red");
+						document.location.href = "Login.jsp";
+					}
+				}
+			})
+		}
 	})
 </script>
-<% int result = Integer.parseInt((String)request.getAttribute("result"));
-   String errMsg = null;
-   if(result == 0) {
-	   errMsg = "비밀번호가 일치하지 않습니다.";
-   } else if(result == -1) {
-	   errMsg = "아이디가 존재하지 않습니다.";
-   }
-%>
 <style>
 	#container { margin : 0 auto;
                  width : 1080px;
@@ -133,7 +146,7 @@
                 	</tr>
                 	 <tr>
                 		<td class = "check" colspan = 2>
-                			<div id = "login_check"><%=errMsg %></div>
+                			<div id = "login_check"></div>
                 		</td>
                 	</tr>
                 </tbody>
@@ -144,7 +157,7 @@
 						<button type = "submit" onclick = "loginCheck()">로그인</button>
 					</li>
 					<li class = "signup_btn_wrap">
-						<button onclick = "SignUp.jsp">회원가입</button>
+						<button onclick = "location.href=SignUp.jsp">회원가입</button>
 					</li>
 				</ul>
 			</div>
