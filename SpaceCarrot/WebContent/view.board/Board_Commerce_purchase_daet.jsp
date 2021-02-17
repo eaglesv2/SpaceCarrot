@@ -335,7 +335,7 @@ margin-top: 7px;
 <div id = "content-daet1">
 		<span id="nick">닉네임</span>
 		<span id = a1><a href="">수정</a>&nbsp<a href="">삭제</a></span> 
-		<div id="daet">혹시 oo아파트 근처는 어려운가요??</div>
+		<div id="daet">혹시 oo아파트 근처는 어려운가요?</div>
 </div>		
 		
 <div id = "content-daet2">		
