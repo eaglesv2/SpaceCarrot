@@ -15,7 +15,7 @@
 <style>
       #container { margin : 0 auto;
                    width : 1080px;
-                   border : 2px solid black;
+                   /* border : 2px solid black; */
                  }
 	  /* 중고거래 타이틀 */
       #title ul li { list-style: none; }
@@ -54,6 +54,7 @@
                        	    display : block;
                        	    font-size : 12pt;
                        	    font-weight : bold;
+                       	    cursor: pointer;
                     	  }
       /* #category .menuLink:hover { text-decoration : underline; 
                            		  text-underline-position : under;
@@ -72,7 +73,7 @@
       			  margin-right: 30px;
       			  height: 56px; 
       			  width: 113px;
-      			  vertical-align: center:
+      			  vertical-align: center;
       			}
       #sell_btn button { color: #fff;
       					 background-color: #fc585e; 
@@ -82,7 +83,8 @@
 	  			 		 height: 100%;
 	  			 		 padding: 10px;
 	  			 		 font-size: 18px;
-	  			 		 font-weight: bold;		 
+	  			 		 font-weight: bold;
+	  			 		 cursor: pointer;	 
 	  			 	}
 				 	   
 	  #search { width: 565px; 
@@ -109,6 +111,7 @@
 	  			  	   float: left;
 	  			  	   outline: none;
 	  			  	   border: 0;
+	  			  	   cursor: pointer;
 	  			 	 }
 
       
@@ -160,11 +163,11 @@
 							  text-align: center;
 							  text-decoration: none;
       						}
-       #page_number ul li a:hover, ul li a:focus { color: #fff;
-												   border: 1px solid #000;
-												   border-radius: 50%;
-												   background-color: #000;
-												 }
+       #page_number ul li a:hover, #page_number ul li a:focus { color: #fff;
+												   				border: 1px solid #000;
+												  				border-radius: 50%;
+												   				background-color: #000;
+												 			  }
 </style>
 </head>
 <meta charset="EUC-KR">
@@ -186,18 +189,18 @@
        	<div id = "wrap">
        		<div id = "category">
        			<ul>
-       				<li><a class="menuLink" href="#">의류/패션</a></li>
-       				<li class = "digital_tab"><a class="menuLink" href="#">디지털/가전</a></li>
-       				<li><a class="menuLink" href="#">도서/티켓/취미/애완</a></li>
-       				<li><a class="menuLink" href="#">생활/문구/가구</a></li>
-       				<li><a class="menuLink" href="#">스포츠/레저</a></li>
-       				<li><a class="menuLink" href="#">기타</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
+       				<li class = "digital_tab"><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Sports.jsp">스포츠/레저</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
        			</ul>
        		</div>
        		
        		<div>
        			<div id = "sell_btn">
-       				<button>판매하기</button>
+       				<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
        			</div>
        			<div id = "search">
        					<input type = "text" name = "searchArea">

@@ -105,7 +105,7 @@ public class SpaceCarrotDAO_UserInfo {
 		// public boolean?
 		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + "(" +  
 					 COL_USERNAME + ", " + COL_USERID + ", " + COL_USERPW + ", " + COL_USERNICKNAME + ", " +
-					 COL_USERGENDER + ", " + COL_USERBIRTH + ", " + COL_USERTEL + ") VALUES(?, ?, ?, ?, ?, ?)";
+					 COL_USERGENDER + ", " + COL_USERBIRTH + ", " + COL_USERTEL + ") VALUES(?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -181,6 +181,29 @@ public class SpaceCarrotDAO_UserInfo {
 		
 		return result;
 	}
+	
+	public boolean checkOverlapNickName(String input_userNickName) throws SQLException {
+		// 입력된 ID 중복체크하는 메소드
+		// true면 이미 존재하는 아이디, false면 새로운 아이디
+		boolean result = true; // true 그대로 전달될 경우 중복된 아이디 <- 버그발생 가능
+
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERNICKNAME + " = ?";
+
+		pstmt = con.prepareStatement(sql);
+
+		pstmt.setString(1, input_userNickName);
+		rs = pstmt.executeQuery();
+
+		if (!rs.last()) {
+			result = false;
+		}
+
+		rs.close();
+		pstmt.close();
+		
+		return result;
+	}
+	
 	
 	public boolean checkPW(String input_userPW, String check_userPW) {
 		// 비밀번호와 비밀번호 확인란에 입력한 값이 일치하는지 확인하는 메소드
