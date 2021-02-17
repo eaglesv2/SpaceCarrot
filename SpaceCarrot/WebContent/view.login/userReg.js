@@ -1,17 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script>
 // 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#user_id").blur(function() {
 		// id = "id_reg" / name = "userId"
 		var user_id = $("#user_id").val();
 		$.ajax({
-			url : '${ pageContext.request.contextPath }/user/idCheck?userId='+ user_id,
+			url : '${ pageContext.request.contextPath }/view.login/idCheck?userId=' + user_id,
 			type : 'get',
 			success : function(data) {
 				console.log("1 = 중복o / 0 = 중복x : " + data);							
@@ -43,12 +35,14 @@
 			});
 		});
 // 비밀번호 확인란 검사
-		$("#user_pw").blur(function() {
-			
-		});
-</script>
-</head>
-<body>
-
-</body>
-</html>
+	$("#user_pw").blur(function() {
+		if($("input[name=pw]").val() == $("input[name=pwcheck]").val()) {
+			$("#pw_check").text("비밀번호가 일치합니다.");
+			$("#pw_check").css("color","green");
+			/*$("#reg_submit").attr("disabled", false);*/
+		} else {
+			$("#pw_check").text("비밀번호가 일치하지 않습니다.");
+			$("#pw_check").css("color","red");
+			/*$("#reg_submit").attr("disabled", true);*/
+		}
+	});

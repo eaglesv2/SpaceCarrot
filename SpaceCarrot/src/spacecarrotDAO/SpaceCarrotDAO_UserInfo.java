@@ -204,14 +204,30 @@ public class SpaceCarrotDAO_UserInfo {
 		return result;
 	}
 	
-	
-	public boolean checkPW(String input_userPW, String check_userPW) {
-		// 비밀번호와 비밀번호 확인란에 입력한 값이 일치하는지 확인하는 메소드
-		// true면 비밀번호 일치, false면 불일치 
-		if(input_userPW.equals(check_userPW)) {
-			return true;
-		} else {
-			return false;
+	public int loginCheck(String id, String pw) throws SQLException {
+		// 로그인시 입력한 아이디의 비밀번호가 일치하는지 확인하는 메소드
+		// 1이면 인증 성공, 0이면 비밀번호가 틀린 경우, -1이면 해당 아이디가 존재하지 않은 경우
+		
+		String dbPW = ""; //db에서 꺼낸 비밀번호를 담을 변수
+		int result;
+		
+		String sql = "SELECT " + COL_USERPW + " FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERID + " = ?";
+		
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1,  id);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) { //입력된 아이디에 해당하는 비밀번호그 있을 경우
+			dbPW = rs.getString(COL_USERPW);
+			
+			if(dbPW.equals(pw))
+				result = 1; // 입력된 비밀번호과 DB에서 꺼내온 비번 비교. 같으면 인증 성공
+			else
+				result = 0; // 입력된 비밀번호과 DB에서 꺼내온 비번 비교. 다를 경우 인증 실패
+		} else { 
+			result = -1; // 해당 아이디가 없을 경우
 		}
+		return result;
 	}
 }

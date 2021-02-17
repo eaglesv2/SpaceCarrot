@@ -255,7 +255,7 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button type = "submit" onclick = "#">완료</button>
+						<button type = "submit" onclick = "#">수정</button>
 					</li>
 					<li class = "cancel_btn_wrap">
 						<button type = "reset" onclick = "main.html">취소</button>
