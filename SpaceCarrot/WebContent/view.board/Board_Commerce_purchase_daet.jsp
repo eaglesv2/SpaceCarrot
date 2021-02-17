@@ -288,8 +288,9 @@ margin-top: 7px;
 
 
 		<div id="img1">
-			<li class="goods"><img src="../img/MainLogo.png" alt="물건">
-			</li>
+			<ul>
+				<li class="goods"><img src="../img/MainLogo.png" alt="물건"></li>
+			</ul>
 		</div>
 
 

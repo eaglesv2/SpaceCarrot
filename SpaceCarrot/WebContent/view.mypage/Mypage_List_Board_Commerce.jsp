@@ -144,11 +144,11 @@
 							  text-align: center;
 							  text-decoration: none;
       						}
-       #page_number ul li a:hover, ul li a:focus { color: #fff;
-												   border: 1px solid #000;
-												   border-radius: 50%;
-												   background-color: #000;
-												 }
+       #page_number ul li a:hover, #page_number ul li a:focus { color: #fff;
+												   				border: 1px solid #000;
+												   				border-radius: 50%;
+												   				background-color: #000;
+												 			  }
 </style>
 </head>
 <meta charset="EUC-KR">
