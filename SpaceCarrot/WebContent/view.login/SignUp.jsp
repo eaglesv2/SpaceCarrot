@@ -16,6 +16,24 @@
 			var id = $("input[name=id]").val();
 			var idReg = /^[a-z0-9_]*$/;
 			
+			//아이디 중복 검사
+			$.ajax({ 
+				type: 'POST',
+				url: 'idOverLapCheck.do',
+				data: { id : id },
+				
+				success: function(result) { //result 값 안넘어오는듯?
+					if(result == 1) {
+						$("#id_check").html("<p>사용 가능한 아이디입니다.</p>");
+						$("#id_check").css("color","lime");
+						$(".idCheck").val("1");
+					} else {
+						$("#id_check").html("<p>이미 사용중인 아이디입니다.</p>");
+						$("#id_check").css( "color","red");
+					} 
+				}
+			});		
+	
 			//아이디 정규식
 			if(id == "") { 
 				$("#id_check").text("");
@@ -25,28 +43,9 @@
 			} else if(id.length < 5 || id.length > 15) {
 				$("#id_check").text("아이디는 5~15자로 입력해주세요.");
 				$("#id_check").css("color","red");	
-			} /* else {
-				$("#id_check").text("사용 가능한 아이디입니다!");
-				$("#id_check").css("color","lime");
-			} */
+			} 
 			
-			//아이디 중복 검사
-			$.ajax({ 
-				type: 'POST',
-				url: 'idOverLapCheck.do',
-				data: { id : id },
 				
-				success: function(result) { //result 값 안넘어오는듯?
-					if(result == 1) {
-						$("#id_check").text("사용 가능한 아이디입니다.");
-						$("#id_check").css("color","lime");
-						$(".idCheck").val("1");
-					} else {
-						$("#id_check").text("이미 사용중인 아이디입니다.");
-						$("#id_check").css( "color","red");
-					}
-				}
-			});			
 		});
 		
 		
@@ -56,7 +55,9 @@
 			var pw = $("input[name=pw]").val();
 			var pwReg = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.!@#$%^&+=])*$/;
 			
-			if(pw.length < 6 || pw.length > 15) {
+			if(pw == "") { 
+				$("#standard_pw_check").text("");
+			} else if(pw.length < 6 || pw.length > 15) {
 				$("#standard_pw_check").text("비밀번호는 6~15자로 입력해주세요.");
 				$("#standard_pw_check").css("color","red");			
 			} else if (pw.search(/\s/) != -1) {
@@ -299,11 +300,11 @@
                 	</tr>
                 	<tr>
                  		 <th><span>생일</span></th>
-                  		 <td><input type="text" placeholder="ex)1994-10-14" name = "birth" required></td>
+                  		 <td><input type="text" placeholder="ex) 1994-10-14" name = "birth" required></td>
                		 </tr>
                		 <tr>
                  		 <th><span>전화번호</span></th>
-                  		<td><input type="text" placeholder="ex)010-5402-6873" name = "tel" required></td>
+                  		<td><input type="text" placeholder="ex) 010-5402-6873" name = "tel" required></td>
                		 </tr>
 				</tbody>
 			</table>

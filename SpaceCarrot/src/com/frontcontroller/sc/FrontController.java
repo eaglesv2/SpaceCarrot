@@ -52,7 +52,9 @@ public class FrontController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		String c = request.getRequestURI().substring(request.getContextPath().length());
+		//url 너무 헷갈림 서블릿 올때마다 url 체크하기
+		String url = request.getRequestURI().substring(request.getContextPath().length());
+		System.out.println(url);
 		
 		String str = null;
 		UserImpl u1 = null;
@@ -71,13 +73,13 @@ public class FrontController extends HttpServlet {
 		SpaceCarrotDAO_Board_Community boarddao = null;
 		Community_ArticlePage articlePage = null;
 		
-		switch(c) {
+		switch(url) {
 		
 		case "/view.login/UserInfoInsert.do" :
 			u1 = new UserInfoInsert();
 			
 			try {
-				u1.userinfo(request, response);
+				u1.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,23 +89,23 @@ public class FrontController extends HttpServlet {
 			break;
 			
 		case "/view.login/idOverLapCheck.do" : // 아이디 중복체크!!!!!!!!!!!!!!!!!!!!!!!
+			
 			u1 = new UserIDCheck();
 			
 			try {
-				u1.userinfo(request, response);
+				u1.execute(request, response);
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
 			
-			str = "/view.login/SignUp.jsp";
 			break;
 		
 		case "/view.login/UserLogin.do" :
 			u1 = new UserLogin();
 			
 			try {
-				u1.userinfo(request, response);
+				u1.execute(request, response);
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();

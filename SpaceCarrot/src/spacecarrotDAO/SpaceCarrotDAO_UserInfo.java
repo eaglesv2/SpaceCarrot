@@ -160,22 +160,33 @@ public class SpaceCarrotDAO_UserInfo {
 		return true;
 	}
 	
-	public int checkOverlapID(String input_userID) throws SQLException {
+	public int checkOverlapID(String input_userID) {
 		// 입력된 ID 중복체크하는 메소드
 		// 0이면 이미 존재하는 아이디, 1이면 새로운 아이디
 
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERID + " = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, input_userID);
+			rs = pstmt.executeQuery();
 
-		pstmt = con.prepareStatement(sql);
-
-		pstmt.setString(1, input_userID);
-		rs = pstmt.executeQuery();
-
-		if (rs.next()) {
-			return 0; // 0  이미 존재하는 아이디
-		} else {
-			return 1; // 1 사용 가능한 아이디
-		}		
+			if (rs.next()) {
+				return 0; // 0  이미 존재하는 아이디
+			} else {
+				return 1; // 1 사용 가능한 아이디
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1; // 데이터베이스 오류
 	}
 	
 	public boolean checkOverlapNickName(String input_userNickName) throws SQLException {
