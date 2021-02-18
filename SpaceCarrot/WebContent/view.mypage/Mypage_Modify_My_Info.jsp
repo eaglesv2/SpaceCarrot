@@ -205,13 +205,13 @@
        			비밀번호, 전화번호, 닉네임만 변경 가능합니다
        		</div>
        		
-       	<form action = "UserInfoInsert.do" method = "post">
+       	<form action = "UserInfoUpdate.do" method = "post">
        	<div id = "join_form">
 			<table>
               	<tbody>
 					<tr>
 						<th><span>아이디</span></th>
-						<td class="id">abc1234</td>
+						<td class="id"><%=(String)session.getAttribute("sessionID") %></td>
                 	</tr>
                 	<tr>
                   		<th><span>비밀번호</span></th>
@@ -255,10 +255,10 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button type = "submit" onclick = "#">수정</button>
+						<button type = "submit">수정</button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<button type = "reset" onclick = "main.html">취소</button>
+						<button type = "reset" onclick = "main.jsp">취소</button>
 					</li>
 				</ul>
        		</div>

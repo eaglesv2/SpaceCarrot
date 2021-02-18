@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
+import com.userinfo.sc.UserInfoUpdate;
 import com.userinfo.sc.UserLogin;
+
 
 import article.service.Community_ArticlePage;
 import article.service.Community_ListArticleService;
@@ -228,6 +230,19 @@ public class FrontController extends HttpServlet {
 				str = "/view.community/Community_List.jsp";
 				break;
 			}
+			
+
+
+		case "/view.mypage/UserInfoUpdate.do" :
+					u1 = new UserInfoUpdate();
+					try {
+						u1.execute(request, response);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+					str="/view.mypage/Mypage_Modify_Menu.jsp";
+					break;
+					
 		}
 	
 		/*RequestDispatcher rd1 = request.getRequestDispatcher(str);
