@@ -10,7 +10,7 @@
 <!-- 이것때문인지 모르겠는데 화면 넘길때 잡음? 잡화면이 생김 -->
 <!-- 막 움직일 시 500오류 뜸 -->
 <c:if test="${empty articlePage}">
-	<% RequestDispatcher rd = request.getRequestDispatcher("Write_Community.do");
+	<% RequestDispatcher rd = request.getRequestDispatcher("Reset_Community.do");
 	rd.forward(request, response);
 	System.out.print("redirect success"); %>
 </c:if>
@@ -229,15 +229,15 @@
 			   				<td colspan="5">
 			   					<!-- 현재페이지가 5 이상일 시 이전 링크-->
 			   					<c:if test="${articlePage.startPage > 5}">
-			   					<a href="Write_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+			   					<a href="Reset_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
 			   					</c:if>
 			   					<!-- startPage to endPage -->
 			   					<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
-			   					<a href="Write_Community.do?pageNo=${pNo}">[${pNo}]</a>
+			   					<a href="Reset_Community.do?pageNo=${pNo}">[${pNo}]</a>
 			   					</c:forEach>
 			   					<!-- endPage가 총페이지보다 작을 시에 다음 링크 -->
 			   					<c:if test="${articlePage.endPage < articlePage.totalPages}">
-			   					<a href="Write_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+			   					<a href="Reset_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
 			   					</c:if>
 			   				</td>
 			   			</tr>

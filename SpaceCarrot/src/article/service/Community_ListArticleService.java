@@ -47,4 +47,18 @@ public class Community_ListArticleService {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public Community_ArticlePage getArticlePage_reset(int pageNum) throws ClassNotFoundException {
+		// List 처음 들어왔을때 여기 메소드를 거쳐 VO를 가져감
+		try {
+			boardDao = new SpaceCarrotDAO_Board_Community();
+			int total = boardDao.selectCount();
+			List<SpaceCarrotVO_Board_Community> content = boardDao.select((pageNum - 1) * size, size);
+			return new Community_ArticlePage(total, pageNum, size, content);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		
+	}		
 }

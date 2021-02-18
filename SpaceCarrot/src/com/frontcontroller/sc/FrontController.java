@@ -234,7 +234,7 @@ public class FrontController extends HttpServlet {
 				// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
 				article_VO = readService.getArticle(postNum, true);
 				// VO 객체를 attribute
-				request.setAttribute("articleVO", article_VO);
+				request.setAttribute("article_VO", article_VO);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -246,9 +246,37 @@ public class FrontController extends HttpServlet {
 			rd.forward(request, response);
 			
 			break;
+			
+		case "/view.community/Reset_Community.do" :
+			
+			al = new ArticleInfoList();
+			
+			try {
+				articlePage = al.reset(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			// setAttribute
+			request.setAttribute("articlePage", articlePage);
+			
+			// setAttribute 잘 되었나 확인
+			articleCheck = request.getAttribute("articlePage");
+			
+			if(articleCheck != null){
+				System.out.println("category setAttribute 성공");
+				str = "/view.community/Community_List.jsp";
+			} else {
+				System.out.println("category setAttribute 실패");
+				str = "/view.community/error.jsp";
+			}
+			
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+			
+			break;
+			
 		} // case-end
-		
 
 		} // http -end
-
 }
