@@ -1,6 +1,5 @@
 package spacecarrotVO;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -107,7 +106,7 @@ public class SpaceCarrotVO_Board_Community {
 	}
 
 	private String toSdate(Date regDate) {
-		String sDate = new SimpleDateFormat("MM.dd").format(regDate);
+		String sDate = new SimpleDateFormat("yy.MM.dd").format(regDate);
 		return sDate;
 	}
 }

@@ -258,7 +258,8 @@ public class SpaceCarrotDAO_Board_Community {
    }
    
    private String toDate(Date regDate) {
-		String sDate = new SimpleDateFormat("MM.dd").format(regDate);
+	   // Date 형식을 SimpleDateFormat을 통해 String으로 바꿈 
+		String sDate = new SimpleDateFormat("yy.MM.dd").format(regDate);
 		return sDate;
 	}
    
