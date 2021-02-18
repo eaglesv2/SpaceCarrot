@@ -31,8 +31,8 @@
     <title>Document</title>
 </head>
 <body>
-<%-- 	<% String id = (String)session.getAttribute("sessionID"); 
-		System.out.print(id);%> --%>
+<%-- <% String id = (String)session.getAttribute("sessionID"); 
+	System.out.print(id);%> --%>
     
     <div id="container">
         <div id="containerwrap">

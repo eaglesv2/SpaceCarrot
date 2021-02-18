@@ -51,17 +51,14 @@
                        	    font-size : 11.5pt;
                        	    font-weight : bold;
                     	  }
-      /* #category .menuLink:hover { text-decoration : underline; 
-                           text-underline-position : under;
-                          } */
                           
       .my_info_tab:after { content: "";
-      					display: block;
-      					width: 100px;
-      				    text-align: center;
-      		  		    border-bottom : 2px solid #000;
-      					margin-top: 8px;
-      				  } 
+      					   display: block;
+      				       width: 100px;
+      				       text-align: center;
+      		  		       border-bottom : 2px solid #000;
+      					  margin-top: 8px;
+      				     } 
 	
 	/* 경고문 */
 	#care { font-size: 13pt;
@@ -205,13 +202,13 @@
        			비밀번호, 전화번호, 닉네임만 변경 가능합니다
        		</div>
        		
-       	<form action = "UserInfoInsert.do" method = "post">
+       	<form action = "UserInfoUpdate.do" method = "post">
        	<div id = "join_form">
 			<table>
               	<tbody>
 					<tr>
 						<th><span>아이디</span></th>
-						<td class="id">abc1234</td>
+						<td class="id"><%= (String)session.getAttribute("sessionID") %></td>
                 	</tr>
                 	<tr>
                   		<th><span>비밀번호</span></th>
@@ -222,8 +219,7 @@
                   		<td><input type="password" placeholder="비밀번호를 확인하세요" name = "pwcheck"></td>
                		 </tr>
                		 <tr class="pw_re">
-               		 	<th><span></span></th>
-               		 	<td>※ 비밀번호가 일치하지 않습니다</td>
+               		 	<td >※ 비밀번호가 일치하지 않습니다</td>
                		 </tr>
                 	 <tr>
                   		<th><span>닉네임</span></th>
@@ -255,10 +251,10 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button type = "submit" onclick = "#">수정</button>
+						<button type = "submit">수정</button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<button type = "reset" onclick = "main.html">취소</button>
+						<button type = "reset" onclick = "main.jsp">취소</button>
 					</li>
 				</ul>
        		</div>
