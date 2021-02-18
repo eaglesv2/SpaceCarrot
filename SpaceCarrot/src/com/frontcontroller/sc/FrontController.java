@@ -1,7 +1,6 @@
 package com.frontcontroller.sc;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,15 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.userinfo.sc.MyPagePWCheck;
-/*import com.article.sc.ArticleInfo;*/
+import com.article.sc.ArticleInfoList;
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
 import com.userinfo.sc.UserLogin;
 
 import article.service.Community_ArticlePage;
-import article.service.Community_ListArticleService;
-import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
+import article.service.Community_ReadArticleService;
+import spacecarrotVO.SpaceCarrotVO_Board_Community;
 
 /**
  * Servlet implementation class FrontController
@@ -58,21 +57,16 @@ public class FrontController extends HttpServlet {
 		
 		String str = null;
 		UserImpl u1 = null;
-		/*ArticleInfo al = null;*/
+
+		ArticleInfoList al = null;
+
 		
-		// request로 받아올 parameter
-		String category = null;
-		String title = null;
-		String content = null;
-		String testuserID = null;
-		String testuserNickName = null; 
-		String pageNoVal = null;
-		int pageNo = 0;
-		boolean daoexecute = false;
-		// CommunityList에 필요한 객체
-		Community_ListArticleService listService = null;
-		SpaceCarrotDAO_Board_Community boarddao = null;
+		// 게시판 객체
 		Community_ArticlePage articlePage = null;
+		// 게시판 이동 Dispatcher 속성
+		RequestDispatcher rd = null;
+		// 게시글 글 들어왔는지 확인하는 속성
+		Object articleCheck;
 		
 		switch(url) {
 		
@@ -126,124 +120,123 @@ public class FrontController extends HttpServlet {
 			
 		case "/view.community/Write_Community.do" :
 			
-			category = request.getParameter("category");
-			title = request.getParameter("title");
-			content = request.getParameter("content");
-			testuserID = "tuche24";
-			testuserNickName = "hiyo";
-			
-			
-			// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
-			pageNoVal = request.getParameter("pageNo");
-			pageNo = 1;
-			if(pageNoVal != null) {
-				pageNo = Integer.parseInt(pageNoVal);
-			}
+			al = new ArticleInfoList();
 			
 			try {
-				boarddao = new SpaceCarrotDAO_Board_Community();
-			} catch (ClassNotFoundException | SQLException e) {
+				articlePage = al.execute(request, response);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			daoexecute = boarddao.insertPost_Community(category, testuserID, testuserNickName, title, content);
-			
-			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
-			listService = new Community_ListArticleService();
-			
-			try {
-				articlePage= listService.getArticlePage(pageNo);
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
-			}
-			
+			// setAttribute
 			request.setAttribute("articlePage", articlePage);
-				
-			if(daoexecute){
-				System.out.println("dao insert success");
+			
+			// setAttribute 잘 되었나 확인
+			articleCheck = request.getAttribute("articlePage");
+			
+			if(articleCheck != null){
+				System.out.println("setAttribute 성공");
 				str = "/view.community/Community_List.jsp";
-				break;
 			} else {
-				System.out.println("dao failed");
-				str = "/view.community/Community_List.jsp";
-				break;
+				System.out.println("setAttribute 실패");
+				str = "/view.community/error.jsp";
 			}
+			
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+			
+			break;
 			
 		case "/view.community/Category_Community.do" :
 			
-			category = request.getParameter("category");
-			title = request.getParameter("title");
-			content = request.getParameter("content");
-			testuserID = "tuche24";
-			testuserNickName = "hiyo";
-					
-			// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
-			pageNoVal = request.getParameter("pageNo");
-			pageNo = 1;
-			if(pageNoVal != null) {
-				pageNo = Integer.parseInt(pageNoVal);
-			}
-			
-			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
-			listService = new Community_ListArticleService();
+			al = new ArticleInfoList();
 			
 			try {
-				articlePage= listService.getArticlePage_search_Category(pageNo, category);
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
+				articlePage = al.execute_search_Category(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			
+			// setAttribute
 			request.setAttribute("articlePage", articlePage);
-				
-			if(daoexecute){
-				System.out.println("dao insert success");
+			
+			// setAttribute 잘 되었나 확인
+			articleCheck = request.getAttribute("articlePage");
+			
+			if(articleCheck != null){
+				System.out.println("category setAttribute 성공");
 				str = "/view.community/Community_List.jsp";
-				break;
 			} else {
-				System.out.println("dao failed");
-				str = "/view.community/Community_List.jsp";
-				break;
+				System.out.println("category setAttribute 실패");
+				str = "/view.community/error.jsp";
 			}
+			
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+			
+			break;
 			
 		case "/view.community/Search_Community.do" :
 			
-			String searchArea = request.getParameter("searchArea");
-			category = request.getParameter("category");
-			title = request.getParameter("title");
-			content = request.getParameter("content");
-			testuserID = "tuche24";
-			testuserNickName = "hiyo";
-			
-			// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
-			pageNoVal = request.getParameter("pageNo");
-			pageNo = 1;
-			if(pageNoVal != null) {
-				pageNo = Integer.parseInt(pageNoVal);
-			}
-			
-			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
-			listService= new Community_ListArticleService();
+			al = new ArticleInfoList();
 			
 			try {
-				articlePage= listService.getArticlePage_search(pageNo, searchArea);
-			} catch (ClassNotFoundException e1) {
-				e1.printStackTrace();
+				articlePage = al.execute_search(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			
+			// setAttribute
 			request.setAttribute("articlePage", articlePage);
-				
-			if(daoexecute){
-				System.out.println("dao insert success");
+			
+			// setAttribute 잘 되었나 확인
+			articleCheck = request.getAttribute("articlePage");
+			
+			if(articleCheck != null){
+				System.out.println("search setAttribute 성공");
 				str = "/view.community/Community_List.jsp";
-				break;
 			} else {
-				System.out.println("dao failed");
-				str = "/view.community/Community_List.jsp";
-				break;
+				System.out.println("search setAttribute 실패");
+				str = "/view.community/error.jsp";
 			}
-		}
+			
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+			
+			break;
+		
+			// 게시글 읽기 컨트롤러
+		case "/view.community/Read_Community.do" :
+			// 게시글 읽기 서비스 객체 생성
+			Community_ReadArticleService readService = new Community_ReadArticleService();
+			
+			// 게시글번호를 가져오고 int로 변환한다 
+			String noVal = request.getParameter("no");
+			int postNum = Integer.parseInt(noVal);
+			
+			// VO
+			SpaceCarrotVO_Board_Community article_VO;
+			try {
+				// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
+				article_VO = readService.getArticle(postNum, true);
+				// VO 객체를 attribute
+				request.setAttribute("articleVO", article_VO);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
+			
+			str = "/view.community/Community_Comment_3ja.jsp";
+			
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+			
+			break;
+		} // case-end
+		
+
+		} // http -end
 	
-		/*RequestDispatcher rd1 = request.getRequestDispatcher(str);
-		rd1.forward(request, response);*/
+
 	}
 }
