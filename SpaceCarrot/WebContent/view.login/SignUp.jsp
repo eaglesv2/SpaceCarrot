@@ -54,6 +54,36 @@
 			});				
 		});
 		
+		$("input[name=nickname]").blur(function() {
+			var nickname = $("input[name=id]").val();
+			var idReg = /^[a-z0-9_]*$/;
+			
+			$.ajax({ 
+				type: 'POST',
+				url: 'nicknameOverLapCheck.do',
+				data: { nickname : nickname },
+				
+				success: function(result) {
+					if(result == 1) {
+						$("#nickname_check").text("사용 가능한 닉네임입니다.");
+						$("#nickname_check").css("color","lime");
+						$(".nickname_check").val("1");
+					} else if(result == 0) {
+						$("#nickname_check").text("이미 사용중인 닉네임입니다.");
+						$("#nickname_check").css( "color","red");
+					} else if(result == -1) {
+						$("#nickname_check").text("");
+					} else if(result == -2) {
+						$("#nickname_check").text("닉네임은 한글, 영문, 숫자를 혼합하여 입력해주세요.");
+						$("#nickname_check").css("color","red");
+					} else if(result == -3) {
+						$("#nickname_check").text("닉네임은 2~6자로 입력해주세요.");
+						$("#nickname_check").css("color","red");	
+					}
+				}
+			})
+		})
+		
 		
 		
 		//비밀번호 정규식
@@ -290,6 +320,11 @@
                 	 <tr>
                   		<th><span>닉네임</span></th>
                   		<td><input type="text" placeholder="" name = "nickname" required></td>
+                	</tr>
+                	<tr>
+                		<td class = "check" colspan = 2>
+                			<div id = "nickname_check"></div>
+                		</td>
                 	</tr>
                 	<tr>
                   		<th><span>성별</span></th>

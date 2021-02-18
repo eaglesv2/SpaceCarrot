@@ -15,6 +15,7 @@ import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
 import com.userinfo.sc.UserLogin;
+import com.userinfo.sc.UserNickNameCheck;
 
 import article.service.Community_ArticlePage;
 import article.service.Community_ReadArticleService;
@@ -90,6 +91,19 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
+			}
+			
+			break;
+		
+		case "/view.login/nicknameOverLapCheck.do" :  //닉네임 중복체크
+			
+			u1 = new UserNickNameCheck();
+			
+			try {
+				u1.execute(request, response);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			
 			break;
@@ -236,7 +250,5 @@ public class FrontController extends HttpServlet {
 		
 
 		} // http -end
-	
 
-	}
 }

@@ -31,34 +31,35 @@
 
 	/* 수정할 메뉴 */
     #modify_menu { margin : 0 auto;
-              	 width : 715px;
-              	 text-align : center;
-              	 margin-top : 150px;
-             	 margin-left : 180px;
-             	 margin-bottom: 350px;
-    		   }
+              	   width : 715px;
+              	   text-align : center;
+              	   margin-top : 50px;
+             	   margin-left : 180px;
+             	   margin-bottom: 200px;
+    		     }
     		   
-    #modify_menu ul li { margin-bottom: 100px;
+    #modify_menu ul li { margin-bottom: 55px;
     
     }
    	
     #modify_menu ul li:first-child { font-size: 14pt; 
-    								 font-weight:bold;    
+    								 font-weight: bold; 
+    								 margin-bottom: 50px;   
     }
     
    	button { color: #fff; 
-		   background-color: #fc585e;
-		   border: 3px solid #fc585e; 
-		   font-size: 12pt;
-		   font-weight: bold; 
-		   padding: 10px;  
-		   height: 56px; 
-		   vertical-align: middle;
-		   width: 250px; 
-		   display: inline-block; 
-		   text-align: center; 
-		   margin: 0 auto;
-		   cursor: pointer; }
+		     background-color: #fc585e;
+		     border: 3px solid #fc585e; 
+		     font-size: 12pt;
+		     font-weight: bold; 
+		     padding: 10px;  
+		     height: 56px; 
+		     vertical-align: middle;
+		     width: 250px; 
+		     display: inline-block; 
+		     text-align: center; 
+		     margin: 0 auto;
+		     cursor: pointer; }
     
 </style>
 <title>마이페이지_수정메뉴</title>
