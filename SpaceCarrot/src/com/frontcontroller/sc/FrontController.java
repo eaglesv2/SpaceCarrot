@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.userinfo.sc.MyPagePWCheck;
 import com.article.sc.ArticleInfoList;
-
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
@@ -105,6 +104,18 @@ public class FrontController extends HttpServlet {
 				e2.printStackTrace();
 			}
 
+			break;
+		
+		case "/view.mypage/MyPagePWCheck.do" : 
+			u1 = new MyPagePWCheck();
+			
+			try {
+				u1.execute(request, response);
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			
 			break;
 			
 		case "/view.community/Write_Community.do" :

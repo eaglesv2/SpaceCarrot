@@ -254,7 +254,7 @@ public class SpaceCarrotDAO_UserInfo {
 		rs = pstmt.executeQuery();
 		
 		if(rs.next()) { //입력된 아이디에 해당하는 비밀번호그 있을 경우
-			dbNickName = rs.getString(COL_USERPW);
+			dbNickName = rs.getString(COL_USERNICKNAME);
 			return dbNickName;
 		} else 
 			return null;
