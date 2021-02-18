@@ -5,6 +5,7 @@ public class SpaceCarrotVO_UserInfo {
 	private String userName;
 	private String userID;
 	private String userPW;
+	private String userNickName;
 	private String userGender;
 	private String userBirth;
 	private String userTel;
@@ -12,11 +13,12 @@ public class SpaceCarrotVO_UserInfo {
 	public SpaceCarrotVO_UserInfo() {
 		
 	}
-	public SpaceCarrotVO_UserInfo(int userSerial, String userName, String userID, String userPW, String userGender, String userBirth, String userTel) {
+	public SpaceCarrotVO_UserInfo(int userSerial, String userName, String userID, String userPW, String userNickName, String userGender, String userBirth, String userTel) {
 		this.userSerial = userSerial;
 		this.userName = userName;
 		this.userID = userID;
 		this.userPW = userPW;
+		this.userNickName = userNickName;
 		this.userGender = userGender;
 		this.userBirth = userBirth;
 		this.userTel = userTel;
@@ -45,6 +47,12 @@ public class SpaceCarrotVO_UserInfo {
 	}
 	public void setUserPW(String userPW) {
 		this.userPW = userPW;
+	}
+	public String getUserNickName() {
+		return userNickName;
+	}
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
 	}
 	public String getUserGender() {
 		return userGender;

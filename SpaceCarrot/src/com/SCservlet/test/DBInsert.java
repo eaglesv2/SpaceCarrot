@@ -15,7 +15,7 @@ import spacecarrotDAO.SpaceCarrotDAO_UserInfo;
 /**
  * Servlet implementation class DBInsert
  */
-@WebServlet("/DBInsert")
+@WebServlet("/DBInsert/*")
 public class DBInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -47,6 +47,7 @@ public class DBInsert extends HttpServlet {
 		String userName = request.getParameter("username");
 		String userID = request.getParameter("userid");
 		String userPW = request.getParameter("userpw");
+		String userNickName = request.getParameter("usernickname");
 		String userGender = request.getParameter("usergender");
 		String userBirth = request.getParameter("userbirth");
 		String userTel = request.getParameter("usertel");
@@ -60,7 +61,7 @@ public class DBInsert extends HttpServlet {
 		}
 		
 		
-		Boolean b = scv.insertUserInfo(userName, userID, userPW, userGender, userBirth, userTel);
+		Boolean b = scv.insertUserInfo(userName, userID, userPW, userNickName, userGender, userBirth, userTel);
 		
 		
 		if(b) {//true면 insert 되었으므로

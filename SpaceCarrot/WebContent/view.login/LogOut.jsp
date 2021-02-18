@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-${ result1 } <br>
-<a href = "test.jsp">[ют╥б]</a>
+<% session.invalidate();
+   response.sendRedirect("../MainPage/Main.jsp");%>
 </body>
 </html>

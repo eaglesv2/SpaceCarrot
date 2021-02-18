@@ -1,0 +1,204 @@
+
+
+#container{
+    
+    width: 1080;
+    position: relative;
+
+   
+}
+#containerwrap {
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+#content2{
+    height: 250px;
+    text-align: center;
+   
+    
+  
+}
+
+#content2 #tableset{
+    display: block;
+   text-align: left;
+    display: flex;
+    width: 1080px;
+    height: 200px;
+}
+#content2 p{
+  margin-top: 20px;
+    width: 100%;
+}
+#content2 table{
+    margin: 0 auto;
+    width: 250px;
+    height: 150px;
+   
+    
+    
+}
+#content2 #lefttable{
+
+    margin-top: 20px;
+    text-align: left;
+    
+    
+}
+#content2 #centertable{
+	
+    margin-top: 20px;
+}
+#content2 #righttable{
+	
+    margin-top: 20px;
+}
+#content2 header{
+    text-align: center;
+}
+#content2 th{
+    text-align: left;
+    padding-top: 6px;
+    border-bottom: 2px solid black;
+    font-weight: bold;
+}
+#content2 tr{
+    text-align: left;
+    border-bottom: 1px solid darkgray;
+}
+#content2 #end-tr{
+    border-bottom: none;
+}
+
+
+#content3{
+    height: 400px;
+    background-color: #eeeeee;
+    text-align: center;
+    
+}
+
+#content3 #cardset{
+    display: flex;
+    justify-content: space-around;
+ 
+}
+
+#content3 #cont-tile{
+    position: relative;
+    
+}
+#content3 #con-title h2{
+    padding-top: 40px;
+    font-weight: bold;
+    font-size:18px;
+}
+#content3 #con-title p {
+    position: absolute;
+    top:1;
+    right:0;
+    margin-right: 40px;
+}
+
+#content3 #cont-tilte a{
+    margin-right: 20px;
+}
+
+
+.card{
+    width: 200px;
+    height: 200px;
+    align-items: center;
+    margin-top: 70px;
+    text-align: center;
+    
+}
+.card img{
+    width: 200px;
+    height: 180px;
+    display: block;
+    text-align: center;
+}
+
+.card h2{
+    text-align: left;
+    height: 25px;
+    padding-left: 10px;
+    padding-top: 5px;
+    font-weight: bold;
+    background-color: white;
+}
+.card p{
+
+
+    text-align: left;
+    height: 25px;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: white;
+}
+
+
+#content4{
+    height: 400px;
+    text-align: center;
+    
+}
+#content4 #cardset{
+    display: flex;
+    justify-content: space-around;
+}
+#content4 #cont-tile{
+    position: relative;
+}
+#content4 #con-title h2{
+    padding-top: 40px;
+    font-weight: bold;
+    font-size: 18px;
+}
+#content4 #cardset .card h2{
+    background: #eeeeee;
+}
+#content4 #cardset .card p{
+    background-color: #eeeeee;
+}
+#content4 #con-title p {
+    position: absolute;
+    top:1;
+    right:0;
+    margin-right: 40px;
+}
+
+#content4 #cont-tilte a{
+    margin-right: 20px;
+}
+
+#content5{
+    height: 400px;
+    background-color: #eeeeee;
+    text-align: center;    
+}
+#content5 #cont-tile{
+    position: relative;
+}
+#content5 #con-title h2{
+    padding-top: 40px;
+    font-weight: bold;
+    font-size: 18px;
+}
+#content5 #con-title p {
+    position: absolute;
+    top:1;
+    right:0;
+    margin-right: 40px;
+}
+#content5 #cardset{
+    display: flex;
+    justify-content: space-around;
+}
+
+
