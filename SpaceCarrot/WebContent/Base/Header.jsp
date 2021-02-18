@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +67,7 @@
 	<div id = "header">
 		<div class = "menu">
 			<ul>
-				<li><a href="../MainPage/main.html"><img src = "../img/MainLogo.png" alt = "우주당근"></a></li>
+				<li><a href="../MainPage/Main.jsp"><img src = "../img/MainLogo.png" alt = "우주당근"></a></li>
 				<li><a href = "#">커뮤니티</a></li>
 				<li><a href = "#">볼거리</a></li>
 				<li><a href = "#">먹거리</a></li>
@@ -76,9 +78,11 @@
 			<ul>
 				<li><a href = "../view.login/SignUp.jsp">회원가입</a></li>
 				<li>·</li>
-				<li><a href = "../view.login/Login.jsp">로그인</a></li>
+				<li><% if(session.getAttribute("sessionID") == null) { %><a href = "../view.login/Login.jsp">로그인 </a><% } else { %> 
+																		 <a href = "../view.login/LogOut.jsp">로그아웃 </a> <% } %></li>
 				<li>·</li>
-				<li><a href = "#">마이페이지</a></li>	
+				<li><% if(session.getAttribute("sessionID") == null) { %><a href = "../view.login/Login.jsp">마이페이지</a> <% } else {%> 
+																		 <a href = "../view.mypage/Mypage_PW_RE.jsp">마이페이지</a>  <% } %></li>	
 			</ul>
 		</div>
 	</div>

@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.article.sc.ArticleInfoList;
+
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
@@ -56,7 +58,9 @@ public class FrontController extends HttpServlet {
 		
 		String str = null;
 		UserImpl u1 = null;
+
 		ArticleInfoList al = null;
+
 		
 		// 게시판 객체
 		Community_ArticlePage articlePage = null;
@@ -76,8 +80,6 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			str = "/view.login/SignUpComplete.jsp";
 			break;
 			
 		case "/view.login/idOverLapCheck.do" : // 아이디 중복체크!!!!!!!!!!!!!!!!!!!!!!!
@@ -101,15 +103,6 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
-			}
-			int result = Integer.parseInt(request.getParameter("result"));
-			request.setAttribute("result", result);
-			
-			if(result == 1) {
-				str = "/MainPage/main.html";
-			}
-			else { 
-				str = "/view.login/Login.jsp";	
 			}
 
 			break;
@@ -220,6 +213,7 @@ public class FrontController extends HttpServlet {
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
+
 			
 			str = "/view.community/Community_Comment_3ja.jsp";
 			
@@ -229,5 +223,9 @@ public class FrontController extends HttpServlet {
 			break;
 		} // case-end
 		
+
+		} // http -end
+	
+
 	}
 }

@@ -8,10 +8,11 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <script type="text/javascript">        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
+		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
-		
-		function loginCheck() {
+	})
+	
+	function loginCheck() {
 			var id =  $("input[name=id]").val();
 			var pw =  $("input[name=pw]").val();
 			$.ajax({
@@ -22,16 +23,17 @@
 					if(result == 0) {
 						$("#login_check").text("비밀번호가 일치하지 않습니다.");
 						$("#login_check").css("color","red");
-						document.location.href = "Login.jsp";
+						/* document.location.href = "Login.jsp"; */
 					} else if(result == -1) {
 						$("#login_check").text("존재하지 않는 아이디입니다.");
 						$("#login_check").css("color","red");
-						document.location.href = "Login.jsp";
+						/* document.location.href = "Login.jsp"; */
+					} else {
+						document.location.href = "../MainPage/Main.jsp";
 					}
 				}
 			})
 		}
-	})
 </script>
 <style>
 	#container { margin : 0 auto;
@@ -77,11 +79,11 @@
    							    display: inline-block; 
    							    padding: 0 20px 0 0; 
    							   }
-   	#login_form table .check { padding : 0px; height: 0px; font-size: 11pt; color: red;}
+   	#login_form table .check { padding : 0px; padding-top: 10px; height: 0px; font-size: 11pt; color: red;}
    	#btn { margin-left: 60px; }
 	#btn ul li { list-style: none; }
 	.login_btn_wrap { text-align: center; 
-			   		  margin: 20px 30px 30px;
+			   		  margin: 5px 30px 30px;
 			   		  float: left; 
 			   		} 
 	.login_btn_wrap button { color: #fff; 
@@ -99,7 +101,7 @@
 				 	   		 cursor: pointer;
 					 	   }
 	.signup_btn_wrap { text-align: center; 
-			   		   margin: 20px 0 30px;
+			   		   margin: 5px 0 30px;
 			   		   float: left;
 			  		 }
 	.signup_btn_wrap button { color: #fc585e;
@@ -132,7 +134,7 @@
 			</ul>
        	</div>
         
-        <form action = "UserLogin.do" method = "post">
+       <!--  <form action = "UserLogin.do" method = "post"> -->
         <div id = "login_form">
         	<table>
               	<tbody>
@@ -154,15 +156,15 @@
 			<div id = "btn">
 				<ul>
 					<li class = "login_btn_wrap">
-						<button type = "submit" onclick = "loginCheck()">로그인</button>
+						<button type = "button" onclick = "loginCheck()">로그인</button>
 					</li>
 					<li class = "signup_btn_wrap">
-						<button onclick = "location.href=SignUp.jsp">회원가입</button>
+						<button onclick = "location.href='SignUp.jsp'">회원가입</button>
 					</li>
 				</ul>
 			</div>
         </div>
-        </form>
+        <!-- </form> -->
         
         <div id = "footer">
         

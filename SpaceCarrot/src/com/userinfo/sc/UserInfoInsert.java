@@ -1,5 +1,6 @@
 package com.userinfo.sc;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,5 +23,8 @@ public class UserInfoInsert implements UserImpl {
 		
 		sc = new SpaceCarrotDAO_UserInfo();
 		sc.insertUserInfo(name, id, pw, nickname, gender, birth, tel);
+		RequestDispatcher rd1 = request.getRequestDispatcher("/view.login/SignUpComplete.jsp");
+		rd1.forward(request, response);
+		/*response.sendRedirect("../view.login/SignUpComplete.jsp");*/
 	}
 }
