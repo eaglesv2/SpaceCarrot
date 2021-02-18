@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import spacecarrotDBConn.SpaceCarrotDBConn;
 import spacecarrotVO.SpaceCarrotVO_UserInfo;
@@ -165,14 +166,20 @@ public class SpaceCarrotDAO_UserInfo {
 		// 0이면 이미 존재하는 아이디, 1이면 새로운 아이디
 
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERID + " = ?";
-		
+		String idReg = "^[a-z0-9_]*$";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, input_userID);
 			rs = pstmt.executeQuery();
-
+			
 			if (rs.next()) {
 				return 0; // 0  이미 존재하는 아이디
+			} else if (input_userID.equals("")){
+				return -1; // -1 이이디란이 빈칸
+			}  else if (!Pattern.matches(idReg, input_userID)) {
+				return -2;
+			} else if (input_userID.length() < 5 || input_userID.length() > 15) {
+				return -3;
 			} else {
 				return 1; // 1 사용 가능한 아이디
 			}
@@ -186,7 +193,7 @@ public class SpaceCarrotDAO_UserInfo {
 				e.printStackTrace();
 			}
 		}
-		return -1; // 데이터베이스 오류
+		return -100; // 데이터베이스 오류
 	}
 	
 	public boolean checkOverlapNickName(String input_userNickName) throws SQLException {

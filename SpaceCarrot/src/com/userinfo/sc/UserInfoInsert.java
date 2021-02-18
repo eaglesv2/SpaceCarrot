@@ -22,5 +22,6 @@ public class UserInfoInsert implements UserImpl {
 		
 		sc = new SpaceCarrotDAO_UserInfo();
 		sc.insertUserInfo(name, id, pw, nickname, gender, birth, tel);
+		response.sendRedirect("/view.login/SignUpComplete.jsp");
 	}
 }

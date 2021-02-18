@@ -16,6 +16,17 @@
 			var id = $("input[name=id]").val();
 			var idReg = /^[a-z0-9_]*$/;
 			
+			//아이디 정규식
+			/* if(id == "") { 
+				$("#id_check").text("");
+			} else if(!idReg.test(id)) {
+				$("#id_check").text("아이디는 영문 소문자와 숫자를 혼합하여 입력해주세요.");
+				$("#id_check").css("color","red");
+			} else if(id.length < 5 || id.length > 15) {
+				$("#id_check").text("아이디는 5~15자로 입력해주세요.");
+				$("#id_check").css("color","red");	
+			}  */
+			
 			//아이디 중복 검사
 			$.ajax({ 
 				type: 'POST',
@@ -24,28 +35,23 @@
 				
 				success: function(result) { //result 값 안넘어오는듯?
 					if(result == 1) {
-						$("#id_check").html("<p>사용 가능한 아이디입니다.</p>");
+						$("#id_check").text("사용 가능한 아이디입니다.");
 						$("#id_check").css("color","lime");
 						$(".idCheck").val("1");
-					} else {
-						$("#id_check").html("<p>이미 사용중인 아이디입니다.</p>");
+					} else if(result == 0) {
+						$("#id_check").text("이미 사용중인 아이디입니다.");
 						$("#id_check").css( "color","red");
-					} 
+					} else if(result == -1) {
+						$("#id_check").text("");
+					} else if(result == -2) {
+						$("#id_check").text("아이디는 영문 소문자와 숫자를 혼합하여 입력해주세요.");
+						$("#id_check").css("color","red");
+					} else if(result == -3) {
+						$("#id_check").text("아이디는 5~15자로 입력해주세요.");
+						$("#id_check").css("color","red");	
+					}
 				}
-			});		
-	
-			//아이디 정규식
-			if(id == "") { 
-				$("#id_check").text("");
-			} else if(!idReg.test(id)) {
-				$("#id_check").text("아이디는 영문 소문자와 숫자를 혼합하여 입력해주세요.");
-				$("#id_check").css("color","red");
-			} else if(id.length < 5 || id.length > 15) {
-				$("#id_check").text("아이디는 5~15자로 입력해주세요.");
-				$("#id_check").css("color","red");	
-			} 
-			
-				
+			});				
 		});
 		
 		
@@ -53,7 +59,7 @@
 		//비밀번호 정규식
 		$("input[name=pw]").blur(function() {
 			var pw = $("input[name=pw]").val();
-			var pwReg = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.!@#$%^&+=])*$/;
+			var pwReg =  /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&+=]).{6,15}$/;
 			
 			if(pw == "") { 
 				$("#standard_pw_check").text("");
@@ -64,10 +70,7 @@
 				$("#standard_pw_check").text("비밀번호는 공백 없이 입력해주세요");
 				$("#standard_pw_check").css("color","red");	
 			} else if (!pwReg.test(pw)) {
-				$("#standard_pw_check").text("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요.");
-				$("#standard_pw_check2").text("특수문자는 ' ! @ # $ % ^ & + = '만 사용할 수 있습니다.");
-				/* $("#standard_pw_check").text().replace("\n", "<br />"); */ 
-				/* 줄바꿈 알아내야함!!!줄바꿈 알아내야함!!!줄바꿈 알아내야함!!!줄바꿈 알아내야함!!!줄바꿈 알아내야함!!! */
+				$("#standard_pw_check").html("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br> 특수문자는 ' ! @ # $ % ^ & + ='만 사용할 수 있습니다.");
 				$("#standard_pw_check").css("color","red");
 				$("#standard_pw_check2").css("color","red");
 			} else {
@@ -90,6 +93,9 @@
 				$("#submit").attr("disabled", true);
 			}
 		})
+		
+		//전화번호 정규식
+		var telReg =  /^01(?:0|1|[6-9])[.-]?(\\d{4})[.-]?(\\d{4})$/;
 		
 		function checkSubmit() {
 			var idCheck = $(".idCheck");
@@ -268,11 +274,6 @@
                 			<div id = "standard_pw_check"></div>
                 		</td>
                 	</tr>
-                	 <tr>
-                		<td class = "check" colspan = 2>
-                			<div id = "standard_pw_check2"></div>
-                		</td>
-                	</tr>
                 	<tr>
                  		 <th><span>비밀번호 확인</span></th>
                   		<td><input type="password" placeholder="비밀번호를 확인하세요" name = "pwcheck" required></td>
@@ -316,7 +317,7 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button id = "submit" type = "submit" onclick = "location.href='SignUpComplete.jsp'">완료</button>
+						<button id = "submit" type = "submit" onclick = "location.href='SignUpComplete.jsp'" disabled>완료</button>
 					</li>
 					<li class = "cancel_btn_wrap">
 						<button type = "reset" onclick = "location.href='main.html'">취소</button>
