@@ -113,7 +113,7 @@
                             <td>게시글1</td>
                         </tr>
                         <tr id="end-tr">
-                            <td>게시글1</td>
+                            <td>게시글</td>
                         </tr>
                     </table>
                 </div>
