@@ -125,11 +125,11 @@ public class SpaceCarrotDAO_UserInfo {
 		return true;
 	}
 	
-	public boolean updateUserInfo(String update_userPW, String update_userNickName, String update_userBirth, String update_userTel, int userSerial) {
+	public boolean updateUserInfo(String update_userPW, String update_userNickName, String update_userBirth, String update_userTel, String userID) {
 		// 유저 정보 수정하는 메소드 (비밀번호, 생일, 전화번호)
 		 String sql = "UPDATE " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " SET " +
 				 	  COL_USERPW + " = ?, " + COL_USERNICKNAME + " = ?, " + COL_USERBIRTH + " = ?, " + 
-				 	  COL_USERTEL + " = ? WHERE " + COL_SERIAL + " = ?";
+				 	  COL_USERTEL + " = ? WHERE " + COL_USERID + " = ?";
 		 
 		 try {
 			 pstmt = con.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class SpaceCarrotDAO_UserInfo {
 			 pstmt.setString(2, update_userNickName);
 			 pstmt.setString(3, update_userBirth);
 			 pstmt.setString(4, update_userTel);
-			 pstmt.setInt(5, userSerial);
+			 pstmt.setString(5, userID);
 			 pstmt.executeUpdate();
 		 } catch(SQLException e){
 				System.out.println("update Exception");
@@ -177,9 +177,9 @@ public class SpaceCarrotDAO_UserInfo {
 			} else if (input_userID.equals("")){
 				return -1; // -1 이이디란이 빈칸
 			}  else if (!Pattern.matches(idReg, input_userID)) {
-				return -2;
+				return -2; // -2 아이디 정규식
 			} else if (input_userID.length() < 5 || input_userID.length() > 15) {
-				return -3;
+				return -3; // -3 아이디 길이
 			} else {
 				return 1; // 1 사용 가능한 아이디
 			}
@@ -241,5 +241,23 @@ public class SpaceCarrotDAO_UserInfo {
 		} else { 
 			return -1; // 해당 아이디가 없을 경우
 		}
+	}
+	
+	public String getNickName(String id) throws SQLException {
+		String dbNickName = "";
+		
+		String sql = "SELECT " + COL_USERNICKNAME + " FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERID + " = ?";
+		
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1,  id);
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) { //입력된 아이디에 해당하는 비밀번호그 있을 경우
+			dbNickName = rs.getString(COL_USERPW);
+			return dbNickName;
+		} else 
+			return null;
+		
 	}
 }

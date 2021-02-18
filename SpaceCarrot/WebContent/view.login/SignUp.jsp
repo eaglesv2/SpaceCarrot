@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <script type = "text/javascript">        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
+		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 		
 		
@@ -317,10 +317,10 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button id = "submit" type = "submit" onclick = "location.href='SignUpComplete.jsp'" disabled>완료</button>
+						<button id = "submit" type = "submit" disabled>완료</button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<button type = "reset" onclick = "location.href='main.html'">취소</button>
+						<button type = "button" onclick = "location.href='main.html'">취소</button>
 					</li>
 				</ul>
        		</div>

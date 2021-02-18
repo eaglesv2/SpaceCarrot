@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.article.sc.ArticleInfo;
+/*import com.article.sc.ArticleInfo;*/
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
@@ -57,7 +57,7 @@ public class FrontController extends HttpServlet {
 		
 		String str = null;
 		UserImpl u1 = null;
-		ArticleInfo al = null;
+		/*ArticleInfo al = null;*/
 		
 		// request로 받아올 parameter
 		String category = null;
