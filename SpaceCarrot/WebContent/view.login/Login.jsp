@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <script type="text/javascript">        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
+		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
 	
@@ -29,7 +29,7 @@
 						$("#login_check").css("color","red");
 						/* document.location.href = "Login.jsp"; */
 					} else {
-						/* document.location.href = "/MainPage/main.html"; */
+						document.location.href = "../MainPage/Main.jsp";
 					}
 				}
 			})

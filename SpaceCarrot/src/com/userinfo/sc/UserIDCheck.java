@@ -17,5 +17,6 @@ public class UserIDCheck implements UserImpl {
 		sc = new SpaceCarrotDAO_UserInfo();
 		response.getWriter().write(sc.checkOverlapID(id) + "");
 		System.out.println(sc.checkOverlapID(id));
+		
 	}
 }

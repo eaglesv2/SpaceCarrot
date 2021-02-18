@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
+		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
 </script>
