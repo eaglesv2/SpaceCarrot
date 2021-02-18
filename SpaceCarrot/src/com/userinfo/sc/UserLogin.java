@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import spacecarrotDAO.SpaceCarrotDAO_UserInfo;
 
 public class UserLogin implements UserImpl {
-	public void userinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -16,8 +16,7 @@ public class UserLogin implements UserImpl {
 		String pw = request.getParameter("pw");
 		
 		sc = new SpaceCarrotDAO_UserInfo();
-		int result = sc.loginCheck(id, pw);
-		
-		request.setAttribute("result", result);
+		response.getWriter().write(sc.loginCheck(id, pw) + "");
+
 	}
 }

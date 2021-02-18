@@ -5,71 +5,71 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="userReg.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
-<script>        
+<script type = "text/javascript">        
 	$(document).ready(function(){    
 		$("#header").load("../Base/header.html");
 		$("#footer").load("../Base/footer.html");
 		
-		//아이디 정규식
+		
 		$("input[name=id]").blur(function() {
+			var id = $("input[name=id]").val();
+			var idReg = /^[a-z0-9_]*$/;
+			
+			//아이디 중복 검사
 			$.ajax({ 
-				type: 'post',
-				dataType: 'json',
+				type: 'POST',
 				url: 'idOverLapCheck.do',
-				data: { id: $("input[name=id]").val() },
+				data: { id : id },
 				
-				success: function(json) {
-					if(result == true) {
-						$("#id_check").text("사용 가능한 아이디입니다.");
+				success: function(result) { //result 값 안넘어오는듯?
+					if(result == 1) {
+						$("#id_check").html("<p>사용 가능한 아이디입니다.</p>");
 						$("#id_check").css("color","lime");
 						$(".idCheck").val("1");
 					} else {
-						$("#id_check").text("이미 사용중인 아이디입니다.");
-						$("#id_check").css("color","red");
-						$("input[name=id]").focus();
-					}
+						$("#id_check").html("<p>이미 사용중인 아이디입니다.</p>");
+						$("#id_check").css( "color","red");
+					} 
 				}
-			})
-			
-			var id = $("input[name=id]").val();
-			var num = id.search(/[0-9]/g);
-			var eng = id.search(/[a-z]/ig);
-
-			if(id.length < 5 || id.length > 15) {
-				$("#id_check").text("아이디는 5~15자로 입력해주세요.");
-				$("#id_check").css("color","red");	
-			} else if(num < 0 || eng < 0) {
+			});		
+	
+			//아이디 정규식
+			if(id == "") { 
+				$("#id_check").text("");
+			} else if(!idReg.test(id)) {
 				$("#id_check").text("아이디는 영문 소문자와 숫자를 혼합하여 입력해주세요.");
 				$("#id_check").css("color","red");
-			} else {
-				$("#id_check").text("사용 가능한 아이디입니다.");
-				$("#id_check").css("color","lime");
-			}
-		})
+			} else if(id.length < 5 || id.length > 15) {
+				$("#id_check").text("아이디는 5~15자로 입력해주세요.");
+				$("#id_check").css("color","red");	
+			} 
+			
+				
+		});
 		
-		//아이디 중복 검사
+		
 		
 		//비밀번호 정규식
 		$("input[name=pw]").blur(function() {
 			var pw = $("input[name=pw]").val();
-			var num = pw.search(/[0-9]/g);
-			var eng = pw.search(/[a-zA-Z]/ig);
-			var spe = pw.search(/[!@#$%^&+=]/gi);
+			var pwReg = /^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.!@#$%^&+=])*$/;
 			
-			if(pw.length < 6 || pw.length > 15) {
+			if(pw == "") { 
+				$("#standard_pw_check").text("");
+			} else if(pw.length < 6 || pw.length > 15) {
 				$("#standard_pw_check").text("비밀번호는 6~15자로 입력해주세요.");
 				$("#standard_pw_check").css("color","red");			
 			} else if (pw.search(/\s/) != -1) {
 				$("#standard_pw_check").text("비밀번호는 공백 없이 입력해주세요");
 				$("#standard_pw_check").css("color","red");	
-			} else if (num > 0 && eng > 0 && spe < 0) {
-				$("#standard_pw_check").text("특수문자는 ' ! @ # $ % ^ & + = '만 사용할 수 있습니다.");
-				$("#standard_pw_check").css("color","red");	
-			} else if (num < 0 || eng < 0 || spe < 0) {//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함//줄바꿈 알아내야함
-				$("#standard_pw_check").text("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. \n 특수문자는 ' ! @ # $ % ^ & + = '만 사용할 수 있습니다."); //줄바꿈 알아내야함
-				$("#standard_pw_check").css("color","red");	
+			} else if (!pwReg.test(pw)) {
+				$("#standard_pw_check").text("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요.");
+				$("#standard_pw_check2").text("특수문자는 ' ! @ # $ % ^ & + = '만 사용할 수 있습니다.");
+				/* $("#standard_pw_check").text().replace("\n", "<br />"); */ 
+				/* 줄바꿈 알아내야함!!!줄바꿈 알아내야함!!!줄바꿈 알아내야함!!!줄바꿈 알아내야함!!!줄바꿈 알아내야함!!! */
+				$("#standard_pw_check").css("color","red");
+				$("#standard_pw_check2").css("color","red");
 			} else {
 				$("#standard_pw_check").text("사용 가능한 비밀번호입니다.");
 				$("#standard_pw_check").css("color","lime");
@@ -85,7 +85,7 @@
 				$("#submit").attr("disabled", false);
 				$(".pwCheck2").val("1");
 			} else {
-				$("#pw_check").text("비밀번호가 일치하지 않습니다.");
+				$("#pw_check").text("비밀번호가 서로 일치하지 않습니다.");
 				$("#pw_check").css("color","red");
 				$("#submit").attr("disabled", true);
 			}
@@ -261,16 +261,21 @@
                 	</tr>
                 	<tr>
                   		<th><span>비밀번호</span></th>
-                  		<td><input type="password" placeholder="비밀번호를 입력해주세요." id = "user_pw" name = "pw"></td>
+                  		<td><input type="password" placeholder="비밀번호를 입력해주세요." id = "user_pw" name = "pw" required></td>
                 	</tr>
                 	 <tr>
                 		<td class = "check" colspan = 2>
                 			<div id = "standard_pw_check"></div>
                 		</td>
                 	</tr>
+                	 <tr>
+                		<td class = "check" colspan = 2>
+                			<div id = "standard_pw_check2"></div>
+                		</td>
+                	</tr>
                 	<tr>
                  		 <th><span>비밀번호 확인</span></th>
-                  		<td><input type="password" placeholder="비밀번호를 확인하세요" name = "pwcheck"></td>
+                  		<td><input type="password" placeholder="비밀번호를 확인하세요" name = "pwcheck" required></td>
                		 </tr>
                		 <tr>
                 		<td class = "check" colspan = 2>
@@ -279,27 +284,27 @@
                 	</tr>
                		 <tr>
                   		<th><span>이름</span></th>
-                  		<td><input type="text" placeholder="" name = "name"></td>
+                  		<td><input type="text" placeholder="" name = "name" required></td>
                 	</tr>
                 	 <tr>
                   		<th><span>닉네임</span></th>
-                  		<td><input type="text" placeholder="" name = "nickname"></td>
+                  		<td><input type="text" placeholder="" name = "nickname" required></td>
                 	</tr>
                 	<tr>
                   		<th><span>성별</span></th>
                   		<td class = "gender">
-                  			<input type="radio" name = "gender" value = "F">여자 
+                  			<input type="radio" name = "gender" value = "F" required>여자 
                   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  			<input type="radio" name = "gender" value = "M">남자
+                  			<input type="radio" name = "gender" value = "M" required>남자
                   		</td>
                 	</tr>
                 	<tr>
                  		 <th><span>생일</span></th>
-                  		 <td><input type="text" placeholder="ex)1994-10-14" name = "birth"></td>
+                  		 <td><input type="text" placeholder="ex) 1994-10-14" name = "birth" required></td>
                		 </tr>
                		 <tr>
                  		 <th><span>전화번호</span></th>
-                  		<td><input type="text" placeholder="ex)010-5402-6873" name = "tel"></td>
+                  		<td><input type="text" placeholder="ex) 010-5402-6873" name = "tel" required></td>
                		 </tr>
 				</tbody>
 			</table>

@@ -6,18 +6,16 @@ import javax.servlet.http.HttpServletResponse;
 import spacecarrotDAO.SpaceCarrotDAO_UserInfo;
 
 public class UserIDCheck implements UserImpl {
-	public void userinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;Charset=UTF-8");
 		
 		SpaceCarrotDAO_UserInfo sc = null;	
-		String id = request.getParameter("id");
+		String id = request.getParameter("id").trim();
 		
 		sc = new SpaceCarrotDAO_UserInfo();
-		Boolean b1 =  sc.checkOverlapID(id);
-		
-		request.setAttribute("id", id);
-		request.setAttribute("result", b1);
+		response.getWriter().write(sc.checkOverlapID(id) + "");
+		System.out.println(sc.checkOverlapID(id));
 	}
 }
