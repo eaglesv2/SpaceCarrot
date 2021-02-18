@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- frontController에서 parameter를 못 받아왔을 시 리다이렉트로 파라미터를 가지고 온다 -->
 <!-- 이것때문인지 모르겠는데 화면 넘길때 잡음? 잡화면이 생김 -->
-<!-- 막 움직일 시 500오류 뜸 -->
+<!-- 막 움직일 시 500오류 뜸 Listupdate-->
 <c:if test="${empty articlePage}">
 	<% RequestDispatcher rd = request.getRequestDispatcher("Write_Community.do");
 	rd.forward(request, response); 
@@ -155,7 +155,6 @@
 <title>커뮤니티_목록</title>
 </head>
 <body>
-
 	
 	<div id = "container">
         <div id = "header">

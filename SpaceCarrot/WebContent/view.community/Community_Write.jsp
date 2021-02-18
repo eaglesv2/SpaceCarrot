@@ -129,7 +129,7 @@
 <title>커뮤니티_글쓰기</title>
 </head>
 <body>
-	
+<div></div>
 	<div id = "container">
         <div id = "header">
 
