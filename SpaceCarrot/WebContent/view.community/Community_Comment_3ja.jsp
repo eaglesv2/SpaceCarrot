@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
+		$("#header").load("../Base/header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
 </script>
@@ -240,7 +242,7 @@ margin-top: 7px;
 
 </style>
 </head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>커뮤니티_댓글_제3자</title>
 </head>
 <body>
@@ -250,15 +252,15 @@ margin-top: 7px;
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><p>게시글</p></li>
+				<li class="title_wrap"><a href="Community_List.jsp"><p>게시글</p></a></li>
 			</ul>
 		</div>
 
 		<div id="board_wrap">
 			    <ul>
-        			<li>오랜만에 xx공원 한바퀴 돌고 주변 둘러보고 왔네요</li> 
-        			<li><span>작성자</span><span><a href="Community_Writer_Writting.jsp">김단성사</a></span><span>작성일</span><span>21.02.15</span><span>조회수</span><span>2</span></li>
-			        <li>바람도 선선하고 사람도 적어 산책하기 좋은 날이네요 공원 근처 카페도 분위기 넘넘 좋았어요~ 마스크 쓰고 만나실 이웃님 계신가요~</li>			   
+        			<li><c:out value="${article_VO.subject}"/></li> 
+        			<li><span>작성자</span><span><a href="Community_Writer_Writting.jsp">${article_VO.userNickName}</a></span><span>작성일</span><span>${articleData.regDate }</span><span>조회수</span><span>${articleData.views}</span></li>
+			        <li><u:pre value="${article_VO.content}" /></li>			   
     			</ul>
 			</div>
 

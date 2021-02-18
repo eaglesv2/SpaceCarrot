@@ -11,7 +11,7 @@
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/header.html");
-		$("#footer").load("../Base/footer.html");
+		$("#footer").load("../Base/footer.jsp");
 	})
 </script>
 <style>

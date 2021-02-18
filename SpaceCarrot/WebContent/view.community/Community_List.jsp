@@ -8,10 +8,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- frontController에서 parameter를 못 받아왔을 시 리다이렉트로 파라미터를 가지고 온다 -->
 <!-- 이것때문인지 모르겠는데 화면 넘길때 잡음? 잡화면이 생김 -->
-<!-- 막 움직일 시 500오류 뜸 Listupdate-->
+<!-- 막 움직일 시 500오류 뜸 -->
 <c:if test="${empty articlePage}">
 	<% RequestDispatcher rd = request.getRequestDispatcher("Write_Community.do");
-	rd.forward(request, response); 
+	rd.forward(request, response);
 	System.out.print("redirect success"); %>
 </c:if>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
+		$("#header").load("../Base/header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
 </script>
@@ -163,7 +163,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>커뮤니티</p></li>
+				<li class = "title_wrap"><a href="Community_List.jsp"><p>커뮤니티</p></a></li>
 			</ul>
        	</div>
        
@@ -217,7 +217,7 @@
 			   		<c:forEach var="article" items="${articlePage.content}">
 			   			<tr>
 			   				<td>${article.postNum}</td>
-			   				<td><c:out value="${article.subject}"></c:out></td>
+			   				<td><a href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out value="${article.subject}"></c:out></a></td>
 			   				<td>${article.userNickName}</td>
 			   				<td>${article.views}</td>
 			   				<td>${article.regDate}</td>
