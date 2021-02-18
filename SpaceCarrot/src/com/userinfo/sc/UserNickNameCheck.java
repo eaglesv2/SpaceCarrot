@@ -16,7 +16,7 @@ public class UserNickNameCheck implements UserImpl {
 		
 		sc = new SpaceCarrotDAO_UserInfo();
 		response.getWriter().write(sc.checkOverlapNickName(nickname) + "");
-		System.out.println(sc.checkOverlapID(nickname));
+		System.out.println(sc.checkOverlapNickName(nickname));
 		
 	}
 }
