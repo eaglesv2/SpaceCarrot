@@ -84,8 +84,6 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			str = "/view.login/SignUpComplete.jsp";
 			break;
 			
 		case "/view.login/idOverLapCheck.do" : // 아이디 중복체크!!!!!!!!!!!!!!!!!!!!!!!
@@ -109,15 +107,6 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
-			}
-			int result = Integer.parseInt(request.getParameter("result"));
-			request.setAttribute("result", result);
-			
-			if(result == 1) {
-				str = "/MainPage/main.html";
-			}
-			else { 
-				str = "/view.login/Login.jsp";	
 			}
 
 			break;
@@ -241,7 +230,7 @@ public class FrontController extends HttpServlet {
 			}
 		}
 	
-		RequestDispatcher rd1 = request.getRequestDispatcher(str);
-		rd1.forward(request, response);
+		/*RequestDispatcher rd1 = request.getRequestDispatcher(str);
+		rd1.forward(request, response);*/
 	}
 }

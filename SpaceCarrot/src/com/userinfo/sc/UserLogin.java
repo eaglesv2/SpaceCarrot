@@ -17,6 +17,7 @@ public class UserLogin implements UserImpl {
 		
 		sc = new SpaceCarrotDAO_UserInfo();
 		response.getWriter().write(sc.loginCheck(id, pw) + "");
+		System.out.println(sc.loginCheck(id, pw));
 
 	}
 }
