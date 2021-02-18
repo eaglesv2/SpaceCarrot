@@ -55,7 +55,7 @@
 		});
 		
 		$("input[name=nickname]").blur(function() {
-			var nickname = $("input[name=id]").val();
+			var nickname = $("input[name=nickname]").val();
 			var idReg = /^[a-z0-9_]*$/;
 			
 			$.ajax({ 
@@ -102,7 +102,6 @@
 			} else if (!pwReg.test(pw)) {
 				$("#standard_pw_check").html("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br> 특수문자는 ' ! @ # $ % ^ & + ='만 사용할 수 있습니다.");
 				$("#standard_pw_check").css("color","red");
-				$("#standard_pw_check2").css("color","red");
 			} else {
 				$("#standard_pw_check").text("사용 가능한 비밀번호입니다.");
 				$("#standard_pw_check").css("color","lime");
@@ -110,8 +109,10 @@
 		})
 		
 		//비밀번호 확인란 일치 여부
-		$("input[name=pwcheck]").blur(function() {
-			
+		$("input[name=pwcheck]").blur(function() { //입력칸 비어있으면 안나오게,,
+			if($("input[name=pw]").val() == "" || $("input[name=pwcheck]").val() == "") {
+				$("#pw_check").text("");
+			}
 			if($("input[name=pw]").val() == $("input[name=pwcheck]").val()) {
 				$("#pw_check").text("비밀번호가 일치합니다.");
 				$("#pw_check").css("color","lime");
@@ -124,8 +125,19 @@
 			}
 		})
 		
-		//전화번호 정규식
-		var telReg =  /^01(?:0|1|[6-9])[.-]?(\\d{4})[.-]?(\\d{4})$/;
+		//전화번호 정규식 //입력칸 비어있으면 안나오게,,
+		$("input[name=tel]").blur(function() {
+			var tel = $("input[name=tel]").val;
+			var telReg =  /^01(?:0|1|[6-9])[.-]?(\\d{4})[.-]?(\\d{4})$/;
+			
+			if(tel == "") {
+				$("#tel_check").text("");
+			} else if(!telReg.test(tel)) {
+				$("#tel_check").html("전화번호 형식을 맞춰주세요.");
+				$("#tel_check").css("color","red");
+			}
+		})
+		
 		
 		function checkSubmit() {
 			var idCheck = $(".idCheck");
@@ -342,6 +354,11 @@
                  		 <th><span>전화번호</span></th>
                   		<td><input type="text" placeholder="ex) 010-5402-6873" name = "tel" required></td>
                		 </tr>
+               		 <tr>
+               		 	<td class = "check" colspan = 2>
+                			<div id = "tel_check"></div>
+                		</td>
+                	</tr>
 				</tbody>
 			</table>
             <div class="exform_txt">
