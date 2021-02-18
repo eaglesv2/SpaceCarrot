@@ -10,12 +10,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.html");
+		$("#header").load("../Base/header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
 </script>
 <body>
-	<div id="container">
+	<div id="header"></div><div id="container">
 		<div id="title">
 			<ul>
 				<li class="title_wrap"><p>볼거리</p></li>
@@ -36,5 +36,6 @@
 					<p>오늘 같은 날, 창덕궁과 후원을 방문해 보는 건 어떨까요?</p>
 				</div><!-- place_content-end -->
 		</div><!-- wrap-end -->
+		<div id="footer"></div>
 </body>
 </html>
