@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.article.sc.ArticleInfo;
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
@@ -17,8 +18,6 @@ import com.userinfo.sc.UserLogin;
 
 import article.service.Community_ArticlePage;
 import article.service.Community_ListArticleService;
-import article.service.Community_ListArticleService_Search;
-import article.service.Community_ListArticleService_SearchCategory;
 import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
 
 /**
@@ -58,6 +57,7 @@ public class FrontController extends HttpServlet {
 		
 		String str = null;
 		UserImpl u1 = null;
+		ArticleInfo al = null;
 		
 		// request로 받아올 parameter
 		String category = null;
@@ -183,10 +183,10 @@ public class FrontController extends HttpServlet {
 			}
 			
 			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
-			Community_ListArticleService_SearchCategory listService_Search_Category = new Community_ListArticleService_SearchCategory();
+			listService = new Community_ListArticleService();
 			
 			try {
-				articlePage= listService_Search_Category.getArticlePage(pageNo, category);
+				articlePage= listService.getArticlePage_search_Category(pageNo, category);
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
 			}
@@ -220,10 +220,10 @@ public class FrontController extends HttpServlet {
 			}
 			
 			// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
-			Community_ListArticleService_Search listService_Search = new Community_ListArticleService_Search();
+			listService= new Community_ListArticleService();
 			
 			try {
-				articlePage= listService_Search.getArticlePage(pageNo, searchArea);
+				articlePage= listService.getArticlePage_search(pageNo, searchArea);
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
 			}
