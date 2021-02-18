@@ -82,7 +82,7 @@
 																		 <a href = "../view.login/LogOut.jsp">로그아웃 </a> <% } %></li>
 				<li>·</li>
 				<li><% if(session.getAttribute("sessionID") == null) { %><a href = "../view.login/Login.jsp">마이페이지</a> <% } else {%> 
-																		 <a href = "../view.mypage/Mypage_PW_RE.jsp">마이페이지</a>  <% } %></li>	
+																		 <a href = "../view.mypage/Mypage_PW_Re.jsp">마이페이지</a>  <% } %></li>	
 			</ul>
 		</div>
 	</div>
