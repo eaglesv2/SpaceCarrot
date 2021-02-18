@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <script>        
 	$(document).ready(function(){    
-		$("#header").load("../Base/header.jsp");
+		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
 </script>
