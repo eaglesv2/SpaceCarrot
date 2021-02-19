@@ -52,31 +52,31 @@
 		
 		
 		//비밀번호 정규식
-		$("input[name=pw]").blur(function() {
-			var pw = $("input[name=pw]").val();
-			var pwReg =  /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&+=]).{6,15}$/;
-			
-			if(pw == "") { 
-				$("#standard_pw_check").text("");
-				$(".pwCheck2").val("0");
-			} else if(pw.length < 6 || pw.length > 15) {
-				$("#standard_pw_check").text("비밀번호는 6~15자로 입력해주세요.");
-				$("#standard_pw_check").css("color","red");
-				$(".pwCheck2").val("0");
-			} else if (pw.search(/\s/) != -1) {
-				$("#standard_pw_check").text("비밀번호는 공백 없이 입력해주세요");
-				$("#standard_pw_check").css("color","red");
-				$(".pwCheck2").val("0");
-			} else if (!pwReg.test(pw)) {
-				$("#standard_pw_check").html("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br> 특수문자는 ' ! @ # $ % ^ & + ='만 사용할 수 있습니다.");
-				$("#standard_pw_check").css("color","red");
-				$(".pwCheck2").val("0");
-			} else {
-				$("#standard_pw_check").text("사용 가능한 비밀번호입니다.");
-				$("#standard_pw_check").css("color","lime");
-				$(".pwCheck2").val("1");
-			}
-		})
+        $("input[name=pw]").blur(function() {
+         var pw = $("input[name=pw]").val();
+         var pwReg =  /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&+=]).{6,15}$/;
+         
+         if(pw == "") { 
+            $("#standard_pw_check").text("");
+            $(".pwCheck").val("0");
+         } else if(pw.length < 6 || pw.length > 15) {
+            $("#standard_pw_check").text("비밀번호는 6~15자로 입력해주세요.");
+            $("#standard_pw_check").css("color","red");
+            $(".pwCheck").val("0");
+         } else if (pw.search(/\s/) != -1) {
+            $("#standard_pw_check").text("비밀번호는 공백 없이 입력해주세요");
+            $("#standard_pw_check").css("color","red");
+            $(".pwCheck").val("0");
+         } else if (!pwReg.test(pw)) {
+            $("#standard_pw_check").html("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br> 특수문자는 ' ! @ # $ % ^ & + ='만 사용할 수 있습니다.");
+            $("#standard_pw_check").css("color","red");
+            $(".pwCheck").val("0");
+         } else {
+            $("#standard_pw_check").text("사용 가능한 비밀번호입니다.");
+            $("#standard_pw_check").css("color","lime");
+            $(".pwCheck").val("1");
+         }
+      })
 		
 		//비밀번호 확인란 일치 여부
 		$("input[name=pwcheck]").blur(function() { //입력칸 비어있으면 안나오게,,
@@ -113,43 +113,29 @@
 				$(".telcheck").val("0");
 			}
 		})
-		
-		
-		function checkSubmit() {
-			var idCheck = $(".idCheck");
-		    var pwCheck = $(".pwCheck2");
-		    var nicknamecheck = $(".nicknamecheck");
-		    var telCheck = $(".telcheck");
-		    var flag = false;
-		    
-		    if(idCheck.val() == '1') {
-		    	flag = true;
-		    } else {
-		    	flag = false;
-		    }
-		    if(pwCheck.val() == '1') {
-		    	flag = true;
-		    } else {
-		    	flag = false;
-		    }
-		    if(nicknamecheck.val() == '1') {
-		    	flag = true;
-	    	} else {
-	    		flag = false;
-	    	}
-	    	if(telCheck.val() == '1') {
-			    flag = true;
-			} else {
-			    flag = false;
-			}	
-	    	
-		    if(flag == false){
-		    	$("#submit").attr("disabled", true);
-		    } else {
-		    	$("#submit").attr("disabled", false);
-		    }
-		}
 	})
+	
+	 function checkSubmit() {
+        var pwCheck = $(".pwCheck");
+        var pwCheck2 = $(".pwCheck2");
+        var nicknamecheck = $(".nicknamecheck");
+        var telCheck = $(".telcheck");
+        
+		if(pwCheck.val() != '1') {   
+			alert("비밀번호를 확인해주세요");
+			return false;
+        } else if(pwCheck2.val() != '1') {   
+			alert("비밀번호 확인란을 확인해주세요");
+            return false;
+        } else if(nicknamecheck.val() != '1') {
+			alert("닉네임을 확인해주세요");
+			return false;
+        } else if(telCheck.val() != '1') {
+			alert("전화번호를 확인해주세요");
+        } else {
+        	document.ufrom.submit();
+        }
+    }
 	
 	
 </script>
@@ -348,14 +334,13 @@
        			비밀번호, 전화번호, 닉네임만 변경 가능합니다
        		</div>
        		
-       	<form action = "UserInfoUpdate.do" method = "post">
+       	<form action = "UserInfoUpdate.do" method = "post" name="uform" onsubmit="checkSubmit();">
        	<div id = "update_form">
 			<table>
               	<tbody>
 					<tr>
 						<th><span>아이디</span></th>
 						<td >	
-							<%-- <%=(String)session.getAttribute("sessionID") %> --%>
 							<input type = "text" class="fixed" value = <%=(String)session.getAttribute("sessionID") %> name = "userID">
 						</td>
                 	</tr>
@@ -415,7 +400,13 @@
                		 </tr>
 				</tbody>
 			</table>		
-        
+        	<div class="formCheck">
+           		<input type="hidden" name="idCheck" class="idCheck">
+				<input type="hidden" name="pwCheck" class="pwCheck"> 
+				<input type="hidden" name="pw2Check" class="pwCheck2"> 
+				<input type="hidden" name="nicknamecheck" class="nicknamecheck">
+				<input type="hidden" name="telcheck" class="telcheck">
+        	</div>
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
@@ -428,12 +419,7 @@
        		</div>
        	</div><!-- join_form E  -->
        	</form>
-       	<div class="formCheck">
-            <input type="hidden" name="idCheck" class="idCheck">
-            <input type="hidden" name="pw2Check" class="pwCheck2">
-            <input type="hidden" name="nicknamecheck" class="nicknamecheck">
-            <input type="hidden" name="telcheck" class="telcheck">
-        </div>
+     
        	<div id = "footer">
        	
        	</div>
