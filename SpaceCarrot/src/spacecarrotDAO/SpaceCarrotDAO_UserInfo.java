@@ -11,9 +11,9 @@ import spacecarrotDBConn.SpaceCarrotDBConn;
 import spacecarrotVO.SpaceCarrotVO_UserInfo;
 
 public class SpaceCarrotDAO_UserInfo {
-	private Connection con;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	private static Connection con;
+	static PreparedStatement pstmt = null;
+	static ResultSet rs = null;
 	
 	// DB 기본정보 상수
 	private static final String DB_DBNAME = "SpaceCarrot";
@@ -77,12 +77,12 @@ public class SpaceCarrotDAO_UserInfo {
 		return scarray;
 	}
 	
-	public SpaceCarrotVO_UserInfo getInfo(String search_name) throws SQLException {
+	public static SpaceCarrotVO_UserInfo getInfo(String search_id) throws SQLException {
 		// 유저 정보 검색하는 메소드
 		SpaceCarrotVO_UserInfo scv = null;
-		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERNAME + " = ?";
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERID + " = ?";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, search_name);
+		pstmt.setString(1, search_id);
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
 			int userSerial = rs.getInt(1);
@@ -125,19 +125,18 @@ public class SpaceCarrotDAO_UserInfo {
 		return true;
 	}
 	
-	public boolean updateUserInfo(String update_userPW, String update_userNickName, String update_userBirth, String update_userTel, String userID) {
+	public boolean updateUserInfo(String update_userPW, String update_userNickName, String update_userTel, String userID) {
 		// 유저 정보 수정하는 메소드 (비밀번호, 생일, 전화번호)
 		 String sql = "UPDATE " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " SET " +
-				 	  COL_USERPW + " = ?, " + COL_USERNICKNAME + " = ?, " + COL_USERBIRTH + " = ?, " + 
+				 	  COL_USERPW + " = ?, " + COL_USERNICKNAME + " = ?, "  + 
 				 	  COL_USERTEL + " = ? WHERE " + COL_USERID + " = ?";
 		 
 		 try {
 			 pstmt = con.prepareStatement(sql);
 			 pstmt.setString(1, update_userPW);
 			 pstmt.setString(2, update_userNickName);
-			 pstmt.setString(3, update_userBirth);
-			 pstmt.setString(4, update_userTel);
-			 pstmt.setString(5, userID);
+			 pstmt.setString(3, update_userTel);
+			 pstmt.setString(4, userID);
 			 pstmt.executeUpdate();
 		 } catch(SQLException e){
 				System.out.println("update Exception");
