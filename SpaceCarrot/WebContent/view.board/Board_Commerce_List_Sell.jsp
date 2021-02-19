@@ -173,7 +173,7 @@ session.getAttribute("sessionID");
        		</ul>
        	</div>
        	
-       	<form action="CommerceInsert.do" method="post">
+       	<form action="CommerceInsert.do" method="post" enctype="multipart/form-data">
        	<div id = "board_form">
 			<table>
               	<tbody>
@@ -219,10 +219,10 @@ session.getAttribute("sessionID");
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<a href = "#">완료</a>
+						<Button type="submit">완료</Button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<a href = "#">취소</a>
+						<Button type="reset">취소</Button>
 					</li>
 				</ul>
        		</div>

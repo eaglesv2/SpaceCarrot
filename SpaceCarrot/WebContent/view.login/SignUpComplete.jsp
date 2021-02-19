@@ -109,7 +109,7 @@
        		<div id = "btn">
         		<ul>
 					<li class = "home_btn_wrap">
-						<button onclick = "location.href='../MainPage/main.html'">홈으로</button>
+						<button onclick = "location.href='../MainPage/Main.jsp'">홈으로</button>
 					</li>
 					<li class = "login_btn_wrap">
 						<button onclick = "location.href='Login.jsp'">로그인 하러 가기</button>

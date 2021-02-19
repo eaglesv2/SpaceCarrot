@@ -102,7 +102,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 	}
 	
 	public boolean insertPost_Commerce(String input_category, String input_subject, String input_userID,
-									   Blob input_repImage, int input_price, int input_amount, String input_content) {
+									   String input_repImage, int input_price, int input_amount, String input_content) {
 		// 게시물 작성시 게시물 정보 DB에 저장  // 게시글넘버x, 작성일x, 조회수 x 디폴트가 있음
 		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + "("  + 
 					 COL_CATEGORY + ", " + COL_SUBJECT + ", " + COL_USERID + ", " + COL_REPIMAGE  + ", "
@@ -113,7 +113,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 			pstmt.setString(1, input_category);
 			pstmt.setString(2, input_subject);
 			pstmt.setString(3, input_userID);
-			pstmt.setBlob(4, input_repImage);
+			pstmt.setString(4, input_repImage);
 			pstmt.setInt(5, input_price);
 			pstmt.setInt(6, input_amount);
 			pstmt.setString(7, input_content);
