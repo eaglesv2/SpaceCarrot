@@ -46,7 +46,7 @@
        #board_form { margin : 0 auto;
               	 width : 1000px;
               	 margin-top : 40px;
-             	 margin-left : 200px;
+              	 margin-left: 150px;
     		   }
     #board_form table { border-spacing: 0;
     				   margin: 0;
@@ -68,7 +68,7 @@
 						   }
 						   
 	#board_title { height: 30px;
-				   width: 700px;
+				   width: 500px;
 	
 	}
 	
@@ -84,22 +84,30 @@
  	
  	#content { height: 600px;
 			   width: 700px;
+			   
  	
  	}
  	
  	#board_form .file_upload { border:0;
+ 								
  	}
- 	
-    #board_form table th { text-align : center; }
+ 	#board_form table tr{margin-left: 150px;
+ 							
+ 	 }
+    #board_form table th { text-align : center; margin-left: 150px;
+    						vertical-align: middle;
+    						}
    	#board_form table th span { color: #404040;
    							   font-size: 15px; 
    							   display: inline-block; 
    							   padding: 0 20px 0 0;
-   							   font-weight:bold; 
+   							   font-weight:bold;
+   							   margin:0 auto;
    							  }
 
    	#board_form table td { padding: 6px 0;
    						  position: relative;
+   						  display: block;
    						}
    	
     #btn ul li { list-style: none; }
@@ -119,6 +127,7 @@
 				  		   display: block; 
 				 		   text-align: center; 
 				 		   margin: 0 auto;
+				 		   margin-left: 80px;
 				 		 }
 	.complete_btn_wrap a.wide { width:587px;
 					   			margin: 0 0 0 20px;

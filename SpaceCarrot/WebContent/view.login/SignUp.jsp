@@ -8,6 +8,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <script type="text/javascript">        
+
    $(document).ready(function(){    
       $("#header").load("../Base/Header.jsp");
       $("#footer").load("../Base/footer.html");
@@ -146,10 +147,7 @@
             $("#tel_check").css("color","red");
             $(".telcheck").val("0");
          }
-      })
-      
-      
-      
+      })    
    });
       
    function checkSubmit() {
@@ -344,6 +342,7 @@
 	font-size: 13px;
 	font-weight: bold;
 }
+
 </style>
 <title>회원가입폼</title>
 </head>
