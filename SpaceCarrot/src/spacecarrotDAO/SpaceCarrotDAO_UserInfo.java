@@ -196,26 +196,40 @@ public class SpaceCarrotDAO_UserInfo {
 		return -100; // 데이터베이스 오류
 	}
 	
-	public boolean checkOverlapNickName(String input_userNickName) throws SQLException {
-		// 입력된 ID 중복체크하는 메소드
-		// true면 이미 존재하는 아이디, false면 새로운 아이디
-		boolean result = true; // true 그대로 전달될 경우 중복된 아이디 <- 버그발생 가능
+	public int checkOverlapNickName(String input_userNickName) {
+		// 입력된 닉네임 중복체크하는 메소드
+		// 0이면 이미 존재하는 닉네임, 1이면 새로운 닉네임
 
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_USERLIST + " WHERE " + COL_USERNICKNAME + " = ?";
+		String nickReg = "[가-힣ㄱ-ㅎa-zA-Z0-9]*$";
+		try {
+			pstmt = con.prepareStatement(sql);
 
-		pstmt = con.prepareStatement(sql);
-
-		pstmt.setString(1, input_userNickName);
-		rs = pstmt.executeQuery();
-
-		if (!rs.last()) {
-			result = false;
-		}
-
-		rs.close();
-		pstmt.close();
+			pstmt.setString(1, input_userNickName);
+			rs = pstmt.executeQuery();
 		
-		return result;
+			if (rs.next()) {
+				return 0; // 0  이미 존재하는 아이디
+			} else if (input_userNickName.equals("")){
+				return -1; // -1 이이디란이 빈칸
+			}  else if (!Pattern.matches(nickReg, input_userNickName)) {
+				return -2; // -2 아이디 정규식
+			} else if (input_userNickName.length() < 2 || input_userNickName.length() > 6) {
+				return -3; // -3 닉네임 길이
+			} else {
+				return 1; // 1 사용 가능한 아이디
+			} 
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		return -100; // 데이터베이스 오류
 	}
 	
 	public int loginCheck(String id, String pw) throws SQLException {

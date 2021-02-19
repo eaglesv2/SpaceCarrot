@@ -27,8 +27,8 @@ public class ArticleInfoList implements ArticleImpl {
 		String category = request.getParameter("category");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String userID = /*"test";*/(String) session.getAttribute("sessionID");
-		String userNickName = /*"test";*/(String) session.getAttribute("sessionNickName");
+		String userID = (String) session.getAttribute("sessionID");
+		String userNickName = (String) session.getAttribute("sessionNickName");
 		String pageNoVal = request.getParameter("pageNo");
 		
 		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
@@ -56,7 +56,7 @@ public class ArticleInfoList implements ArticleImpl {
 		return articlePage;
 	}
 	
-public Community_ArticlePage execute_search_Category(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Community_ArticlePage execute_search_Category(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 게시판에서 특정 카테고리 리스트를 반환한다.
 		HttpSession session = request.getSession();
 	
@@ -117,4 +117,33 @@ public Community_ArticlePage execute_search_Category(HttpServletRequest request,
 		}
 		return articlePage;
 	}
+	
+	public Community_ArticlePage reset(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 게시판에서 특정 검색어에 해당되는 게시글을 반환한다.
+		HttpSession session = request.getSession();
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		String category = request.getParameter("category");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String userID = (String) session.getAttribute("sessionID");
+		String userNickName = (String) session.getAttribute("sessionNickName");
+		String pageNoVal = request.getParameter("pageNo");
+		
+		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+		listService = new Community_ListArticleService();
+	
+		// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+		int pageNo = 1;
+		if(pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		
+		articlePage= listService.getArticlePage_reset(pageNo);
+		return articlePage;
+	}
+	
+	
 }

@@ -1,6 +1,5 @@
 package spacecarrotDAO;
 
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,6 +55,20 @@ public class SpaceCarrotDAO_Board_Community {
          con.close();
       }
    }
+   
+   public List<SpaceCarrotVO_Board_Community> getAllPost_Community() throws SQLException{
+	      //커뮤니티 게시판 거래 글 목록 불러오는 메소드 (게시글넘버, 제목, 작성자, 작성시간, 조회수)
+	      String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY " + COL_REGDATE + " DESC";
+	      
+	      pstmt = con.prepareStatement(sql);
+	      rs = pstmt.executeQuery();
+	      List<SpaceCarrotVO_Board_Community> result = new ArrayList<SpaceCarrotVO_Board_Community>();
+		   while(rs.next()) {
+			   result.add(convertArticle(rs));
+		   }
+		   return result;
+	   }
+   
    
    public ResultSet getAllPost_Community2() throws SQLException{
 	      //커뮤니티 게시판 거래 글 목록 불러오는 메소드 (게시글넘버, 제목, 작성자, 작성시간, 조회수)
