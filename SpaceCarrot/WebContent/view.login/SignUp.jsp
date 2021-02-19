@@ -54,6 +54,7 @@
 			});				
 		});
 		
+		//닉네임 정규식 + 중복체크
 		$("input[name=nickname]").blur(function() {
 			var nickname = $("input[name=nickname]").val();
 			var idReg = /^[a-z0-9_]*$/;
@@ -67,18 +68,22 @@
 					if(result == 1) {
 						$("#nickname_check").text("사용 가능한 닉네임입니다.");
 						$("#nickname_check").css("color","lime");
-						$(".nickname_check").val("1");
+						$(".nicknamecheck").val("1");
 					} else if(result == 0) {
 						$("#nickname_check").text("이미 사용중인 닉네임입니다.");
 						$("#nickname_check").css( "color","red");
+						$(".nicknamecheck").val("0");
 					} else if(result == -1) {
 						$("#nickname_check").text("");
+						$(".nicknamecheck").val("0");
 					} else if(result == -2) {
 						$("#nickname_check").text("닉네임은 한글, 영문, 숫자를 혼합하여 입력해주세요.");
 						$("#nickname_check").css("color","red");
+						$(".nicknamecheck").val("0");
 					} else if(result == -3) {
 						$("#nickname_check").text("닉네임은 2~6자로 입력해주세요.");
-						$("#nickname_check").css("color","red");	
+						$("#nickname_check").css("color","red");
+						$(".nicknamecheck").val("0");
 					}
 				}
 			})
@@ -93,71 +98,96 @@
 			
 			if(pw == "") { 
 				$("#standard_pw_check").text("");
+				$(".pwCheck2").val("0");
 			} else if(pw.length < 6 || pw.length > 15) {
 				$("#standard_pw_check").text("비밀번호는 6~15자로 입력해주세요.");
-				$("#standard_pw_check").css("color","red");			
+				$("#standard_pw_check").css("color","red");
+				$(".pwCheck2").val("0");
 			} else if (pw.search(/\s/) != -1) {
 				$("#standard_pw_check").text("비밀번호는 공백 없이 입력해주세요");
-				$("#standard_pw_check").css("color","red");	
+				$("#standard_pw_check").css("color","red");
+				$(".pwCheck2").val("0");
 			} else if (!pwReg.test(pw)) {
 				$("#standard_pw_check").html("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br> 특수문자는 ' ! @ # $ % ^ & + ='만 사용할 수 있습니다.");
 				$("#standard_pw_check").css("color","red");
+				$(".pwCheck2").val("0");
 			} else {
 				$("#standard_pw_check").text("사용 가능한 비밀번호입니다.");
 				$("#standard_pw_check").css("color","lime");
+				$(".pwCheck2").val("1");
 			}
 		})
 		
 		//비밀번호 확인란 일치 여부
 		$("input[name=pwcheck]").blur(function() { //입력칸 비어있으면 안나오게,,
-			if($("input[name=pw]").val() == "" || $("input[name=pwcheck]").val() == "") {
-				$("#pw_check").text("");
-			}
+			
 			if($("input[name=pw]").val() == $("input[name=pwcheck]").val()) {
 				$("#pw_check").text("비밀번호가 일치합니다.");
 				$("#pw_check").css("color","lime");
-				$("#submit").attr("disabled", false);
 				$(".pwCheck2").val("1");
 			} else {
 				$("#pw_check").text("비밀번호가 서로 일치하지 않습니다.");
 				$("#pw_check").css("color","red");
-				$("#submit").attr("disabled", true);
+				$(".pwCheck2").val("0");
+			}
+			if($("input[name=pw]").val() == "" || $("input[name=pwcheck]").val() == "") {
+				$("#pw_check").text("");
+				$(".pwCheck2").val("0");
 			}
 		})
 		
 		//전화번호 정규식 //입력칸 비어있으면 안나오게,,
 		$("input[name=tel]").blur(function() {
-			var tel = $("input[name=tel]").val;
-			var telReg =  /^01(?:0|1|[6-9])[.-]?(\\d{4})[.-]?(\\d{4})$/;
+			var tel = $("input[name=tel]").val();
+			var telReg =  /^\d{3}-\d{4}-\d{4}$/;
 			
 			if(tel == "") {
 				$("#tel_check").text("");
-			} else if(!telReg.test(tel)) {
+				$(".telcheck").val("0");
+			} else if(telReg.test(tel)) {
+				$("#tel_check").text("");
+				$(".telcheck").val("1");
+			} else {
 				$("#tel_check").html("전화번호 형식을 맞춰주세요.");
 				$("#tel_check").css("color","red");
+				$(".telcheck").val("0");
 			}
 		})
 		
 		
 		function checkSubmit() {
 			var idCheck = $(".idCheck");
-		    var pwCheck2 = $(".pwCheck2");
+		    var pwCheck = $(".pwCheck2");
+		    var nicknamecheck = $(".nicknamecheck");
+		    var telCheck = $(".telcheck");
+		    var flag = false;
 		    
 		    if(idCheck.val() == '1'){
-		        res = true;
-		    }else{
-		        res = false;
+		    	flag = true;
+		    } else {
+		    	flag = false;
 		    }
-		    if(pwCheck2.val() == '1'){
-		        res = true;
-		    }else{
-		        res = false;
+		    if(pwCheck.val() == '1'){
+		    	flag = true;
+		    } else {
+		    	flag = false;
 		    }
-		    
-		    if(res == false){
-		        alert("회원가입 폼을 정확히 채워 주세요.");
+		    if(nicknamecheck.val() == '1')
+		    	flag = true;
+	    	} else {
+	    		flag = false;
+	    	}
+	    	if(telCheck.val() == '1'){
+			    flag = true;
+			} else {
+			    flag = false;
+			}	
+	    	
+		    if(flag == false){
+		    	$("#submit").attr("disabled", true);
+		    } else {
+		    	$("#submit").attr("disabled", false);
 		    }
-		    return res;
 		}
 	});
 		
@@ -311,7 +341,7 @@
                   		<th><span>비밀번호</span></th>
                   		<td><input type="password" placeholder="비밀번호를 입력해주세요." id = "user_pw" name = "pw" required></td>
                 	</tr>
-                	 <tr>
+                	<tr>
                 		<td class = "check" colspan = 2>
                 			<div id = "standard_pw_check"></div>
                 		</td>
@@ -343,12 +373,12 @@
                   		<td class = "gender">
                   			<input type="radio" name = "gender" value = "F" required>여자 
                   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  			<input type="radio" name = "gender" value = "M" required>남자
+                  			<input type="radio" name = "gender" value = "M" >남자
                   		</td>
                 	</tr>
                 	<tr>
                  		 <th><span>생일</span></th>
-                  		 <td><input type="text" placeholder="ex) 1994-10-14" name = "birth" required></td>
+                  		 <td><input type="date" placeholder="ex) 1994-10-14" name = "birth" required></td>
                		 </tr>
                		 <tr>
                  		 <th><span>전화번호</span></th>
@@ -378,9 +408,11 @@
        		</div>
        	</div><!-- join_form E  -->
        	</form>
-       	        <div class="formCheck">
+       	<div class="formCheck">
             <input type="hidden" name="idCheck" class="idCheck">
             <input type="hidden" name="pw2Check" class="pwCheck2">
+            <input type="hidden" name="nicknamecheck" class="nicknamecheck">
+            <input type="hidden" name="telcheck" class="telcheck">
         </div>
        	<div id = "footer">
        	

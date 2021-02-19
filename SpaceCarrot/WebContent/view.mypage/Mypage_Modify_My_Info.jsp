@@ -1,23 +1,164 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="spacecarrotDAO.SpaceCarrotDAO_UserInfo"%>
+<%@page import="spacecarrotVO.SpaceCarrotVO_UserInfo"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
+		
+		//ë‹‰ë„¤ì„ ì •ê·œì‹ + ì¤‘ë³µì²´í¬
+		$("input[name=nickname]").blur(function() {
+			var nickname = $("input[name=nickname]").val();
+			var idReg = /^[a-z0-9_]*$/;
+			
+			$.ajax({ 
+				type: 'POST',
+				url: 'nicknameOverLapCheck.do',
+				data: { nickname : nickname },
+				
+				success: function(result) {
+					if(result == 1) {
+						$("#nickname_check").text("ì‚¬ìš© ê°€ëŠ¥í•œ ë‹‰ë„¤ì„ì…ë‹ˆë‹¤.");
+						$("#nickname_check").css("color","lime");
+						$(".nicknamecheck").val("1");
+					} else if(result == 0) {
+						$("#nickname_check").text("ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ë‹‰ë„¤ì„ì…ë‹ˆë‹¤.");
+						$("#nickname_check").css( "color","red");
+						$(".nicknamecheck").val("0");
+					} else if(result == -1) {
+						$("#nickname_check").text("");
+						$(".nicknamecheck").val("0");
+					} else if(result == -2) {
+						$("#nickname_check").text("ë‹‰ë„¤ì„ì€ í•œê¸€, ì˜ë¬¸, ìˆ«ìë¥¼ í˜¼í•©í•˜ì—¬ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+						$("#nickname_check").css("color","red");
+						$(".nicknamecheck").val("0");
+					} else if(result == -3) {
+						$("#nickname_check").text("ë‹‰ë„¤ì„ì€ 2~6ìë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+						$("#nickname_check").css("color","red");
+						$(".nicknamecheck").val("0");
+					}
+				}
+			})
+		})
+		
+		
+		
+		//ë¹„ë°€ë²ˆí˜¸ ì •ê·œì‹
+		$("input[name=pw]").blur(function() {
+			var pw = $("input[name=pw]").val();
+			var pwReg =  /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&+=]).{6,15}$/;
+			
+			if(pw == "") { 
+				$("#standard_pw_check").text("");
+				$(".pwCheck2").val("0");
+			} else if(pw.length < 6 || pw.length > 15) {
+				$("#standard_pw_check").text("ë¹„ë°€ë²ˆí˜¸ëŠ” 6~15ìë¡œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				$("#standard_pw_check").css("color","red");
+				$(".pwCheck2").val("0");
+			} else if (pw.search(/\s/) != -1) {
+				$("#standard_pw_check").text("ë¹„ë°€ë²ˆí˜¸ëŠ” ê³µë°± ì—†ì´ ì…ë ¥í•´ì£¼ì„¸ìš”");
+				$("#standard_pw_check").css("color","red");
+				$(".pwCheck2").val("0");
+			} else if (!pwReg.test(pw)) {
+				$("#standard_pw_check").html("ë¹„ë°€ë²ˆí˜¸ëŠ” ì˜ë¬¸, ìˆ«ì, íŠ¹ìˆ˜ë¬¸ìë¥¼ í˜¼í•©í•˜ì—¬ ì…ë ¥í•´ì£¼ì„¸ìš”. <br> íŠ¹ìˆ˜ë¬¸ìëŠ” ' ! @ # $ % ^ & + ='ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+				$("#standard_pw_check").css("color","red");
+				$(".pwCheck2").val("0");
+			} else {
+				$("#standard_pw_check").text("ì‚¬ìš© ê°€ëŠ¥í•œ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤.");
+				$("#standard_pw_check").css("color","lime");
+				$(".pwCheck2").val("1");
+			}
+		})
+		
+		//ë¹„ë°€ë²ˆí˜¸ í™•ì¸ë€ ì¼ì¹˜ ì—¬ë¶€
+		$("input[name=pwcheck]").blur(function() { //ì…ë ¥ì¹¸ ë¹„ì–´ìˆìœ¼ë©´ ì•ˆë‚˜ì˜¤ê²Œ,,
+			
+			if($("input[name=pw]").val() == $("input[name=pwcheck]").val()) {
+				$("#pw_check").text("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•©ë‹ˆë‹¤.");
+				$("#pw_check").css("color","lime");
+				$(".pwCheck2").val("1");
+			} else {
+				$("#pw_check").text("ë¹„ë°€ë²ˆí˜¸ê°€ ì„œë¡œ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				$("#pw_check").css("color","red");
+				$(".pwCheck2").val("0");
+			}
+			if($("input[name=pw]").val() == "" || $("input[name=pwcheck]").val() == "") {
+				$("#pw_check").text("");
+				$(".pwCheck2").val("0");
+			}
+		})
+		
+		//ì „í™”ë²ˆí˜¸ ì •ê·œì‹ //ì…ë ¥ì¹¸ ë¹„ì–´ìˆìœ¼ë©´ ì•ˆë‚˜ì˜¤ê²Œ,,
+		$("input[name=tel]").blur(function() {
+			var tel = $("input[name=tel]").val();
+			var telReg =  /^\d{3}-\d{4}-\d{4}$/;
+			
+			if(tel == "") {
+				$("#tel_check").text("");
+				$(".telcheck").val("0");
+			} else if(telReg.test(tel)) {
+				$("#tel_check").text("");
+				$(".telcheck").val("1");
+			} else {
+				$("#tel_check").html("ì „í™”ë²ˆí˜¸ í˜•ì‹ì„ ë§ì¶°ì£¼ì„¸ìš”.");
+				$("#tel_check").css("color","red");
+				$(".telcheck").val("0");
+			}
+		})
+		
+		
+		function checkSubmit() {
+			var idCheck = $(".idCheck");
+		    var pwCheck = $(".pwCheck2");
+		    var nicknamecheck = $(".nicknamecheck");
+		    var telCheck = $(".telcheck");
+		    var flag = false;
+		    
+		    if(idCheck.val() == '1') {
+		    	flag = true;
+		    } else {
+		    	flag = false;
+		    }
+		    if(pwCheck.val() == '1') {
+		    	flag = true;
+		    } else {
+		    	flag = false;
+		    }
+		    if(nicknamecheck.val() == '1') {
+		    	flag = true;
+	    	} else {
+	    		flag = false;
+	    	}
+	    	if(telCheck.val() == '1') {
+			    flag = true;
+			} else {
+			    flag = false;
+			}	
+	    	
+		    if(flag == false){
+		    	$("#submit").attr("disabled", true);
+		    } else {
+		    	$("#submit").attr("disabled", false);
+		    }
+		}
 	})
+	
+	
 </script>
 <style>
 	#container { margin : 0 auto;
                  width : 1080px;
                }
                
-	  /* ¸¶ÀÌÆäÀÌÁö Å¸ÀÌÆ² */
+	  /* ë§ˆì´í˜ì´ì§€ íƒ€ì´í‹€ */
     #title ul li { list-style: none; }
     .title_wrap { text-align: center;
     			  margin-bottom: 30px;
@@ -31,7 +172,7 @@
 				 	margin: 0 auto;
 				  }
 
-	/* Ä«Å×°í¸® ¸Ş´º */
+	/* ì¹´í…Œê³ ë¦¬ ë©”ë‰´ */
       #category { height : 20px;
       			  margin-left : 250px;
       }   
@@ -51,42 +192,48 @@
                        	    font-size : 11.5pt;
                        	    font-weight : bold;
                     	  }
+      /* #category .menuLink:hover { text-decoration : underline; 
+                           text-underline-position : under;
+                          } */
                           
       .my_info_tab:after { content: "";
-      					   display: block;
-      				       width: 100px;
-      				       text-align: center;
-      		  		       border-bottom : 2px solid #000;
-      					  margin-top: 8px;
-      				     } 
+      					display: block;
+      					width: 100px;
+      				    text-align: center;
+      		  		    border-bottom : 2px solid #000;
+      					margin-top: 8px;
+      				  } 
 	
-	/* °æ°í¹® */
+	/* ê²½ê³ ë¬¸ */
 	#care { font-size: 13pt;
 			background-color: #000000;
 			color: #ffffff;
 			font-weight: bold;
 			margin-top: 20px;
 			margin-left: 360px;
+			margin-bottom: 20px;
+			padding-left: 8px;
+			padding-top: 10px;
 			vertical-align: middle;
 			width: 370px;
 			height: 30px;
 	
 	}
 	
-	/* °³ÀÎ Á¤º¸ ¼öÁ¤ Æû */
-    #join_form { margin : 0 auto;
-              	 width : 715px;
-              	 text-align : center;
-             	 margin-left : 350px;
-    		   }
-    #join_form table { border-spacing: 0 30px;
-    				   border-collapse: separate;
-    				   margin: 0;
-    				   padding: 0; 
-    				   border: 0;
-    				 }
+	/* ê°œì¸ ì •ë³´ ìˆ˜ì • í¼ */
+    #update_form { margin : 0 auto;
+              	   width : 715px;
+              	   text-align : center;
+             	   margin-left : 320px;
+    		     }
+    #update_form table { border-spacing: 0;
+    				     border-collapse: separate;
+    				     margin: 0;
+    				     padding: 0; 
+    				     border: 0;
+    				   }
     
-	#join_form table input { border: 1px solid #ececec;
+	#update_form table input { border: 1px solid #ececec;
 							 font-size: 12pt;
 							 color: #4c4c4c; 
 							 height: 30px; 
@@ -94,49 +241,42 @@
 							 width: 300px; 
 						   }
  
-    #join_form table th { text-align : center; }
-   	#join_form table th span { color: #404040;
+    #update_form table th { text-align : center; }
+   	#update_form table th span { color: #404040;
    							   font-size: 15px; 
    							   display: inline-block; 
    							   padding: 0 20px 0 0;
    							   font-weight:bold; 
    							  }
-   	#join_form table th span:after { content: "*";
+   	#update_form table th span:after { content: "*";
    									 font-size: 13px;
    									 color: #f95427;
    									 position: absolute;
    									 top: 0;
    									 right: 0;
    								   }
-   	#join_form table td { padding: 6px 0;
+   	#update_form table td { padding: 6px 0;
    						  position: relative;
    						}
    	
-   	#join_form .id { text-align:left;
-   	}
-
-   	#join_form .name { text-align:left;
-   	}
+   	#update_form table .fixed { border: 0px;
+   								outline: none;
+							 	font-size: 12pt;
+							 	color: #000; 
+							 	height: 30px; 
+								padding: 10px; 
+								width: 300px; 
+   							  }
    	
-   	#join_form .gender { text-align:left;
-   	}
-   	
-   	#join_form .birth { text-align:left;
-   	}
-   	
-   	.pw_re { text-align:left;
-   			 border-spacing: 0px;
-   			 border-style:none;
-   			 padding:0px;
-   	}
+   	#update_form table .check { padding : 0px; height: 0px; font-size: 11pt; border-spacing: 0px;}
    	
    	.tel { text-align:left;
    		   /* border-collapse: separate; */
    		   border-spacing: 0;
    	}
    	
-   	/* ¹öÆ° */
-   	#btn { margin-left : 50px; }
+   	/* ë²„íŠ¼ */
+   	#btn { margin-left : 80px; }
     #btn ul li { list-style: none; }
 
 	.complete_btn_wrap { text-align: center; 
@@ -155,6 +295,7 @@
 				  		  		display: block; 
 				 		   		text-align: center; 
 				 		  		margin: 0 auto;
+				 		  		cursor: pointer;
 				 		 	  }
 	.cancel_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
@@ -173,11 +314,16 @@
 				  		 	  display: block; 
 				 		 	  text-align: center; 
 				 		 	  margin: 0 auto;
+				 		 	  cursor: pointer;
 				 			}
 </style>
-<title>¸¶ÀÌÆäÀÌÁö_¼öÁ¤_°³ÀÎÁ¤º¸</title>
+
+<title>ë§ˆì´í˜ì´ì§€_ìˆ˜ì •_ê°œì¸ì •ë³´</title>
 </head>
 <body>
+	<% String id = (String)session.getAttribute("sessionID");
+	   SpaceCarrotVO_UserInfo scv = SpaceCarrotDAO_UserInfo.getInfo(id);
+	%>
 	<div id = "container">
         <div id = "header">
 
@@ -185,65 +331,87 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>¸¶ÀÌÆäÀÌÁö</p></li>
+				<li class = "title_wrap"><p>ë§ˆì´í˜ì´ì§€</p></li>
 			</ul>
        	</div>
        	
        	<div id = "category">
        		<ul>
-       			<li class = "my_info_tab"><a class="menuLink" href="Mypage_Modify_My_Info.jsp">³» Á¤º¸ ¼öÁ¤</a></li>
-       			<li><a class="menuLink" href="Mypage_List_Community.jsp">³»°¡ ¿Ã¸° Ä¿¹Â´ÏÆ¼ ±Û ¼öÁ¤</a></li>
-       			<li><a class="menuLink" href="Mypage_List_Board_Commerce.jsp">³»°¡ ¿Ã¸° Áß°í°Å·¡ ±Û ¼öÁ¤</a></li>
+       			<li class = "my_info_tab"><a class="menuLink" href="Mypage_Modify_My_Info.jsp">ë‚´ ì •ë³´ ìˆ˜ì •</a></li>
+       			<li><a class="menuLink" href="Mypage_List_Community.jsp">ë‚´ê°€ ì˜¬ë¦° ì»¤ë®¤ë‹ˆí‹° ê¸€ ìˆ˜ì •</a></li>
+       			<li><a class="menuLink" href="Mypage_List_Board_Commerce.jsp">ë‚´ê°€ ì˜¬ë¦° ì¤‘ê³ ê±°ë˜ ê¸€ ìˆ˜ì •</a></li>
        		</ul>
        	</div>
      	<hr>
        	
        		<div id="care">
-       			ºñ¹Ğ¹øÈ£, ÀüÈ­¹øÈ£, ´Ğ³×ÀÓ¸¸ º¯°æ °¡´ÉÇÕ´Ï´Ù
+       			ë¹„ë°€ë²ˆí˜¸, ì „í™”ë²ˆí˜¸, ë‹‰ë„¤ì„ë§Œ ë³€ê²½ ê°€ëŠ¥í•©ë‹ˆë‹¤
        		</div>
        		
        	<form action = "UserInfoUpdate.do" method = "post">
-       	<div id = "join_form">
+       	<div id = "update_form">
 			<table>
               	<tbody>
 					<tr>
-						<th><span>¾ÆÀÌµğ</span></th>
-						<td class="id"><%= (String)session.getAttribute("sessionID") %></td>
+						<th><span>ì•„ì´ë””</span></th>
+						<td >	
+							<%-- <%=(String)session.getAttribute("sessionID") %> --%>
+							<input type = "text" class="fixed" value = <%=(String)session.getAttribute("sessionID") %> name = "userID">
+						</td>
                 	</tr>
                 	<tr>
-                  		<th><span>ºñ¹Ğ¹øÈ£</span></th>
-                  		<td><input type="password" placeholder="ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." name = "pw"></td>
+                  		<th><span>ë¹„ë°€ë²ˆí˜¸</span></th>
+                  		<td><input type="password" value = <%= scv.getUserPW() %> name = "pw"></td>
                 	</tr>
                 	<tr>
-                 		 <th><span>ºñ¹Ğ¹øÈ£ È®ÀÎ</span></th>
-                  		<td><input type="password" placeholder="ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇÏ¼¼¿ä" name = "pwcheck"></td>
+                		<td class = "check" colspan = 2>
+                			<div id = "standard_pw_check"></div>
+                		</td>
+                	</tr>
+                	<tr>
+                 		 <th><span>ë¹„ë°€ë²ˆí˜¸ í™•ì¸</span></th>
+                  		<td><input type="password" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•˜ì„¸ìš”" name = "pwcheck"></td> <!-- ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜ì‹œ ìˆ˜ì • ë¹„í™œì„± -->
                		 </tr>
-               		 <tr class="pw_re">
-               		 	<td >¡Ø ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù</td>
-               		 </tr>
+               		 <tr>
+                		<td class = "check" colspan = 2>
+                			<div id = "pw_check"></div>
+                		</td>
+                	</tr>
                 	 <tr>
-                  		<th><span>´Ğ³×ÀÓ</span></th>
-                  		<td><input type="text" placeholder="" name = "nickname"></td>
+                  		<th><span>ë‹‰ë„¤ì„</span></th>
+                  		<td><input type="text" value = <%= scv.getUserNickName() %> name = "nickname"></td>
+                	</tr>
+                	 <tr>
+                		<td class = "check" colspan = 2>
+                			<div id = "nickname_check"></div>
+                		</td>
                 	</tr>
                		 <tr>
-                 		 <th><span>ÀüÈ­¹øÈ£</span></th>
-                  		<td><input type="text" placeholder="ex)010-5402-6873" name = "tel"></td>
-               		 </tr>
-               		 <tr class="tel">
-               		 	<th><span></span></th>
-               		 	<td>¡Ø Æ¯¼ö¹®ÀÚ »ç¿ë ºÒ°¡´ÉÇÕ´Ï´Ù</td>
+                 		 <th><span>ì „í™”ë²ˆí˜¸</span></th>
+                  		<td><input type="text" value = <%= scv.getUserTel() %> name = "tel"></td>
                		 </tr>
                		 <tr>
-                  		<th><span>ÀÌ¸§</span></th>
-                  		<td class="name">±èÃ¶¼ö</td>
+                		<td class = "check" colspan = 2>
+                			<div id = "tel_check"></div>
+                		</td>
+                	</tr>
+               		 <tr>
+                  		<th><span>ì´ë¦„</span></th>
+                  		<td> 
+                  			<input type = "text" class="fixed" value = <%= scv.getUserName() %> name = "userID">
+                  		</td>
                 	</tr>
                 	<tr>
-                  		<th><span>¼ºº°</span></th>
-                  		<td class="gender">³²ÀÚ</td>
+                  		<th><span>ì„±ë³„</span></th>
+                  		<td>
+                  			<input type = "text" class="fixed" value = <%= scv.getUserGender() %> name = "userID">
+                  		</td>
                 	</tr>
                 	<tr>
-                 		 <th><span>»ıÀÏ</span></th>
-                  		 <td class="birth">19911111</td>
+                 		 <th><span>ìƒì¼</span></th>
+                  		 <td>
+                  		 	<input type = "text" class="fixed" value = <%= scv.getUserBirth() %>>
+                  		 </td>
                		 </tr>
 				</tbody>
 			</table>		
@@ -251,15 +419,21 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button type = "submit">¼öÁ¤</button>
+						<button id = "submit" type = "submit" disabled>ìˆ˜ì •</button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<button type = "reset" onclick = "main.jsp">Ãë¼Ò</button>
+						<button type = "button" onclick = "location.href='../MainPage/Main.jsp'">ì·¨ì†Œ</button>
 					</li>
 				</ul>
        		</div>
        	</div><!-- join_form E  -->
        	</form>
+       	<div class="formCheck">
+            <input type="hidden" name="idCheck" class="idCheck">
+            <input type="hidden" name="pw2Check" class="pwCheck2">
+            <input type="hidden" name="nicknamecheck" class="nicknamecheck">
+            <input type="hidden" name="telcheck" class="telcheck">
+        </div>
        	<div id = "footer">
        	
        	</div>

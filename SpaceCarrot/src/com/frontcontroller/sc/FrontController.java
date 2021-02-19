@@ -14,6 +14,7 @@ import com.article.sc.ArticleInfoList;
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
+import com.userinfo.sc.UserInfoUpdate;
 import com.userinfo.sc.UserLogin;
 import com.userinfo.sc.UserNickNameCheck;
 
@@ -95,7 +96,7 @@ public class FrontController extends HttpServlet {
 			
 			break;
 		
-		case "/view.login/nicknameOverLapCheck.do" :  //닉네임 중복체크
+		case "/view.login/nicknameOverLapCheck.do" :  //회원가입 닉네임 중복체크
 			
 			u1 = new UserNickNameCheck();
 			
@@ -107,6 +108,19 @@ public class FrontController extends HttpServlet {
 			}
 			
 			break;
+		
+		case "/view.mypage/nicknameOverLapCheck.do" :  //회원정보수정닉네임 중복체크
+			
+			u1 = new UserNickNameCheck();
+			
+			try {
+				u1.execute(request, response);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			break;	
 		
 		case "/view.login/UserLogin.do" :
 			u1 = new UserLogin();
@@ -129,6 +143,17 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
+			
+			break;
+			
+		case "/view.mypage/UserInfoUpdate.do" :
+			u1 = new UserInfoUpdate();
+			try {
+				u1.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		
 			
 			break;
 			
