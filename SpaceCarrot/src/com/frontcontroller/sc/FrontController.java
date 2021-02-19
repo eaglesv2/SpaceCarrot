@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.userinfo.sc.MyPagePWCheck;
 import com.article.sc.ArticleInfoList;
+import com.commerce.sc.CommerceImpl;
+import com.commerce.sc.CommerceInsert;
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
 import com.userinfo.sc.UserInfoInsert;
@@ -60,6 +62,7 @@ public class FrontController extends HttpServlet {
 
 		ArticleInfoList al = null;
 
+		CommerceImpl c1 = null;
 		
 		// 게시판 객체
 		Community_ArticlePage articlePage = null;
@@ -232,6 +235,17 @@ public class FrontController extends HttpServlet {
 			rd.forward(request, response);
 			
 			break;
+			
+		case "/view.board/CommerceInsert.do" :
+			c1 = new CommerceInsert();
+			
+			try {
+				c1.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		} // case-end
 		
 
@@ -239,4 +253,4 @@ public class FrontController extends HttpServlet {
 	
 
 	}
-}
+

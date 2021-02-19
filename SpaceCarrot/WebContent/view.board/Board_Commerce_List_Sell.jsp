@@ -77,12 +77,12 @@
 	
 	}
  
- 	#count { height: 30px;
+ 	#amount { height: 30px;
 			 width: 150px;
  	
  	}
  	
- 	#explain { height: 600px;
+ 	#content { height: 600px;
 			   width: 700px;
  	
  	}
@@ -151,7 +151,10 @@
 <title>중고거래_판매</title>
 </head>
 <body>
-	
+<%
+session.getAttribute("sessionID");
+%>
+
 	<div id = "container">
         <div id = "header">
 
@@ -169,6 +172,8 @@
        			</li>
        		</ul>
        	</div>
+       	
+       	<form action="CommerceInsert.do" method="post">
        	<div id = "board_form">
 			<table>
               	<tbody>
@@ -176,8 +181,12 @@
 						<th><span>카테고리</span></th>
 						<td>
 							<select name="category">
-							<option value="커뮤니티">커뮤니티<br>
-							<option value="중고거래" selected>중고거래<br>
+							<option value="의류/패션" selected>의류/패션<br>
+							<option value="디지털/가전">디지털/가전<br>
+							<option value="도서/티켓/취미/애완">도서/티켓/취미/애완<br>
+							<option value="생활/문구/가구">생활/문구/가구<br>
+							<option value="스포츠/레저">스포츠/레저<br>							
+							<option value="기타">기타<br>							
 							</select>
 						</td>
 						
@@ -192,7 +201,7 @@
                		 </tr>
                		 <tr>
                   		<th><span>수량</span></th>
-                  		<td><input id="count" type="text" name="count" placeholder=""></td>
+                  		<td><input id="count" type="text" name="amount" placeholder=""></td>
                 	</tr>
                 	<tr>
                   		<th><span>가격</span></th>
@@ -202,7 +211,7 @@
                 	</tr>
                 	<tr>
                  		 <th><span>설명</span></th>
-                  		 <td><input id="explain" type="text" name="explanation" placeholder=""></td>
+                  		 <td><textarea name="content" id="content"></textarea></td>
                		 </tr>
 				</tbody>
 			</table>		
@@ -218,6 +227,7 @@
 				</ul>
        		</div>
        	</div>
+       	</form>
        	
        <div id = "footer">
        
