@@ -127,14 +127,16 @@
 		
 		//전화번호 정규식 //입력칸 비어있으면 안나오게,,
 		$("input[name=tel]").blur(function() {
-			var tel = $("input[name=tel]").val;
-			var telReg =  /^01(?:0|1|[6-9])[.-]?(\\d{4})[.-]?(\\d{4})$/;
+			var tel = $("input[name=tel]").val();
+			var telReg =  /^\d{3}-\d{4}-\d{4}$/;
 			
 			if(tel == "") {
 				$("#tel_check").text("");
 			} else if(!telReg.test(tel)) {
 				$("#tel_check").html("전화번호 형식을 맞춰주세요.");
 				$("#tel_check").css("color","red");
+			} else{
+				$("#tel_check").text("");
 			}
 		})
 		
