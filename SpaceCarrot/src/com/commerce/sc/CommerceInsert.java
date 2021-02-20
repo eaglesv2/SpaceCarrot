@@ -27,9 +27,12 @@ import article.service.Community_ListArticleService;
 import spacecarrotDAO.SpaceCarrotDAO_Board_Commerce;
 
 public class CommerceInsert {
-	
+	// 클래스 이름 바꿔야할듯
+	// 리스트페이징서비스를 위한 객체공간 생성	
 	Commerce_ListArticleService listService = null;
+	// 페이징처리 객체
 	CommerceArticlePageVO articlePage = null;
+
 	
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, SerialException, SQLException, ClassNotFoundException, ServletException {
 		
