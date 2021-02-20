@@ -33,7 +33,7 @@ public class CommerceInsert {
 	// 페이징처리 객체
 	CommerceArticlePageVO articlePage = null;
 
-	
+	// 중고거래 게시판에 글 썼을때, 리퀘스트를 가져와 VO에 넣고 DB에 등록하는 메소드입니다
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, SerialException, SQLException, ClassNotFoundException, ServletException {
 		
 		HttpSession session = request.getSession();
@@ -73,13 +73,13 @@ public class CommerceInsert {
 		/*response.sendRedirect("../view.login/SignUpComplete.jsp");*/
 	}
 	
+	// 중고거래 게시판 입장했을 때, 새로고침을 해주는 메소드입니다. 게시글을 보여주는 역할을 합니다
 	public CommerceArticlePageVO reset(HttpServletRequest request, HttpServletResponse response) throws IOException, SerialException, SQLException, ClassNotFoundException {
 		// 게시판에서 특정 검색어에 해당되는 게시글을 반환한다.
 		HttpSession session = request.getSession();
-		System.out.println("error1");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		System.out.println("error2");
+		
 		// 페이지 넘버
 		String pageNoVal = request.getParameter("pageNo");
 		
@@ -91,7 +91,7 @@ public class CommerceInsert {
 		if(pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
-		System.out.println("error3");
+		
 		articlePage = listService.getArticlePage_reset(pageNo);
 		return articlePage;
 	}

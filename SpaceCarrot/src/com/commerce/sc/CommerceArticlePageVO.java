@@ -3,7 +3,7 @@ package com.commerce.sc;
 import java.util.List;
 
 import spacecarrotVO.SpaceCarrotVO_Board_Community;
-
+// 중고거래 페이징 작업을 도와주는 클래스입니다
 public class CommerceArticlePageVO {
 
 	private int total; // 게시글 총 수

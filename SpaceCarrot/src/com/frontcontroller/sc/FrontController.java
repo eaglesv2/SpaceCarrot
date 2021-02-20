@@ -291,6 +291,7 @@ public class FrontController extends HttpServlet {
 			break;
 
 		case "/view.board/CommerceInsert.do":
+			// 중고거래 글 쓰기 컨트롤러
 			CommerceInsert c1 = new CommerceInsert();
 
 			try {
@@ -300,9 +301,9 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
-
+		
 		case "/view.board/Commerce_Reset.do":
-			// 커뮤니티 게시판 검색시
+			// 중고거래 게시판 입장 컨트롤러
 			CommerceInsert c2 = new CommerceInsert();
 
 			try {
