@@ -18,7 +18,8 @@
                 mode: 'fade',
                 auto:true,
                 controls:true,
-                speed:500
+                speed:500,
+                touchEnabled : (navigator.maxTouchPoints > 0)
 
             })
         });
@@ -28,7 +29,7 @@
         })
         
       </script>
-    <title>Document</title>
+    <title>우주당근</title>
 </head>
 <body>
 <%-- <% String id = (String)session.getAttribute("sessionID"); 
@@ -41,10 +42,10 @@
             </div>
             <div id="content1">
                 <ul class="bxslider">
-                    <li><a href=""><img src="../img/AttractionsBanner.jpg" alt=""></a></li>
-                    <li><a href=""><img src="../img/CommerceBanner.jpg" alt=""></a></li>
-                    <li><a href=""><img src="../img/CommunityBanner.jpg" alt=""></a></li>
-                    <li><a href=""><img src="../img/FoodBanner.jpg" alt=""></a></li>
+                    <li><a href="../view.see/SeePlace_List.html"><img src="../img/AttractionsBanner.jpg" alt=""></a></li>
+                    <li><a href="../view.board/Board_Commerce_List_Fashion.jsp"><img src="../img/CommerceBanner.jpg" alt=""></a></li>
+                    <li><a href="../view.community/Community_List.jsp"><img src="../img/CommunityBanner.jpg" alt=""></a></li>
+                    <li><a href="../view.eat/EatPlace_List.html"><img src="../img/FoodBanner.jpg" alt=""></a></li>
                 </ul>
             </div>
             <div id="content2">             
