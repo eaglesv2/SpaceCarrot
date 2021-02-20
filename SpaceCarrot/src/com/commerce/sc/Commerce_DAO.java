@@ -141,6 +141,7 @@ public class Commerce_DAO {
 		String b64 = null;
 		List<CommerceArticleVO> ListVO = null;
 		CommerceArticleVO vo = null;
+		ListVO = new ArrayList<CommerceArticleVO>();
 		try {
 			while (rs.next()) {
 				vo = new CommerceArticleVO();
@@ -163,9 +164,9 @@ public class Commerce_DAO {
 				vo.setPrice(rs.getInt(COL_PRICE));
 				vo.setAmount(rs.getInt(COL_AMOUNT));
 				vo.setContent(rs.getString(COL_CONTENT));
+				vo.setRegDate(rs.getDate(COL_REGDATE));
 				vo.setViews(rs.getInt(COL_VIEWS));
 				
-				ListVO = new ArrayList<CommerceArticleVO>();
 				ListVO.add(vo);
 			}
 		} catch (SQLException e) {
