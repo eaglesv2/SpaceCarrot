@@ -45,6 +45,7 @@
      /* 게시 형식 */
        #board_form { margin : 0 auto;
               	 width : 800px;
+              	 
               	 margin-top : 40px;
               	 margin-left: 150px;
     		   }
@@ -91,7 +92,7 @@
  	#board_form .file_upload { border:0;
  								
  	}
- 	#board_form table tr{margin-left: 150px;
+ 	#board_form table tr{ margin-left: 150px;
  							
  	 }
     #board_form table th { text-align : center; margin-left: 150px;
@@ -110,7 +111,7 @@
    						  display: block;
    						}
    	
-    #btn { margin-left : 255px; }
+    #btn { margin-left : 255px; margin-bottom: 150px;}
     #btn ul li { list-style: none; }
 	.complete_btn_wrap { text-align: center; 
 			   			 margin: 20px 30px 30px;
@@ -231,7 +232,6 @@ session.getAttribute("sessionNickName");
        		</div>
        	</div>
        	</form>
-       	
        <div id = "footer">
        
        </div>

@@ -1,3 +1,6 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -21,6 +24,47 @@
 		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
+	
+	function timeBefore(){
+	        //현재시간을 가져옴
+	        var now = new Date(); 
+	        
+	        //글쓴 시간 
+	        var writeDay = $("#regDate").val();
+	        
+	        var minus;
+	        //현재 년도랑 글쓴시간의 년도 비교 
+	        
+	        if(now.getDate() > writeDay.getDate()){ //글쓴지 하루 이상 지났을 경우
+	        	minus= now.getDate()-writeDay.getDate();
+	        	$(".time").html(minus + "일 전")
+	        } else if(now.getDate() == writeDay.getDate()){
+	            //당일인 경우에는 
+	            var nowTime = now.getTime();
+	            var writeTime = writeDay.getTime();
+	            
+	            if(nowTime > writeTime) {
+	            //시간을 비교
+	                sec = parseInt(nowTime - writeTime) / 1000;
+	                day  = parseInt(sec/60/60/24);
+	                sec = (sec - (day * 60 * 60 * 24));
+	                hour = parseInt(sec/60/60);
+	                sec = (sec - (hour*60*60));
+	                min = parseInt(sec/60);
+	                sec = parseInt(sec-(min*60));
+	                if(hour > 0){
+	                //몇시간전인지
+	                	$(".time").html("hour + '시간 전'");
+
+	                }else if(min > 0){
+	                //몇분전인지
+	                    $(".time").html("min + '분 전'");
+	                }
+	            }
+	        }
+	}
+	
+	
 </script>
 <style>
       #container { margin : 0 auto;
@@ -222,70 +266,18 @@
        	<c:if test="${not empty articlePage}">
 
        		<div id = "items">
-       			<!-- <ul class = "row"> -->
+       			<ul>
 				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-       					<%-- "${article.repImage}" --%>
        					<img src = "data:x-image/jpg;base64,${article.repImage}" >
         					
        					<p><c:out value="${article.subject}"></c:out></p>
-       					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
+       					<span class = "price">${article.price}</span>
+       					<span class = "time">${article.regDate}</span>
+       					<input type = "hidden" id = "regDate" value = "${article.regDate}">
        				</li>
-       				<%-- <li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품2">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품3">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       			</ul>
-       			<ul class = "row">
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품4">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품5">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품6">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       			</ul>
-       			<ul class = "row">
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품7">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품8">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품9">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li> --%>
        				</c:forEach>
-       			<!-- </ul> -->
+       			</ul>
        		</div>
        		
        	</c:if>
