@@ -70,7 +70,6 @@ public class FrontController extends HttpServlet {
 
 		String str = null;
 		UserImpl u1 = null;
-
 		ArticleInfoList al = null;
 		CommerceImpl c1 = null;
 
@@ -78,8 +77,9 @@ public class FrontController extends HttpServlet {
 		Community_ArticlePage articlePage = null;
 		// 게시판 이동 Dispatcher 속성
 		RequestDispatcher rd = null;
-		// 게시글 글 들어왔는지 확인하는 속성
-		Object articleCheck;
+		// 공통변수
+		int postNum;
+		
 
 		switch (url) {
 
@@ -244,7 +244,7 @@ public class FrontController extends HttpServlet {
 		// 게시글 읽기 컨트롤러
 		case "/view.community/Read_Community.do":
 			// 게시글번호를 가져오고 int로 변환한다
-			int postNum = Integer.parseInt(request.getParameter("no"));
+			postNum = Integer.parseInt(request.getParameter("no"));
 
 			// 게시글 읽기 서비스 객체 생성
 			Community_ReadArticleService readService = new Community_ReadArticleService();
@@ -275,17 +275,17 @@ public class FrontController extends HttpServlet {
 		// 게시글에 댓글 작성시
 		case "/view.community/Comment_Community.do":
 			// 게시글번호와 댓글내용을 가져옴
-			int postNum1 = Integer.parseInt(request.getParameter("no"));
+			postNum = Integer.parseInt(request.getParameter("no"));
 			String content = request.getParameter("text");
 
 			CommentAction ca1 = new CommentAction();
 			try {
-				ca1.insertExecute(request, response, postNum1, content);
+				ca1.insertExecute(request, response, postNum, content);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
-			request.setAttribute("no", postNum1);
+			request.setAttribute("no", postNum);
 			
 			str = "/view.community/Community_Comment_3ja.jsp";
 			rd = request.getRequestDispatcher(str);
