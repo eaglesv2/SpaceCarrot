@@ -76,14 +76,14 @@ var num = 1;
 
 /*카테고리 하단 바*/
 #bottomLine #category1{
-	display:block;
+	display:none;
 	margin-left:342px;
 	width:30px;
 	height:2px;
 	background:black;
 }
 #bottomLine #category2{
-	display:none;
+	display:block;
 	margin-left:444px;
 	width:30px;
 	height:2px;
@@ -224,6 +224,7 @@ td {
 				<li class="title_wrap"><a href="Community_List.jsp"><p>커뮤니티</p></a></li>
 			</ul>
 		</div>
+
 		<div id="wrap">
 			<div id="category">
 				<form action="Category_Community.do" method="post">
@@ -232,7 +233,7 @@ td {
 						<li><input type="submit"   name="category"  value="정보"></li>
 						<li><input type="submit" name="category" value="QnA"/></li>
 						<li><input type="submit" name="category" value="리뷰" /></li>
-					</ul> 
+					</ul>
 				</form>
 			</div>
 			<div id="bottomLine">
