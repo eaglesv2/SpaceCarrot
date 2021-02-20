@@ -1,8 +1,10 @@
 package com.commerce.sc;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
 import java.nio.file.Files;
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialException;
+
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -39,7 +43,7 @@ public class CommerceInsert {
 		MultipartRequest multi = null;
 		int sizeLimit = 10 *1024 * 1024;
 		String savePath = request.getRealPath("/upload");
-		
+		System.out.println(savePath);
 		try {
 			multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
 		} catch (Exception e) {
