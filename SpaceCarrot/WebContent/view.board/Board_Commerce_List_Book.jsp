@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
+<c:if test="${empty articlePage}">
+	<% RequestDispatcher rd = request.getRequestDispatcher("Commerce_Reset.do");
+	rd.forward(request, response);
+	System.out.print("redirect success"); %>
+</c:if>
+<c:if test="${not empty articlePage}">
+	<% System.out.println("articlePage 들어옴"); %>
+</c:if>
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/Header.jsp");
@@ -172,7 +181,7 @@
 												 			  }
 </style>
 </head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>중고거래_목록</title>
 </head>
 <body>
@@ -209,70 +218,76 @@
        					<button><img src = "../img/SearchButton.png"></button>
        			</div>
        		</div>
-       		
+       	<c:if test="${not empty articlePage}">
+
        		<div id = "items">
        			<ul class = "row">
+				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품1">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					"${article.repImage}"
+       					<img src = "data:x-image/jpg;base64;'${article.repImage}'" >
+        					
+       					<p><c:out value="${article.subject}"></c:out></p>
+       					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
+       					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
-       				<li class = "goods">
+       				<%-- <li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품2">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
        				</li>
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품3">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
        				</li>
        			</ul>
        			<ul class = "row">
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품4">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
        				</li>
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품5">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
        				</li>
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품6">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
        				</li>
        			</ul>
        			<ul class = "row">
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품7">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
        				</li>
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품8">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
        				</li>
        				<li class = "goods">
        					<img src = "../img/MainLogo.png" alt = "물품9">
        					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
+       					<span class = "price"><% price %>원가격</span>
+       					<span class = "time"><% time %> 분전시간</span>
+       				</li> --%>
+       				</c:forEach>
        			</ul>
        		</div>
        		
+       	</c:if>
        		<div id = "page_number">
        			<ul>
        				<li><a href="#"><</a></li>

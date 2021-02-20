@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.comment.sc.CommentVO;
+
 import spacecarrotDBConn.SpaceCarrotDBConn;
 import spacecarrotVO.SpaceCarrotVO_Board_Commerce;
 
@@ -163,4 +165,40 @@ public class SpaceCarrotDAO_Board_Commerce {
 		}
 		return true;
 	}
+	
+/*	try {
+ * ...
+ * while(rs.next()){
+ * InputStream in = rs.getBinaryStream("RepImage");	
+ * BufferedImage bimg = ImageIO.read(in);
+ * in.close();
+ * ByteArrayOutputStream baos = new ByteArrayOutputStream();
+ * ImageIO.write(bimg,"jpg",baos);
+ * baos.flush();
+ * byte[] imageInByteArray = baos.toByteArray();
+ * baos.close();
+ * String b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(imageInByteArray);
+ * } catch (Exception e){
+ * } finally {
+ * 
+ * }
+ * 
+ * 	private CommentVO convertVO(ResultSet rs) throws SQLException {
+ * 
+ * 
+ * 
+		// ResultSet을 VO에 담는 메소드!!
+		return new CommentVO(rs.getInt(COL_COMMENTNUM), rs.getInt(COL_BOARDNUM), rs.getString(COL_NICKNAME),
+				rs.getString(COL_CONTENT));
+	}
+
+ * 
+*/	
+	
+	
+	
+	
+	
+	
+	
 }
