@@ -9,8 +9,9 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <c:if test="${empty articlePage}">
 	<% RequestDispatcher rd = request.getRequestDispatcher("Commerce_Reset.do");
-	rd.forward(request, response);
-	System.out.print("redirect success"); %>
+	   rd.forward(request, response);
+	   System.out.print("redirect success"); 
+	 %>
 </c:if>
 <c:if test="${not empty articlePage}">
 	<% System.out.println("articlePage 들어옴"); %>
@@ -39,7 +40,7 @@
 				    }
                 
       #wrap { margin : 0 auto;
-              width : 715px;
+              width : 730px;
               text-align : center;
               margin-left : 183px;
             } 
@@ -125,7 +126,7 @@
 
       
        /* 중고물품 목록 */
-       #items { width: 715px; height: 950px; } /* 왼쪽정렬 해결해야함 ㅠㅠ! */
+       #items { width: 730px; height: 950px; } /* 왼쪽정렬 해결해야함 ㅠㅠ! */
       .row li:last-child { margin-right: 0px; }
       .goods { float : left;
                width : 227px;
@@ -221,11 +222,11 @@
        	<c:if test="${not empty articlePage}">
 
        		<div id = "items">
-       			<ul class = "row">
+       			<!-- <ul class = "row"> -->
 				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-       					"${article.repImage}"
-       					<img src = "data:x-image/jpg;base64;'${article.repImage}'" >
+       					<%-- "${article.repImage}" --%>
+       					<img src = "data:x-image/jpg;base64,${article.repImage}" >
         					
        					<p><c:out value="${article.subject}"></c:out></p>
        					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
@@ -284,7 +285,7 @@
        					<span class = "time"><% time %> 분전시간</span>
        				</li> --%>
        				</c:forEach>
-       			</ul>
+       			<!-- </ul> -->
        		</div>
        		
        	</c:if>
