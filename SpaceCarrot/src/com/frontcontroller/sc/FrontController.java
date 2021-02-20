@@ -10,12 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.article.sc.ArticleInfoList;
 import com.comment.sc.CommentAction;
 import com.comment.sc.CommentVO;
-import com.commerce.sc.CommerceImpl;
+import com.commerce.sc.CommerceArticlePageVO;
 import com.commerce.sc.CommerceInsert;
 import com.userinfo.sc.MyPagePWCheck;
 import com.userinfo.sc.UserIDCheck;
@@ -71,7 +70,6 @@ public class FrontController extends HttpServlet {
 		String str = null;
 		UserImpl u1 = null;
 		ArticleInfoList al = null;
-		CommerceImpl c1 = null;
 
 		// 게시판 객체
 		Community_ArticlePage articlePage = null;
@@ -79,7 +77,6 @@ public class FrontController extends HttpServlet {
 		RequestDispatcher rd = null;
 		// 공통변수
 		int postNum;
-		
 
 		switch (url) {
 
@@ -267,7 +264,7 @@ public class FrontController extends HttpServlet {
 				e1.printStackTrace();
 			}
 			str = "/view.community/Community_Comment_3ja.jsp";
-			
+
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			break;
@@ -286,7 +283,7 @@ public class FrontController extends HttpServlet {
 			}
 
 			request.setAttribute("no", postNum);
-			
+
 			str = "/view.community/Community_Comment_3ja.jsp";
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
@@ -294,7 +291,7 @@ public class FrontController extends HttpServlet {
 			break;
 
 		case "/view.board/CommerceInsert.do":
-			c1 = new CommerceInsert();
+			CommerceInsert c1 = new CommerceInsert();
 
 			try {
 				c1.execute(request, response);
@@ -304,7 +301,25 @@ public class FrontController extends HttpServlet {
 			}
 			break;
 
-		} // case-end
+		case "/view.board/Commerce_Reset.do":
+			// 커뮤니티 게시판 검색시
+			CommerceInsert c2 = new CommerceInsert();
 
+			try {
+				CommerceArticlePageVO articlePage5 = c2.reset(request, response);
+				request.setAttribute("articlePage", articlePage5);
+				str = "Board_Commerce_List_Book.jsp";
+			} catch (ClassNotFoundException | SQLException e) {
+				request.setAttribute("articlePage", articlePage);
+				str = "error.jsp";
+				e.printStackTrace();
+			}
+
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+
+			break;
+
+		} // case-end
 	} // http -end
 }

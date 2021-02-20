@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.comment.sc.CommentVO;
+
 import spacecarrotDBConn.SpaceCarrotDBConn;
 import spacecarrotVO.SpaceCarrotVO_Board_Commerce;
 
@@ -102,7 +104,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 	}
 	
 	public boolean insertPost_Commerce(String input_category, String input_subject, String input_userID,
-									   String input_repImage, int input_price, int input_amount, String input_content) {
+									   Blob input_repImage, int input_price, int input_amount, String input_content) {
 		// 게시물 작성시 게시물 정보 DB에 저장  // 게시글넘버x, 작성일x, 조회수 x 디폴트가 있음
 		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + "("  + 
 					 COL_CATEGORY + ", " + COL_SUBJECT + ", " + COL_USERID + ", " + COL_REPIMAGE  + ", "
@@ -113,7 +115,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 			pstmt.setString(1, input_category);
 			pstmt.setString(2, input_subject);
 			pstmt.setString(3, input_userID);
-			pstmt.setString(4, input_repImage);
+			pstmt.setBlob(4, input_repImage);
 			pstmt.setInt(5, input_price);
 			pstmt.setInt(6, input_amount);
 			pstmt.setString(7, input_content);
@@ -163,4 +165,40 @@ public class SpaceCarrotDAO_Board_Commerce {
 		}
 		return true;
 	}
+	
+/*	try {
+ * ...
+ * while(rs.next()){
+ * InputStream in = rs.getBinaryStream("RepImage");	
+ * BufferedImage bimg = ImageIO.read(in);
+ * in.close();
+ * ByteArrayOutputStream baos = new ByteArrayOutputStream();
+ * ImageIO.write(bimg,"jpg",baos);
+ * baos.flush();
+ * byte[] imageInByteArray = baos.toByteArray();
+ * baos.close();
+ * String b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(imageInByteArray);
+ * } catch (Exception e){
+ * } finally {
+ * 
+ * }
+ * 
+ * 	private CommentVO convertVO(ResultSet rs) throws SQLException {
+ * 
+ * 
+ * 
+		// ResultSet을 VO에 담는 메소드!!
+		return new CommentVO(rs.getInt(COL_COMMENTNUM), rs.getInt(COL_BOARDNUM), rs.getString(COL_NICKNAME),
+				rs.getString(COL_CONTENT));
+	}
+
+ * 
+*/	
+	
+	
+	
+	
+	
+	
+	
 }
