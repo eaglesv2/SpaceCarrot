@@ -10,12 +10,11 @@
 <c:if test="${empty articlePage}">
 	<% RequestDispatcher rd = request.getRequestDispatcher("Commerce_Reset.do");
 	   rd.forward(request, response);
-	   System.out.print("redirect success"); 
 	 %>
 </c:if>
-<c:if test="${not empty articlePage}">
+<%-- <c:if test="${not empty articlePage}">
 	<% System.out.println("articlePage 들어옴"); %>
-</c:if>
+</c:if> test문--%>
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/Header.jsp");
@@ -222,86 +221,42 @@
        	<c:if test="${not empty articlePage}">
 
        		<div id = "items">
-       			<!-- <ul class = "row"> -->
+
 				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-       					<%-- "${article.repImage}" --%>
+
        					<img src = "data:x-image/jpg;base64,${article.repImage}" >
         					
        					<p><c:out value="${article.subject}"></c:out></p>
        					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
        					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
-       				<%-- <li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품2">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품3">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       			</ul>
-       			<ul class = "row">
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품4">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품5">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품6">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       			</ul>
-       			<ul class = "row">
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품7">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품8">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품9">
-       					<p>제목</p>
-       					<span class = "price"><% price %>원가격</span>
-       					<span class = "time"><% time %> 분전시간</span>
-       				</li> --%>
+
        				</c:forEach>
-       			<!-- </ul> -->
+
        		</div>
        		
        	</c:if>
        		<div id = "page_number">
-       			<ul>
-       				<li><a href="#"><</a></li>
-					<li><a href="#">1</a></li>  
-    				<li><a href="#">2</a></li>  
-    				<li><a href="#">3</a></li>  
-   					<li><a href="#">4</a></li>  
-    				<li><a href="#">5</a></li>  
-   					<li><a href="#">6</a></li>  
-   					<li><a href="#">7</a></li>  
-    				<li><a href="#">8</a></li>
-    				<li><a href="#">></a></li>
-       			</ul>
+       		<!-- 게시판 이동 항목 -->
+	<c:if test="${articlePage.hasArticles()}">
+		<ul>
+			<li>
+				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
+					test="${articlePage.startPage > 5}">
+					<a
+						href="Commerce_Reset.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
+					begin="${articlePage.startPage}" end="${articlePage.endPage}">
+					<a href="Commerce_Reset.do?pageNo=${pNo}">${pNo}</a>
+				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
+					test="${articlePage.endPage < articlePage.totalPages}">
+					<a
+						href="Commerce_Reset.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+				</c:if>
+			</li>
+		</ul>
+	</c:if>
        		</div>
        </div>
        <div id = "footer">
