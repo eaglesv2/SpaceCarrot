@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import spacecarrotDAO.SpaceCarrotDAO_Board_Commerce;
-import spacecarrotDAO.SpaceCarrotDAO_UserInfo;
 
 public class CommerceInsert implements CommerceImpl {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -20,13 +22,23 @@ public class CommerceInsert implements CommerceImpl {
 		
 		SpaceCarrotDAO_Board_Commerce sc = null;
 		
-		String category = request.getParameter("category");
-		String subject = request.getParameter("title");
+		MultipartRequest multi = null;
+		int sizeLimit = 10 *1024 * 1024;
+		String savePath = request.getRealPath("/upload");
+		
+		try {
+			multi = new MultipartRequest(request, savePath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String category = multi.getParameter("category");
+		String subject = multi.getParameter("title");
 		String userID = (String)session.getAttribute("sessionID");
-		Blob repImage = request.getParameter("file1");
-		int amount = Integer.parseInt(request.getParameter("amount"));
-		int price = Integer.parseInt(request.getParameter("price"));
-		String content = request.getParameter("content");
+		String repImage = multi.getParameter("file1");
+		int amount = Integer.parseInt(multi.getParameter("amount"));
+		int price = Integer.parseInt(multi.getParameter("price"));
+		String content = multi.getParameter("content");
 		
 		sc = new SpaceCarrotDAO_Board_Commerce();
 		sc.insertPost_Commerce(category, subject, userID, repImage, price, amount, content);

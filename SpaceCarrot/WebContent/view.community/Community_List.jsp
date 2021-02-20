@@ -215,7 +215,6 @@ td {
 <title>커뮤니티_목록</title>
 </head>
 <body>
-
 	<div id="container">
 		<div id="header"></div>
 
