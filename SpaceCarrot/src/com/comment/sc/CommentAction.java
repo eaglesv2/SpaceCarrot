@@ -12,7 +12,6 @@ public class CommentAction {
 
 	public List<CommentVO> readExecute(HttpServletRequest request, HttpServletResponse response, int input_postNum) throws SQLException {
 		// 코멘트 읽기 
-		HttpSession session = request.getSession();
 		
 		// Dao에 넣은 변수 받아오기 
 		int boardNum = input_postNum;
@@ -20,7 +19,7 @@ public class CommentAction {
 		CommentDAO comdao = new CommentDAO();
 		List<CommentVO> commentVO = new ArrayList<>();
 		commentVO = comdao.select(boardNum);
-		
+		comdao.getAllInfoClose();
 		return commentVO;
 	}
 	
@@ -36,6 +35,7 @@ public class CommentAction {
 		CommentDAO comdao = new CommentDAO();
 		
 		comdao.insert_Comment(boardNum, nickName, content);
+		comdao.getAllInfoClose();
 	}
 	
 }

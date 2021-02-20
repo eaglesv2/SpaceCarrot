@@ -30,10 +30,35 @@ public class CommentDAO {
 		con = new SpaceCarrotDBConn().getConnection();
 	}
 
+	public void getAllInfoClose() {
+		// DB 접속 완료되면 끊기
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void insert_Comment(int boardNum, String nickName, String content) throws SQLException {
 		// 댓글 인서트 메서드 // 게시글번호, 닉네임, 컨텐츠를 입력한다 반환값은 x
-		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_COMMUNITY_COMMENT + " (" + 
-				COL_BOARDNUM + ", "+ COL_NICKNAME + ", "+ COL_CONTENT +  " ) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_COMMUNITY_COMMENT + " (" + COL_BOARDNUM
+				+ ", " + COL_NICKNAME + ", " + COL_CONTENT + " ) VALUES(?, ?, ?)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -42,8 +67,9 @@ public class CommentDAO {
 			pstmt.setString(3, content);
 			rs = pstmt.executeQuery();
 		} catch (SQLException e) {
-			System.out.println("insert 오류");
 			e.printStackTrace();
+		} finally {
+
 		}
 
 	}
@@ -52,19 +78,22 @@ public class CommentDAO {
 		// 게시글번호를 입력받아 VO의 리스트로 반환한다
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_COMMUNITY_COMMENT + " WHERE "
 				+ COL_BOARDNUM + " = ? ";
+		List<CommentVO> VOList = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, boardNum);
+			rs = pstmt.executeQuery();
 
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, boardNum);
-		rs = pstmt.executeQuery();
+			// VO의 List 객체 생성
+			VOList = new ArrayList<CommentVO>();
 
-		// VO의 List 객체 생성
-		List<CommentVO> VOList = new ArrayList<CommentVO>();
+			while (rs.next()) {
+				// ResultSet값을 VO로 변환하고 List에 값을 추가한다
+				VOList.add(convertVO(rs));
+			}
+		} finally {
 
-		while (rs.next()) {
-			// ResultSet값을 VO로 변환하고 List에 값을 추가한다
-			VOList.add(convertVO(rs));
 		}
-
 		return VOList;
 	}
 
@@ -73,5 +102,5 @@ public class CommentDAO {
 		return new CommentVO(rs.getInt(COL_COMMENTNUM), rs.getInt(COL_BOARDNUM), rs.getString(COL_NICKNAME),
 				rs.getString(COL_CONTENT));
 	}
-	
+
 }
