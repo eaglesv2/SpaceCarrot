@@ -72,7 +72,6 @@ public class FrontController extends HttpServlet {
 		UserImpl u1 = null;
 
 		ArticleInfoList al = null;
-
 		CommerceImpl c1 = null;
 
 		// 게시판 객체
@@ -169,7 +168,7 @@ public class FrontController extends HttpServlet {
 			break;
 
 		case "/view.community/Write_Community.do":
-
+			// 커뮤니티 게시판 글 작성시
 			al = new ArticleInfoList();
 
 			try {
@@ -178,19 +177,7 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			// setAttribute
 			request.setAttribute("articlePage", articlePage);
-
-			// setAttribute 잘 되었나 확인
-			articleCheck = request.getAttribute("articlePage");
-
-			if (articleCheck != null) {
-				System.out.println("setAttribute 성공");
-				str = "/view.community/Community_List.jsp";
-			} else {
-				System.out.println("setAttribute 실패");
-				str = "/view.community/error.jsp";
-			}
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
@@ -198,7 +185,7 @@ public class FrontController extends HttpServlet {
 			break;
 
 		case "/view.community/Category_Community.do":
-
+			// 커뮤니티 카테고리 검색시
 			al = new ArticleInfoList();
 
 			try {
@@ -207,19 +194,9 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			// setAttribute
 			request.setAttribute("articlePage", articlePage);
 
-			// setAttribute 잘 되었나 확인
-			articleCheck = request.getAttribute("articlePage");
-
-			if (articleCheck != null) {
-				System.out.println("category setAttribute 성공");
-				str = "/view.community/Community_List.jsp";
-			} else {
-				System.out.println("category setAttribute 실패");
-				str = "/view.community/error.jsp";
-			}
+			str = "/view.community/Community_List.jsp";
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
@@ -227,7 +204,7 @@ public class FrontController extends HttpServlet {
 			break;
 
 		case "/view.community/Search_Community.do":
-
+			// 게시글 검색시 (제목으로 검색)
 			al = new ArticleInfoList();
 
 			try {
@@ -236,19 +213,28 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			// setAttribute
 			request.setAttribute("articlePage", articlePage);
 
-			// setAttribute 잘 되었나 확인
-			articleCheck = request.getAttribute("articlePage");
+			str = "/view.community/Community_List.jsp";
 
-			if (articleCheck != null) {
-				System.out.println("search setAttribute 성공");
-				str = "/view.community/Community_List.jsp";
-			} else {
-				System.out.println("search setAttribute 실패");
-				str = "/view.community/error.jsp";
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+
+			break;
+
+		case "/view.community/Reset_Community.do":
+			// 커뮤니티 게시판 검색시
+			al = new ArticleInfoList();
+
+			try {
+				articlePage = al.reset(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+
+			request.setAttribute("articlePage", articlePage);
+
+			str = "/view.community/Community_List.jsp";
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
@@ -257,48 +243,51 @@ public class FrontController extends HttpServlet {
 
 		// 게시글 읽기 컨트롤러
 		case "/view.community/Read_Community.do":
-			// test
-			System.out.println("디스패처확인");
+			// 게시글번호를 가져오고 int로 변환한다
+			int postNum = Integer.parseInt(request.getParameter("no"));
+
 			// 게시글 읽기 서비스 객체 생성
 			Community_ReadArticleService readService = new Community_ReadArticleService();
-
-			// 게시글번호를 가져오고 int로 변환한다
-			String noVal = request.getParameter("no");
-			int postNum = Integer.parseInt(noVal);
-
-			// VO
 			SpaceCarrotVO_Board_Community article_VO;
 			try {
 				// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
 				article_VO = readService.getArticle(postNum, true);
-				// VO 객체를 attribute
 				request.setAttribute("article_VO", article_VO);
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-			System.out.println("error1");
+
+			// 게시글 코멘트 읽기
 			CommentAction ca = new CommentAction();
 			List<CommentVO> commentVO = null;
 			try {
-				// test
-				System.out.println("error2");
 				commentVO = ca.readExecute(request, response, postNum);
 				request.setAttribute("comment_VO", commentVO);
-				// test
-				if (request.getAttribute("comment_VO") != null) {
-					System.out.println("VO 들어옴");
-				}
-				// test
-				System.out.println("error3");
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			// test
-			System.out.println("error4");
-
 			str = "/view.community/Community_Comment_3ja.jsp";
+			
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+			break;
 
+		// 게시글에 댓글 작성시
+		case "/view.community/Comment_Community.do":
+			// 게시글번호와 댓글내용을 가져옴
+			int postNum1 = Integer.parseInt(request.getParameter("no"));
+			String content = request.getParameter("text");
+
+			CommentAction ca1 = new CommentAction();
+			try {
+				ca1.insertExecute(request, response, postNum1, content);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			request.setAttribute("no", postNum1);
+			
+			str = "/view.community/Community_Comment_3ja.jsp";
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 
@@ -313,58 +302,6 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			break;
-
-		case "/view.community/Reset_Community.do":
-
-			al = new ArticleInfoList();
-
-			try {
-				articlePage = al.reset(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			// setAttribute
-			request.setAttribute("articlePage", articlePage);
-
-			// setAttribute 잘 되었나 확인
-			articleCheck = request.getAttribute("articlePage");
-
-			if (articleCheck != null) {
-				System.out.println("category setAttribute 성공");
-				str = "/view.community/Community_List.jsp";
-			} else {
-				System.out.println("category setAttribute 실패");
-				str = "/view.community/error.jsp";
-			}
-
-			rd = request.getRequestDispatcher(str);
-			rd.forward(request, response);
-
-			break;
-
-		case "/view.community/Comment_Community.do":
-			// 게시글번호를 가져오고 int로 변환한다
-			String postsno = request.getParameter("no");
-			int postNum1 = Integer.parseInt(postsno);
-
-			String content = request.getParameter("text");
-
-			CommentAction ca1 = new CommentAction();
-			try {
-				ca1.insertExecute(request, response, postNum1, content);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			request.setAttribute("no", postNum1);
-			str = "/view.community/Community_Comment_3ja.jsp";
-
-			rd = request.getRequestDispatcher(str);
-			rd.forward(request, response);
-
 			break;
 
 		} // case-end

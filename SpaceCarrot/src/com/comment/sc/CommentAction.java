@@ -10,17 +10,12 @@ import javax.servlet.http.HttpSession;
 
 public class CommentAction {
 
-	public List<CommentVO> readExecute(HttpServletRequest request, HttpServletResponse response, int postNum) throws SQLException {
+	public List<CommentVO> readExecute(HttpServletRequest request, HttpServletResponse response, int input_postNum) throws SQLException {
+		// 코멘트 읽기 
+		HttpSession session = request.getSession();
 		
-//		HttpSession session = request.getSession();
-		
-		/*String boardsNum = request.getParameter("no");
-		if(boardsNum != null) {
-			System.out.println(boardsNum);
-		}*/
-		int boardNum = postNum;
-		System.out.println(postNum);
-//		String sessionNickName = (String) session.getAttribute("sessionNickName");
+		// Dao에 넣은 변수 받아오기 
+		int boardNum = input_postNum;
 		
 		CommentDAO comdao = new CommentDAO();
 		List<CommentVO> commentVO = new ArrayList<>();
@@ -30,18 +25,17 @@ public class CommentAction {
 	}
 	
 	public void insertExecute(HttpServletRequest request, HttpServletResponse response, int input_postNum, String input_content) throws SQLException {
-		
+		// 코멘트 인서트
 		HttpSession session = request.getSession();
-		int boardNum = input_postNum;
 		
+		// Dao에 넣을 변수 받아오기
+		int boardNum = input_postNum;
 		String nickName = (String) session.getAttribute("sessionNickName");
 		String content = input_content;
-		
 		
 		CommentDAO comdao = new CommentDAO();
 		
 		comdao.insert_Comment(boardNum, nickName, content);
-		
 	}
 	
 }

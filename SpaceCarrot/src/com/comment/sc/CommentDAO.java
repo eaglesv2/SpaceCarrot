@@ -11,50 +11,67 @@ import spacecarrotDBConn.SpaceCarrotDBConn;
 
 public class CommentDAO {
 
-	private Connection con;
+	private Connection con; // 연결 커넥트
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
-	public CommentDAO() {
+	// DB 기본정보 상수
+	private static final String DB_DBNAME = "SpaceCarrot";
+	private static final String DB_DBNAME_SUFFIX = ".";
+
+	// 각 컬럼명을 상수로 정의해놓은 부분 "COMMUNITY_COMMENT";
+	private static final String DB_TABLE_COMMUNITY_COMMENT = "COMMUNITY_COMMENT"; // 커뮤니티 댓글 테이블 명
+	public static final String COL_COMMENTNUM = "COMMENT_NUM"; // 댓글 Serial
+	public static final String COL_BOARDNUM = "COMMENT_BOARDNUM"; // 게시판 번호
+	public static final String COL_NICKNAME = "COMMENT_NICKNAME"; // 작성자 닉네임
+	public static final String COL_CONTENT = "COMMENT_CONTENT"; // 댓글 컨텐츠
+
+	public CommentDAO() { // 생성자
 		con = new SpaceCarrotDBConn().getConnection();
 	}
 
 	public void insert_Comment(int boardNum, String nickName, String content) throws SQLException {
-		// BoardNum, NickName, Content
-		String sql = "INSERT INTO SpaceCarrot.COMMENT_BOARD(COMMENT_BOARDNUM, COMMENT_NICKNAME, COMMENT_CONTENT) "
-				+ " VALUES(?, ?, ?)";
+		// 댓글 인서트 메서드 // 게시글번호, 닉네임, 컨텐츠를 입력한다 반환값은 x
+		String sql = "INSERT INTO " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_COMMUNITY_COMMENT + " (" + 
+				COL_BOARDNUM + ", "+ COL_NICKNAME + ", "+ COL_CONTENT +  " ) VALUES(?, ?, ?)";
 
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, boardNum);
-		pstmt.setString(2, nickName);
-		pstmt.setString(3, content);
-		rs = pstmt.executeQuery();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, boardNum);
+			pstmt.setString(2, nickName);
+			pstmt.setString(3, content);
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			System.out.println("insert 오류");
+			e.printStackTrace();
+		}
 
-		rs.close();
-		pstmt.close();
-		con.close();
 	}
 
 	public List<CommentVO> select(int boardNum) throws SQLException {
-
-		String sql = "SELECT * FROM SpaceCarrot.COMMENT_BOARD WHERE COMMENT_BOARDNUM = ? ";
+		// 게시글번호를 입력받아 VO의 리스트로 반환한다
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_COMMUNITY_COMMENT + " WHERE "
+				+ COL_BOARDNUM + " = ? ";
 
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, boardNum);
 		rs = pstmt.executeQuery();
 
-		System.out.println("CommentDAO .list select error1");
+		// VO의 List 객체 생성
 		List<CommentVO> VOList = new ArrayList<CommentVO>();
+
 		while (rs.next()) {
+			// ResultSet값을 VO로 변환하고 List에 값을 추가한다
 			VOList.add(convertVO(rs));
 		}
-		System.out.println("CommentDAO .list select error2");
+
 		return VOList;
 	}
 
 	private CommentVO convertVO(ResultSet rs) throws SQLException {
 		// ResultSet을 VO에 담는 메소드!!
-		return new CommentVO(rs.getInt("COMMENT_NUM"), rs.getInt("COMMENT_BOARDNUM"),
-				rs.getString("COMMENT_NICKNAME"), rs.getString("COMMENT_CONTENT"));
+		return new CommentVO(rs.getInt(COL_COMMENTNUM), rs.getInt(COL_BOARDNUM), rs.getString(COL_NICKNAME),
+				rs.getString(COL_CONTENT));
 	}
+	
 }
