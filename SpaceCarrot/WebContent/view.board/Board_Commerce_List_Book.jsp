@@ -225,7 +225,7 @@
 				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
        					"${article.repImage}"
-       					<%-- <img src = "data:x-image/jpg;base64;'${article.repImage}'" > --%>
+       					<img src = "data:x-image/jpg;base64;'${article.repImage}'" >
         					
        					<p><c:out value="${article.subject}"></c:out></p>
        					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
