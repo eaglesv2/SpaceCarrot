@@ -9,7 +9,7 @@ public class Community_ReadArticleService {
 
 	private SpaceCarrotDAO_Board_Community boardDao = null;
 	
-	public SpaceCarrotVO_Board_Community getArticle(int postNum, boolean increaseReadCount) throws ClassNotFoundException {
+	public SpaceCarrotVO_Board_Community getArticle(int postNum, boolean increaseReadCount) throws ClassNotFoundException, SQLException {
 		try {
 			boardDao = new SpaceCarrotDAO_Board_Community();
 			// DAO를 통해 게시글넘버를 입력한 후 그에 맞는 VO를 가져온다.

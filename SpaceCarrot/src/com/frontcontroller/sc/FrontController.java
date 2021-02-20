@@ -24,8 +24,10 @@ import com.userinfo.sc.UserInfoUpdate;
 import com.userinfo.sc.UserLogin;
 import com.userinfo.sc.UserNickNameCheck;
 
+import article.service.Commerce_ReadArticleService;
 import article.service.Community_ArticlePage;
 import article.service.Community_ReadArticleService;
+import spacecarrotVO.SpaceCarrotVO_Board_Commerce;
 import spacecarrotVO.SpaceCarrotVO_Board_Community;
 
 /**
@@ -238,7 +240,7 @@ public class FrontController extends HttpServlet {
 
 			break;
 
-		// 게시글 읽기 컨트롤러
+		// 커뮤니티 게시글 읽기 컨트롤러
 		case "/view.community/Read_Community.do":
 			// 게시글번호를 가져오고 int로 변환한다
 			postNum = Integer.parseInt(request.getParameter("no"));
@@ -250,7 +252,7 @@ public class FrontController extends HttpServlet {
 				// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
 				article_VO = readService.getArticle(postNum, true);
 				request.setAttribute("article_VO", article_VO);
-			} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
 
@@ -320,7 +322,37 @@ public class FrontController extends HttpServlet {
 			rd.forward(request, response);
 
 			break;
+			
+			// 중고거래 게시글 읽기 컨트롤러
+			case "/view.board/Read_Commerce.do":
+				// 게시글번호를 가져오고 int로 변환한다
+				postNum = Integer.parseInt(request.getParameter("no"));
 
+				// 게시글 읽기 서비스 객체 생성
+				Commerce_ReadArticleService readService1 = new Commerce_ReadArticleService();
+				SpaceCarrotVO_Board_Commerce article_VO1;
+				try {
+					// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
+					article_VO1 = readService1.getArticle(postNum, true);
+					request.setAttribute("article_VO1", article_VO1);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+
+				// 게시글 코멘트 읽기
+				CommentAction ca3 = new CommentAction();
+				List<CommentVO> commentVO3 = null;
+				try {
+					commentVO3 = ca3.readExecute(request, response, postNum);
+					request.setAttribute("comment_VO3", commentVO3);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				str = "/view.board/Board_Commerce_purchase_3ja.jsp";
+
+				rd = request.getRequestDispatcher(str);
+				rd.forward(request, response);
+				break;
 		} // case-end
 	} // http -end
 }
