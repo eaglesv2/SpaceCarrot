@@ -93,29 +93,6 @@ public class Commerce_DAO {
 		return true;
 	}
 
-	/*public List<CommerceArticleVO> select(int boardNum) throws SQLException {
-		// 게시글번호를 입력받아 VO의 리스트로 반환한다
-		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " WHERE " + COL_POSTNUM
-				+ " = ? ";
-		List<CommerceArticleVO> VOList = null;
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, boardNum);
-			rs = pstmt.executeQuery();
-
-			// VO의 List 객체 생성
-			VOList = new ArrayList<CommerceArticleVO>();
-
-			while (rs.next()) {
-				// ResultSet값을 VO로 변환하고 List에 값을 추가한다
-				VOList.add(convertVO(rs));
-			}
-		} finally {
-
-		}
-		return VOList;
-	}
-*/
 	public List<CommerceArticleVO> select(int startRow, int size) throws IOException {
 		// 1번부터 size 만큼의 게시글 수를 List에 담는 메소드
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " ORDER BY "
@@ -136,6 +113,8 @@ public class Commerce_DAO {
 			return null;
 		}
 	}
+	// ResultSet을 받아 List<VO>로 반환해주는 메소드입니다
+	// 이미지를 String으로 변환하는 작업이 중간에 있습니다
 	private List<CommerceArticleVO> convertVO(ResultSet rs) throws IOException {
 		// ResultSet을 VO에 담는 메소드!!
 		String b64 = null;

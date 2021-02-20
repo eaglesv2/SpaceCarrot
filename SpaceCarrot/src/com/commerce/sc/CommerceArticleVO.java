@@ -1,7 +1,7 @@
 package com.commerce.sc;
 
 import java.util.Date;
-
+// repImage를 String값으로 반환하기 위해서 다른 VO클래스를 만들었습니다
 public class CommerceArticleVO {
 
 	private int postNum; // 게시글넘버
