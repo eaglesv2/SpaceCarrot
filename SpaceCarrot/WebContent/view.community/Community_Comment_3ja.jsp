@@ -132,6 +132,9 @@ li {
 	margin-bottom: 20px;
 	width: 715px;
 }
+/* 댓글 구분시 맨 마지막은 안 보이게 작동 안되는 듯? */
+#foreach-hr:last-child{ display: none;
+}
 
 .my-hr2 {
 	/* margin-bottom: 20px; */
@@ -243,14 +246,9 @@ li {
 <c:if test="${empty article_VO}">
 	<%
 	RequestDispatcher rd10 = request.getRequestDispatcher("Read_Community.do");
-	rd10.forward(request, response); 
-	System.out.println("article_VO 비어있음");%>
+	rd10.forward(request, response); %>
 </c:if>
-<%-- <c:if test="${empty article_VO}">
-	<% RequestDispatcher rd = request.getRequestDispatcher("Reset_Community.do");
-	rd.forward(request, response);
-	System.out.print("redirect success"); %>
-</c:if> --%>
+
 	<div id="container">
 		<div id="header"></div>
 
@@ -270,22 +268,20 @@ li {
 		</div>
 
 		<hr class="my-hr2">
-		<c:if test="${not empty comment_VO}">
-			<%
-				System.out.println("댓글 들어왔습니다.");
-			%>
+
 
 			<div id="gprice">댓글</div>
-
+		<c:if test="${not empty comment_VO}">
 			<hr class="my-hr1">
 			<c:forEach var="commentVO" items="${comment_VO}">
 				<div id="content-daet1">
 
 					<div id="nick"><c:out value="${commentVO.nickName}"/></div>
-					<div id="daet"><c:out value="${commentVO.content}"/></div>
+					<%-- <div id="daet"><c:out value="${commentVO.content}"/></div> --%>
+					<div id="daet"><u:pre value="${commentVO.content}"/></div>
 				</div>
 				<!-- 글 나누기 hr-->
-				<hr class="my-hr1">
+				<hr class="my-hr1" id="foreach-hr">
 				
 			</c:forEach>
 
