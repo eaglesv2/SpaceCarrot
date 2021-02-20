@@ -8,6 +8,7 @@ public class CommerceArticleVO {
 	private String category; // 카테고리
 	private String subject; // 글제목
 	private String userID; // 글쓴이
+	private String userNickName; //글쓴이 닉네임
 	private String repImage; // 대표이미지 Represent 줄여서 String base64형식으로 바뀜
 	private int price; // 가격
 	private int amount; // 수량
@@ -19,12 +20,13 @@ public class CommerceArticleVO {
 		
 	}
 
-	public CommerceArticleVO(int postNum, String category, String subject, String userID,
+	public CommerceArticleVO(int postNum, String category, String subject, String userID, String userNickName,
 				String repImage, int price, int amount, String content, Date regDate, int views) { // 생성자
 		this.postNum = postNum;
 		this.category = category;
 		this.subject = subject;
 		this.userID = userID;
+		this.userNickName = userNickName;
 		this.repImage = repImage;
 		this.price = price;
 		this.amount = amount;
@@ -32,6 +34,20 @@ public class CommerceArticleVO {
 		this.regDate = regDate;
 		this.views = views;
 	}
+	
+	public CommerceArticleVO(String category, String subject, String userID, String userNickName,
+			String repImage, int price, int amount, String content, Date regDate, int views) { // 생성자
+		this.category = category;
+		this.subject = subject;
+		this.userID = userID;
+		this.userNickName = userNickName;
+		this.repImage = repImage;
+		this.price = price;
+		this.amount = amount;
+		this.content = content;
+		this.regDate = regDate;
+		this.views = views;
+}
 	
 	//getter, setter
 	
@@ -67,6 +83,14 @@ public class CommerceArticleVO {
 		this.userID = userID;
 	}
 
+	public String getUserNickName() {
+		return userNickName;
+	}
+
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
+	}
+	
 	public String getRepImage() {
 		return repImage;
 	}

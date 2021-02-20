@@ -8,6 +8,7 @@ public class SpaceCarrotVO_Board_Commerce {
 	private String category; // 카테고리
 	private String subject; // 글제목
 	private String userID; // 글쓴이
+	private String userNickName; // 글쓴이 닉네임
 	private Blob repImage; // 대표이미지 Represent 줄여서 Rep
 	private int price; // 가격
 	private int amount; // 수량
@@ -19,12 +20,13 @@ public class SpaceCarrotVO_Board_Commerce {
 		
 	}
 	
-	public SpaceCarrotVO_Board_Commerce(int postNum, String category, String subject, String userID, Blob repImage, 
-										int price, int amount, String content, Date regDate, int views) {
+	public SpaceCarrotVO_Board_Commerce(int postNum, String category, String subject, String userID, String userNickName,
+										Blob repImage, int price, int amount, String content, Date regDate, int views) {
 		this.postNum = postNum;
 		this.category = category;
 		this.subject = subject;
 		this.userID = userID;
+		this.userNickName = userNickName;
 		this.repImage = repImage;
 		this.price = price;
 		this.amount = amount;
@@ -42,11 +44,12 @@ public class SpaceCarrotVO_Board_Commerce {
 		this.views = views;
 	}
 	
-	public SpaceCarrotVO_Board_Commerce(String category, String subject, String userID, Blob repImage, int price,
-										int amount, String content, Date regDate) {
+	public SpaceCarrotVO_Board_Commerce(String category, String subject, String userID,  String userNickName, 
+										Blob repImage, int price, int amount, String content, Date regDate) {
 		this.category = category;
 		this.subject = subject;
 		this.userID = userID;
+		this.userNickName = userNickName;
 		this.repImage = repImage;
 		this.price = price;
 		this.amount = amount;
@@ -88,6 +91,14 @@ public class SpaceCarrotVO_Board_Commerce {
 		this.userID = userID;
 	}
 
+	public String getUserNickName() {
+		return userNickName;
+	}
+
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
+	}
+	
 	public Blob getRepImage() {
 		return repImage;
 	}

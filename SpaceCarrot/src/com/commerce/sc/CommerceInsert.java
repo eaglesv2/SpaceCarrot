@@ -56,6 +56,7 @@ public class CommerceInsert {
 		String category = multi.getParameter("category");
 		String subject = multi.getParameter("title");
 		String userID = (String)session.getAttribute("sessionID");
+		String userNickName = (String)session.getAttribute("sessionNickName");
 		//파일로 받아오기
 		File repImageFile = multi.getFile("file1");
 		//파일 to byte[]
@@ -67,7 +68,7 @@ public class CommerceInsert {
 		String content = multi.getParameter("content");
 		
 		sc = new SpaceCarrotDAO_Board_Commerce();
-		sc.insertPost_Commerce(category, subject, userID, repImage, price, amount, content);
+		sc.insertPost_Commerce(category, subject, userID, userNickName, repImage, price, amount, content);
 		RequestDispatcher rd1 = request.getRequestDispatcher("/view.board/Board_Commerce_List_Fashion.jsp");
 		rd1.forward(request, response);
 		/*response.sendRedirect("../view.login/SignUpComplete.jsp");*/

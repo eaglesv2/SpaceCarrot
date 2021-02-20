@@ -262,7 +262,7 @@
    	}
    	
    	/* 버튼 */
-   	#btn { margin-left : 80px; }
+   	#btn { margin-left : 80px; margin-bottom: 150px;}
     #btn ul li { list-style: none; }
 
 	.complete_btn_wrap { text-align: center; 

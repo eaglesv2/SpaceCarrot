@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -264,7 +265,11 @@ font-weight:700;
 <title>중고거래_구매하기_글쓴이</title>
 </head>
 <body>
-
+<c:if test="${empty article_VO1}">
+	<%
+	RequestDispatcher rd10 = request.getRequestDispatcher("Read_Commerce.do");
+	rd10.forward(request, response); %>
+</c:if>
 	<div id="container">
 		<div id="header"></div>
 
@@ -279,39 +284,33 @@ font-weight:700;
 
 		<div id="img1">
 			<ul>
-				<li class="goods"><img src="../img/MainLogo.png" alt="물건"></li>
+				<li class="goods"><img src = "data:x-image/jpg;base64,${article_VO1.repImage}"></li>
 			</ul>
 		</div>
 
+
 		<div id="con-title">
-	
-	<div id = "con1">
-		<span id = "con-title1">도서판매합니다</span>		
-			<span id = "con-title2">글작성자</span>
+
+			<div id="con1">
+				<span id="con-title1"><c:out value="${article_VO1.subject}" /></span> <span id="con-title2">${article_VO1.userNickName}</span>
 			</div>
-			
-			<div id = "con2">
-			<span id = "con-title3">도서/티켓/취미/애완</span>
-			<span id = "con-title2">n분전</span>
+
+			<div id="con2">
+				<span id="con-title3">${article_VO1.category}</span> <span id="con-title2">${article_VO1.regDate}</span>
 			</div>
-			
-			<div id = "con3">		
-			<span id = "con-title4">1개</span> 
-			<span id = "con-title5">10000원</span>
+
+			<div id="con3">
+				<span id="con-title4">${article_VO1.amount}개</span> <span id="con-title5">${article_VO1.price}원</span>
 			</div>
-			
-	</div>
+
+		</div>
 
 
 
 		<hr class="my-hr1">
 
-
-
-
 		<div id="naeyong">
-			하자 없습니다 며칠전에 선물로 받았는데 흔적없이 읽었어요 거의 새책이라 10000원에 거래합니다!<br> oo아파트
-			근처에서 만났으면 해요~~
+			${article_VO1.content}
 		</div>
 
 
