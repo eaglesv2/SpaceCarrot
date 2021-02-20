@@ -15,6 +15,7 @@ import com.article.sc.ArticleInfoList;
 import com.comment.sc.CommentAction;
 import com.comment.sc.CommentVO;
 import com.commerce.sc.CommerceArticlePageVO;
+import com.commerce.sc.CommerceArticleVO;
 import com.commerce.sc.CommerceInsert;
 import com.userinfo.sc.MyPagePWCheck;
 import com.userinfo.sc.UserIDCheck;
@@ -330,7 +331,7 @@ public class FrontController extends HttpServlet {
 
 				// 게시글 읽기 서비스 객체 생성
 				Commerce_ReadArticleService readService1 = new Commerce_ReadArticleService();
-				SpaceCarrotVO_Board_Commerce article_VO1;
+				CommerceArticleVO article_VO1;
 				try {
 					// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
 					article_VO1 = readService1.getArticle(postNum, true);

@@ -270,6 +270,7 @@
 
 #btn {
 	margin-left: 50px;
+	margin-bottom: 150px;
 }
 
 #btn ul li {

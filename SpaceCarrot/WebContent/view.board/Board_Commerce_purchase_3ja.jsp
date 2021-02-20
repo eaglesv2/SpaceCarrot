@@ -279,7 +279,7 @@ margin-top: 7px;
 
 		<div id="img1">
 			<ul>
-				<li class="goods"><img src = "data:x-image/jpg;base64,${article.repImage}"></li>
+				<li class="goods"><img src = "data:x-image/jpg;base64,${article_VO1.repImage}"></li>
 			</ul>
 		</div>
 

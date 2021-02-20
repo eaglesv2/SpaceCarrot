@@ -90,9 +90,9 @@ public class SpaceCarrotDAO_Board_Commerce {
 		return scarray;
 	}
 	
-	public SpaceCarrotVO_Board_Commerce getOnePost_Commerce(int postNum) throws SQLException {
+	public CommerceArticleVO getOnePost_Commerce(int postNum) throws SQLException, IOException {
 		//중고거래 게시판 글 선택했을 때 게시글 정보 불러오는 메소드 (카테고리, 제목, 작성자, 이미지, 가격, 수량, 글 내용, 작성일) 
-		SpaceCarrotVO_Board_Commerce scv = null;
+		CommerceArticleVO scv = null;
 		String sql = "SELECT * FROM " +  DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " WHERE " + COL_POSTNUM + " = ?";
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, postNum);
@@ -102,12 +102,24 @@ public class SpaceCarrotDAO_Board_Commerce {
 			String subject = rs.getString(COL_SUBJECT);
 			String UserID = rs.getString(COL_USERID);
 			String UserNickName = rs.getString(COL_USERNICKNAME);
-			Blob repImage = rs.getBlob(COL_REPIMAGE);
+			/////////////////////
+			InputStream in = rs.getBinaryStream(COL_REPIMAGE);
+			BufferedImage bimg = ImageIO.read(in);
+			in.close();
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ImageIO.write(bimg, "jpg", baos);
+			baos.flush();
+			byte[] imageInByteArray = baos.toByteArray();
+			baos.close();
+			String b64 = javax.xml.bind.DatatypeConverter.printBase64Binary(imageInByteArray);
+			////////////////////
+			/*Blob repImage = rs.getBlob(COL_REPIMAGE);*/
 			int price = rs.getInt(COL_PRICE);
 			int amount = rs.getInt(COL_AMOUNT);
 			String content = rs.getString(COL_CONTENT);
 			Date regDate = rs.getDate(COL_REGDATE);
-			scv = new SpaceCarrotVO_Board_Commerce(category, subject, UserID, UserNickName, repImage, price, amount, content, regDate);
+			int views = rs.getInt(COL_VIEWS);
+			scv = new CommerceArticleVO(category, subject, UserID, UserNickName, b64, price, amount, content, regDate, views);
 		} else {
 			scv = null;
 		}
@@ -230,6 +242,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 				vo.setCategory(rs.getString(COL_CATEGORY));
 				vo.setSubject(rs.getString(COL_SUBJECT));
 				vo.setUserID(rs.getString(COL_USERID));
+				vo.setUserNickName(rs.getString(COL_USERNICKNAME));
 				/////////////////////
 				InputStream in = rs.getBinaryStream("RepImage");
 				BufferedImage bimg = ImageIO.read(in);
