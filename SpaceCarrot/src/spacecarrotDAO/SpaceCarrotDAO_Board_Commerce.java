@@ -98,6 +98,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 		pstmt.setInt(1, postNum);
 		rs = pstmt.executeQuery();
 		if(rs.next()) {
+			/*int postNum = rs.getInt(COL_POSTNUM);*/
 			String category = rs.getString(COL_CATEGORY);
 			String subject = rs.getString(COL_SUBJECT);
 			String UserID = rs.getString(COL_USERID);
@@ -119,7 +120,7 @@ public class SpaceCarrotDAO_Board_Commerce {
 			String content = rs.getString(COL_CONTENT);
 			Date regDate = rs.getDate(COL_REGDATE);
 			int views = rs.getInt(COL_VIEWS);
-			scv = new CommerceArticleVO(category, subject, UserID, UserNickName, b64, price, amount, content, regDate, views);
+			scv = new CommerceArticleVO(postNum, category, subject, UserID, UserNickName, b64, price, amount, content, regDate, views);
 		} else {
 			scv = null;
 		}

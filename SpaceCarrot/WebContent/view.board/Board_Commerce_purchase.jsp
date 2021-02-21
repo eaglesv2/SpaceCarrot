@@ -265,7 +265,7 @@ font-weight:700;
 <title>중고거래_구매하기_글쓴이</title>
 </head>
 <body>
-<c:if test="${empty article_VO1}">
+<c:if test="${empty commerce_article_VO}">
 	<%
 	RequestDispatcher rd10 = request.getRequestDispatcher("Read_Commerce.do");
 	rd10.forward(request, response); %>
@@ -292,15 +292,15 @@ font-weight:700;
 		<div id="con-title">
 
 			<div id="con1">
-				<span id="con-title1"><c:out value="${article_VO1.subject}" /></span> <span id="con-title2">${article_VO1.userNickName}</span>
+				<span id="con-title1"><c:out value="${commerce_article_VO.subject}" /></span> <span id="con-title2">${commerce_article_VO.userNickName}</span>
 			</div>
 
 			<div id="con2">
-				<span id="con-title3">${article_VO1.category}</span> <span id="con-title2">${article_VO1.regDate}</span>
+				<span id="con-title3">${commerce_article_VO.category}</span> <span id="con-title2">${commerce_article_VO.regDate}</span>
 			</div>
 
 			<div id="con3">
-				<span id="con-title4">${article_VO1.amount}개</span> <span id="con-title5">${article_VO1.price}원</span>
+				<span id="con-title4">${commerce_article_VO.amount}개</span> <span id="con-title5">${commerce_article_VO.price}원</span>
 			</div>
 
 		</div>
@@ -310,7 +310,7 @@ font-weight:700;
 		<hr class="my-hr1">
 
 		<div id="naeyong">
-			${article_VO1.content}
+			${commerce_article_VO.content}
 		</div>
 
 

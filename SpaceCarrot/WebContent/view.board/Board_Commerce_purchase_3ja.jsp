@@ -260,10 +260,11 @@ margin-top: 7px;
 <title>중고거래_구매하기_제3자</title>
 </head>
 <body>
-<c:if test="${empty article_VO1}">
+<c:if test="${empty commerce_article_VO}">
 	<%
 	RequestDispatcher rd10 = request.getRequestDispatcher("Read_Commerce.do");
-	rd10.forward(request, response); %>
+	rd10.forward(request, response); 
+	%>
 </c:if>
 	<div id="container">
 		<div id="header"></div>
@@ -279,7 +280,7 @@ margin-top: 7px;
 
 		<div id="img1">
 			<ul>
-				<li class="goods"><img src = "data:x-image/jpg;base64,${article_VO1.repImage}"></li>
+				<li class="goods"><img src = "data:x-image/jpg;base64,${commerce_article_VO.repImage}"></li>
 			</ul>
 		</div>
 
@@ -287,15 +288,15 @@ margin-top: 7px;
 		<div id="con-title">
 
 			<div id="con1">
-				<span id="con-title1"><c:out value="${article_VO1.subject}" /></span> <span id="con-title2">${article_VO1.userNickName}</span>
+				<span id="con-title1"><c:out value="${commerce_article_VO.subject}" /></span> <span id="con-title2">${commerce_article_VO.userNickName}</span>
 			</div>
 
 			<div id="con2">
-				<span id="con-title3">${article_VO1.category}</span> <span id="con-title2">${article_VO1.regDate}</span>
+				<span id="con-title3">${commerce_article_VO.category}</span> <span id="con-title2">${commerce_article_VO.regDate}</span>
 			</div>
 
 			<div id="con3">
-				<span id="con-title4">${article_VO1.amount}개</span> <span id="con-title5">${article_VO1.price}원</span>
+				<span id="con-title4">${commerce_article_VO.amount}개</span> <span id="con-title5">${commerce_article_VO.price}원</span>
 			</div>
 
 		</div>
@@ -305,55 +306,51 @@ margin-top: 7px;
 		<hr class="my-hr1">
 
 		<div id="naeyong">
-			${article_VO1.content}
+			${commerce_article_VO.content}
 		</div>
 
 
 		<hr class="my-hr2">
 		
-		<div id="gprice">댓글(3)</div>
+		<div id="gprice">댓글<!-- (3) --></div> <!-- 댓글 카운트 -->
 
+		<c:if test="${ not empty commerce_comment_VO }">
+			<hr class="my-hr1">
+			<c:forEach var="commerce_comment_VO" items="${commerce_comment_VO}">
+				<div id = "content-daet1">
+					<div id="nick">${commerce_comment_VO.nickName}</div>
+					<div id="daet">${commerce_comment_VO.content}</div>
+				</div>		
+				
+				<!-- 
+				<div id = "content-daet2">		
+					<div id="nick">└ 닉네임</div>
+					<div id="daet2">그건 조금 어려울것 같네요ㅜ</div>
+				</div>
+				 --> <!-- 대댓글 -->
 
-		<hr class="my-hr1">
-
-<div id = "content-daet1">
-		<div id="nick">닉네임</div>
-		<div id="daet">9000원에 거래는 어려운가요?</div>
-</div>		
+			</c:forEach>
+			<hr class="my-hr1">
 		
-<div id = "content-daet2">		
-		<div id="nick">└ 닉네임</div>
-		<div id="daet2">그건 조금 어려울것 같네요ㅜ</div>
-</div>
-
-
-
-		<hr class="my-hr1">
+				<!-- <div id = "content-daet3">
+					<div id="nick">비밀댓글입니다</div>
+					<div id="daet">└비밀댓글입니다</div>
+				</div>	 -->
+		</c:if>
 		
-		
-		
-
-<div id = "content-daet3">
-		<div id="nick">비밀댓글입니다</div>
-		<div id="daet">└비밀댓글입니다</div>
-</div>		
-
-
-
 		<hr class="my-hr2">
 		
-		
-
-		<div id="dapwrap">
-			<span id="dap"> 댓글 남기기 </span>
-			<textarea id="text" rows=30></textarea>
-			<div id="dapbutton">
-				<label id="checkbox1"><input type="checkbox" name="secret"
-					value="secret1"> 비밀 답글 </label> <input class="button" type="button"
-					value="등록">
+		<form action="Comment_Commerce.do">
+			<div id="dapwrap">
+				<span id="dap"> 댓글 남기기 </span>
+				<textarea id="text" name="text" rows=30></textarea>
+				<div id="dapbutton">
+					<input type="hidden" name="no" value="${commerce_article_VO.postNum}">
+					<label id="checkbox1"><input type="checkbox" name="secret" value="secret1"> 비밀 답글 </label> 
+					<input class="button" type="submit" value="등록">
+				</div>
 			</div>
-		</div>
-
+		</form>
 		<div id="footer"></div>
 	</div>
 </body>
