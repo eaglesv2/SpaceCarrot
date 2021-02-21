@@ -85,7 +85,7 @@
                         </tr>
                     <c:forEach var="article" items="${community_VO}">
                         <tr>
-                            <td><a href="#">${article.subject}</a></td>
+                            <td><a href="Read_Community.do?no=${article.postNum}">${article.subject}</a></td>
                         </tr>
                         <!-- <tr>
                             <td>게시글1</td>
@@ -105,7 +105,7 @@
                 <!-- 여기는 커뮤니티 카테고리2 -->
                     <table id="righttable">
                         <tr>
-                            <th><h1><a href="">커뮤니티 카테고리2</a></h1></th>
+                            <th><h1><a href="">커뮤니티 인기글</a></h1></th>
                         </tr>
                         
                         <tr>
