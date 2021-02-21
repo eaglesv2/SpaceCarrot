@@ -183,6 +183,7 @@ var num = 1;
    float: left;
    outline: none;
    border: 0;
+   cursor:pointer;
 }
 
 /* 게시글 목록 */

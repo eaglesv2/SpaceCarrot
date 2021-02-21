@@ -79,11 +79,14 @@
  			   padding: .8em .5em;
  	}
  	
-    #board_form table th { text-align : center; }
+    #board_form table th { text-align : center;
+    					   vertical-align: middle;
+     }
    	#board_form table th span { color: #404040;
    							   font-size: 15px; 
    							   display: inline-block; 
-   							   padding: 0 20px 0 0; 
+   							   padding: 0 20px 0 0;
+   							   font-weight:bold; 
    							  }
    	#board_form table td { padding: 6px 0;
    						  position: relative;
@@ -106,6 +109,7 @@
 				  		  		display: block; 
 				 		   		text-align: center; 
 				 		  		margin: 0 auto;
+				 		  		cursor:pointer;
 				 		 	  }
 	.cancel_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
@@ -123,6 +127,7 @@
 				  		 	  display: block; 
 				 		 	  text-align: center; 
 				 		 	  margin: 0 auto;
+				 		 	  cursor:pointer;
 				 			}	
 </style>
 </head>

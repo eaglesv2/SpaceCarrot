@@ -100,7 +100,7 @@
 				  	  height: 30px;
 				  	  float: left;
 				  	  font-size: 16pt;
-				  	  text-align: right;
+				  	  text-align: left;
 				  	  margin-right: 0px;
 				  	}
 	  #search button { margin-left: 0px;
@@ -221,11 +221,14 @@
 
 				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-
-       					<img src = "data:x-image/jpg;base64,${article.repImage}" >
-        					
-       					<p><c:out value="${article.subject}"></c:out></p>
-       					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
+						<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
+       						<img src = "data:x-image/jpg;base64,${article.repImage}" >
+       					</a>
+        				
+        				<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">	
+       						<p><c:out value="${article.subject}"></c:out></p>
+       					</a>
+       					<span class = "price"><%-- <% price %>원 --%>${article.price}원</span>
        					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
 
