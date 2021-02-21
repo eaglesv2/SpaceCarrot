@@ -83,14 +83,14 @@ var num = 1;
 	background:black;
 }
 #bottomLine #category2{
-	display:none;
+	display:block;
 	margin-left:444px;
 	width:30px;
 	height:2px;
 	background:black;
 }
 #bottomLine #category3{
-	display:block;
+	display:none;
 	margin-left:550px;
 	width:32px;
 	height:2px;
@@ -221,7 +221,7 @@ td {
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><a href="Community_List.jsp"><p>커뮤니티</p></a></li>
+				<li class="title_wrap"><a href="Community_List_Default.jsp"><p>커뮤니티</p></a></li>
 			</ul>
 		</div>
 
