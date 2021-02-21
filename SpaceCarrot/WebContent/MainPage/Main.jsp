@@ -26,7 +26,7 @@
         });
         $(document).ready(function(){    
             $("#header").load("../Base/Header.jsp");
-            $("#footer").load("../Base/footer.html");
+            
         })
         
       </script>
@@ -95,22 +95,11 @@
                         <tr>
                             <th><h1><a href="">커뮤니티 인기글</a></h1></th>
                         </tr>
-                        
+                    <c:forEach var="community_Hotarticle" items="${communityHot_VO}">
                         <tr>
-                            <td>게시글1</td>
+                            <td><a href="Read_Community.do?no=${community_Hotarticle.postNum}">${community_Hotarticle.subject}</a></td>
                         </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr id="end-tr">
-                            <td>게시글1</td>
-                        </tr>
+                    </c:forEach>
                     </table>
                 </div>
                 
@@ -151,15 +140,15 @@
                             <h2>쏘핫</h2></a>
                     </div>
                     <div class="card">
-                        <a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지">
+                        <a href="../view.eat/eatplace2.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지">
                             <h2>광장시장</h2></a>
                     </div>
                     <div class="card">
-                        <a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img3.jpg" alt="호두나무카페 대표 이미지">
+                        <a href="../view.eat/eatplace3.html"><img src="../img/eatplace_img3.jpg" alt="호두나무카페 대표 이미지">
                             <h2>호두나무카페</h2></a>
                     </div>
                     <div class="card">
-                        <a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img4.jpg" alt="성곡미술관찻집 대표 이미지">
+                        <a href="../view.eat/eatplace4.html"><img src="../img/eatplace_img4.jpg" alt="성곡미술관찻집 대표 이미지">
                             <h2>성곡미술관찻집</h2></a>
                     </div>
                 </div>
@@ -178,7 +167,7 @@
                         <h2> 
                         	<a href="Read_Commerce.do?no=${commerce_article.postNum}">${commerce_article.subject}</a>
                         </h2>
-                        <p>${commerce_article.price}</p>
+                        <p>${commerce_article.price}원</p>
                     </div>
                 </c:forEach>
                    <!--  <div class="card">
@@ -199,9 +188,14 @@
                 </div>
 
             </div>
-    
-            <div id="footer">
-
+            
+      <div id="footer">
+			<ul>
+				<li><a href="../MainPage/Main.jsp"><img src = "../img/MainLogo.png" alt = "우주당근"></a></li>
+				<li><p>(주)우주당근 대표이사 : 박재영 이준우 임승묵 임의정 정현수 정회승</p>
+					<p>대표번호: 02-123-7777 | e-mail: spaceCarrot@xxxxxx.xxx</p>
+					<p>Copyright ⓒ 2021 kt corp. all rights reserved</p></li>
+			</ul>
             </div>
         </div>
     </div>

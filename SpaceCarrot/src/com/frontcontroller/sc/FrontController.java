@@ -387,15 +387,11 @@ public class FrontController extends HttpServlet {
 		case "/view.board/Search_Category_Commerce.do":
 
 			category = (String) request.getParameter("category");
-			System.out.println("frontcontroller first category = " + category);
 			if (category == null) {
-				System.out.println("first input category is null");
 				category = (String) request.getAttribute("category");
 			}
-			System.out.println("frontcontroller second category = " + category);
-			CommerceInsert c3 = new CommerceInsert();
 
-			System.out.println(category);
+			CommerceInsert c3 = new CommerceInsert();
 
 			try {
 				CommerceArticlePageVO articlePage5 = c3.search_category(request, response);
@@ -419,6 +415,15 @@ public class FrontController extends HttpServlet {
 			try {
 				MainVO = ma.readExecute(request, response);
 				request.setAttribute("community_VO", MainVO);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			List<SpaceCarrotVO_Board_Community> MainHotVO = null;
+			try {
+				MainHotVO = ma.readExecute_hot(request, response);
+				request.setAttribute("communityHot_VO", MainHotVO);
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

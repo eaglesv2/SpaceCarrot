@@ -23,7 +23,7 @@ public class Commerce_ListArticleService {
 	// 중고거래 게시글을 카테고리 검색시 보여주는 메소드 입니다.
 	public CommerceArticlePageVO getArticlePage_select_category(int pageNum, String category) throws SQLException, IOException, ClassNotFoundException {
 		boardDao = new SpaceCarrotDAO_Board_Commerce();
-		int total = boardDao.selectCount();
+		int total = boardDao.selectCount(category);
 		List<CommerceArticleVO> content = boardDao.select_category((pageNum - 1) * size, size, category);
 		return new CommerceArticlePageVO(total, pageNum, size, content);
 	}

@@ -37,7 +37,7 @@
 	#header ul li { display : inline; /* 가로나열 */
 					vertical-align : middle; /* 수직높이 가운데 정렬 */
 			      }
-	.menu { font-size : 16pt; 
+	.menu { font-size : 15pt; 
 		    font-weight : bold;
 		    color : #000000; 
 		    float : left;
@@ -47,7 +47,7 @@
 	.menu ul li:first-child { padding-right: 55px; }
 	.menu ul li:last-child { padding : 0px; }
 	.login { vertical-align : top;  /* 회원가입 로그인 마이페이지 */
-		     font-size : 12pt;
+		     font-size : 10pt;
 		     font-weight : normal;
 		     padding-top : 10px;
 		     padding-right : 7px;

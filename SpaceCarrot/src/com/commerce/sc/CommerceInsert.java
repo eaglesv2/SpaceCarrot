@@ -108,9 +108,7 @@ public class CommerceInsert {
 		if(category == null) {
 			category = (String) request.getParameter("category");
 		}
-		//test
-		System.out.println(category);
-		// 페이지 넘버
+		
 		String pageNoVal = request.getParameter("pageNo");
 		
 		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
