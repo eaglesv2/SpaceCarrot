@@ -1,16 +1,29 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
+<c:if test="${empty articlePage}">
+	<% 
+	String category = "other";
+	request.setAttribute("category", category);
+	RequestDispatcher rd = request.getRequestDispatcher("Search_Category_Commerce.do");
+	  rd.forward(request, response);
+	 %>
+</c:if>
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
+
 </script>
 <style>
       #container { margin : 0 auto;
@@ -30,7 +43,7 @@
 				    }
                 
       #wrap { margin : 0 auto;
-              width : 715px;
+              width : 730px;
               text-align : center;
               margin-left : 183px;
             } 
@@ -56,14 +69,16 @@
                        	    font-weight : bold;
                        	    cursor: pointer;
                     	  }
-      /* #category .menuLink:hover { font-size: 12.5pt; } */
-      .other_tab:after { content: "";
-      					 display: block;
-      					 width: 30px;
-      				     text-align: center;
-      		  		     border-bottom : 2px solid #000;
-      					 margin-top: 8px;
-      				    }
+      /* #category .menuLink:hover { text-decoration : underline; 
+                           		  text-underline-position : under;
+                          		} */
+      .book_tab:after { content: "";
+      					display: block;
+      					width: 148px;
+      				    text-align: center;
+      		  		    border-bottom : 2px solid #000;
+      					margin-top: 8px;
+      				  }
                           
       /* 판매버튼 + 검색창 */
       #sell_btn { float: left; 
@@ -81,7 +96,7 @@
 	  			 		 height: 100%;
 	  			 		 padding: 10px;
 	  			 		 font-size: 18px;
-	  			 		 font-weight: bold;
+	  			 		 font-weight: bold;		
 	  			 		 cursor: pointer; 
 	  			 	}
 				 	   
@@ -114,7 +129,7 @@
 
       
        /* 중고물품 목록 */
-       #items { width: 715px; height: 950px; } /* 왼쪽정렬 해결해야함 ㅠㅠ! */
+       #items { width: 730px; height: 950px; } /* 왼쪽정렬 해결해야함 ㅠㅠ! */
       .row li:last-child { margin-right: 0px; }
       .goods { float : left;
                width : 227px;
@@ -128,12 +143,14 @@
       .goods img { width : 227px;
                    height : 210px;
                    border-bottom: 1px solid #eeeeee;
+                   cursor: pointer;
                  }
       .goods p { margin-top: 10px;
                  margin-left: 10px;
                  margin-bottom: 12px;
                  font-size: 12pt;
                  float: left;
+                 cursor: pointer;
                }
       .price { margin-left : 10px;
                margin-bottom : 15px; 
@@ -168,7 +185,7 @@
 												 			  }
 </style>
 </head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>중고거래_목록</title>
 </head>
 <body>
@@ -189,10 +206,10 @@
        			<ul>
        				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
-       				<li><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
+       				<li class = "book_tab"><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Sports.jsp">스포츠/레저</a></li>
-       				<li class = "other_tab"><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
        			</ul>
        		</div>
        		
@@ -205,83 +222,48 @@
        					<button><img src = "../img/SearchButton.png"></button>
        			</div>
        		</div>
-       		
+       	<c:if test="${not empty articlePage}">
+
        		<div id = "items">
-       			<ul class = "row">
+       			<ul>
+				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품1">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
+       					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
+							<img src = "data:x-image/jpg;base64,${article.repImage}">
+						</a>
+        					
+       					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
+       						<p><c:out value="${article.subject}"></c:out></p>
+       					</a>
+       					<span class = "price">${article.price}</span>
+       					<span class = "time">${article.regDate}</span>
+       					<input type = "hidden" id = "regDate" value = "${article.regDate}">
        				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품2">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품3">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
-       			</ul>
-       			<ul class = "row">
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품4">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품5">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품6">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
-       			</ul>
-       			<ul class = "row">
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품7">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품8">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
-       				<li class = "goods">
-       					<img src = "../img/MainLogo.png" alt = "물품9">
-       					<p>제목</p>
-       					<span class = "price"><%-- <% price %>원 --%>가격</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>시간</span>
-       				</li>
+       				</c:forEach>
        			</ul>
        		</div>
        		
+       	</c:if>
        		<div id = "page_number">
-       			<ul>
-       				<li><a href="#"><</a></li>
-					<li><a href="#">1</a></li>  
-    				<li><a href="#">2</a></li>  
-    				<li><a href="#">3</a></li>  
-   					<li><a href="#">4</a></li>  
-    				<li><a href="#">5</a></li>  
-   					<li><a href="#">6</a></li>  
-   					<li><a href="#">7</a></li>  
-    				<li><a href="#">8</a></li>
-    				<li><a href="#">></a></li>
-       			</ul>
+       		<!-- 게시판 이동 항목 -->
+	<c:if test="${articlePage.hasArticles()}">
+		<ul>
+			<li>
+				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
+					test="${articlePage.startPage > 5}">
+					<a
+						href="Search_Category_Commerce.do?category=other&pageNo=${articlePage.startPage - 5}">[이전]</a>
+				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
+					begin="${articlePage.startPage}" end="${articlePage.endPage}">
+					<a href="Search_Category_Commerce.do?category=other&pageNo=${pNo}">${pNo}</a>
+				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
+					test="${articlePage.endPage < articlePage.totalPages}">
+					<a
+						href="Search_Category_Commerce.do?category=other&pageNo=${articlePage.startPage + 5 }">[다음]</a>
+				</c:if>
+			</li>
+		</ul>
+	</c:if>
        		</div>
        </div>
        <div id = "footer">
