@@ -39,10 +39,11 @@ public class Community_ListArticleService {
 	
 	public Community_ArticlePage getArticlePage_search(int pageNum, String searchArea) throws ClassNotFoundException {
 		// 검색할 값을 입력 받은 후 ArticlePage로 반환
+		String search = searchArea;
 		try {
 			boardDao = new SpaceCarrotDAO_Board_Community();
-			int total = boardDao.selectCount();
-			List<SpaceCarrotVO_Board_Community> content = boardDao.select_Search(searchArea, (pageNum - 1) * size, size);
+			int total = boardDao.selectCount(search);
+			List<SpaceCarrotVO_Board_Community> content = boardDao.select_Search(search, (pageNum - 1) * size, size);
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

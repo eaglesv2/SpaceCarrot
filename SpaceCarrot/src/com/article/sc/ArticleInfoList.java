@@ -100,7 +100,7 @@ public class ArticleInfoList implements ArticleImpl {
 		String userID = (String) session.getAttribute("sessionID");
 		String userNickName = (String) session.getAttribute("sessionNickName");
 		String pageNoVal = request.getParameter("pageNo");
-		
+		String search = request.getParameter("searchArea");
 		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
 		listService = new Community_ListArticleService();
 	
@@ -111,7 +111,7 @@ public class ArticleInfoList implements ArticleImpl {
 		}
 		
 		try {
-			articlePage= listService.getArticlePage_search(pageNo, category);
+			articlePage= listService.getArticlePage_search(pageNo, search);
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
