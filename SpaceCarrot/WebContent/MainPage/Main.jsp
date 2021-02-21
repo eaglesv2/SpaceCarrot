@@ -75,7 +75,7 @@
                 
                     <table id="centertable">
                         <tr>
-                            <th><h1><a href="">커뮤니티 카테고리1</a></h1></th>
+                            <th><h1><a href="../view.community/Community_List.jsp">커뮤니티 카테고리1</a></h1></th>
                         </tr>
                         
                         <tr>
@@ -98,7 +98,7 @@
                 
                     <table id="righttable">
                         <tr>
-                            <th><h1><a href="">커뮤니티 카테고리2</a></h1></th>
+                            <th><h1><a href="../view.community/Community_List.jsp">커뮤니티 카테고리2</a></h1></th>
                         </tr>
                         
                         <tr>
@@ -123,7 +123,7 @@
             <div id="content3">
                 <div id="con-title">
                     <a href=""><h2>볼거리</h2></a>
-                    <p><a href="">+더보기</a></p>
+                    <p><a href="../view.see/SeePlace_List.html">+더보기</a></p>
                </div>
                 <div id="cardset">
                     <div class="card">
@@ -152,7 +152,7 @@
             <div id="content4">
                 <div id="con-title">
                     <a href=""><h2>먹거리</h2></a>
-                    <p><a href="">+더보기</a></p>
+                    <p><a href="../view.eat/EatPlace_List.html">+더보기</a></p>
                </div>
                 <div id="cardset">
                     <div class="card">
@@ -179,7 +179,7 @@
             </div>
             <div id="content5">
                 <div id="con-title">
-                    <a href=""><h2>중고거래</h2></a>
+                    <a href="../view.board/Board_Commerce_List_Fashion.jsp"><h2>중고거래</h2></a>
                     <p><a href="">+더보기</a></p>
                </div>
                 <div id="cardset">
