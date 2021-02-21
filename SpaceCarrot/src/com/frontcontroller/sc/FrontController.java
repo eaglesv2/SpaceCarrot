@@ -253,7 +253,7 @@ public class FrontController extends HttpServlet {
 		case "/view.community/Read_Community.do":
 			// 게시글번호를 가져오고 int로 변환한다
 			postNum = Integer.parseInt(request.getParameter("no"));
-
+			System.out.println("postNum : " + postNum);
 			// 게시글 읽기 서비스 객체 생성
 			Community_ReadArticleService readService = new Community_ReadArticleService();
 			SpaceCarrotVO_Board_Community article_VO;
@@ -429,6 +429,36 @@ public class FrontController extends HttpServlet {
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			break;
+		case "/MainPage/Read_Community.do":
+			// 게시글번호를 가져오고 int로 변환한다
+			postNum = Integer.parseInt(request.getParameter("no"));
+			System.out.println("postNum : " + postNum);
+			// 게시글 읽기 서비스 객체 생성
+			Community_ReadArticleService MainreadService = new Community_ReadArticleService();
+			SpaceCarrotVO_Board_Community Mainarticle_VO;
+			try {
+				// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
+				Mainarticle_VO = MainreadService.getArticle(postNum, true);
+				request.setAttribute("article_VO", Mainarticle_VO);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+
+			// 게시글 코멘트 읽기
+			Community_CommentAction MainPageca = new Community_CommentAction();
+			List<CommentVO> MainPagecommentVO = null;
+			try {
+				MainPagecommentVO = MainPageca.readExecute(request, response, postNum);
+				request.setAttribute("comment_VO", MainPagecommentVO);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			str = "/view.community/Community_Comment_3ja.jsp";
+
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+			break;
+
 		} // case-end
 	} // http -end
 }
