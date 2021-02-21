@@ -26,7 +26,7 @@
         });
         $(document).ready(function(){    
             $("#header").load("../Base/Header.jsp");
-            $("#footer").load("../Base/footer.html");
+            
         })
         
       </script>
@@ -188,9 +188,14 @@
                 </div>
 
             </div>
-    
-            <div id="footer">
-
+            
+      <div id="footer">
+			<ul>
+				<li><a href="../MainPage/Main.jsp"><img src = "../img/MainLogo.png" alt = "우주당근"></a></li>
+				<li><p>(주)우주당근 대표이사 : 박재영 이준우 임승묵 임의정 정현수 정회승</p>
+					<p>대표번호: 02-123-7777 | e-mail: spaceCarrot@xxxxxx.xxx</p>
+					<p>Copyright ⓒ 2021 kt corp. all rights reserved</p></li>
+			</ul>
             </div>
         </div>
     </div>
