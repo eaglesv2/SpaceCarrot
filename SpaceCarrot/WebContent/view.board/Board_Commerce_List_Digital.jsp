@@ -204,8 +204,8 @@
        		<div id = "category">
        			<ul>
        				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
-       				<li class = "digital_tab"><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
-       				<li class = "book_tab"><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
+       				<li><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Sports.jsp">스포츠/레저</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
