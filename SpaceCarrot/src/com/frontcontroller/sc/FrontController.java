@@ -424,32 +424,42 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			List<CommerceArticleVO> MainCommerceVO = null;
+			try {
+				MainCommerceVO = ma.commerce_readExecute(request, response);
+				request.setAttribute("commerce_VO", MainCommerceVO);
+			} catch (ClassNotFoundException | SQLException e2) {
+				// TODO Auto-generated catch block;
+				e2.printStackTrace();
+			}
+			
 			str = "/MainPage/Main.jsp";
 			
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			break;
+			
 		case "/MainPage/Read_Community.do":
 			// 게시글번호를 가져오고 int로 변환한다
 			postNum = Integer.parseInt(request.getParameter("no"));
 			System.out.println("postNum : " + postNum);
 			// 게시글 읽기 서비스 객체 생성
-			Community_ReadArticleService MainreadService = new Community_ReadArticleService();
-			SpaceCarrotVO_Board_Community Mainarticle_VO;
+			Community_ReadArticleService MainReadService = new Community_ReadArticleService();
+			SpaceCarrotVO_Board_Community MainArticle_VO;
 			try {
 				// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
-				Mainarticle_VO = MainreadService.getArticle(postNum, true);
-				request.setAttribute("article_VO", Mainarticle_VO);
+				MainArticle_VO = MainReadService.getArticle(postNum, true);
+				request.setAttribute("article_VO", MainArticle_VO);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
 
 			// 게시글 코멘트 읽기
 			Community_CommentAction MainPageca = new Community_CommentAction();
-			List<CommentVO> MainPagecommentVO = null;
+			List<CommentVO> MainPageCommentVO = null;
 			try {
-				MainPagecommentVO = MainPageca.readExecute(request, response, postNum);
-				request.setAttribute("comment_VO", MainPagecommentVO);
+				MainPageCommentVO = MainPageca.readExecute(request, response, postNum);
+				request.setAttribute("comment_VO", MainPageCommentVO);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -458,7 +468,37 @@ public class FrontController extends HttpServlet {
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			break;
+			
+			// 중고거래 게시글 읽기 컨트롤러
+			case "/MainPage/Read_Commerce.do":
+				// 게시글번호를 가져오고 int로 변환한다
+				postNum = Integer.parseInt(request.getParameter("no"));
 
+				// 게시글 읽기 서비스 객체 생성
+				Commerce_ReadArticleService MainreadService1 = new Commerce_ReadArticleService();
+				CommerceArticleVO main_commerce_article_VO;
+				try {
+					// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
+					main_commerce_article_VO = MainreadService1.getArticle(postNum, true);
+					request.setAttribute("commerce_article_VO", main_commerce_article_VO);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+
+				// 게시글 코멘트 읽기
+				Commerce_CommentAction MainPageca1 = new Commerce_CommentAction();
+				List<CommentVO> main_commerce_comment_VO = null;
+				try {
+					main_commerce_comment_VO = MainPageca1.readExecute(request, response, postNum);
+					request.setAttribute("commerce_comment_VO", main_commerce_comment_VO);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				str = "/view.board/Board_Commerce_purchase_3ja.jsp";
+				rd = request.getRequestDispatcher(str);
+				rd.forward(request, response);
+
+				break;
 		} // case-end
 	} // http -end
 }

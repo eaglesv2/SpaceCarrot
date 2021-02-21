@@ -21,6 +21,7 @@ import com.commerce.sc.CommerceArticleVO;
 
 import spacecarrotDBConn.SpaceCarrotDBConn;
 import spacecarrotVO.SpaceCarrotVO_Board_Commerce;
+import spacecarrotVO.SpaceCarrotVO_Board_Community;
 
 public class SpaceCarrotDAO_Board_Commerce {
 	private Connection con;
@@ -318,4 +319,21 @@ public class SpaceCarrotDAO_Board_Commerce {
 	
 	}
 	
+	// 메인에 중고거래 게시판 글 올리는 메소드
+	public List<CommerceArticleVO> getSubject_Commerce() throws SQLException, IOException {
+       
+        String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " ORDER BY "
+                + COL_POSTNUM + " DESC LIMIT 4";
+        List<CommerceArticleVO> result = new ArrayList<CommerceArticleVO>();
+        try {
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            
+            result = convertVO(rs);
+            
+            return result;
+        } finally {
+
+        }
+	}
 }
