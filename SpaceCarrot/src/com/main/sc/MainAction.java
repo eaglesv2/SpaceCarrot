@@ -31,6 +31,19 @@ public class MainAction {
 		return MainVO;
 	}
 	
+	public List<SpaceCarrotVO_Board_Community> readExecute_hot(HttpServletRequest request, HttpServletResponse response) throws SQLException, UnsupportedEncodingException, ClassNotFoundException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		// 코멘트 읽기 
+		
+		SpaceCarrotDAO_Board_Community CommunityDAO = new SpaceCarrotDAO_Board_Community();
+		List<SpaceCarrotVO_Board_Community> MainVO = new ArrayList<>();
+		MainVO = CommunityDAO.getHotSubject_Community();
+		CommunityDAO.getAllInfoClose();
+		return MainVO;
+	}
+	
+	
 	public List<CommerceArticleVO> commerce_readExecute(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");

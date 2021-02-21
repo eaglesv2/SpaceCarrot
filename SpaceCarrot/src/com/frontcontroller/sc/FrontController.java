@@ -419,6 +419,15 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			List<SpaceCarrotVO_Board_Community> MainHotVO = null;
+			try {
+				MainHotVO = ma.readExecute_hot(request, response);
+				request.setAttribute("communityHot_VO", MainHotVO);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			List<CommerceArticleVO> MainCommerceVO = null;
 			try {
 				MainCommerceVO = ma.commerce_readExecute(request, response);
