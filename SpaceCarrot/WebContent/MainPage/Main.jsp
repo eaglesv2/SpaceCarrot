@@ -83,22 +83,10 @@
                         <tr>
                             <th><h1><a href="">커뮤니티 최신글</a></h1></th>
                         </tr>
-                    <c:forEach var="article" items="${community_VO}">
+                    <c:forEach var="community_article" items="${community_VO}">
                         <tr>
-                            <td><a href="Read_Community.do?no=${article.postNum}">${article.subject}</a></td>
+                            <td><a href="Read_Community.do?no=${community_article.postNum}">${community_article.subject}</a></td>
                         </tr>
-                        <!-- <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr id="end-tr">
-                            <td>게시글1</td>
-                        </tr> -->
                     </c:forEach>
                     </table>
                 
@@ -186,11 +174,22 @@
             </div>
             <div id="content5">
                 <div id="con-title">
-                    <a href=""><h2>중고거래</h2></a>
-                    <p><a href="">+더보기</a></p>
-               </div>
+                    <a href="../view.board/Board_Commerce_List.jsp"><h2>중고거래</h2></a>
+                    <p><a href="../view.board/Board_Commerce_List.jsp">+더보기</a></p>
+                </div>
                 <div id="cardset">
+                <c:forEach var="commerce_article" items="${commerce_VO}">             
                     <div class="card">
+                        <a href="Read_Commerce.do?no=${commerce_article.postNum}">
+                        	<img src = "data:x-image/jpg;base64,${commerce_article.repImage}" >
+                        </a>
+                        <h2> 
+                        	<a href="Read_Commerce.do?no=${commerce_article.postNum}">${commerce_article.subject}</a>
+                        </h2>
+                        <p>${commerce_article.price}</p>
+                    </div>
+                </c:forEach>
+                   <!--  <div class="card">
                         <img src="../img/AttractionsBanner.jpg" alt="">
                         <h2>제목</h2>
                         <p>가격</p>
@@ -204,12 +203,7 @@
                         <img src="../img/AttractionsBanner.jpg" alt="">
                         <h2>제목</h2>
                         <p>가격</p>
-                    </div>
-                    <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="">
-                        <h2>제목</h2>
-                        <p>가격</p>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>
