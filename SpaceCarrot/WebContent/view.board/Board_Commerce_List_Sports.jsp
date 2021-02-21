@@ -52,16 +52,16 @@
       			  margin-top: 20px;
       			   }   
       #category ul { height : 40x; 
-      			     padding : 0;
+      			     
       			   }    
       #category ul li { list-style : none;
                     	color : #000000;
                    		float : left;
                     	text-align: center;
                     	vertical-align: middle;
-                    	padding-right :35px;
+                    	margin-right :35px;
                  	  }
-      #category ul li:last-child{ padding : 0; }
+      #category ul li:last-child{ margin-right : 0; }
       #category .menuLink { text-decoration : none;
                        	    color : #000000;
                        	    display : block;
@@ -72,13 +72,12 @@
       /* #category .menuLink:hover { text-decoration : underline; 
                            		  text-underline-position : under;
                           		} */
-      .book_tab:after { content: "";
-      					display: block;
-      					width: 148px;
-      				    text-align: center;
-      		  		    border-bottom : 2px solid #000;
-      					margin-top: 8px;
-      				  }
+	/*탭 */
+	#category ul  li:nth-child(5){
+    border-bottom: 2px solid #000;
+    padding-bottom: 8px;
+		
+		}
                           
       /* 판매버튼 + 검색창 */
       #sell_btn { float: left; 
