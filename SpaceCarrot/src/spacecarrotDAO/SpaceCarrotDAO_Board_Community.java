@@ -211,7 +211,31 @@ public class SpaceCarrotDAO_Board_Community {
 
 		}
 	}
+// 카테고리 총 게시글 카운트 메소드
+	public int selectCount(String category) {
+		// 게시글 수 int로 반환 메서드
+		Statement stmt = null;
+		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE " + COL_CATEGORY + " = ? ";
+		
+		try {
+			pstmt = con.prepareStatement(category);
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery(sql);
+			if (rs.next()) {
+				System.out.println("count success");
+				return rs.getInt(1);
+			}
+			return 0;
+		} catch (SQLException e) {
+			System.out.println("count Exception");
+			return 0;
+		} catch (NullPointerException e) {
+			System.out.println("nullpointerror");
+			return 0;
+		} finally {
 
+		}
+	}
 	public List<SpaceCarrotVO_Board_Community> select(int startRow, int size) throws SQLException {
 		// 1번부터 size 만큼의 게시글 수를 List에 담는 메소드
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "

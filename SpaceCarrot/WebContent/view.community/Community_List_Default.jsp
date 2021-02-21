@@ -231,7 +231,7 @@ td {
             <form action="Category_Community.do" method="post">
                <ul>
                   <li><input type="submit" name="category" value="자유"/></li>
-                  <li><input type="submit"   name="category"  value="정보"></li>
+                  <li><input type="submit" name="category"  value="정보"></li>
                   <li><input type="submit" name="category" value="QnA"/></li>
                   <li><input type="submit" name="category" value="리뷰" /></li>
                </ul> 
