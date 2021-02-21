@@ -16,12 +16,11 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import com.comment.sc.CommentVO;
 import com.commerce.sc.CommerceArticleVO;
 
 import spacecarrotDBConn.SpaceCarrotDBConn;
 import spacecarrotVO.SpaceCarrotVO_Board_Commerce;
-import spacecarrotVO.SpaceCarrotVO_Board_Community;
+
 
 public class SpaceCarrotDAO_Board_Commerce {
 	private Connection con;
@@ -335,5 +334,43 @@ public class SpaceCarrotDAO_Board_Commerce {
         } finally {
 
         }
+	}
+	
+	//  중고거래 게시판 검색 시 검색어에 따른 결과값 (카테고리 O)
+	public List<CommerceArticleVO> getSearch_Product_Commerce(int startRow, int size, String search) throws SQLException, IOException {
+	       
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " WHERE " +
+	       			  COL_SUBJECT + " LIKE ?";
+		List<CommerceArticleVO> result = new ArrayList<CommerceArticleVO>();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,"%"+search+"%");
+			rs = pstmt.executeQuery();
+	            
+			result = convertVO(rs);
+	            
+			return result;
+		} finally {
+
+		}
+	}
+	//  중고거래 게시판 검색 시 검색어에 따른 결과값 (카테고리 O)
+	public List<CommerceArticleVO> getSearch_Category_Product_Commerce(int startRow, int size, String category, String search) throws SQLException, IOException {
+	       
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + " WHERE " +
+	       			  COL_CATEGORY + " = ? AND " + COL_SUBJECT + " LIKE ?";
+		List<CommerceArticleVO> result = new ArrayList<CommerceArticleVO>();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setString(2, "%"+search+"%");
+			rs = pstmt.executeQuery();
+	            
+			result = convertVO(rs);
+	            
+			return result;
+		} finally {
+
+		}
 	}
 }

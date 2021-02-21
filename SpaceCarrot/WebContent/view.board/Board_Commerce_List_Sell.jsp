@@ -107,7 +107,7 @@
    						  display: block;
    						}
    	
-    #btn { margin-left : 255px; }
+    #btn { margin-left : 255px }
     #btn ul li { list-style: none; }
 	.complete_btn_wrap { text-align: center; 
 			   			 margin: 20px 30px 30px;
@@ -125,6 +125,7 @@
 				  		  		display: block; 
 				 		   		text-align: center; 
 				 		  		margin: 0 auto;
+				 		  		cursor: pointer;
 				 		 	  }
 	.cancel_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
@@ -142,6 +143,7 @@
 				  		 	  display: block; 
 				 		 	  text-align: center; 
 				 		 	  margin: 0 auto;
+				 		 	  cursor: pointer;
 				 			}
 </style>
 </head>
@@ -180,12 +182,12 @@ session.getAttribute("sessionNickName");
 						<th><span>카테고리</span></th>
 						<td>
 							<select name="category">
-								<option value="의류/패션" selected>의류/패션
-								<option value="디지털/가전">디지털/가전
-								<option value="도서/티켓/취미/애완">도서/티켓/취미/애완
-								<option value="생활/문구/가구">생활/문구/가구
-								<option value="스포츠/레저">스포츠/레저		
-								<option value="기타">기타					
+								<option value="fashion" selected>의류/패션
+								<option value="digit">디지털/가전
+								<option value="book">도서/티켓/취미/애완
+								<option value="life">생활/문구/가구
+								<option value="sports">스포츠/레저		
+								<option value="other">기타					
 							</select>
 						</td>
 						

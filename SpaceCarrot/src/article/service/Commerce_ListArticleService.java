@@ -26,5 +26,21 @@ public class Commerce_ListArticleService {
 		int total = boardDao.selectCount();
 		List<CommerceArticleVO> content = boardDao.select_category((pageNum - 1) * size, size, category);
 		return new CommerceArticlePageVO(total, pageNum, size, content);
-	}	
+	}
+	
+	// 중고거래 물품+카테고리 검색시 보여주는 메소드
+	public CommerceArticlePageVO getArticlePage_search_category_product(int pageNum, String category, String search) throws ClassNotFoundException, SQLException, IOException {
+		boardDao = new SpaceCarrotDAO_Board_Commerce();
+		int total = boardDao.selectCount();
+		List<CommerceArticleVO> content = boardDao.getSearch_Category_Product_Commerce((pageNum - 1) * size, size, category, search);
+		return new CommerceArticlePageVO(total, pageNum, size, content);
+	}
+	
+	// 중고거래 물품 검색시 보여주는 메소드
+	public CommerceArticlePageVO getArticlePage_search_product(int pageNum, String search) throws ClassNotFoundException, SQLException, IOException {
+		boardDao = new SpaceCarrotDAO_Board_Commerce();
+		int total = boardDao.selectCount();
+		List<CommerceArticleVO> content = boardDao.getSearch_Product_Commerce((pageNum - 1) * size, size, search);
+		return new CommerceArticlePageVO(total, pageNum, size, content);
+	}
 }

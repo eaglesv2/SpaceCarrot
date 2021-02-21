@@ -8,7 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <c:if test="${empty articlePage}">
-	<% RequestDispatcher rd = request.getRequestDispatcher("Commerce_Reset.do");
+	<% String category = request.getParameter("category");
+	   RequestDispatcher rd = request.getRequestDispatcher("Commerce_Reset.do");
 	   rd.forward(request, response);
 	 %>
 </c:if>
@@ -101,7 +102,7 @@
 				  	  float: left;
 				  	  font-size: 16pt;
 				  	  text-align: left;
-				  	  margin-right: 0px;  
+				  	  margin-right: 0px;
 				  	}
 	  #search button { margin-left: 0px;
 	 			 	   background-color: #fc585e;
@@ -210,14 +211,10 @@
 							<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
 					 <% } %>
        			</div>
-       			
-       			<form action="Commerce_Search_Product.do" method="post">
        			<div id = "search">
-       					<input type = "text" name = "searchArea">
-       					<button type = "submit"><img src = "../img/SearchButton.png"></button>
+       					<input type = "text" name = "searchArea" value = <%= (String)request.getAttribute("search") %>>
+       					<button><img src = "../img/SearchButton.png"></button>
        			</div>
-       			</form>
-       			
        		</div>
        	<c:if test="${not empty articlePage}">
 
