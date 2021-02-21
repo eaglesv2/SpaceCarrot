@@ -380,10 +380,12 @@ public class FrontController extends HttpServlet {
 			case "/view.board/Search_Category_Commerce.do":
 				
 				String category = (String) request.getParameter("category");
+				System.out.println("frontcontroller first category = " + category);
 				if(category == null) {
+				System.out.println("first input category is null");
 				category = (String) request.getAttribute("category");
 				}
-				
+				System.out.println("frontcontroller second category = " + category);
 				CommerceInsert c3 = new CommerceInsert();
 				
 				System.out.println(category);
@@ -391,7 +393,7 @@ public class FrontController extends HttpServlet {
 				try {
 					CommerceArticlePageVO articlePage5 = c3.search_category(request, response);
 					request.setAttribute("articlePage", articlePage5);
-					str = "Board_Commerce_List_Book.jsp";
+					str = c3.find_url(category);
 				} catch (ClassNotFoundException | SQLException e) {
 					request.setAttribute("articlePage", articlePage);
 					str = "error.jsp";
