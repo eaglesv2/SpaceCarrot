@@ -197,7 +197,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>중고거래</p></li>
+				<li class = "title_wrap"><a href = "Board_Commerce_List.jsp"><p>중고거래</p></a></li>
 			</ul>
        	</div>
        	
@@ -249,10 +249,9 @@
 	<c:if test="${articlePage.hasArticles()}">
 		<ul>
 			<li>
-				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-					test="${articlePage.startPage > 5}">
-					<a
-						href="Search_Category_Commerce.do?category=fashion&pageNo=${articlePage.startPage - 5}">[이전]</a>
+				<!-- 현재페이지가 5 이상일 시 이전 링크--> 
+				<c:if test="${articlePage.startPage > 5}">
+					<a href="Search_Category_Commerce.do?category=fashion&pageNo=${articlePage.startPage - 5}">[이전]</a>
 				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
 					begin="${articlePage.startPage}" end="${articlePage.endPage}">
 					<a href="Search_Category_Commerce.do?category=fashion&pageNo=${pNo}">${pNo}</a>
