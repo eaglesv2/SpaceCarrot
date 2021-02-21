@@ -254,7 +254,7 @@ li {
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><a href="Community_List.jsp"><p>게시글</p></a></li>
+				<li class="title_wrap"><a href="Community_List_Default.jsp"><p>게시글</p></a></li>
 			</ul>
 		</div>
 
