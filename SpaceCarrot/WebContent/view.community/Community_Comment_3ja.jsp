@@ -270,7 +270,7 @@ li {
 		<hr class="my-hr2">
 
 
-			<div id="gprice">댓글</div>
+		<div id="gprice">댓글</div>
 		<c:if test="${not empty comment_VO}">
 			<hr class="my-hr1">
 			<c:forEach var="commentVO" items="${comment_VO}">
@@ -305,9 +305,8 @@ li {
 				<textarea id="text" name="text" rows=30></textarea>
 				<div id="dapbutton">
 				<input type="hidden" name="no" value="${article_VO.postNum}">
-					<label id="checkbox1"><input type="checkbox" name="secret"
-						value="secret1"> 비밀 답글 </label> <input class="button"
-						type="submit" value="등록">
+					<label id="checkbox1"><input type="checkbox" name="secret" value="secret1"> 비밀 답글 </label> 
+					<input class="button" type="submit" value="등록">
 				</div>
 			</div>
 		</form>
