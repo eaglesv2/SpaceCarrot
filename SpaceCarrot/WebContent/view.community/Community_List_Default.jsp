@@ -285,8 +285,7 @@ td {
                <c:forEach var="article" items="${articlePage.content}">
                   <tr>
                      <td>${article.postNum}</td>
-                     <td><a
-                        href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out
+                     <td><a href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out
                               value="${article.subject}"></c:out></a></td>
                      <td>${article.userNickName}</td>
                      <td>${article.views}</td>
