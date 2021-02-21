@@ -285,8 +285,7 @@ td {
                <c:forEach var="article" items="${articlePage.content}">
                   <tr>
                      <td>${article.postNum}</td>
-                     <td><a
-                        href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out
+                     <td><a href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out
                               value="${article.subject}"></c:out></a></td>
                      <td>${article.userNickName}</td>
                      <td>${article.views}</td>
@@ -297,17 +296,15 @@ td {
                <c:if test="${articlePage.hasArticles()}">
                   <tr>
                      <td colspan="5">
-                        <!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-                           test="${articlePage.startPage > 5}">
-                           <a
-                              href="Reset_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-                        </c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-                           begin="${articlePage.startPage}" end="${articlePage.endPage}">
+                        <!-- 현재페이지가 5 이상일 시 이전 링크--> 
+                        <c:if test="${articlePage.startPage > 5}">
+                           <a href="Reset_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+                        </c:if> <!-- startPage to endPage --> 
+                        <c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
                            <a href="Reset_Community.do?pageNo=${pNo}">[${pNo}]</a>
-                        </c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
-                           test="${articlePage.endPage < articlePage.totalPages}">
-                           <a
-                              href="Reset_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+                        </c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> 
+                        	<c:if test="${articlePage.endPage < articlePage.totalPages}">
+                           <a href="Reset_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
                         </c:if>
                      </td>
                   </tr>
