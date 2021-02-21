@@ -1,6 +1,3 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,19 +8,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../Base/reset.css" />
 <c:if test="${empty articlePage}">
-	<% 
-	String category = "life";
-	request.setAttribute("category", category);
-	RequestDispatcher rd = request.getRequestDispatcher("Search_Category_Commerce.do");
-	  rd.forward(request, response);
+	<% String category = request.getParameter("category");
+	   RequestDispatcher rd = request.getRequestDispatcher("Commerce_Reset.do");
+	   rd.forward(request, response);
 	 %>
 </c:if>
+
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
-
 </script>
 <style>
       #container { margin : 0 auto;
@@ -52,16 +47,16 @@
       			  margin-top: 20px;
       			   }   
       #category ul { height : 40x; 
-      			     
+      			     padding : 0;
       			   }    
       #category ul li { list-style : none;
                     	color : #000000;
                    		float : left;
                     	text-align: center;
                     	vertical-align: middle;
-                    	margin-right :35px;
+                    	padding-right :35px;
                  	  }
-      #category ul li:last-child{ margin-right : 0; }
+      #category ul li:last-child{ padding : 0; }
       #category .menuLink { text-decoration : none;
                        	    color : #000000;
                        	    display : block;
@@ -72,12 +67,6 @@
       /* #category .menuLink:hover { text-decoration : underline; 
                            		  text-underline-position : under;
                           		} */
-	/*탭 */
-	#category ul li:nth-child(4){
-    border-bottom: 2px solid #000;
-    padding-bottom: 8px;
-		
-		}
                           
       /* 판매버튼 + 검색창 */
       #sell_btn { float: left; 
@@ -113,7 +102,7 @@
 				  	  float: left;
 				  	  font-size: 16pt;
 				  	  text-align: left;
-				  	  margin-right: 0px;  
+				  	  margin-right: 0px;
 				  	}
 	  #search button { margin-left: 0px;
 	 			 	   background-color: #fc585e;
@@ -203,12 +192,14 @@
        	<div id = "wrap">
        		<div id = "category">
        			<ul>
+       				<form action="Commerce_Search.do" method="post">
        				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Sports.jsp">스포츠/레저</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
+       				</form>
        			</ul>
        		</div>
        		
@@ -220,32 +211,27 @@
 							<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
 					 <% } %>
        			</div>
-       			<form action="Commerce_Search_Product.do" method="post">
        			<div id = "search">
-       					<input type = "text" name = "searchArea">
-       					<button type = "submit"><img src = "../img/SearchButton.png"></button>
+       					<input type = "text" name = "searchArea" value = <%= (String)request.getAttribute("search") %>>
+       					<button><img src = "../img/SearchButton.png"></button>
        			</div>
-       			</form>
        		</div>
        	<c:if test="${not empty articlePage}">
 
        		<div id = "items">
-       			<ul>
+
 				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-       					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
-							<img src = "data:x-image/jpg;base64,${article.repImage}">
-						</a>
+
+       					<img src = "data:x-image/jpg;base64,${article.repImage}" >
         					
-       					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
-       						<p><c:out value="${article.subject}"></c:out></p>
-       					</a>
-       					<span class = "price">${article.price}</span>
-       					<span class = "time">${article.regDate}</span>
-       					<input type = "hidden" id = "regDate" value = "${article.regDate}">
+       					<p><c:out value="${article.subject}"></c:out></p>
+       					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
+       					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
+
        				</c:forEach>
-       			</ul>
+
        		</div>
        		
        	</c:if>
@@ -257,14 +243,14 @@
 				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
 					test="${articlePage.startPage > 5}">
 					<a
-						href="Search_Category_Commerce.do?category=life&pageNo=${articlePage.startPage - 5}">[이전]</a>
+						href="Commerce_Reset.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
 				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
 					begin="${articlePage.startPage}" end="${articlePage.endPage}">
-					<a href="Search_Category_Commerce.do?category=life&pageNo=${pNo}">${pNo}</a>
+					<a href="Commerce_Reset.do?pageNo=${pNo}">${pNo}</a>
 				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
 					test="${articlePage.endPage < articlePage.totalPages}">
 					<a
-						href="Search_Category_Commerce.do?category=life&pageNo=${articlePage.startPage + 5 }">[다음]</a>
+						href="Commerce_Reset.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
 				</c:if>
 			</li>
 		</ul>

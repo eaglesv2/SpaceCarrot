@@ -15,8 +15,8 @@
 	String category = "fashion";
 	request.setAttribute("category", category);
 	RequestDispatcher rd = request.getRequestDispatcher("Search_Category_Commerce.do");
-	  rd.forward(request, response);
-	  System.out.println("After Dispatcher category = " + category);
+	rd.forward(request, response);
+	System.out.println("After Dispatcher category = " + category);
 	 %>
 </c:if>
 <script>        
@@ -107,14 +107,14 @@
 	  			margin-bottom: 40px;
 	  			 }
       #search input { border: 0;
-      				  padding: 10px 10px 0px 0px;
+      				  padding: 10px 0px 0px 10px;
       				  outline: none;
 				  	  width: 480px;
 				  	  height: 30px;
 				  	  float: left;
 				  	  font-size: 16pt;
 				  	  text-align: left;
-				  	  margin-right: 0px;
+				  	  margin-right: 0px;  
 				  	}
 	  #search button { margin-left: 0px;
 	 			 	   background-color: #fc585e;
@@ -221,10 +221,13 @@
 							<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
 					 <% } %>
        			</div>
+       			<form action="Commerce_Search_Product.do" method="post">
        			<div id = "search">
        					<input type = "text" name = "searchArea">
-       					<button><img src = "../img/SearchButton.png"></button>
+       					<input type = "hidden" name = "category" value = "fashion">
+       					<button type = "submit"><img src = "../img/SearchButton.png"></button>
        			</div>
+       			</form>
        		</div>
        	<c:if test="${not empty articlePage}">
 
@@ -256,13 +259,12 @@
 				<!-- 현재페이지가 5 이상일 시 이전 링크--> 
 				<c:if test="${articlePage.startPage > 5}">
 					<a href="Search_Category_Commerce.do?category=fashion&pageNo=${articlePage.startPage - 5}">[이전]</a>
-				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-					begin="${articlePage.startPage}" end="${articlePage.endPage}">
+				</c:if> <!-- startPage to endPage --> 
+				<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
 					<a href="Search_Category_Commerce.do?category=fashion&pageNo=${pNo}">${pNo}</a>
 				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
 					test="${articlePage.endPage < articlePage.totalPages}">
-					<a
-						href="Search_Category_Commerce.do?category=fashion&pageNo=${articlePage.startPage + 5 }">[다음]</a>
+					<a href="Search_Category_Commerce.do?category=fashion&pageNo=${articlePage.startPage + 5 }">[다음]</a>
 				</c:if>
 			</li>
 		</ul>

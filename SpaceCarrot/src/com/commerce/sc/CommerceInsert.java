@@ -143,4 +143,60 @@ public class CommerceInsert {
 		}
 		return result;
 	}
+	
+	// 중고거래 물품+카테고리 검색시 작동 메소드
+	public CommerceArticlePageVO search_category_product(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, SerialException, SQLException, ClassNotFoundException {
+		// 게시판에서 특정 검색어에 해당되는 게시글을 반환한다.
+		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		String category = request.getParameter("category");
+		String search = request.getParameter("searchArea");
+		// test
+		System.out.println("error1");
+		System.out.println(category);
+		// 페이지 넘버
+		String pageNoVal = request.getParameter("pageNo");
+
+		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+		listService = new Commerce_ListArticleService();
+
+		// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+		int pageNo = 1;
+		if (pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+
+		articlePage = listService.getArticlePage_search_category_product(pageNo, category, search);
+		return articlePage;
+	}
+	
+	// 중고거래 물품 검색시 작동 메소드
+	public CommerceArticlePageVO search_product(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, SerialException, SQLException, ClassNotFoundException {
+		// 게시판에서 특정 검색어에 해당되는 게시글을 반환한다.
+		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		String search = request.getParameter("searchArea");
+		// test
+		System.out.println(search);
+		// 페이지 넘버
+		String pageNoVal = request.getParameter("pageNo");
+
+		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+		listService = new Commerce_ListArticleService();
+
+		// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+		int pageNo = 1;
+		if (pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+
+		articlePage = listService.getArticlePage_search_product(pageNo, search);
+		return articlePage;
+	}
 }
