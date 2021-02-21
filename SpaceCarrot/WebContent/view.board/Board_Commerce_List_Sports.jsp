@@ -112,7 +112,7 @@
 				  	  height: 30px;
 				  	  float: left;
 				  	  font-size: 16pt;
-				  	  text-align: right;
+				  	  text-align: left;
 				  	  margin-right: 0px;
 				  	}
 	  #search button { margin-left: 0px;
