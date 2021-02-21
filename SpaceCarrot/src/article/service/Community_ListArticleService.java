@@ -24,12 +24,13 @@ public class Community_ListArticleService {
 		}
 	}
 	
-	public Community_ArticlePage getArticlePage_search_Category(int pageNum, String input_Category) throws ClassNotFoundException {
+	public Community_ArticlePage getArticlePage_search_Category(int pageNum, String input_category) throws ClassNotFoundException {
 		// 카테고리 서치 한 후 ArticlePage로 반환
 		try {
+			String category = input_category;
 			boardDao = new SpaceCarrotDAO_Board_Community();
-			int total = boardDao.selectCount();
-			List<SpaceCarrotVO_Board_Community> content = boardDao.select_Search_Category(input_Category, (pageNum - 1) * size, size);
+			int total = boardDao.selectCount(category);
+			List<SpaceCarrotVO_Board_Community> content = boardDao.select_Search_Category(category, (pageNum - 1) * size, size);
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

@@ -11,7 +11,10 @@
 <!-- 이것때문인지 모르겠는데 화면 넘길때 잡음? 잡화면이 생김 -->
 <!-- 막 움직일 시 500오류 뜸 -->
 <c:if test="${empty articlePage}">
-   <% RequestDispatcher rd = request.getRequestDispatcher("Reset_Community.do");
+   <% 
+	String category = "정보";
+	request.setAttribute("category", category);
+   RequestDispatcher rd = request.getRequestDispatcher("Category_Community.do");
    rd.forward(request, response);
    System.out.print("redirect success"); %>
 </c:if>
@@ -250,7 +253,7 @@ td {
                   onclick="location='Community_Write.jsp'">글쓰기</button>
             </div>
             <div id="search">
-               <form action="Search_Community.do" method="post">
+               <form action="Category_Community.do" method="post">
                   <input type="text" name="searchArea">
                   <button type="submit">
                      <img src="../img/SearchButton.png">
@@ -275,12 +278,12 @@ td {
                   <th>조회수</th>
                   <th>작성일</th>
                </tr>
-               <!-- articlePage 파라미터에 글이 없을 시에 출력 -->
+<%--                <!-- articlePage 파라미터에 글이 없을 시에 출력 -->
                <c:if test="${articlePage.hasNoArticles()}">
                   <tr>
                      <td colspan="4">게시글이 없습니다.</td>
                   </tr>
-               </c:if>
+               </c:if> --%>
                <!-- articlePage의 content 파라미터를 반복한다 -->
                <c:forEach var="article" items="${articlePage.content}">
                   <tr>
@@ -300,14 +303,14 @@ td {
                         <!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
                            test="${articlePage.startPage > 5}">
                            <a
-                              href="Reset_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+                              href="Category_Community.do?category=%EC%A0%95%EB%B3%B4&pageNo=${articlePage.startPage - 5}">[이전]</a>
                         </c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
                            begin="${articlePage.startPage}" end="${articlePage.endPage}">
-                           <a href="Reset_Community.do?pageNo=${pNo}">[${pNo}]</a>
+                           <a href="Category_Community.do?category=%EC%A0%95%EB%B3%B4&pageNo=${pNo}">[${pNo}]</a>
                         </c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
                            test="${articlePage.endPage < articlePage.totalPages}">
                            <a
-                              href="Reset_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+                              href="Category_Community.do?category=%EC%A0%95%EB%B3%B4&pageNo=${articlePage.startPage + 5 }">[다음]</a>
                         </c:if>
                      </td>
                   </tr>

@@ -56,14 +56,14 @@ public class ArticleInfoList implements ArticleImpl {
 		return articlePage;
 	}
 	
-	public Community_ArticlePage execute_search_Category(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Community_ArticlePage execute_search_Category(HttpServletRequest request, HttpServletResponse response, String input_category) throws Exception {
 		// 게시판에서 특정 카테고리 리스트를 반환한다.
 		HttpSession session = request.getSession();
 	
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		String category = request.getParameter("category");
+		String category = input_category;
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String userID = (String) session.getAttribute("sessionID");
@@ -144,6 +144,20 @@ public class ArticleInfoList implements ArticleImpl {
 		articlePage= listService.getArticlePage_reset(pageNo);
 		return articlePage;
 	}
-	
-	
+	// url 찾아가는 메소드입니다
+	public String find_url(String category) {
+		String result = null;
+		if(category.equals("자유")) {
+			result = "Community_List_Free.jsp";
+		} else if (category.equals("정보")) {
+			result = "Community_List_Info.jsp"; 
+		} else if (category.equals("QnA")) {
+			result = "Community_List_QnA.jsp"; 
+		} else if (category.equals("리뷰")) {
+			result = "Community_List_Review.jsp"; 
+		} else {
+			result = "error.jsp";
+		}
+		return result;
+	}
 }

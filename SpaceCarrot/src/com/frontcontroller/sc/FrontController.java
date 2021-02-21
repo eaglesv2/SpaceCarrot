@@ -80,6 +80,7 @@ public class FrontController extends HttpServlet {
 		RequestDispatcher rd = null;
 		// 공통변수
 		int postNum;
+		String category;
 
 		switch (url) {
 
@@ -179,7 +180,7 @@ public class FrontController extends HttpServlet {
 
 			request.setAttribute("articlePage", articlePage);
 			
-			str = "/view.community/Community_List.jsp";
+			str = "/view.community/Community_List_Default.jsp";
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 
@@ -187,17 +188,22 @@ public class FrontController extends HttpServlet {
 
 		case "/view.community/Category_Community.do":
 			// 커뮤니티 카테고리 검색시
+			category = (String) request.getParameter("category");
+			
+			if(category == null) {
+			category = (String) request.getAttribute("category");
+			}
 			al = new ArticleInfoList();
 
 			try {
-				articlePage = al.execute_search_Category(request, response);
+				articlePage = al.execute_search_Category(request, response, category);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
 			request.setAttribute("articlePage", articlePage);
 
-			str = "/view.community/Community_List.jsp";
+			str = al.find_url(category);
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
@@ -206,17 +212,17 @@ public class FrontController extends HttpServlet {
 
 		case "/view.community/Search_Community.do":
 			// 게시글 검색시 (제목으로 검색)
+			// 서치 수정~~~~~~
 			al = new ArticleInfoList();
-
+			
 			try {
 				articlePage = al.execute_search(request, response);
+				request.setAttribute("articlePage", articlePage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			request.setAttribute("articlePage", articlePage);
-
-			str = "/view.community/Community_List.jsp";
+			/*str = al.find_url(category);*/
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
@@ -235,7 +241,7 @@ public class FrontController extends HttpServlet {
 
 			request.setAttribute("articlePage", articlePage);
 
-			str = "/view.community/Community_List.jsp";
+			str = "/view.community/Community_List_Default.jsp";
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
@@ -379,7 +385,7 @@ public class FrontController extends HttpServlet {
 
 			case "/view.board/Search_Category_Commerce.do":
 				
-				String category = (String) request.getParameter("category");
+				category = (String) request.getParameter("category");
 				System.out.println("frontcontroller first category = " + category);
 				if(category == null) {
 				System.out.println("first input category is null");
