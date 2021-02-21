@@ -117,58 +117,50 @@
             </div>
             <div id="content3">
                 <div id="con-title">
-                    <a href=""><h2>볼거리</h2></a>
-                    <p><a href="">+더보기</a></p>
+                    <a href="../view.see/SeePlace_List.html"><h2>볼거리</h2></a>
+                    <p><a href="../view.see/SeePlace_List.html">+더보기</a></p>
                </div>
                 <div id="cardset">
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="사진1">
-                        <h2>제목</h2>
-                        <p>가격</p>
+                        <a href="../view.see/seeplace1.html"><img src="../img/SeePlace_img1.jpg" alt="쌈지길 대표 이미지">
+                        <h2>쌈지길</h2></a>
                     </div>
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="사진2">
-                        <h2>제목</h2>
-                        <p>가격</p>
+                        <a href="../view.see/seeplace2.html"><img src="../img/SeePlace_img2.jpg" alt="북촌한옥마을 대표 이미지">
+                        <h2>북촌한옥마을</h2></a>
                     </div>
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="사진3">
-                        <h2>제목</h2>
-                        <p>가격</p>
+                        <a href="../view.see/seeplace3.html"><img src="../img/SeePlace_img3.jpg" alt="백사실계곡 대표 이미지">
+                        <h2>백사실계곡</h2></a>
                     </div>
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="사진4">
-                        <h2>제목</h2>
-                        <p>가격</p>
+                        <a href="../view.see/seeplace4.html"><img src="../img/SeePlace_img4_1.JPG" alt="서울역사박물관 대표 이미지">
+                        <h2>서울역사박물관</h2></a>
                     </div>
                 </div>
             </div>
  
             <div id="content4">
                 <div id="con-title">
-                    <a href=""><h2>먹거리</h2></a>
-                    <p><a href="">+더보기</a></p>
+                    <a href="../view.eat/EatPlace_List.html"><h2>먹거리</h2></a>
+                    <p><a href="../view.eat/EatPlace_List.html">+더보기</a></p>
                </div>
                 <div id="cardset">
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="">
-                            <h2>제목</h2>
-                            <p>가격</p>
+                        <a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img1.jpg" alt="쏘핫 대표 이미지">
+                            <h2>쏘핫</h2></a>
                     </div>
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="">
-                        <h2>제목</h2>
-                        <p>가격</p>
+                        <a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지">
+                            <h2>광장시장</h2></a>
                     </div>
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="">
-                        <h2>제목</h2>
-                        <p>가격</p>
+                        <a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img3.jpg" alt="호두나무카페 대표 이미지">
+                            <h2>호두나무카페</h2></a>
                     </div>
                     <div class="card">
-                        <img src="../img/AttractionsBanner.jpg" alt="">
-                        <h2>제목</h2>
-                        <p>가격</p>
+                        <a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img4.jpg" alt="성곡미술관찻집 대표 이미지">
+                            <h2>성곡미술관찻집</h2></a>
                     </div>
                 </div>
             </div>

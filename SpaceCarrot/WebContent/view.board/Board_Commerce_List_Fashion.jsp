@@ -215,7 +215,11 @@
        		
        		<div>
        			<div id = "sell_btn">
-       				<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
+       				<% if(session.getAttribute("sessionID") == null) { %>
+       						<button style="cursor:pointer;" onclick="location='../view.login/Login.jsp'">판매하기</button>
+       				 <% } else {%> 
+							<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
+					 <% } %>
        			</div>
        			<div id = "search">
        					<input type = "text" name = "searchArea">

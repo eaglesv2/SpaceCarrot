@@ -249,8 +249,11 @@ td {
 
          <div id="btn">
             <div id="write_btn">
-               <button style="cursor: pointer;"
-                  onclick="location='Community_Write.jsp'">글쓰기</button>
+               <% if(session.getAttribute("sessionID") == null) { %>
+       						<button style="cursor:pointer;" onclick="location='../view.login/Login.jsp'">글쓰기</button>
+       				 <% } else {%> 
+							<button style="cursor:pointer;" onclick="location='Community_Write.jsp'">글쓰기</button>
+					 <% } %>
             </div>
             <div id="search">
                <form action="Category_Community.do" method="post">
