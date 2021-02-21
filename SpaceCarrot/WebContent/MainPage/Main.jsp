@@ -95,22 +95,11 @@
                         <tr>
                             <th><h1><a href="">커뮤니티 인기글</a></h1></th>
                         </tr>
-                        
+                    <c:forEach var="community_Hotarticle" items="${communityHot_VO}">
                         <tr>
-                            <td>게시글1</td>
+                            <td><a href="Read_Community.do?no=${community_Hotarticle.postNum}">${community_Hotarticle.subject}</a></td>
                         </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr>
-                            <td>게시글1</td>
-                        </tr>
-                        <tr id="end-tr">
-                            <td>게시글1</td>
-                        </tr>
+                    </c:forEach>
                     </table>
                 </div>
                 

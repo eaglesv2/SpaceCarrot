@@ -356,4 +356,22 @@ public class SpaceCarrotDAO_Board_Community {
 
         }
 	}
+	
+	public List<SpaceCarrotVO_Board_Community> getHotSubject_Community() throws SQLException {
+	       
+        String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "
+                + COL_VIEWS + " DESC LIMIT 5";
+        List<SpaceCarrotVO_Board_Community> result = null;
+        try {
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            result = new ArrayList<SpaceCarrotVO_Board_Community>();
+            while (rs.next()) {
+                result.add(convertArticle(rs));
+            }
+            return result;
+        } finally {
+
+        }
+	}
 }
