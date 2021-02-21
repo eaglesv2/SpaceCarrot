@@ -1,4 +1,5 @@
-<!-- Community_List_QnA -->
+<!-- Community_List_Default -->
+
 <%@page import="spacecarrotVO.SpaceCarrotVO_Board_Community"%>
 <%@page import="java.util.List"%>
 <%@page import="spacecarrotDAO.SpaceCarrotDAO_Board_Community"%>
@@ -10,14 +11,11 @@
 <!-- frontController에서 parameter를 못 받아왔을 시 리다이렉트로 파라미터를 가지고 온다 -->
 <!-- 이것때문인지 모르겠는데 화면 넘길때 잡음? 잡화면이 생김 -->
 <!-- 막 움직일 시 500오류 뜸 -->
-<c:if test="${empty articlePage}">
-   <% 
-	String category = "QnA";
-	request.setAttribute("category", category);
-   RequestDispatcher rd = request.getRequestDispatcher("Category_Community.do");
+<%-- <c:if test="${empty articlePage}">
+   <% RequestDispatcher rd = request.getRequestDispatcher("Reset_Community.do");
    rd.forward(request, response);
    System.out.print("redirect success"); %>
-</c:if>
+</c:if> --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,7 +92,7 @@ var num = 1;
    background:black;
 }
 #bottomLine #category3{
-   display:block;
+   display:none;
    margin-left:550px;
    width:32px;
    height:2px;
@@ -228,16 +226,15 @@ td {
             <li class="title_wrap"><a href="Community_List_Default.jsp"><p>커뮤니티</p></a></li>
          </ul>
       </div>
-
       <div id="wrap">
          <div id="category">
             <form action="Category_Community.do" method="post">
                <ul>
                   <li><input type="submit" name="category" value="자유"/></li>
-                  <li><input type="submit"   name="category"  value="정보"></li>
+                  <li><input type="submit" name="category"  value="정보"></li>
                   <li><input type="submit" name="category" value="QnA"/></li>
                   <li><input type="submit" name="category" value="리뷰" /></li>
-               </ul>
+               </ul> 
             </form>
          </div>
          <div id="bottomLine">
@@ -281,18 +278,11 @@ td {
                   <th>조회수</th>
                   <th>작성일</th>
                </tr>
-<%--                <!-- articlePage 파라미터에 글이 없을 시에 출력 -->
-               <c:if test="${articlePage.hasNoArticles()}">
-                  <tr>
-                     <td colspan="4">게시글이 없습니다.</td>
-                  </tr>
-               </c:if> --%>
                <!-- articlePage의 content 파라미터를 반복한다 -->
                <c:forEach var="article" items="${articlePage.content}">
                   <tr>
                      <td>${article.postNum}</td>
-                     <td><a
-                        href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out
+                     <td><a href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out
                               value="${article.subject}"></c:out></a></td>
                      <td>${article.userNickName}</td>
                      <td>${article.views}</td>
@@ -303,17 +293,15 @@ td {
                <c:if test="${articlePage.hasArticles()}">
                   <tr>
                      <td colspan="5">
-                        <!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-                           test="${articlePage.startPage > 5}">
-                           <a
-                              href="Category_Community.do?category=QnA&pageNo=${articlePage.startPage - 5}">[이전]</a>
-                        </c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-                           begin="${articlePage.startPage}" end="${articlePage.endPage}">
-                           <a href="Category_Community.do?category=QnA&pageNo=${pNo}">[${pNo}]</a>
-                        </c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
-                           test="${articlePage.endPage < articlePage.totalPages}">
-                           <a
-                              href="Category_Community.do?category=QnA&pageNo=${articlePage.startPage + 5 }">[다음]</a>
+                        <!-- 현재페이지가 5 이상일 시 이전 링크--> 
+                        <c:if test="${articlePage.startPage > 5}">
+                           <a href="Search_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+                        </c:if> <!-- startPage to endPage --> 
+                        <c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
+                           <a href="Search_Community.do?pageNo=${pNo}">[${pNo}]</a>
+                        </c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> 
+                        	<c:if test="${articlePage.endPage < articlePage.totalPages}">
+                           <a href="Search_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
                         </c:if>
                      </td>
                   </tr>

@@ -213,7 +213,6 @@ public class FrontController extends HttpServlet {
 
 		case "/view.community/Search_Community.do":
 			// 게시글 검색시 (제목으로 검색)
-			// 서치 수정~~~~~~
 			al = new ArticleInfoList();
 
 			try {
@@ -223,7 +222,7 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			/* str = al.find_url(category); */
+			str = "/view.community/Community_List_Search.jsp";
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
