@@ -17,8 +17,8 @@
 <style>
       #container { margin : 0 auto;
                    width : 1080px;
-                   /* border : 2px solid black; */
                  }
+	  
 	  /* 중고거래 타이틀 */
       #title ul li { list-style: none; }
       .title_wrap { text-align: center; }
@@ -30,147 +30,118 @@
 				  	  display: block; 
 				 	  margin: 0 auto;
 				    }
-                
-      #wrap { margin : 0 auto;
-              width : 730px;
-              text-align : center;
-              margin-left : 183px;
-            } 
-      /* 카테고리 메뉴 */
-      #category { height : 40px; 
-      			  margin-top: 20px;
-      			   }   
-      #category ul { height : 40x; 
-      			     
-      			   }    
-      #category ul li { list-style : none;
-                    	color : #000000;
-                   		float : left;
-                    	text-align: center;
-                    	vertical-align: middle;
-                    	margin-right :35px;
-                 	  }
-      #category ul li:last-child{ margin-right : 0; }
-      #category .menuLink { text-decoration : none;
-                       	    color : #000000;
-                       	    display : block;
-                       	    font-size : 12pt;
-                       	    font-weight : bold;
-                       	    cursor: pointer;
-                    	  }
-      /* #category .menuLink:hover { text-decoration : underline; 
-                           		  text-underline-position : under;
-                          		} */
-	/*탭 */
-	#category ul li:nth-child(1){
-    border-bottom: 2px solid #000;
-    padding-bottom: 8px;
-		
-		}
-                          
-      /* 판매버튼 + 검색창 */
-      #sell_btn { float: left; 
-      			  margin-bottom: 40px;
-      			  margin-right: 30px;
-      			  height: 56px; 
-      			  width: 113px;
-      			  vertical-align: center;
-      			}
-      #sell_btn button { color: #fff;
-      					 background-color: #fc585e; 
-      					 outline: none;
-	  			 		 border: 3px solid #fc585e; 
-	  			 		 width: 100%; 
-	  			 		 height: 100%;
-	  			 		 padding: 10px;
-	  			 		 font-size: 18px;
-	  			 		 font-weight: bold;		
-	  			 		 cursor: pointer; 
-	  			 	}
-				 	   
-	  #search { width: 565px; 
-	  			height: 50px; 
-	  			border: 3px solid #fc585e; 
-	  			float: left;
-	  			margin-bottom: 40px;
-	  			 }
-      #search input { border: 0;
-      				  padding: 10px 10px 0px 0px;
-      				  outline: none;
-				  	  width: 480px;
-				  	  height: 30px;
-				  	  float: left;
-				  	  font-size: 16pt;
-				  	  text-align: right;
-				  	  margin-right: 0px;
-				  	}
-	  #search button { margin-left: 0px;
-	 			 	   background-color: #fc585e;
-	  			  	   width: 75px;
-	  			  	   height: 50px;
-	  			  	   padding: 6px 7px 10px 7px;
-	  			  	   float: left;
-	  			  	   outline: none;
-	  			  	   border: 0;
-	  			  	   cursor: pointer;
-	  			 	 }
-
-      
-       /* 중고물품 목록 */
-       #items { width: 730px; height: 950px; } /* 왼쪽정렬 해결해야함 ㅠㅠ! */
-      .row li:last-child { margin-right: 0px; }
-      .goods { float : left;
-               width : 227px;
-               height : 280px;
-               border: 1px solid #eeeeee;
-               margin-right : 14px;
-               margin-bottom : 12px;
-               list-style : none; 
-               margin-left: 0px;
-             }
-      .goods img { width : 227px;
-                   height : 210px;
-                   border-bottom: 1px solid #eeeeee;
-                   cursor: pointer;
-                 }
-      .goods p { margin-top: 10px;
-                 margin-left: 10px;
-                 margin-bottom: 12px;
-                 font-size: 12pt;
-                 float: left;
-                 cursor: pointer;
-               }
-      .price { margin-left : 10px;
-               margin-bottom : 15px; 
-               font-size : 11pt;
-               clear : left;
-               float : left;
-             }
-      .time { margin-right : 10px;
-              margin-bottom : 15px;
-              font-size : 10pt;
-              float : right;
-           }
-           
-       /* 페이지번호 */
-       #page_number { margin-top: 40px; }
-       #page_number ul li { list-style: none;
-       				  		display: inline;
-       					  }
-       #page_number ul li a { padding: 4px;
-							  margin-right: 10px;
-							  /* height: 50px; */
-							  width: 15px;
-							  color: #000;
-							  font-size: 12pt;
-							  text-align: center;
-							  text-decoration: none;
-      						}
-       #page_number ul li a:hover, #page_number ul li a:focus { color: #fff;
-												   				border: 1px solid #000;
-												  				border-radius: 50%;
-												   				background-color: #000;
-												 			  }
+     /* 판매하기 서브타이틀 */       
+     #subtitle ul li { list-style: none; }
+     .subtitle_wrap { text-align: center; }
+	 .subtitle_wrap p { padding : 25px 0px;
+				  	  font-size : 18pt;
+				  	  font-weight: bold; 
+				  	  display: block; 
+				 	  margin: 0 auto;
+				 	  text-decoration: underline;
+				    }
+     
+     /* 게시 형식 */
+       #board_form { margin : 0 auto;
+              	 width : 1000px;
+              	 margin-top : 40px;
+             	 margin-left : 200px;
+    		   }
+    #board_form table { border-spacing: 0;
+    				   margin: 0;
+    				   padding: 0; 
+    				   border: 0;
+    				 }
+    				 
+    #board_form table select { width:300px;
+    
+    }
+    
+    #board_form table option { font-size: 13pt;
+    
+    }
+	#board_form table input { border: 1px solid #ececec;
+							 font-size: 13pt;
+							 color: #4c4c4c;  
+							 padding: 10px; 
+						   }
+						   
+	#board_title { height: 30px;
+				   width: 700px;
+	
+	}
+	
+	#price { height: 30px;
+			 width: 150px;
+	
+	}
+ 
+ 	#amount { height: 30px;
+			 width: 150px;
+ 	
+ 	}
+ 	
+ 	#content { height: 600px;
+			   width: 700px;
+ 	
+ 	}
+ 	
+ 	#board_form .file_upload { border:0;
+ 	}
+ 	
+    #board_form table th { text-align : center; }
+   	#board_form table th span { color: #404040;
+   							   font-size: 15px; 
+   							   display: inline-block; 
+   							   padding: 0 20px 0 0;
+   							   font-weight:bold; 
+   							  }
+   	#board_form table td { padding: 6px 0;
+   						  position: relative;
+   						}
+   	
+    #btn ul li { list-style: none; }
+	.complete_btn_wrap { text-align: center; 
+			   			 margin: 20px 30px 30px;
+			   			 margin-left : 200px;
+			   			 float: left;
+			  		   }
+	.complete_btn_wrap a { color: #fff; 
+				  		   background-color: #fc585e;
+				  		   border: 3px solid #fc585e; 
+				 		   font-weight: bold; 
+				  		   padding: 10px;  
+				 		   height: 30px; 
+				  		   line-height: 30px; 
+				 		   width: 100px; 
+				  		   display: block; 
+				 		   text-align: center; 
+				 		   margin: 0 auto;
+				 		 }
+	.complete_btn_wrap a.wide { width:587px;
+					   			margin: 0 0 0 20px;
+					 		  }
+					 
+	.cancel_btn_wrap { text-align: center; 
+			   		   margin: 20px 0 30px;
+			   		   float: left;
+			   		  
+			  		 }
+	.cancel_btn_wrap a { color: #fc585e; 
+				  		 background-color: #fff; 
+				  		 border: 3px solid #fc585e; 
+				 		 font-weight: bold; 
+				  	  	 padding: 10px;  
+				 	     height: 30px; 
+				  		 line-height: 30px; 
+				 		 width: 100px; 
+				  		 display: block; 
+				 		 text-align: center; 
+				 		 margin: 0 auto;
+				 	}
+ 	.cancel_btn_wrap a.wide { width:587px;
+					  	 	  margin: 0 0 0 20px;
+					 		}	
 </style>
 </head>
 <meta charset="EUC-KR">
