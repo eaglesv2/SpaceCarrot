@@ -18,7 +18,8 @@
                 mode: 'fade',
                 auto:true,
                 controls:true,
-                speed:500
+                speed:500,
+                touchEnabled : (navigator.maxTouchPoints > 0)
 
             })
         });
@@ -28,7 +29,7 @@
         })
         
       </script>
-    <title>Document</title>
+    <title>우주당근</title>
 </head>
 <body>
 <%-- <% String id = (String)session.getAttribute("sessionID"); 

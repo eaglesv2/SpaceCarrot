@@ -1,63 +1,55 @@
-package spacecarrotVO;
+package com.commerce.sc;
 
-import java.sql.Blob;
 import java.util.Date;
+// repImage를 String값으로 반환하기 위해서 다른 VO클래스를 만들었습니다
+public class CommerceArticleVO {
 
-public class SpaceCarrotVO_Board_Commerce {
 	private int postNum; // 게시글넘버
 	private String category; // 카테고리
 	private String subject; // 글제목
 	private String userID; // 글쓴이
-	private String userNickName; // 글쓴이 닉네임
-	private Blob repImage; // 대표이미지 Represent 줄여서 Rep
+	private String userNickName; //글쓴이 닉네임
+	private String repImage; // 대표이미지 Represent 줄여서 String base64형식으로 바뀜
 	private int price; // 가격
 	private int amount; // 수량
 	private String content; // 설명
 	private Date regDate; // 등록일
 	private int views; // 조회수
-	
-	public SpaceCarrotVO_Board_Commerce() { // 생성자
+
+	public CommerceArticleVO() { // 생성자
 		
 	}
-	
-	public SpaceCarrotVO_Board_Commerce(int postNum, String category, String subject, String userID, String userNickName,
-										Blob repImage, int price, int amount, String content, Date regDate, int views) {
-		this.postNum = postNum;
-		this.category = category;
-		this.subject = subject;
-		this.userID = userID;
-		this.userNickName = userNickName;
-		this.repImage = repImage;
-		this.price = price;
-		this.amount = amount;
-		this.content = content;
-		this.regDate = regDate;
-		this.views = views;
-	}
-	
-	public SpaceCarrotVO_Board_Commerce(int postNum, String subject, Blob repImage, int price, Date regDate, int views) {
-		this.postNum = postNum;
-		this.subject = subject;
-		this.repImage = repImage;
-		this.price = price;
-		this.regDate = regDate;
-		this.views = views;
-	}
-	
-	public SpaceCarrotVO_Board_Commerce(String category, String subject, String userID,  String userNickName, 
-										Blob repImage, int price, int amount, String content, Date regDate) {
-		this.category = category;
-		this.subject = subject;
-		this.userID = userID;
-		this.userNickName = userNickName;
-		this.repImage = repImage;
-		this.price = price;
-		this.amount = amount;
-		this.content = content;
-		this.regDate = regDate;
-	}
 
-	// getter, setter
+	public CommerceArticleVO(int postNum, String category, String subject, String userID, String userNickName,
+				String repImage, int price, int amount, String content, Date regDate, int views) { // 생성자
+		this.postNum = postNum;
+		this.category = category;
+		this.subject = subject;
+		this.userID = userID;
+		this.userNickName = userNickName;
+		this.repImage = repImage;
+		this.price = price;
+		this.amount = amount;
+		this.content = content;
+		this.regDate = regDate;
+		this.views = views;
+	}
+	
+	public CommerceArticleVO(String category, String subject, String userID, String userNickName,
+			String repImage, int price, int amount, String content, Date regDate, int views) { // 생성자
+		this.category = category;
+		this.subject = subject;
+		this.userID = userID;
+		this.userNickName = userNickName;
+		this.repImage = repImage;
+		this.price = price;
+		this.amount = amount;
+		this.content = content;
+		this.regDate = regDate;
+		this.views = views;
+}
+	
+	//getter, setter
 	
 	public int getPostNum() {
 		return postNum;
@@ -99,11 +91,11 @@ public class SpaceCarrotVO_Board_Commerce {
 		this.userNickName = userNickName;
 	}
 	
-	public Blob getRepImage() {
+	public String getRepImage() {
 		return repImage;
 	}
 
-	public void setRepImage(Blob repImage) {
+	public void setRepImage(String repImage) {
 		this.repImage = repImage;
 	}
 
@@ -146,5 +138,7 @@ public class SpaceCarrotVO_Board_Commerce {
 	public void setViews(int views) {
 		this.views = views;
 	}
+
+	
 
 }

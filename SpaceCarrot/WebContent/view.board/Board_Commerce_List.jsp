@@ -1,6 +1,3 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -15,15 +12,12 @@
 	   rd.forward(request, response);
 	 %>
 </c:if>
-<%-- <c:if test="${not empty articlePage}">
-	<% System.out.println("articlePage 들어옴"); %>
-</c:if> test문--%>
+
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/Header.jsp");
 		$("#footer").load("../Base/footer.html");
 	})
-
 </script>
 <style>
       #container { margin : 0 auto;
@@ -204,12 +198,14 @@
        	<div id = "wrap">
        		<div id = "category">
        			<ul>
+       				<form action="Commerce_Search.do" method="post">
        				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
        				<li class = "book_tab"><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Sports.jsp">스포츠/레저</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
+       				</form>
        			</ul>
        		</div>
        		
@@ -225,22 +221,19 @@
        	<c:if test="${not empty articlePage}">
 
        		<div id = "items">
-       			<ul>
+
 				<c:forEach var="article" items="${articlePage.content}">
        				<li class = "goods">
-       					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
-							<img src = "data:x-image/jpg;base64,${article.repImage}">
-						</a>
+
+       					<img src = "data:x-image/jpg;base64,${article.repImage}" >
         					
-       					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
-       						<p><c:out value="${article.subject}"></c:out></p>
-       					</a>
-       					<span class = "price">${article.price}</span>
-       					<span class = "time">${article.regDate}</span>
-       					<input type = "hidden" id = "regDate" value = "${article.regDate}">
+       					<p><c:out value="${article.subject}"></c:out></p>
+       					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
+       					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
+
        				</c:forEach>
-       			</ul>
+
        		</div>
        		
        	</c:if>

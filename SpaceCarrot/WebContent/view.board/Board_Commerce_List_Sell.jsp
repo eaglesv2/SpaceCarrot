@@ -44,7 +44,8 @@
      
      /* 게시 형식 */
        #board_form { margin : 0 auto;
-              	 width : 1000px;
+              	 width : 800px;
+              	 
               	 margin-top : 40px;
               	 margin-left: 150px;
     		   }
@@ -71,19 +72,19 @@
 				   width: 500px;
 	
 	}
-	
-	#price { height: 30px;
+
+	#price { height: 20px;
 			 width: 150px;
 	
 	}
  
- 	#amount { height: 30px;
-			 width: 150px;
+ 	#amount { height: 20px;
+			  width: 150px;
  	
  	}
  	
- 	#content { height: 600px;
-			   width: 700px;
+ 	#content { height: 400px;
+			   width: 620px;
 			   
  	
  	}
@@ -91,7 +92,7 @@
  	#board_form .file_upload { border:0;
  								
  	}
- 	#board_form table tr{margin-left: 150px;
+ 	#board_form table tr{ margin-left: 150px;
  							
  	 }
     #board_form table th { text-align : center; margin-left: 150px;
@@ -110,49 +111,42 @@
    						  display: block;
    						}
    	
+    #btn { margin-left : 255px; margin-bottom: 150px;}
     #btn ul li { list-style: none; }
 	.complete_btn_wrap { text-align: center; 
 			   			 margin: 20px 30px 30px;
-			   			 margin-left : 200px;
 			   			 float: left;
 			  		   }
-	.complete_btn_wrap a { color: #fff; 
-				  		   background-color: #fc585e;
-				  		   border: 3px solid #fc585e; 
-				 		   font-weight: bold; 
-				  		   padding: 10px;  
-				 		   height: 30px; 
-				  		   line-height: 30px; 
-				 		   width: 100px; 
-				  		   display: block; 
-				 		   text-align: center; 
-				 		   margin: 0 auto;
-				 		   margin-left: 80px;
-				 		 }
-	.complete_btn_wrap a.wide { width:587px;
-					   			margin: 0 0 0 20px;
-					 		  }
-					 
+	.complete_btn_wrap button { color: #fff; 
+				  		   		background-color: #fc585e;
+				  		   		border: 3px solid #fc585e; 
+				  		   		font-size: 12pt;
+				 		   		font-weight: bold; 
+				  		   		padding: 10px;  
+				 		   		height: 56px; 
+				  		   		vertical-align: middle;
+				 		  		width: 100px; 
+				  		  		display: block; 
+				 		   		text-align: center; 
+				 		  		margin: 0 auto;
+				 		 	  }
 	.cancel_btn_wrap { text-align: center; 
 			   		   margin: 20px 0 30px;
 			   		   float: left;
-			   		  
 			  		 }
-	.cancel_btn_wrap a { color: #fc585e; 
-				  		 background-color: #fff; 
-				  		 border: 3px solid #fc585e; 
-				 		 font-weight: bold; 
-				  	  	 padding: 10px;  
-				 	     height: 30px; 
-				  		 line-height: 30px; 
-				 		 width: 100px; 
-				  		 display: block; 
-				 		 text-align: center; 
-				 		 margin: 0 auto;
-				 	}
- 	.cancel_btn_wrap a.wide { width:587px;
-					  	 	  margin: 0 0 0 20px;
-					 		}	
+	.cancel_btn_wrap button { color: #fc585e; 
+				  		 	  background-color: #fff; 
+				  			  border: 3px solid #fc585e;
+				  			  font-size: 12pt;
+				 			  font-weight: bold; 
+				  	  		  padding: 10px;  
+				 	     	  height: 56px; 
+				  		 	  vertical-align: middle;
+				 		 	  width: 100px; 
+				  		 	  display: block; 
+				 		 	  text-align: center; 
+				 		 	  margin: 0 auto;
+				 			}
 
 </style>
 </head>
@@ -162,6 +156,7 @@
 <body>
 <%
 session.getAttribute("sessionID");
+session.getAttribute("sessionNickName");
 %>
 
 	<div id = "container">
@@ -182,7 +177,7 @@ session.getAttribute("sessionID");
        		</ul>
        	</div>
        	
-       	<form action="CommerceInsert.do" method="post">
+       	<form action="CommerceInsert.do" method="post" enctype="multipart/form-data">
        	<div id = "board_form">
 			<table>
               	<tbody>
@@ -190,12 +185,12 @@ session.getAttribute("sessionID");
 						<th><span>카테고리</span></th>
 						<td>
 							<select name="category">
-							<option value="의류/패션" selected>의류/패션<br>
-							<option value="디지털/가전">디지털/가전<br>
-							<option value="도서/티켓/취미/애완">도서/티켓/취미/애완<br>
-							<option value="생활/문구/가구">생활/문구/가구<br>
-							<option value="스포츠/레저">스포츠/레저<br>							
-							<option value="기타">기타<br>							
+								<option value="의류/패션" selected>의류/패션
+								<option value="디지털/가전">디지털/가전
+								<option value="도서/티켓/취미/애완">도서/티켓/취미/애완
+								<option value="생활/문구/가구">생활/문구/가구
+								<option value="스포츠/레저">스포츠/레저		
+								<option value="기타">기타					
 							</select>
 						</td>
 						
@@ -205,17 +200,17 @@ session.getAttribute("sessionID");
                   		<td><input id="board_title" type="text" name="title" placeholder="제목을 입력해주세요."></td>
                 	</tr>
                 	<tr>
-                 		 <th><span>대표 이미지</span></th>
+                 		<th><span>대표 이미지</span></th>
                   		<td ><input class="file_upload" type="file" name="file1"></td>
                		 </tr>
                		 <tr>
                   		<th><span>수량</span></th>
-                  		<td><input id="count" type="text" name="amount" placeholder=""></td>
+                  		<td><input id="amount" type="text" name="amount" placeholder=""></td>
                 	</tr>
                 	<tr>
                   		<th><span>가격</span></th>
                   		<td>
-                  			<input id="price" type="text" name="price" placeholder="">
+                  			<input id="price" type="text" name="price" placeholder=""> &nbsp;원
                   		</td>
                 	</tr>
                 	<tr>
@@ -228,16 +223,15 @@ session.getAttribute("sessionID");
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<a href = "#">완료</a>
+						<button type="submit">완료</button>
 					</li>
 					<li class = "cancel_btn_wrap">
-						<a href = "#">취소</a>
+						<button type="reset">취소</button>
 					</li>
 				</ul>
        		</div>
        	</div>
        	</form>
-       	
        <div id = "footer">
        
        </div>

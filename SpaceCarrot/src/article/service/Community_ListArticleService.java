@@ -59,6 +59,5 @@ public class Community_ListArticleService {
 			throw new RuntimeException(e);
 		}
 		
-		
 	}		
 }
