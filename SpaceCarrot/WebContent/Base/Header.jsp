@@ -71,7 +71,7 @@
 				<li><a href = "../view.community/Community_List.jsp">커뮤니티</a></li>
 				<li><a href = "../view.see/SeePlace_List.html">볼거리</a></li>
 				<li><a href = "../view.eat/EatPlace_List.html">먹거리</a></li>
-				<li><a href = "../view.board/Board_Commerce_List_Book.jsp">중고거래</a></li>
+				<li><a href = "../view.board/Board_Commerce_List.jsp">중고거래</a></li>
 			</ul>
 		</div>
 		<div class = "login">
