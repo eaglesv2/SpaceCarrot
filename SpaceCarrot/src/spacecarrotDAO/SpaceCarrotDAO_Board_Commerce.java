@@ -293,4 +293,29 @@ public class SpaceCarrotDAO_Board_Commerce {
 
 		}
 	}
+	// 카테고리 검색시 작동하는 메소드
+	public List<CommerceArticleVO> select_category(int startRow, int size, String category) throws IOException {
+		
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMERCE + 
+				" WHERE " + COL_CATEGORY + " = ? ORDER BY "	+ COL_POSTNUM + " desc limit ?, ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, size);
+			rs = pstmt.executeQuery();
+			List<CommerceArticleVO> result = new ArrayList<CommerceArticleVO>();
+			
+			result = convertVO(rs);
+			
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("select_category error");
+			return null;
+		}
+	
+	}
+	
 }

@@ -312,7 +312,7 @@ public class FrontController extends HttpServlet {
 			try {
 				CommerceArticlePageVO articlePage5 = c2.reset(request, response);
 				request.setAttribute("articlePage", articlePage5);
-				str = "Board_Commerce_List_Book.jsp";
+				str = "Board_Commerce_List.jsp";
 			} catch (ClassNotFoundException | SQLException e) {
 				request.setAttribute("articlePage", articlePage);
 				str = "error.jsp";
@@ -376,6 +376,32 @@ public class FrontController extends HttpServlet {
 
 				break;
 
+			case "/view.board/Search_Category_Commerce.do":
+				
+				String category = (String) request.getParameter("category");
+				if(category == null) {
+				category = (String) request.getAttribute("category");
+				}
+				
+				CommerceInsert c3 = new CommerceInsert();
+				
+				System.out.println(category);
+				
+				try {
+					CommerceArticlePageVO articlePage5 = c3.search_category(request, response);
+					request.setAttribute("articlePage", articlePage5);
+					str = "Board_Commerce_List_Book.jsp";
+				} catch (ClassNotFoundException | SQLException e) {
+					request.setAttribute("articlePage", articlePage);
+					str = "error.jsp";
+					e.printStackTrace();
+				}
+
+				rd = request.getRequestDispatcher(str);
+				rd.forward(request, response);
+
+				break;
+				
 		} // case-end
 	} // http -end
 }
