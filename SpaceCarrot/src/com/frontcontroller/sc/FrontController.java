@@ -178,7 +178,8 @@ public class FrontController extends HttpServlet {
 			}
 
 			request.setAttribute("articlePage", articlePage);
-
+			
+			str = "/view.community/Community_List.jsp";
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 
