@@ -16,6 +16,7 @@
 	request.setAttribute("category", category);
 	RequestDispatcher rd = request.getRequestDispatcher("Search_Category_Commerce.do");
 	  rd.forward(request, response);
+	  System.out.println("After Dispatcher category = " + category);
 	 %>
 </c:if>
 <script>        

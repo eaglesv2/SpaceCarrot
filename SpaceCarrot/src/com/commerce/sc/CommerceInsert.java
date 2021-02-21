@@ -125,4 +125,24 @@ public class CommerceInsert {
 		articlePage = listService.getArticlePage_select_category(pageNo, category);
 		return articlePage;
 	}
+	// 카테고리에 따라 url 찾기 메소드
+	public String find_url(String category) {
+		String result = null;
+		if(category == "book") {
+			result = "/view.board/Board_Commerce_List_Book.jsp";
+		} else if (category == "fashion") {
+			result = "/view.board/Board_Commerce_List_Fashion.jsp";
+		} else if (category == "digit") {
+			result = "/view.board/Board_Commerce_List_Digital.jsp";
+		} else if (category == "life") {
+			result = "/view.board/Board_Commerce_List_Life.jsp";
+		} else if (category == "sports") {
+			result = "/view.board/Board_Commerce_List_Sports.jsp";
+		} else if (category == "other") {
+			result = "/view.board/Board_Commerce_List_Other.jsp";
+		} else {
+			result = "/view.board/error.jsp";
+		}
+		return result;
+	}
 }
