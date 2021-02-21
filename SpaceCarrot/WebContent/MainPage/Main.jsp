@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
     <link rel="stylesheet" href="../Base/reset.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-   
+
     <script>
         $(document).ready(function(){
             var main = $('.bxslider').bxSlider({
@@ -32,9 +33,14 @@
     <title>우주당근</title>
 </head>
 <body>
+<c:if test="${empty community_VO}">
+   <% RequestDispatcher rd = request.getRequestDispatcher("Reset_Main.do");
+   rd.forward(request, response);
+   System.out.print("redirect success"); %>
+</c:if>
 <%-- <% String id = (String)session.getAttribute("sessionID"); 
 	System.out.print(id);%> --%>
-    
+
     <div id="container">
         <div id="containerwrap">
             <div id="header">
@@ -71,17 +77,17 @@
                             <td>게시글1</td>
                         </tr>
                     </table>
-                
-                
+                <!-- 여기에는 공지사항 -->
+                <!-- 밑에는 카테고리1 -->
                     <table id="centertable">
                         <tr>
-                            <th><h1><a href="">커뮤니티 카테고리1</a></h1></th>
+                            <th><h1><a href="">커뮤니티 최신글</a></h1></th>
                         </tr>
-                        
+                    <c:forEach var="article" items="${community_VO}">
                         <tr>
-                            <td>게시글1</td>
+                            <td><a href="#">${article.subject}</a></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>게시글1</td>
                         </tr>
                         <tr>
@@ -92,10 +98,11 @@
                         </tr>
                         <tr id="end-tr">
                             <td>게시글1</td>
-                        </tr>
+                        </tr> -->
+                    </c:forEach>
                     </table>
                 
-                
+                <!-- 여기는 커뮤니티 카테고리2 -->
                     <table id="righttable">
                         <tr>
                             <th><h1><a href="">커뮤니티 카테고리2</a></h1></th>
