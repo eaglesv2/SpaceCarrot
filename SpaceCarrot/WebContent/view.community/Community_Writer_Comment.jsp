@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../Base/reset.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<c:if test="${empty articlePage}">
+   <% 
+   RequestDispatcher rd = request.getRequestDispatcher("Writer_Search.do");
+   rd.forward(request, response);
+   System.out.print("redirect success"); %>
+</c:if>
 <script>        
 	$(document).ready(function(){    
 		$("#header").load("../Base/Header.jsp");
@@ -151,7 +158,7 @@
 												 }
 </style>
 </head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>커뮤니티_작성자</title>
 </head>
 <body>
@@ -177,10 +184,11 @@
        		
        		<div id="board_wrap">
 			    <ul>
+			    <c:forEach var="article" items="${articlePage.content}">
         			<li><span>번호</span><span>제목</span><span>작성자</span><span>조회수</span><span>작성일</span></li>
 
-			        <li><span>10</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
-			        <li><span>9</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
+			        <li><span>${article.postNum}</span><span><a href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">${article.subject}</a></span><span>${article.userNickName}</span><span>${article.views}</span><span>${article.regDate}</span></li>
+			        <!-- <li><span>9</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
 			        <li><span>8</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
 			        <li><span>7</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
 			        <li><span>6</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
@@ -188,7 +196,8 @@
 			        <li><span>4</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
 			        <li><span>3</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
 			        <li><span>2</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>
-			        <li><span>1</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li>        			
+			        <li><span>1</span><span><a href="#">제목</a></span><span>김단성사</span><span>2</span><span>21.02.15</span></li> -->
+			    </c:forEach>        			
     			</ul>
 			</div>
        		
