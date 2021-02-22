@@ -560,7 +560,8 @@ public class FrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+			
+			request.setAttribute("userNickName", userNickName);
 			
 			str = "/view.community/Community_Writer_Writting.jsp";
 
@@ -594,6 +595,8 @@ public class FrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 
+			request.setAttribute("userNickName", userNickName);
+			
 			str = "/view.community/Community_Writer_Comment.jsp";
 
 			rd = request.getRequestDispatcher(str);

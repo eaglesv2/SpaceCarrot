@@ -182,8 +182,8 @@ td {
 			<div id="category">
 				<ul>
 					<li class="writting"><a class="menuLink"
-						href="Community_Writer_Writting.jsp">작성글</a></li>
-					<li><a class="menuLink" href="Community_Writer_Comment.jsp">작성댓글</a></li>
+						href="Writer_Search.do?userNickName=${requestScope.userNickName}">작성글</a></li>
+					<li><a class="menuLink" href="Writer_Search_Comment.do?userNickName=${requestScope.userNickName}">작성댓글</a></li>
 				</ul>
 			</div>
 
