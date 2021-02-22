@@ -284,7 +284,7 @@ td {
                      <td>${article.postNum}</td>
                      <td><a href="Read_Community.do?no=${article.postNum}&pageNo=${articlePage.currentPage}"><c:out
                               value="${article.subject}"></c:out></a></td>
-                     <td>${article.userNickName}</td>
+                     <td><a href="Writer_Search.do?userNickName=${article.userNickName}">${article.userNickName}</a></td>
                      <td>${article.views}</td>
                      <td>${article.regDate}</td>
                   </tr>

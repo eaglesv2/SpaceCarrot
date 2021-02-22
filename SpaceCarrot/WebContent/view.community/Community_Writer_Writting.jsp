@@ -11,7 +11,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <c:if test="${empty articlePage}">
-	<%
+	<%		
 			RequestDispatcher rd = request.getRequestDispatcher("Writer_Search.do");
 			rd.forward(request, response);
 			System.out.print("redirect success");
@@ -181,8 +181,8 @@ td {
 		<div id="wrap">
 			<div id="category">
 				<ul>
-					<li class="writting"><a class="menuLink"href="Community_Writer_Writting.jsp">작성글</a></li>
-					<li><a class="menuLink" href="Community_Writer_Comment.jsp">작성댓글</a></li>
+					<li class="writting"><a class="menuLink" href="Writer_Search.do?userNickName=${requestScope.userNickName}">작성글</a></li>
+					<li><a class="menuLink" href="Writer_Search_Comment.do?userNickName=${requestScope.userNickName}">작성댓글</a></li>
 				</ul>
 			</div>
 

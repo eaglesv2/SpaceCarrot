@@ -550,7 +550,7 @@ public class FrontController extends HttpServlet {
 				System.out.println("frontController 어트리뷰트 받기 실패");
 				userNickName = "hiyo"; // 테스트용
 			}
-			System.out.println("frontcontroller sessionID = " + userNickName);
+			System.out.println("frontcontroller = " + userNickName);
 			
 			al = new ArticleInfoList();
 
@@ -562,7 +562,7 @@ public class FrontController extends HttpServlet {
 			}
 			
 			request.setAttribute("userNickName", userNickName);
-			
+			System.out.println("second controller = " + userNickName);
 			str = "/view.community/Community_Writer_Writting.jsp";
 
 			rd = request.getRequestDispatcher(str);
@@ -582,7 +582,7 @@ public class FrontController extends HttpServlet {
 				System.out.println("frontController 어트리뷰트 받기 실패");
 				userNickName = "hiyo"; // 테스트용
 			}
-			System.out.println("frontcontroller sessionID = " + userNickName);
+			System.out.println("frontcontroller = " + userNickName);
 			
 			al = new ArticleInfoList();
 			
