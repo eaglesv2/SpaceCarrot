@@ -185,23 +185,24 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>중고거래</p></li>
+				<li class = "title_wrap"><p><a href = "Board_Commerce_List.jsp">중고거래</a></p></li>
 			</ul>
        	</div>
        	
        	<div id = "wrap">
+       		<form action="Commerce_Search.do" method="post">
        		<div id = "category">
        			<ul>
-       				<form action="Commerce_Search.do" method="post">
        				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Sports.jsp">스포츠/레저</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
-       				</form>
+       				
        			</ul>
        		</div>
+       		</form>
        		
        		<div>
        			<div id = "sell_btn">
@@ -240,17 +241,17 @@
 	<c:if test="${articlePage.hasArticles()}">
 		<ul>
 			<li>
-				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-					test="${articlePage.startPage > 5}">
-					<a
-						href="Commerce_Reset.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-					begin="${articlePage.startPage}" end="${articlePage.endPage}">
+				<!-- 현재페이지가 5 이상일 시 이전 링크-->
+				<c:if test="${articlePage.startPage > 5}">
+					<a href="Commerce_Reset.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+				</c:if> 
+				<!-- startPage to endPage --> 
+				<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
 					<a href="Commerce_Reset.do?pageNo=${pNo}">${pNo}</a>
-				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
-					test="${articlePage.endPage < articlePage.totalPages}">
-					<a
-						href="Commerce_Reset.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+				</c:forEach> 
+				<!-- endPage가 총페이지보다 작을 시에 다음 링크 -->
+				<c:if test="${articlePage.endPage < articlePage.totalPages}">
+					<a href="Commerce_Reset.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
 				</c:if>
 			</li>
 		</ul>

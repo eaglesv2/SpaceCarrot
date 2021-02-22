@@ -239,7 +239,6 @@ public class SpaceCarrotDAO_Board_Community {
 // 카테고리 총 게시글 카운트 메소드
 	public int selectCount(String category) {
 		// 게시글 수 int로 반환 메서드
-		Statement stmt = null;
 		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE " + COL_CATEGORY + " = ? ";
 		
 		try {
