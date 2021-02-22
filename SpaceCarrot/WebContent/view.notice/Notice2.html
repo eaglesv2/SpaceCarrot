@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../Base/reset.css" />
+<script>
+	$(document).ready(function() {
+		$("#header").load("../Base/Header.jsp");
+		$("#footer").load("../Base/footer.html");
+	})
+</script>
+<style>
+#container {
+	margin: 0 auto;
+	width: 1080px;
+	/* border: 2px solid black; */
+}
+/* 중고거래 타이틀 */
+#title ul li {
+	list-style: none;
+}
+
+.title_wrap {
+	text-align: center;
+}
+
+.title_wrap a {
+	color: #fff;
+	background-color: #fc585e;
+	padding: 25px 0px;
+	font-size: 16pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 35px;
+}
+
+/* 게시글 */
+#board_wrap {
+	width: 710px;
+	height: 660px;
+	margin: 0 auto;
+	right: 500px;
+	margin-bottom: 150px;
+}
+
+a {
+	text-decoration: none;
+	color: #404040;
+}
+
+li {
+	list-style: none;
+}
+
+#board_wrap ul li {
+	padding-left: 20px;
+}
+
+#board_wrap ul li:first-child {
+	border-top: 3px solid #6a6a6a;
+	border-bottom: 1px solid #000;
+	font-weight: bold;
+	font-size: 14pt;
+	line-height: 50px; /*li 세로 간격*/
+}
+
+#board_wrap ul li:nth-child(2) {
+	border-bottom: 1px solid #000;
+	line-height: 50px; /*li 세로 간격*/
+	margin-bottom: 20px;
+}
+
+#board_wrap ul li span:first-child {
+	display: inline-block;
+	float: left;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(2) {
+	display: inline-block;
+	padding-right: 200px;
+}
+
+#board_wrap ul li span:nth-child(3) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(4) {
+	display: inline-block;
+	padding-right: 140px;
+}
+
+#board_wrap ul li span:nth-child(5) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:last-child {
+	display: inline-block;
+	float: right;
+	padding-right: 10px;
+}
+
+#board_wrap ul li:last-child {
+	line-height: 30px;
+	font-size: 12pt;
+}
+
+/* 댓글 */
+#gprice {
+	margin-left: 203px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #000000;
+}
+
+.my-hr1 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 715px;
+}
+/* 댓글 구분시 맨 마지막은 안 보이게 작동 안되는 듯? */
+#foreach-hr:last-child{ display: none;
+}
+
+.my-hr2 {
+	/* margin-bottom: 20px; */
+	width: 715px;
+	height: 1px;
+	background: #000000;
+}
+
+#nick {
+	margin-left: 223px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #000000;
+}
+
+#content-daet1 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#content-daet2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+#content-daet3 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#daet {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#daet2 {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#dap {
+	margin-left: 220px;
+	margin-top: 42px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+	margin-right: 5px;
+	font-weight: 700;
+	float: left;
+}
+
+#text {
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	width: 415px;
+	height: 60px;
+	border: 1;
+}
+
+#checkbox1 {
+	font-size: 14px;
+}
+
+#dapwrap {
+	margin-top: 7px;
+}
+
+#dapbutton {
+	float: right;
+	width: 100px;
+	margin-right: 200px;
+	margin-top: 23px;
+}
+
+#button2 {
+	margin-left: 223px;
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+
+#dapwrap .button {
+	width: 80px;
+	height: 35px;
+	background-color: #f8585b;
+	border: none;
+	color: #fff;
+	padding: 6px 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px;
+	cursor: pointer;
+}
+</style>
+</head>
+<meta charset="UTF-8">
+<title>커뮤니티_공지사항</title>
+</head>
+<body>
+
+	<div id="container">
+		<div id="header"></div>
+
+		<div id="title">
+			<ul>
+				<li class="title_wrap"><p><a href="Community_List_Default.jsp">공지사항</a></p></li>
+			</ul>
+		</div>
+
+		<div id="board_wrap">
+			<ul>
+				<li>[이벤트]중고물품 올리면 어피치 이모티콘 100% 지급!</li>
+				<li><span>작성자</span><span>우주마켓</span><span>작성일</span><span>2021.02.23</span><span>조회수</span><span></span></li>
+				<li>
+					종로구 주민분들, 우주마켓이 격하게 환영합니다. 😍 <br>
+					격하게 환영하는 의미로 종로구에서!!! <br>
+					사랑스러운 어피치 이모티콘을 드리는 오픈 이벤트를 7일 간 진행합니다. <br>
+					(참고로 우주마켓은 30일짜리 이벤트 이모티콘은 취급 안 해요!^^  <br>
+					사용기한 무제한 어피치 이모티콘을 드립니다 😆)<br><br>
+					
+					완전 쉬운 이벤트 참여방법! <br><br>
+
+					언제?<br><br>
+
+					2월 25일(목) ~ 3월 2일(수) 23시 59분 59초까지!<br><br>
+
+					어떻게? <br><br>
+
+					우리 동네 인증하고 집에서 쌓아놓은 중고물품을 올리면 끝! <br><br>
+
+					단, 물품정보가 부족하거나 성의없는 게시물이라 판단될 경우, 지급대상에서 제외될수 있어요! <br>
+
+					하단에 주의사항을 참고해주세요. <br><br>
+
+					선물은? <br><br>
+
+					카카오톡 어피치 이모티콘
+				</li>
+			</ul>
+		</div>
+
+		<hr class="my-hr2">
+
+		<div id="footer"></div>
+	</div>
+</body>
+</html> 

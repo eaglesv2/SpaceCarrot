@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../Base/reset.css" />
+<script>
+	$(document).ready(function() {
+		$("#header").load("../Base/Header.jsp");
+		$("#footer").load("../Base/footer.html");
+	})
+</script>
+<style>
+#container {
+	margin: 0 auto;
+	width: 1080px;
+	/* border: 2px solid black; */
+}
+/* 중고거래 타이틀 */
+#title ul li {
+	list-style: none;
+}
+
+.title_wrap {
+	text-align: center;
+}
+
+.title_wrap a {
+	color: #fff;
+	background-color: #fc585e;
+	padding: 25px 0px;
+	font-size: 16pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 35px;
+}
+
+/* 게시글 */
+#board_wrap {
+	width: 710px;
+	height: 430px;
+	margin: 0 auto;
+	right: 500px;
+	margin-bottom: 150px;
+}
+
+a {
+	text-decoration: none;
+	color: #404040;
+}
+
+li {
+	list-style: none;
+}
+
+#board_wrap ul li {
+	padding-left: 20px;
+}
+
+#board_wrap ul li:first-child {
+	border-top: 3px solid #6a6a6a;
+	border-bottom: 1px solid #000;
+	font-weight: bold;
+	font-size: 14pt;
+	line-height: 50px; /*li 세로 간격*/
+}
+
+#board_wrap ul li:nth-child(2) {
+	border-bottom: 1px solid #000;
+	line-height: 50px; /*li 세로 간격*/
+	margin-bottom: 20px;
+}
+
+#board_wrap ul li span:first-child {
+	display: inline-block;
+	float: left;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(2) {
+	display: inline-block;
+	padding-right: 200px;
+}
+
+#board_wrap ul li span:nth-child(3) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(4) {
+	display: inline-block;
+	padding-right: 140px;
+}
+
+#board_wrap ul li span:nth-child(5) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:last-child {
+	display: inline-block;
+	float: right;
+	padding-right: 10px;
+}
+
+#board_wrap ul li:last-child {
+	line-height: 30px;
+	font-size: 12pt;
+}
+
+/* 댓글 */
+#gprice {
+	margin-left: 203px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #000000;
+}
+
+.my-hr1 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 715px;
+}
+/* 댓글 구분시 맨 마지막은 안 보이게 작동 안되는 듯? */
+#foreach-hr:last-child{ display: none;
+}
+
+.my-hr2 {
+	/* margin-bottom: 20px; */
+	width: 715px;
+	height: 1px;
+	background: #000000;
+}
+
+#nick {
+	margin-left: 223px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #000000;
+}
+
+#content-daet1 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#content-daet2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+#content-daet3 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#daet {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#daet2 {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#dap {
+	margin-left: 220px;
+	margin-top: 42px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+	margin-right: 5px;
+	font-weight: 700;
+	float: left;
+}
+
+#text {
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	width: 415px;
+	height: 60px;
+	border: 1;
+}
+
+#checkbox1 {
+	font-size: 14px;
+}
+
+#dapwrap {
+	margin-top: 7px;
+}
+
+#dapbutton {
+	float: right;
+	width: 100px;
+	margin-right: 200px;
+	margin-top: 23px;
+}
+
+#button2 {
+	margin-left: 223px;
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+
+#dapwrap .button {
+	width: 80px;
+	height: 35px;
+	background-color: #f8585b;
+	border: none;
+	color: #fff;
+	padding: 6px 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px;
+	cursor: pointer;
+}
+</style>
+</head>
+<meta charset="UTF-8">
+<title>커뮤니티_공지사항</title>
+</head>
+<body>
+
+	<div id="container">
+		<div id="header"></div>
+
+		<div id="title">
+			<ul>
+				<li class="title_wrap"><p><a href="Community_List_Default.jsp">공지사항</a></p></li>
+			</ul>
+		</div>
+
+		<div id="board_wrap">
+			<ul>
+				<li>[긴급공지] 우주당근처럼 보이는 피싱 사이트를 주의하세요!(필독)</li>
+				<li><span>작성자</span><span>우주마켓</span><span>작성일</span><span>2021.02.23</span><span>조회수</span><span></span></li>
+				<li>
+					현재 우주당근과 똑같이 디자인하여 <br>
+					안전결제를 유도하는 사기행위가 발견되어 긴급공지를 드립니다 .<br><br>
+					URL을 확인하지 않으면 똑같은 디자인으로 회원님들을 속이는 피싱 사이트 방식입니다.<br><br>
+
+					관련해서 피해 방지법을 공유드리니 <br>
+					내용을 꼭 숙지하시고 주의를 기울여주시길 부탁드립니다<br><br>
+					
+					우주 당근의 URL은 localhost:****/SpaceCarrot으로 시작합니다<br><br>
+
+					1. 카톡과 같은 메신저로 대화를 유도하거나 <br>
+					&nbsp;&nbsp;&nbsp;안전거래 URL을 전송하는 방식은 사기일 가능성이 매우 높습니다.<br>
+					2. 판매자 연락처를 꼭 확인하시고 연락처를 받으신 다음에는 <br>
+					&nbsp;&nbsp;&nbsp;경찰청 '사이버캅' 또는 ' 더치트'를 이용해서 피해 사례가 있는지 확인해주세요.
+				</li>
+			</ul>
+		</div>
+
+		<hr class="my-hr2">
+
+		<div id="footer"></div>
+	</div>
+</body>
+</html> 

@@ -146,6 +146,9 @@ color: #000000;
 	margin-bottom: 20px;
 	width: 715px;
 }
+/* 댓글 구분시 맨 마지막은 안 보이게 작동 안되는 듯? */
+#foreach-hr:last-child{ display: none;
+}
 
 .my-hr2 {
 	/* margin-bottom: 20px; */
@@ -324,7 +327,7 @@ margin-top: 7px;
 					<div id="nick">${commerce_comment_VO.nickName}</div>
 					<div id="daet">${commerce_comment_VO.content}</div>
 				</div>		
-				
+				<hr class="my-hr1" id="foreach-hr">
 				<!-- 
 				<div id = "content-daet2">		
 					<div id="nick">└ 닉네임</div>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../Base/reset.css" />
+<script>
+	$(document).ready(function() {
+		$("#header").load("../Base/Header.jsp");
+		$("#footer").load("../Base/footer.html");
+	})
+</script>
+<style>
+#container {
+	margin: 0 auto;
+	width: 1080px;
+	/* border: 2px solid black; */
+}
+/* 중고거래 타이틀 */
+#title ul li {
+	list-style: none;
+}
+
+.title_wrap {
+	text-align: center;
+}
+
+.title_wrap a {
+	color: #fff;
+	background-color: #fc585e;
+	padding: 25px 0px;
+	font-size: 16pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 35px;
+}
+
+/* 게시글 */
+#board_wrap {
+	width: 710px;
+	height: 750px;
+	margin: 0 auto;
+	right: 500px;
+	margin-bottom: 150px;
+}
+
+a {
+	text-decoration: none;
+	color: #404040;
+}
+
+li {
+	list-style: none;
+}
+
+#board_wrap ul li {
+	padding-left: 20px;
+}
+
+#board_wrap ul li:first-child {
+	border-top: 3px solid #6a6a6a;
+	border-bottom: 1px solid #000;
+	font-weight: bold;
+	font-size: 14pt;
+	line-height: 50px; /*li 세로 간격*/
+}
+
+#board_wrap ul li:nth-child(2) {
+	border-bottom: 1px solid #000;
+	line-height: 50px; /*li 세로 간격*/
+	margin-bottom: 20px;
+}
+
+#board_wrap ul li span:first-child {
+	display: inline-block;
+	float: left;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(2) {
+	display: inline-block;
+	padding-right: 200px;
+}
+
+#board_wrap ul li span:nth-child(3) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(4) {
+	display: inline-block;
+	padding-right: 140px;
+}
+
+#board_wrap ul li span:nth-child(5) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:last-child {
+	display: inline-block;
+	float: right;
+	padding-right: 10px;
+}
+
+#board_wrap ul li:last-child {
+	line-height: 30px;
+	font-size: 12pt;
+}
+
+/* 댓글 */
+#gprice {
+	margin-left: 203px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #000000;
+}
+
+.my-hr1 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 715px;
+}
+/* 댓글 구분시 맨 마지막은 안 보이게 작동 안되는 듯? */
+#foreach-hr:last-child{ display: none;
+}
+
+.my-hr2 {
+	/* margin-bottom: 20px; */
+	width: 715px;
+	height: 1px;
+	background: #000000;
+}
+
+#nick {
+	margin-left: 223px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #000000;
+}
+
+#content-daet1 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#content-daet2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+#content-daet3 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#daet {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#daet2 {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#dap {
+	margin-left: 220px;
+	margin-top: 42px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+	margin-right: 5px;
+	font-weight: 700;
+	float: left;
+}
+
+#text {
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	width: 415px;
+	height: 60px;
+	border: 1;
+}
+
+#checkbox1 {
+	font-size: 14px;
+}
+
+#dapwrap {
+	margin-top: 7px;
+}
+
+#dapbutton {
+	float: right;
+	width: 100px;
+	margin-right: 200px;
+	margin-top: 23px;
+}
+
+#button2 {
+	margin-left: 223px;
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+
+#dapwrap .button {
+	width: 80px;
+	height: 35px;
+	background-color: #f8585b;
+	border: none;
+	color: #fff;
+	padding: 6px 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px;
+	cursor: pointer;
+}
+</style>
+</head>
+<meta charset="UTF-8">
+<title>커뮤니티_공지사항</title>
+</head>
+<body>
+
+	<div id="container">
+		<div id="header"></div>
+
+		<div id="title">
+			<ul>
+				<li class="title_wrap"><p><a href="Community_List_Default.jsp">공지사항</a></p></li>
+			</ul>
+		</div>
+
+		<div id="board_wrap">
+			<ul>
+				<li>[완료] 2월 19일(금) 임시점검 안내</li>
+				<li><span>작성자</span><span>우주마켓</span><span>작성일</span><span>2021.02.19</span><span>조회수</span><span></span></li>
+				<li>
+					안녕하세요. 우주마켓(이하 ‘회사’)입니다.<br>
+					현재 서버 과부하로 인해 페이지 오류가 <br>
+					발생하고 있는 것으로 확인되며 해당 현상으로 인해 <br>
+					이용에 불편을 드려 진심으로 사과드립니다.<br><br>
+					
+					금일 2월 21일(금) 13:00 ~ 15:00까지 해당 오류를<br>
+					수정하기 위한 임시 점검이 진행될 예정입니다
+
+					빠르고 안전하게 문제를 수정하고 페이지를 <br>
+					이용하실 수 있도록 조치하겠습니다.<br><br>
+
+					<p style="color:blue">■ 점검 일시</p><br>
+					- 2020년 12월 24일(목) 13:00 ~ 15:00 <br><br>
+
+					<p style="color:blue">■ 점검 내용</p><br>
+					- 서버 안정 및 페이지 오류 수정<br><br>
+
+					<p style="color:blue">■ 임시점검 안내 사항</p><br>
+					- 임시점검 시간은 작업 진행 상황에 따라 변동(연장, 단축) 될 수 있습니다.<br>
+					- 임시점검에 대한 변동 사항이 있을 경우, 공지사항 수정을 통해 안내드리겠습니다.<br><br>
+
+					갑작스런 점검으로 인해 불편을 드린 점 거듭 사과드립니다.<br><br>
+
+					감사합니다.
+				</li>
+			</ul>
+		</div>
+
+		<hr class="my-hr2">
+
+		<div id="footer"></div>
+	</div>
+</body>
+</html> 
