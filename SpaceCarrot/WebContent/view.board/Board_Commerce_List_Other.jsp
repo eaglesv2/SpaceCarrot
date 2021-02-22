@@ -176,15 +176,20 @@
 	height: 210px;
 	border-bottom: 1px solid #eeeeee;
 	cursor: pointer;
+	
 }
 
 .goods p {
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-bottom: 12px;
+	width:217px;
+	height:20px;
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin:10px;
 	font-size: 12pt;
 	float: left;
 	cursor: pointer;
+	text-align:left;
 }
 
 .price {
