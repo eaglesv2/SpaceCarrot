@@ -257,7 +257,8 @@ td {
 					 <% } %>
             </div>
             <div id="search">
-               <form action="Search_Community.do" method="post">
+               <form action="Category_Community.do" method="post">
+               	<input type="hidden" name="category" value="자유">
                   <input type="text" name="searchArea">
                   <button type="submit">
                      <img src="../img/SearchButton.png">
