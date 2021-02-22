@@ -70,7 +70,7 @@ public class CommerceInsert {
 		sc = new SpaceCarrotDAO_Board_Commerce();
 		sc.insertPost_Commerce(category, subject, userID, userNickName, repImage, price, amount, content);
 		sc.getAllInfoClose();
-		RequestDispatcher rd1 = request.getRequestDispatcher("/view.board/Board_Commerce_List_Fashion.jsp");
+		RequestDispatcher rd1 = request.getRequestDispatcher("/view.board/Board_Commerce_List.jsp");
 		rd1.forward(request, response);
 		/*response.sendRedirect("../view.login/SignUpComplete.jsp");*/
 	}
