@@ -289,6 +289,31 @@ public class SpaceCarrotDAO_Board_Community {
 
 		}
 	}
+	// 작성자 검색시 총 게시글 메소드
+	public int selectCount_Writer(String input_UserID) {
+		// 게시글 수 int로 반환 메서드
+		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE "
+				+ COL_USERID + " = ? "; 
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, input_UserID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("count success");
+				return rs.getInt(1);
+			}
+			return 0;
+		} catch (SQLException e) {
+			System.out.println("count Exception");
+			return 0;
+		} catch (NullPointerException e) {
+			System.out.println("nullpointerror");
+			return 0;
+		} finally {
+
+		}
+	}
 
 	public List<SpaceCarrotVO_Board_Community> select(int startRow, int size) throws SQLException {
 		// 1번부터 size 만큼의 게시글 수를 List에 담는 메소드
@@ -346,6 +371,33 @@ public class SpaceCarrotDAO_Board_Community {
 		}
 	}
 
+	public List<SpaceCarrotVO_Board_Community> select_Search_Writer(String input_userID, int startRow, int size)
+			throws SQLException {
+		// 특정 작성자가 쓴 글을 찾는 메소드
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE "
+				+ COL_USERID + " = ? ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, input_userID);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, size);
+			rs = pstmt.executeQuery();
+			List<SpaceCarrotVO_Board_Community> result = new ArrayList<SpaceCarrotVO_Board_Community>();
+			while (rs.next()) {
+				result.add(convertArticle(rs));
+				System.out.println("select_Search success");
+			}
+			return result;
+		} catch(SQLException e) {
+			System.out.println("select_Search fail");
+			e.printStackTrace();
+			return null;
+		} finally {
+
+		}
+	}
+	
 	public List<SpaceCarrotVO_Board_Community> select_Search_Category(String input_Category, String input_search, int startRow, int size)
 			throws SQLException {
 		// 특정카테고리에서 특정 검색시 발동메소드
