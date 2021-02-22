@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -289,7 +291,7 @@
         				<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">	
        						<p><c:out value="${article.subject}"></c:out></p>
        					</a>
-       					<span class = "price"><%-- <% price %>원 --%>${article.price}원</span>
+       					<span class = "price"><%-- <% price %>원 --%><fmt:formatNumber value="${article.price}" pattern="#,###"/>원</span>
        					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
 

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,7 +148,7 @@
                     </div>
                     <div class="card">
                         <h2>
-                        	<a href="../view.eat/eatplace2.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지"> 광장시장></a>
+                        	<a href="../view.eat/eatplace2.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지"> 광장시장</a>
                         </h2>
                     </div>
                     <div class="card">
@@ -175,7 +177,7 @@
                         <h2> 
                         	<a href="Read_Commerce.do?no=${commerce_article.postNum}">${commerce_article.subject}</a>
                         </h2>
-                        <p>${commerce_article.price}원</p>
+                        <p><fmt:formatNumber value="${commerce_article.price}" pattern="#,###"/>원</p>
                     </div>
                 </c:forEach>
                 </div>
