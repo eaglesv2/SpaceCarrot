@@ -196,7 +196,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><a href = "Board_Commerce_List.jsp"><p>중고거래</p></a></li>
+				<li class = "title_wrap"><p><a href = "Board_Commerce_List.jsp">중고거래</a></p></li>
 			</ul>
        	</div>
        	
@@ -254,17 +254,17 @@
 	<c:if test="${articlePage.hasArticles()}">
 		<ul>
 			<li>
-				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-					test="${articlePage.startPage > 5}">
-					<a
-						href="Search_Category_Commerce.do?category=%EA%B8%B0%ED%83%80&pageNo=${articlePage.startPage - 5}">[이전]</a>
-				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-					begin="${articlePage.startPage}" end="${articlePage.endPage}">
-					<a href="Search_Category_Commerce.do?category=%EA%B8%B0%ED%83%80&pageNo=${pNo}">${pNo}</a>
-				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
-					test="${articlePage.endPage < articlePage.totalPages}">
-					<a
-						href="Search_Category_Commerce.do?category=%EA%B8%B0%ED%83%80&pageNo=${articlePage.startPage + 5 }">[다음]</a>
+				<!-- 현재페이지가 5 이상일 시 이전 링크--> 
+				<c:if test="${articlePage.startPage > 5}">
+					<a href="Search_Category_Commerce.do?category=other&pageNo=${articlePage.startPage - 5}">[이전]</a>
+				</c:if> 
+				<!-- startPage to endPage --> 
+				<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
+					<a href="Search_Category_Commerce.do?category=other&pageNo=${pNo}">${pNo}</a>
+				</c:forEach> 
+				<!-- endPage가 총페이지보다 작을 시에 다음 링크 --> 
+				<c:if test="${articlePage.endPage < articlePage.totalPages}">
+					<a href="Search_Category_Commerce.do?category=other&pageNo=${articlePage.startPage + 5 }">[다음]</a>
 				</c:if>
 			</li>
 		</ul>

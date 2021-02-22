@@ -197,7 +197,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><a href = "Board_Commerce_List.jsp"><p>중고거래</p></a></li>
+				<li class = "title_wrap"><p><a href = "Board_Commerce_List.jsp">중고거래</a></p></li>
 			</ul>
        	</div>
        	

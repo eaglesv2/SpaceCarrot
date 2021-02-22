@@ -165,8 +165,8 @@
 						<th><span>카테고리</span></th>
 						<td>
 							<select name="category">
-							<option value="커뮤니티" selected>커뮤니티<br>
-							<option value="중고거래">중고거래<br>
+							<option value="커뮤니티" selected>커뮤니티
+							<option value="중고거래">중고거래
 							</select>
 						</td>
 						

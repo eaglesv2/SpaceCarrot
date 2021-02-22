@@ -254,7 +254,7 @@ li {
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><a href="Community_List_Default.jsp"><p>게시글</p></a></li>
+				<li class="title_wrap"><p><a href="Community_List_Default.jsp">게시글</a></p></li>
 			</ul>
 		</div>
 
@@ -286,9 +286,6 @@ li {
 			</c:forEach>
 
 			<hr class="my-hr1">
-
-
-
 
 			<!-- <div id="content-daet3">
 				<div id="nick">비밀댓글입니다</div>
