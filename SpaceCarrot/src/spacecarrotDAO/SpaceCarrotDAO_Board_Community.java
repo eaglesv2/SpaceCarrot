@@ -190,12 +190,11 @@ public class SpaceCarrotDAO_Board_Community {
 
 	public int selectCount() {
 		// 게시글 수 int로 반환 메서드
-		Statement stmt = null;
 		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY;
 
 		try {
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				System.out.println("count success");
 				return rs.getInt(1);
@@ -211,16 +210,17 @@ public class SpaceCarrotDAO_Board_Community {
 
 		}
 	}
+
 	// 검색시 총 게시글 반환 메소드
 	public int selectCount_search(String input_search) {
 		// 게시글 수 int로 반환 메서드
-		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + 
-				" WHERE " + COL_SUBJECT + " = ? ";
+		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE "
+				+ COL_SUBJECT + " = ? ";
 
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, input_search);
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				System.out.println("count success");
 				return rs.getInt(1);
@@ -236,15 +236,15 @@ public class SpaceCarrotDAO_Board_Community {
 
 		}
 	}
+
 // 카테고리 총 게시글 카운트 메소드
 	public int selectCount(String category) {
 		// 게시글 수 int로 반환 메서드
 		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE " + COL_CATEGORY + " = ? ";
-		
 		try {
-			pstmt = con.prepareStatement(category);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, category);
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				System.out.println("count success");
 				return rs.getInt(1);
@@ -260,6 +260,34 @@ public class SpaceCarrotDAO_Board_Community {
 
 		}
 	}
+
+	// 카테고리 검색시 총 게시글 메소드
+	public int selectCount(String category, String input_search) {
+		// 게시글 수 int로 반환 메서드
+		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE "
+				+ COL_CATEGORY + " = ? AND " + COL_SUBJECT + " like concat('%', ?, '%') "; 
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, category);
+			pstmt.setString(2, input_search);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("count success");
+				return rs.getInt(1);
+			}
+			return 0;
+		} catch (SQLException e) {
+			System.out.println("count Exception");
+			return 0;
+		} catch (NullPointerException e) {
+			System.out.println("nullpointerror");
+			return 0;
+		} finally {
+
+		}
+	}
+
 	public List<SpaceCarrotVO_Board_Community> select(int startRow, int size) throws SQLException {
 		// 1번부터 size 만큼의 게시글 수를 List에 담는 메소드
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "
@@ -316,6 +344,29 @@ public class SpaceCarrotDAO_Board_Community {
 		}
 	}
 
+	public List<SpaceCarrotVO_Board_Community> select_Search_Category(String input_Category, String input_search, int startRow, int size)
+			throws SQLException {
+		// 특정카테고리에서 특정 검색시 발동메소드
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE "
+				+ COL_CATEGORY + " = ? AND " + COL_SUBJECT + " like concat('%', ?, '%') ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, input_Category);
+			pstmt.setString(2, input_search);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, size);
+			rs = pstmt.executeQuery();
+			List<SpaceCarrotVO_Board_Community> result = new ArrayList<SpaceCarrotVO_Board_Community>();
+			while (rs.next()) {
+				result.add(convertArticle(rs));
+				System.out.println("select_Search success");
+			}
+			return result;
+		} finally {
+
+		}
+	}
 	public List<SpaceCarrotVO_Board_Community> select_Search(String input_Search, int startRow, int size)
 			throws SQLException {
 		// 특정 제목을 찾는 메소드 like % ? % 를 쓰기 위해서 concat을 사용했다
@@ -337,40 +388,41 @@ public class SpaceCarrotDAO_Board_Community {
 
 		}
 	}
+
 	// 메인에 커뮤니티 게시판 글 올리는 메소드
 	public List<SpaceCarrotVO_Board_Community> getSubject_Community() throws SQLException {
-       
-        String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "
-                + COL_POSTNUM + " DESC LIMIT 5";
-        List<SpaceCarrotVO_Board_Community> result = null;
-        try {
-            pstmt = con.prepareStatement(sql);
-            rs = pstmt.executeQuery();
-            result = new ArrayList<SpaceCarrotVO_Board_Community>();
-            while (rs.next()) {
-                result.add(convertArticle(rs));
-            }
-            return result;
-        } finally {
 
-        }
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "
+				+ COL_POSTNUM + " DESC LIMIT 5";
+		List<SpaceCarrotVO_Board_Community> result = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			result = new ArrayList<SpaceCarrotVO_Board_Community>();
+			while (rs.next()) {
+				result.add(convertArticle(rs));
+			}
+			return result;
+		} finally {
+
+		}
 	}
-	
-	public List<SpaceCarrotVO_Board_Community> getHotSubject_Community() throws SQLException {
-	       
-        String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "
-                + COL_VIEWS + " DESC LIMIT 5";
-        List<SpaceCarrotVO_Board_Community> result = null;
-        try {
-            pstmt = con.prepareStatement(sql);
-            rs = pstmt.executeQuery();
-            result = new ArrayList<SpaceCarrotVO_Board_Community>();
-            while (rs.next()) {
-                result.add(convertArticle(rs));
-            }
-            return result;
-        } finally {
 
-        }
+	public List<SpaceCarrotVO_Board_Community> getHotSubject_Community() throws SQLException {
+
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "
+				+ COL_VIEWS + " DESC LIMIT 5";
+		List<SpaceCarrotVO_Board_Community> result = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			result = new ArrayList<SpaceCarrotVO_Board_Community>();
+			while (rs.next()) {
+				result.add(convertArticle(rs));
+			}
+			return result;
+		} finally {
+
+		}
 	}
 }

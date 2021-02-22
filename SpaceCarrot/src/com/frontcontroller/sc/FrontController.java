@@ -191,20 +191,24 @@ public class FrontController extends HttpServlet {
 		case "/view.community/Category_Community.do":
 			// 커뮤니티 카테고리 검색시
 			category = (String) request.getParameter("category");
-
 			if (category == null) {
 				category = (String) request.getAttribute("category");
 			}
+			String search55 = (String) request.getParameter("searchArea");
 			al = new ArticleInfoList();
-
+			System.out.println("first controller = " + search55);
 			try {
-				articlePage = al.execute_search_Category(request, response, category);
+				if (search55 == null) {
+					articlePage = al.execute_search_Category(request, response, category);
+					request.setAttribute("articlePage", articlePage);
+				} else {
+					articlePage = al.execute_search_In_Category(request, response, category, search55);
+					request.setAttribute("articlePage", articlePage);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			request.setAttribute("articlePage", articlePage);
-
+			
 			str = al.find_url(category);
 
 			rd = request.getRequestDispatcher(str);
@@ -214,6 +218,7 @@ public class FrontController extends HttpServlet {
 
 		case "/view.community/Search_Community.do":
 			// 게시글 검색시 (제목으로 검색)
+
 			al = new ArticleInfoList();
 
 			try {
@@ -419,7 +424,7 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			List<SpaceCarrotVO_Board_Community> MainHotVO = null;
 			try {
 				MainHotVO = ma.readExecute_hot(request, response);
@@ -428,7 +433,7 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			List<CommerceArticleVO> MainCommerceVO = null;
 			try {
 				MainCommerceVO = ma.commerce_readExecute(request, response);
@@ -437,13 +442,13 @@ public class FrontController extends HttpServlet {
 				// TODO Auto-generated catch block;
 				e2.printStackTrace();
 			}
-			
+
 			str = "/MainPage/Main.jsp";
-			
+
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			break;
-			
+
 		case "/MainPage/Read_Community.do":
 			// 게시글번호를 가져오고 int로 변환한다
 			postNum = Integer.parseInt(request.getParameter("no"));
@@ -473,8 +478,8 @@ public class FrontController extends HttpServlet {
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			break;
-			
-			// 중고거래 게시글 읽기 컨트롤러
+
+		// 중고거래 게시글 읽기 컨트롤러
 		case "/MainPage/Read_Commerce.do":
 			// 게시글번호를 가져오고 int로 변환한다
 			postNum = Integer.parseInt(request.getParameter("no"));
@@ -482,7 +487,7 @@ public class FrontController extends HttpServlet {
 			Commerce_ReadArticleService MainreadService1 = new Commerce_ReadArticleService();
 			CommerceArticleVO main_commerce_article_VO;
 			try {
-			// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
+				// 읽기 서비스 메소드 getArticle을 통해 VO를 가져오고, 조회수를 1 늘린다.
 				main_commerce_article_VO = MainreadService1.getArticle(postNum, true);
 				request.setAttribute("commerce_article_VO", main_commerce_article_VO);
 			} catch (ClassNotFoundException e) {
@@ -493,40 +498,40 @@ public class FrontController extends HttpServlet {
 			Commerce_CommentAction MainPageca1 = new Commerce_CommentAction();
 			List<CommentVO> main_commerce_comment_VO = null;
 			try {
-					main_commerce_comment_VO = MainPageca1.readExecute(request, response, postNum);
-					request.setAttribute("commerce_comment_VO", main_commerce_comment_VO);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				str = "/view.board/Board_Commerce_purchase_3ja.jsp";
-				rd = request.getRequestDispatcher(str);
-				rd.forward(request, response);
+				main_commerce_comment_VO = MainPageca1.readExecute(request, response, postNum);
+				request.setAttribute("commerce_comment_VO", main_commerce_comment_VO);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			str = "/view.board/Board_Commerce_purchase_3ja.jsp";
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
 
-				break;
-				
-			case "/view.board/Commerce_Search_Product.do" :
-				String search = request.getParameter("searchArea");
-				String search_category = request.getParameter("category");
-				System.out.println(search);
-				System.out.println(search_category);
-				request.setAttribute("search", search);
-				CommerceInsert c5 = new CommerceInsert();
-				try {
-					if(search_category == null) {
-						CommerceArticlePageVO articlePage8 = c5.search_product(request, response);
-						
-						request.setAttribute("articlePage", articlePage8);
-					} else {
-						CommerceArticlePageVO articlePage8 = c5.search_category_product(request, response);
-						request.setAttribute("articlePage", articlePage8);
-					}
-				}catch (ClassNotFoundException | SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				str = "/view.board/Board_Commerce_Search_Result.jsp";
-				rd = request.getRequestDispatcher(str);
-				rd.forward(request, response);
+			break;
+
+		case "/view.board/Commerce_Search_Product.do":
+			String search = request.getParameter("searchArea");
+			String search_category = request.getParameter("category");
+			System.out.println(search);
+			System.out.println(search_category);
+			request.setAttribute("search", search);
+			CommerceInsert c5 = new CommerceInsert();
+			try {
+				if (search_category == null) {
+					CommerceArticlePageVO articlePage8 = c5.search_product(request, response);
+
+					request.setAttribute("articlePage", articlePage8);
+				} else {
+					CommerceArticlePageVO articlePage8 = c5.search_category_product(request, response);
+					request.setAttribute("articlePage", articlePage8);
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			str = "/view.board/Board_Commerce_Search_Result.jsp";
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
 		} // case-end
 	} // http -end
 }

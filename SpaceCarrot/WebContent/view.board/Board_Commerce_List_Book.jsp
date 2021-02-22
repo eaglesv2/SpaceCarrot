@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <c:if test="${empty articlePage}">
 	<% 
-	String category = "book";
+	String category = "도서/티켓/취미/애완";
 	request.setAttribute("category", category);
 	RequestDispatcher rd = request.getRequestDispatcher("Search_Category_Commerce.do");
 	  rd.forward(request, response);

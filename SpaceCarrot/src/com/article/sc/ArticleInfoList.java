@@ -160,4 +160,36 @@ public class ArticleInfoList implements ArticleImpl {
 		}
 		return result;
 	}
+	
+	public Community_ArticlePage execute_search_In_Category(HttpServletRequest request, HttpServletResponse response, String input_category, String input_textArea) throws Exception {
+		// 게시판에서 특정 카테고리 리스트를 반환한다.
+		HttpSession session = request.getSession();
+	
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		String category = input_category;
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String userID = (String) session.getAttribute("sessionID");
+		String userNickName = (String) session.getAttribute("sessionNickName");
+		String pageNoVal = request.getParameter("pageNo");
+		String search = input_textArea;
+		
+		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+		listService = new Community_ListArticleService();
+
+		// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+		int pageNo = 1;
+		if(pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		
+		try {
+			articlePage= listService.getArticlePage_search_In_Category(pageNo, category, search);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		return articlePage;
+	}
 }
