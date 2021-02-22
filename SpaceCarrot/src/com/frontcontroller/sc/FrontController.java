@@ -535,6 +535,8 @@ public class FrontController extends HttpServlet {
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			
+			break;
+			
 		case "/view.community/Writer_Search.do":
 			String userID = (String) session.getAttribute("sessionID");
 			if(userID == null) {

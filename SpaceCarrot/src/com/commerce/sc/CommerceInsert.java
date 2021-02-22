@@ -156,6 +156,7 @@ public class CommerceInsert {
 		String search = request.getParameter("searchArea");
 		// test
 		System.out.println("error1");
+		System.out.println(search);
 		System.out.println(category);
 		// 페이지 넘버
 		String pageNoVal = request.getParameter("pageNo");

@@ -276,7 +276,7 @@
        			<form action="Commerce_Search_Product.do" method="post">
        			<div id = "search">
        					<input type = "text" name = "searchArea">
-       					<input type = "hidden" name = "category" value = "fashion">
+       					<input type = "hidden" name = "category" value = "의류/패션">
        					<button type = "submit"><img src = "../img/SearchButton.png"></button>
        			</div>
        			</form>
