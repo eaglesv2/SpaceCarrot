@@ -25,6 +25,8 @@ public class Community_ListArticleService {
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			boardDao.getAllInfoClose();
 		}
 	}
 	
@@ -38,6 +40,8 @@ public class Community_ListArticleService {
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			boardDao.getAllInfoClose();
 		}
 	}
 	
@@ -51,6 +55,8 @@ public class Community_ListArticleService {
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			boardDao.getAllInfoClose();
 		}
 	}
 	
@@ -63,6 +69,8 @@ public class Community_ListArticleService {
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			boardDao.getAllInfoClose();
 		}
 		
 	}	
@@ -78,6 +86,8 @@ public class Community_ListArticleService {
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			boardDao.getAllInfoClose();
 		}
 	}
 	
@@ -92,6 +102,8 @@ public class Community_ListArticleService {
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			boardDao.getAllInfoClose();
 		}
 	}
 	
@@ -106,6 +118,8 @@ public class Community_ListArticleService {
 			return new Community_CommentPage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			commentDao.getAllInfoClose();
 		}
 	}
 	
