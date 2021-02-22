@@ -146,6 +146,7 @@
 	display: block;
 	text-align: center;
 	margin: 0 auto;
+	cursor: pointer;
 }
 
 .cancel_btn_wrap {
@@ -167,6 +168,7 @@
 	display: block;
 	text-align: center;
 	margin: 0 auto;
+	cursor: pointer;
 }
 </style>
 </head>
