@@ -230,12 +230,11 @@
        						<img src = "data:x-image/jpg;base64,${article.repImage}" >
        					</a>
         				
-        				<p>
-        					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">	
-       							<c:out value="${article.subject}"></c:out>
-       						</a>
-       					</p>
-       					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
+
+        				<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">	
+       						<p><c:out value="${article.subject}"></c:out></p>
+       					</a>
+       					<span class = "price"><%-- <% price %>원 --%>${article.price}원</span>
        					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
 
