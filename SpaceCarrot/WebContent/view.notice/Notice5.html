@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="../Base/reset.css" />
+<script>
+	$(document).ready(function() {
+		$("#header").load("../Base/Header.jsp");
+		$("#footer").load("../Base/footer.html");
+	})
+</script>
+<style>
+#container {
+	margin: 0 auto;
+	width: 1080px;
+	/* border: 2px solid black; */
+}
+/* 중고거래 타이틀 */
+#title ul li {
+	list-style: none;
+}
+
+.title_wrap {
+	text-align: center;
+}
+
+.title_wrap a {
+	color: #fff;
+	background-color: #fc585e;
+	padding: 25px 0px;
+	font-size: 16pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 35px;
+}
+
+/* 게시글 */
+#board_wrap {
+	width: 710px;
+	height: 500px;
+	margin: 0 auto;
+	right: 500px;
+	margin-bottom: 150px;
+}
+
+a {
+	text-decoration: none;
+	color: #404040;
+}
+
+li {
+	list-style: none;
+}
+
+#board_wrap ul li {
+	padding-left: 20px;
+}
+
+#board_wrap ul li:first-child {
+	border-top: 3px solid #6a6a6a;
+	border-bottom: 1px solid #000;
+	font-weight: bold;
+	font-size: 14pt;
+	line-height: 50px; /*li 세로 간격*/
+}
+
+#board_wrap ul li:nth-child(2) {
+	border-bottom: 1px solid #000;
+	line-height: 50px; /*li 세로 간격*/
+	margin-bottom: 20px;
+}
+
+#board_wrap ul li span:first-child {
+	display: inline-block;
+	float: left;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(2) {
+	display: inline-block;
+	padding-right: 200px;
+}
+
+#board_wrap ul li span:nth-child(3) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:nth-child(4) {
+	display: inline-block;
+	padding-right: 140px;
+}
+
+#board_wrap ul li span:nth-child(5) {
+	display: inline-block;
+	padding-right: 20px;
+	font-weight: bold;
+}
+
+#board_wrap ul li span:last-child {
+	display: inline-block;
+	float: right;
+	padding-right: 10px;
+}
+
+#board_wrap ul li:last-child {
+	line-height: 30px;
+	font-size: 12pt;
+}
+
+/* 댓글 */
+#gprice {
+	margin-left: 203px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #000000;
+}
+
+.my-hr1 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 715px;
+}
+/* 댓글 구분시 맨 마지막은 안 보이게 작동 안되는 듯? */
+#foreach-hr:last-child{ display: none;
+}
+
+.my-hr2 {
+	/* margin-bottom: 20px; */
+	width: 715px;
+	height: 1px;
+	background: #000000;
+}
+
+#nick {
+	margin-left: 223px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #000000;
+}
+
+#content-daet1 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#content-daet2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+#content-daet3 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#daet {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#daet2 {
+	margin-left: 243px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+}
+
+#dap {
+	margin-left: 220px;
+	margin-top: 42px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #434343;
+	margin-right: 5px;
+	font-weight: 700;
+	float: left;
+}
+
+#text {
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	width: 415px;
+	height: 60px;
+	border: 1;
+}
+
+#checkbox1 {
+	font-size: 14px;
+}
+
+#dapwrap {
+	margin-top: 7px;
+}
+
+#dapbutton {
+	float: right;
+	width: 100px;
+	margin-right: 200px;
+	margin-top: 23px;
+}
+
+#button2 {
+	margin-left: 223px;
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+
+#dapwrap .button {
+	width: 80px;
+	height: 35px;
+	background-color: #f8585b;
+	border: none;
+	color: #fff;
+	padding: 6px 0;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px;
+	cursor: pointer;
+}
+</style>
+</head>
+<meta charset="UTF-8">
+<title>커뮤니티_공지사항</title>
+</head>
+<body>
+
+	<div id="container">
+		<div id="header"></div>
+
+		<div id="title">
+			<ul>
+				<li class="title_wrap"><p><a href="Community_List_Default.jsp">공지사항</a></p></li>
+			</ul>
+		</div>
+
+		<div id="board_wrap">
+			<ul>
+				<li>[설문] 내 기억 속 ‘특별한 구매자’는?</li>
+				<li><span>작성자</span><span>우주마켓</span><span>작성일</span><span>2021.02.22</span><span>조회수</span><span></span></li>
+				<li>
+					안녕하십니까, 우주당근입니다<br><br>
+					
+					 날씨도 조금씩 풀리고 봄의 기운을 느끼는 요즘 본격적인 직거래의 계절이 오고 있습니다 .<br>
+					중고 물품을 내놓고 팔다 보면 이런저런 다양한 분들을 만날 수 있는데요. <br><br>
+					
+					그래서 준비한 질문!<br>
+					<p style="font-weight:bold">“특별한 기억으로 남아있는 구매자는 누구인가요?”</p> <br>
+					 
+					저는 지난해 노트북 직거래를 하러 가서 만났던 구매자 분이 생각납니다.<br>
+					초콜렛 세트 하나를 건네시며 저렴하게 판매해줘서 고맙다는 인사를 들었는데 <br>
+					중고 거래 경력 10년 만에 그런 분은 처음이었다지요. (훈훈)<br><br>
+
+					센스 만점 구매자, 직접 만나고 보니 옆집 이웃이더라 등등 회원 여러분들이 <br>
+					만나셨던 구매자 분들 그 속에 얽힌 특별한 만남 댓글로 풀어주세요! <br><br>
+					
+					최고의 사연은 이미지와 영상으로 제작해 우주당근 홈페이지에 공개될 예정입니다.
+				</li>
+			</ul>
+		</div>
+
+		<hr class="my-hr2">
+		<div id="gprice">댓글</div>
+
+				<div id="content-daet1">
+
+					<div id="nick"></div>
+					<div id="daet"></div>
+					<div id="daet"></div>
+				</div>
+
+		<hr class="my-hr2">
+		
+		<div id="dapwrap">
+			<span id="dap"> 댓글 남기기 </span>
+			<textarea id="text" name="text" rows=30></textarea>
+			<div id="dapbutton">
+				<label id="checkbox1"><input type="checkbox" name="secret" value="secret1"> 비밀 답글 </label> 				
+					<input class="button" type="submit" value="등록">
+			</div>
+		</div>
+		<div id="footer"></div>
+	</div>
+</body>
+</html> 
