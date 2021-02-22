@@ -181,8 +181,7 @@ td {
 		<div id="wrap">
 			<div id="category">
 				<ul>
-					<li class="writting"><a class="menuLink"
-						href="Community_Writer_Writting.jsp">작성글</a></li>
+					<li class="writting"><a class="menuLink"href="Community_Writer_Writting.jsp">작성글</a></li>
 					<li><a class="menuLink" href="Community_Writer_Comment.jsp">작성댓글</a></li>
 				</ul>
 			</div>
@@ -225,17 +224,17 @@ td {
 					<c:if test="${articlePage.hasArticles()}">
 						<tr>
 							<td colspan="5">
-								<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-									test="${articlePage.startPage > 5}">
-									<a
-										href="Writer_Search.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-								</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-									begin="${articlePage.startPage}" end="${articlePage.endPage}">
+								<!-- 현재페이지가 5 이상일 시 이전 링크--> 
+								<c:if test="${articlePage.startPage > 5}">
+									<a href="Writer_Search.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+								</c:if> 
+								<!-- startPage to endPage --> 
+								<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
 									<a href="Writer_Search.do?pageNo=${pNo}">[${pNo}]</a>
-								</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
-									test="${articlePage.endPage < articlePage.totalPages}">
-									<a
-										href="Writer_Search.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+								</c:forEach> 
+								<!-- endPage가 총페이지보다 작을 시에 다음 링크 -->
+								<c:if test="${articlePage.endPage < articlePage.totalPages}">
+									<a href="Writer_Search.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
 								</c:if>
 							</td>
 						</tr>

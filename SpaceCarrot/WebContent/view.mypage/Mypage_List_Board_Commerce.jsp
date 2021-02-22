@@ -59,9 +59,6 @@
                        	    font-size : 11.5pt;
                        	    font-weight : bold;
                     	  }
-      /* #category .menuLink:hover { text-decoration : underline; 
-                           text-underline-position : under;
-                          } */
                           
       .commerce_tab:after { content: "";
       					display: block;
@@ -75,7 +72,7 @@
        #board_wrap { width: 710px; height: 550px; 
        				 margin: 0 auto;
 					 right:500px;
-    				 /* box-sizing: border-box; */} /* 왼쪽정렬 해결해야함 ㅠㅠ! */
+    				 /* box-sizing: border-box; */}
        a { text-decoration: none;
 		   color: #404040;
 		}
