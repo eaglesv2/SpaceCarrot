@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.article.sc.ArticleInfoList;
 import com.comment.sc.CommentVO;
@@ -70,7 +71,9 @@ public class FrontController extends HttpServlet {
 		// url 너무 헷갈림 서블릿 올때마다 url 체크하기
 		String url = request.getRequestURI().substring(request.getContextPath().length());
 		System.out.println(url);
-
+		// 세션 받아오기?
+		HttpSession session = request.getSession();
+		
 		String str = null;
 		UserImpl u1 = null;
 		ArticleInfoList al = null;
@@ -531,6 +534,30 @@ public class FrontController extends HttpServlet {
 			str = "/view.board/Board_Commerce_Search_Result.jsp";
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
+			
+		case "/view.community/Writer_Search.do":
+			String userID = (String) session.getAttribute("sessionID");
+			if(userID == null) {
+				userID = "tuche24"; // 테스트용
+			}
+			/*System.out.println("frontcontroller sessionID = " + userID);*/
+			
+			al = new ArticleInfoList();
+
+			try {
+				articlePage = al.search_Writer(request, response, userID);
+				request.setAttribute("articlePage", articlePage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			str = "/view.community/Community_Writer_Writting.jsp";
+
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+
+			break;
+
 		} // case-end
 	} // http -end
 }

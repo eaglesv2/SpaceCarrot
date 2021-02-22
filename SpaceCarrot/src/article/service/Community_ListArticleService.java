@@ -77,4 +77,19 @@ public class Community_ListArticleService {
 		}
 	}
 	
+	public Community_ArticlePage Writer_search(int pageNum, String input_UserID) throws ClassNotFoundException {
+		// 글 작성자 검색 후 ArticlePage로 반환 
+		try {
+			String userID = input_UserID;
+			boardDao = new SpaceCarrotDAO_Board_Community();
+			int total = boardDao.selectCount_Writer(userID);
+			// 테스트 System.out.println("List Page userID = " + userID);
+			List<SpaceCarrotVO_Board_Community> content = boardDao.select_Search_Writer(userID, (pageNum - 1) * size, size);
+			return new Community_ArticlePage(total, pageNum, size, content);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
 }
