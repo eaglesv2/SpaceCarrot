@@ -223,7 +223,7 @@ li {
 	margin-bottom: 20px;
 }
 
-.button {
+#dapwrap .button {
 	width: 80px;
 	height: 35px;
 	background-color: #f8585b;
@@ -306,7 +306,11 @@ li {
 				<div id="dapbutton">
 				<input type="hidden" name="no" value="${article_VO.postNum}">
 					<label id="checkbox1"><input type="checkbox" name="secret" value="secret1"> 비밀 답글 </label> 
-					<input class="button" type="submit" value="등록">
+					<% if(session.getAttribute("sessionID") == null) { %>
+							<input class="button" type="button" value="등록" onclick="location.href='../view.login/Login.jsp'">
+       				 <% } else {%> 
+							<input class="button" type="submit" value="등록">
+					 <% } %>
 				</div>
 			</div>
 		</form>

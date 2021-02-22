@@ -242,7 +242,7 @@
        					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
        						<p><c:out value="${article.subject}"></c:out></p>
        					</a>
-       					<span class = "price">${article.price}</span>
+       					<span class = "price">${article.price}원</span>
        					<span class = "time">${article.regDate}</span>
        					<input type = "hidden" id = "regDate" value = "${article.regDate}">
        				</li>
