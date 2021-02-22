@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,7 +177,7 @@
                         <h2> 
                         	<a href="Read_Commerce.do?no=${commerce_article.postNum}">${commerce_article.subject}</a>
                         </h2>
-                        <p>${commerce_article.price}원</p>
+                        <p><fmt:formatNumber value="${commerce_article.price}" pattern="#,###"/>원</p>
                     </div>
                 </c:forEach>
                 </div>
