@@ -30,7 +30,7 @@
 	text-align: center;
 }
 
-.title_wrap p {
+.title_wrap a {
 	color: #fff;
 	background-color: #fc585e;
 	padding: 25px 0px;
@@ -223,7 +223,7 @@ li {
 	margin-bottom: 20px;
 }
 
-.button {
+#dapwrap .button {
 	width: 80px;
 	height: 35px;
 	background-color: #f8585b;
@@ -254,7 +254,7 @@ li {
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><a href="Community_List_Default.jsp"><p>게시글</p></a></li>
+				<li class="title_wrap"><p><a href="Community_List_Default.jsp">게시글</a></p></li>
 			</ul>
 		</div>
 
@@ -287,9 +287,6 @@ li {
 
 			<hr class="my-hr1">
 
-
-
-
 			<!-- <div id="content-daet3">
 				<div id="nick">비밀댓글입니다</div>
 				<div id="daet">└비밀댓글입니다</div>
@@ -306,7 +303,11 @@ li {
 				<div id="dapbutton">
 				<input type="hidden" name="no" value="${article_VO.postNum}">
 					<label id="checkbox1"><input type="checkbox" name="secret" value="secret1"> 비밀 답글 </label> 
-					<input class="button" type="submit" value="등록">
+					<% if(session.getAttribute("sessionID") == null) { %>
+							<input class="button" type="button" value="등록" onclick="location.href='../view.login/Login.jsp'">
+       				 <% } else {%> 
+							<input class="button" type="submit" value="등록">
+					 <% } %>
 				</div>
 			</div>
 		</form>

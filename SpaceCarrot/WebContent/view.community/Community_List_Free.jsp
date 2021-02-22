@@ -51,7 +51,7 @@ var num = 1;
    text-align: center;
 }
 
-.title_wrap p {
+.title_wrap a {
    color: #fff;
    background-color: #fc585e;
    padding: 25px 0px;
@@ -226,7 +226,7 @@ td {
 
       <div id="title">
          <ul>
-            <li class="title_wrap"><a href="Community_List_Default.jsp"><p>커뮤니티</p></a></li>
+            <li class="title_wrap"><p><a href="Community_List_Default.jsp">커뮤니티</a></p></li>
          </ul>
       </div>
 
@@ -305,24 +305,23 @@ td {
                <c:if test="${articlePage.hasArticles()}">
                   <tr>
                      <td colspan="5">
-                        <!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-                           test="${articlePage.startPage > 5}">
-                           <a
-                              href="Category_Community.do?category=%EC%9E%90%EC%9C%A0&pageNo=${articlePage.startPage - 5}">[이전]</a>
-                        </c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-                           begin="${articlePage.startPage}" end="${articlePage.endPage}">
+                        <!-- 현재페이지가 5 이상일 시 이전 링크--> 
+                        <c:if test="${articlePage.startPage > 5}">
+                           <a href="Category_Community.do?category=%EC%9E%90%EC%9C%A0&pageNo=${articlePage.startPage - 5}">[이전]</a>
+                        </c:if> 
+                        <!-- startPage to endPage --> 
+                        <c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
                            <a href="Category_Community.do?category=%EC%9E%90%EC%9C%A0&pageNo=${pNo}">[${pNo}]</a>
-                        </c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
-                           test="${articlePage.endPage < articlePage.totalPages}">
-                           <a
-                              href="Category_Community.do?category=%EC%9E%90%EC%9C%A0&pageNo=${articlePage.startPage + 5 }">[다음]</a>
+                        </c:forEach> 
+                        <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> 
+                        <c:if test="${articlePage.endPage < articlePage.totalPages}">
+                           <a href="Category_Community.do?category=%EC%9E%90%EC%9C%A0&pageNo=${articlePage.startPage + 5 }">[다음]</a>
                         </c:if>
                      </td>
                   </tr>
                </c:if>
             </table>
          </div>
-
 
          <div id="footer"></div>
       </div>

@@ -49,7 +49,7 @@ var num = 1;
    text-align: center;
 }
 
-.title_wrap p {
+.title_wrap a {
    color: #fff;
    background-color: #fc585e;
    padding: 25px 0px;
@@ -223,7 +223,7 @@ td {
 
       <div id="title">
          <ul>
-            <li class="title_wrap"><a href="Community_List_Default.jsp"><p>커뮤니티</p></a></li>
+            <li class="title_wrap"><p><a href="Community_List_Default.jsp">커뮤니티</a></p></li>
          </ul>
       </div>
       <div id="wrap">
@@ -296,11 +296,13 @@ td {
                         <!-- 현재페이지가 5 이상일 시 이전 링크--> 
                         <c:if test="${articlePage.startPage > 5}">
                            <a href="Search_Community.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-                        </c:if> <!-- startPage to endPage --> 
+                        </c:if> 
+                        <!-- startPage to endPage --> 
                         <c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
                            <a href="Search_Community.do?pageNo=${pNo}">[${pNo}]</a>
-                        </c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> 
-                        	<c:if test="${articlePage.endPage < articlePage.totalPages}">
+                        </c:forEach> 
+                        <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> 
+                        <c:if test="${articlePage.endPage < articlePage.totalPages}">
                            <a href="Search_Community.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
                         </c:if>
                      </td>

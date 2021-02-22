@@ -29,7 +29,7 @@
 	text-align: center;
 }
 
-.title_wrap p {
+.title_wrap a {
 	color: #fff;
 	background-color: #fc585e;
 	padding: 25px 0px;
@@ -272,7 +272,7 @@ margin-top: 7px;
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><p>중고거래</p></li>
+				<li class="title_wrap"><p><a href = "Board_Commerce_List.jsp">중고거래</a></p></li>
 			</ul>
 		</div>
 
@@ -348,7 +348,11 @@ margin-top: 7px;
 				<div id="dapbutton">
 					<input type="hidden" name="no" value="${commerce_article_VO.postNum}">
 					<label id="checkbox1"><input type="checkbox" name="secret" value="secret1"> 비밀 답글 </label> 
-					<input class="button" type="submit" value="등록">
+					<% if(session.getAttribute("sessionID") == null) { %>
+							<input class="button" type="button" value="등록" onclick="location.href='../view.login/Login.jsp'">
+       				 <% } else {%> 
+							<input class="button" type="submit" value="등록">
+					 <% } %>
 				</div>
 			</div>
 		</form>

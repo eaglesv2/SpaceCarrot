@@ -39,6 +39,7 @@
 	margin-bottom: 35px;
 }
 
+
 .title_wrap p {
 	color: #fff;
 	background-color: #fc585e;
@@ -98,7 +99,6 @@
 	margin-top: 8px;
 }
 
-
 a {
 	text-decoration: none;
 	color: #404040;
@@ -107,6 +107,7 @@ a {
 li {
 	list-style: none;
 }
+
 
 /* 게시글 목록 */
 #board_wrap {
@@ -134,6 +135,7 @@ td {
    height: 50px;
    vertical-align: middle;
 }
+
 /* 페이지번호 */
 #page_number {
 	margin-top: 50px;
@@ -173,7 +175,9 @@ td {
 
 		<div id="title">
 			<ul>
+
 				<li class="title_wrap"><p>커뮤니티 - 작성자가 남긴 댓글 보기</p></li>
+
 			</ul>
 		</div>
 

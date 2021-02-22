@@ -520,11 +520,11 @@ public class FrontController extends HttpServlet {
 			System.out.println(search);
 			System.out.println(search_category);
 			request.setAttribute("search", search);
+			request.setAttribute("category", search_category);
 			CommerceInsert c5 = new CommerceInsert();
 			try {
 				if (search_category == null) {
 					CommerceArticlePageVO articlePage8 = c5.search_product(request, response);
-
 					request.setAttribute("articlePage", articlePage8);
 				} else {
 					CommerceArticlePageVO articlePage8 = c5.search_category_product(request, response);
