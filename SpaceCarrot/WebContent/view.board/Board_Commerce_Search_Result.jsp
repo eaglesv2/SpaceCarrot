@@ -21,8 +21,7 @@
 		$("#footer").load("../Base/footer.html");
 		
 		
-		var category = $("#category").val();
-
+		var category = $(".category").val();
 		if (category == null) {
 			$("#category1").css("display", "none");
 			$("#category2").css("display", "none");
@@ -366,7 +365,7 @@
        	<div id = "wrap">
        		<form action="Commerce_Search.do" method="post">
        		<div id = "category">
-       			<input type = "hidden" name = "category" value = <%= (String)request.getParameter("category") %>>
+       			<input type = "hidden" class = "category" value = <%= (String)request.getAttribute("category") %>>
        			<ul>
        				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>

@@ -538,6 +538,8 @@ public class FrontController extends HttpServlet {
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 			
+			break;
+			
 		case "/view.community/Writer_Search.do":
 			userNickName = request.getParameter("userNickName");
 			if(userNickName == null) {
