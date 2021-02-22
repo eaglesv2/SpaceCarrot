@@ -293,7 +293,7 @@ public class SpaceCarrotDAO_Board_Community {
 	public int selectCount_Writer(String input_UserID) {
 		// 게시글 수 int로 반환 메서드
 		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE "
-				+ COL_USERID + " = ? "; 
+				+ COL_USERNICKNAME + " = ? "; 
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -315,6 +315,7 @@ public class SpaceCarrotDAO_Board_Community {
 		}
 	}
 
+	
 	public List<SpaceCarrotVO_Board_Community> select(int startRow, int size) throws SQLException {
 		// 1번부터 size 만큼의 게시글 수를 List에 담는 메소드
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " ORDER BY "
@@ -375,7 +376,7 @@ public class SpaceCarrotDAO_Board_Community {
 			throws SQLException {
 		// 특정 작성자가 쓴 글을 찾는 메소드
 		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_BOARD_COMMUNITY + " WHERE "
-				+ COL_USERID + " = ? ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
+				+ COL_USERNICKNAME + " = ? ORDER BY " + COL_POSTNUM + " desc limit ?, ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);

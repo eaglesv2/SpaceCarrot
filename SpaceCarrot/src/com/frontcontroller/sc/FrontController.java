@@ -20,7 +20,6 @@ import com.commerce.sc.CommerceArticlePageVO;
 import com.commerce.sc.CommerceArticleVO;
 import com.commerce.sc.CommerceInsert;
 import com.main.sc.MainAction;
-import com.sun.xml.internal.bind.v2.runtime.output.StAXExStreamWriterOutput;
 import com.userinfo.sc.MyPagePWCheck;
 import com.userinfo.sc.UserIDCheck;
 import com.userinfo.sc.UserImpl;
@@ -31,6 +30,7 @@ import com.userinfo.sc.UserNickNameCheck;
 
 import article.service.Commerce_ReadArticleService;
 import article.service.Community_ArticlePage;
+import article.service.Community_CommentPage;
 import article.service.Community_ReadArticleService;
 import spacecarrotVO.SpaceCarrotVO_Board_Community;
 
@@ -86,7 +86,9 @@ public class FrontController extends HttpServlet {
 		// 공통변수
 		int postNum;
 		String category;
-
+		String userNickName;
+		
+		
 		switch (url) {
 
 		case "/view.login/UserInfoInsert.do":
@@ -537,28 +539,65 @@ public class FrontController extends HttpServlet {
 			rd.forward(request, response);
 			
 		case "/view.community/Writer_Search.do":
-			String userID = (String) session.getAttribute("sessionID");
-			if(userID == null) {
-				userID = "tuche24"; // 테스트용
+			userNickName = request.getParameter("userNickName");
+			if(userNickName == null) {
+				System.out.println("frontController 파라미터 받기 실패");
+				userNickName = (String) session.getAttribute("sessionNickName");
 			}
-			/*System.out.println("frontcontroller sessionID = " + userID);*/
+			if(userNickName == null) {
+				System.out.println("frontController 어트리뷰트 받기 실패");
+				userNickName = "hiyo"; // 테스트용
+			}
+			System.out.println("frontcontroller sessionID = " + userNickName);
 			
 			al = new ArticleInfoList();
 
 			try {
-				articlePage = al.search_Writer(request, response, userID);
+				articlePage = al.search_Writer(request, response, userNickName);
 				request.setAttribute("articlePage", articlePage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
+			
 			str = "/view.community/Community_Writer_Writting.jsp";
 
 			rd = request.getRequestDispatcher(str);
 			rd.forward(request, response);
 
 			break;
+			
+		// 작성자가 올린 댓글 보기 컨트롤러
+		case "/view.community/Writer_Search_Comment.do":
+			// CommentVO에 ID가 없어서 닉네임으로 검색
+			userNickName = request.getParameter("userNickName");
+			if(userNickName == null) {
+				System.out.println("frontController 파라미터 받기 실패");
+				userNickName = (String) session.getAttribute("sessionNickName");
+			}
+			if(userNickName == null) {
+				System.out.println("frontController 어트리뷰트 받기 실패");
+				userNickName = "hiyo"; // 테스트용
+			}
+			System.out.println("frontcontroller sessionID = " + userNickName);
+			
+			al = new ArticleInfoList();
+			
+			Community_CommentPage commentPage = null;
+			
+			try {
+				commentPage = al.search_Writer_comment(request, response, userNickName);
+				request.setAttribute("articlePage", commentPage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
+			str = "/view.community/Community_Writer_Comment.jsp";
+
+			rd = request.getRequestDispatcher(str);
+			rd.forward(request, response);
+
+			break;
 		} // case-end
 	} // http -end
 }

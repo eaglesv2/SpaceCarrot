@@ -186,11 +186,6 @@ td {
 					<li><a class="menuLink" href="Community_Writer_Comment.jsp">작성댓글</a></li>
 				</ul>
 			</div>
-			<c:if test="${articlePage.hasNoArticles()}">
-				<ul>
-					<li>작성한 글이 없습니다</li>
-				</ul>
-			</c:if>
 
 			<div id="board_wrap">
 				<table>
