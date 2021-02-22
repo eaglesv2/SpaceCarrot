@@ -15,140 +15,173 @@
 	})
 </script>
 <style>
-      #container { margin : 0 auto;
-                   width : 1080px;
-                 /* border : 2px solid black; */
-                 }
-	  /* 커뮤니티 타이틀 */
-      #title ul li { list-style: none; }
-      .title_wrap { text-align: center;
-      				margin-bottom:35px;				
-      }
-	  .title_wrap p { color: #fff; 
-				  	  background-color: #fc585e; 
-				  	  padding : 25px 0px;
-				  	  font-size : 16pt;
-				  	  font-weight: bold; 
-				  	  display: block; 
-				 	  margin: 0 auto;
-				    }
-                
-      #wrap { margin : 0 auto;
-              width : 715px;
-              text-align : center;
-              margin-left : 183px;
-            } 
-      /* 카테고리 메뉴 */
-      #category { height : 40px;
-      			  margin-left : 300px;
-      			  margin-bottom:30px;
-      }   
-      #category ul { height : 40x; 
-      			     padding : 0;
-      			   }    
-      #category ul li { list-style : none;
-                    	color : #000000;
-                   		float : left;
-                    	text-align: center;
-                    	padding-right :40px;
-                 	  }
-      #category ul li:last-child{ padding : 0; }
-      #category .menuLink { text-decoration : none;
-                       	    color : #000000;
-                       	    display : block;
-                       	    font-size : 11.5pt;
-                       	    font-weight : bold;
-                    	  }
-      /* #category .menuLink:hover { text-decoration : underline; 
+#container {
+	margin: 0 auto;
+	width: 1080px;
+	/* border : 2px solid black; */
+}
+/* 커뮤니티 타이틀 */
+#title ul li {
+	list-style: none;
+}
+
+.title_wrap {
+	text-align: center;
+	margin-bottom: 35px;
+}
+
+.title_wrap a {
+	color: #fff;
+	background-color: #fc585e;
+	padding: 25px 0px;
+	font-size: 16pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+}
+
+#wrap {
+	margin: 0 auto;
+	width: 715px;
+	text-align: center;
+	margin-left: 183px;
+}
+/* 카테고리 메뉴 */
+#category {
+	height: 40px;
+	margin-left: 300px;
+	margin-bottom: 30px;
+}
+
+#category ul {
+	height: 40x;
+	padding: 0;
+}
+
+#category ul li {
+	list-style: none;
+	color: #000000;
+	float: left;
+	text-align: center;
+	padding-right: 40px;
+}
+
+#category ul li:last-child {
+	padding: 0;
+}
+
+#category .menuLink {
+	text-decoration: none;
+	color: #000000;
+	display: block;
+	font-size: 11.5pt;
+	font-weight: bold;
+}
+/* #category .menuLink:hover { text-decoration : underline; 
                            text-underline-position : under;
                           } */
-                          
-      .comment:after { content: "";
-      					display: block;
-      					width: 68px;
-      				    text-align: center;
-      		  		    border-bottom : 2px solid #000;
-      					margin-top: 8px;
-      				  }     
-      
-       /* 게시글 목록 */
-       #board_wrap { width: 710px; height: 550px; 
-       				 margin: 0 auto;
-					 right:500px;
-    				 /* box-sizing: border-box; */} /* 왼쪽정렬 해결해야함 ㅠㅠ! */
-       a { text-decoration: none;
-		   color: #404040;
-		}
+.comment:after {
+	content: "";
+	display: block;
+	width: 68px;
+	text-align: center;
+	border-bottom: 2px solid #000;
+	margin-top: 8px;
+}
 
-		li {
-		    list-style: none;
-		}
+/* 게시글 목록 */
+#board_wrap {
+	width: 710px;
+	height: 550px;
+	margin: 0 auto;
+	right: 500px;
+	/* box-sizing: border-box; */
+} /* 왼쪽정렬 해결해야함 ㅠㅠ! */
+a {
+	text-decoration: none;
+	color: #404040;
+}
 
-		/* #board_wrap ul { width: 100%;
+li {
+	list-style: none;
+}
+
+/* #board_wrap ul { width: 100%;
 		}
  */
-		#board_wrap ul li {
-		    line-height: 50px; /*li 세로 간격*/
-		    padding-left: 10px;
-		}
+#board_wrap ul li {
+	line-height: 50px; /*li 세로 간격*/
+	padding-left: 10px;
+}
 
-		#board_wrap ul li:first-child {
-			border-top: 3px solid #6a6a6a;
-		    border-bottom: 3px solid #6a6a6a;
-		    font-weight: bold;
-		}
+#board_wrap ul li:first-child {
+	border-top: 3px solid #6a6a6a;
+	border-bottom: 3px solid #6a6a6a;
+	font-weight: bold;
+}
 
-		#board_wrap ul li:last-child {
-		    border-bottom: 3px solid #6a6a6a;
-		}
-		
-		#board_wrap ul li:nth-child(n+2):nth-child(-n+10) {
-			border-bottom: 1px solid #000;
-		}
+#board_wrap ul li:last-child {
+	border-bottom: 3px solid #6a6a6a;
+}
 
-		#board_wrap ul li span:first-child {
-			display: inline-block;
-		    float: left;
-		    padding-right:188px;
-		}
+#board_wrap ul li:nth-child(n+2):nth-child(-n+10) {
+	border-bottom: 1px solid #000;
+}
 
-		#board_wrap ul li span:nth-child(2) {
-			display: inline-block;
-		    padding-right:200px;
-		}
-		#board_wrap ul li span:nth-child(3) {
-			display: inline-block;
-		    padding-right:40px;
-		}
-		#board_wrap ul li span:nth-child(4) {
-			display: inline-block;
-		    padding-right:20px;
-		}
-		#board_wrap ul li span:last-child {
-		    display: inline-block;
-		    float: right;
-		    padding-right:20px;
-		}
- 
-       /* 페이지번호 */
-       #page_number { margin-top: 50px; }
-       #page_number ul li { list-style: none;
-       				  		display: inline;
-       					  }
-       #page_number ul li a { padding: 4px;
-							  margin-right: 20px;
-							  /* height: 50px; */
-							  width: 15px;
-							  color: #000;
-							  font-size: 12pt;
-							  text-align: center;
-							  text-decoration: none;
-      						}
-       #page_number ul li a:hover, ul li a:focus { color: #fff;
-												   border: 1px solid #000;
-												   border-radius: 50%;
-												   background-color: #000;
-												 }
+#board_wrap ul li span:first-child {
+	display: inline-block;
+	float: left;
+	padding-right: 188px;
+}
+
+#board_wrap ul li span:nth-child(2) {
+	display: inline-block;
+	padding-right: 200px;
+}
+
+#board_wrap ul li span:nth-child(3) {
+	display: inline-block;
+	padding-right: 40px;
+}
+
+#board_wrap ul li span:nth-child(4) {
+	display: inline-block;
+	padding-right: 20px;
+}
+
+#board_wrap ul li span:last-child {
+	display: inline-block;
+	float: right;
+	padding-right: 20px;
+}
+
+/* 페이지번호 */
+#page_number {
+	margin-top: 50px;
+}
+
+#page_number ul li {
+	list-style: none;
+	display: inline;
+}
+
+#page_number ul li a {
+	padding: 4px;
+	margin-right: 20px;
+	/* height: 50px; */
+	width: 15px;
+	color: #000;
+	font-size: 12pt;
+	text-align: center;
+	text-decoration: none;
+}
+
+#page_number ul li a:hover, ul li a:focus {
+	color: #fff;
+	border: 1px solid #000;
+	border-radius: 50%;
+	background-color: #000;
+}
 </style>
 </head>
 <meta charset="EUC-KR">
@@ -163,7 +196,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>커뮤니티 - 작성자가 남긴 댓글 보기</p></li>
+				<li class = "title_wrap"><p><a href="Community_List_Default.jsp">커뮤니티 - 작성자가 남긴 댓글 보기</a></p></li>
 			</ul>
        	</div>
        	

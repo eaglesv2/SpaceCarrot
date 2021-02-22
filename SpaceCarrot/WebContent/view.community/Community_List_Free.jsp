@@ -51,7 +51,7 @@ var num = 1;
    text-align: center;
 }
 
-.title_wrap p {
+.title_wrap a {
    color: #fff;
    background-color: #fc585e;
    padding: 25px 0px;
