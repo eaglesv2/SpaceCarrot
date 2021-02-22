@@ -189,19 +189,19 @@
        	</div>
        	
        	<div id = "wrap">
+       		<form action="Commerce_Search.do" method="post">
        		<div id = "category">
        			<ul>
-       				<form action="Commerce_Search.do" method="post">
        				<li><a class="menuLink" href="Board_Commerce_List_Fashion.jsp">의류/패션</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Digital.jsp">디지털/가전</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Book.jsp">도서/티켓/취미/애완</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Life.jsp">생활/문구/가구</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Sports.jsp">스포츠/레저</a></li>
        				<li><a class="menuLink" href="Board_Commerce_List_Other.jsp">기타</a></li>
-       				</form>
+       				
        			</ul>
        		</div>
-       		
+       		</form>
        		<div>
        			<div id = "sell_btn">
        				<% if(session.getAttribute("sessionID") == null) { %>
@@ -230,9 +230,11 @@
        						<img src = "data:x-image/jpg;base64,${article.repImage}" >
        					</a>
         				
-        				<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">	
-       						<p><c:out value="${article.subject}"></c:out></p>
-       					</a>
+        				<p>
+        					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">	
+       							<c:out value="${article.subject}"></c:out>
+       						</a>
+       					</p>
        					<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
        					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
        				</li>
@@ -247,17 +249,17 @@
 	<c:if test="${articlePage.hasArticles()}">
 		<ul>
 			<li>
-				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
-					test="${articlePage.startPage > 5}">
-					<a
-						href="Commerce_Reset.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
-				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
-					begin="${articlePage.startPage}" end="${articlePage.endPage}">
+				<!-- 현재페이지가 5 이상일 시 이전 링크--> 
+				<c:if test="${articlePage.startPage > 5}">
+					<a href="Commerce_Reset.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+				</c:if> 
+				<!-- startPage to endPage --> 
+				<c:forEach var="pNo" begin="${articlePage.startPage}" end="${articlePage.endPage}">
 					<a href="Commerce_Reset.do?pageNo=${pNo}">${pNo}</a>
-				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
-					test="${articlePage.endPage < articlePage.totalPages}">
-					<a
-						href="Commerce_Reset.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
+				</c:forEach> 
+				<!-- endPage가 총페이지보다 작을 시에 다음 링크 -->
+				<c:if test="${articlePage.endPage < articlePage.totalPages}">
+					<a href="Commerce_Reset.do?pageNo=${articlePage.startPage + 5 }">[다음]</a>
 				</c:if>
 			</li>
 		</ul>

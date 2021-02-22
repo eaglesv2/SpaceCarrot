@@ -197,7 +197,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><a href = "Board_Commerce_List.jsp"><p>중고거래</p></a></li>
+				<li class = "title_wrap"><p><a href = "Board_Commerce_List.jsp">중고거래</a></p></li>
 			</ul>
        	</div>
        	
@@ -239,9 +239,11 @@
 							<img src = "data:x-image/jpg;base64,${article.repImage}">
 						</a>
         					
-       					<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
-       						<p><c:out value="${article.subject}"></c:out></p>
-       					</a>
+       					<p>
+       						<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
+       							<c:out value="${article.subject}"></c:out>
+       						</a>
+       					</p>
        					<span class = "price">${article.price}</span>
        					<span class = "time">${article.regDate}</span>
        					<input type = "hidden" id = "regDate" value = "${article.regDate}">
