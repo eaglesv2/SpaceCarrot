@@ -49,7 +49,7 @@
 
 .subtitle_wrap p {
 	padding: 25px 0px;
-	font-size: 18pt;
+	font-size: 15pt;
 	font-weight: bold;
 	display: block;
 	margin: 0 auto;

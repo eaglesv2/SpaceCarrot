@@ -113,24 +113,24 @@
                </div>
                 <div id="cardset">
                     <div class="card">
-                        <h2>
-                        	<a href="../view.see/seeplace1.html"><img src="../img/SeePlace_img1.jpg" alt="쌈지길 대표 이미지"> 쌈지길</a>
-                       	 </h2>
+                        
+                        	<a href="../view.see/seeplace1.html"><img src="../img/SeePlace_img1.jpg" alt="쌈지길 대표 이미지"> </a>
+                       	 <h2>쌈지길</h2>
                     </div>
                     <div class="card">
-                        <h2>
-                        	<a href="../view.see/seeplace2.html"><img src="../img/SeePlace_img2.jpg" alt="북촌한옥마을 대표 이미지">북촌한옥마을</a>
-                        </h2>
+                        
+                        	<a href="../view.see/seeplace2.html"><img src="../img/SeePlace_img2.jpg" alt="북촌한옥마을 대표 이미지"></a>
+                        <h2>북촌한옥마을</h2>
                     </div>
                     <div class="card">
-                        <h2>
-                        	<a href="../view.see/seeplace3.html"><img src="../img/SeePlace_img3.jpg" alt="백사실계곡 대표 이미지">백사실계곡></a>
-                        </h2>
+                        
+                        	<a href="../view.see/seeplace3.html"><img src="../img/SeePlace_img3.jpg" alt="백사실계곡 대표 이미지"></a>
+                        <h2>백사실계곡</h2>
                     </div>
                     <div class="card">
-                        <h2>
-                        	<a href="../view.see/seeplace4.html"><img src="../img/SeePlace_img4_1.JPG" alt="서울역사박물관 대표 이미지">서울역사박물관</a>
-                        </h2>
+                        
+                        	<a href="../view.see/seeplace4.html"><img src="../img/SeePlace_img4_1.JPG" alt="서울역사박물관 대표 이미지"></a>
+                     <h2>  서울역사박물관 </h2>
                     </div>
                 </div>
             </div>
@@ -142,24 +142,24 @@
                </div>
                 <div id="cardset">
                     <div class="card">
-                        <h2>
-                        	<a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img1.jpg" alt="쏘핫 대표 이미지">쏘핫</a>
-                        </h2>
+                        
+                        	<a href="../view.eat/eatplace1.html"><img src="../img/eatplace_img1.jpg" alt="쏘핫 대표 이미지"></a>
+                        <h2>쏘핫</h2>
                     </div>
                     <div class="card">
-                        <h2>
-                        	<a href="../view.eat/eatplace2.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지"> 광장시장</a>
-                        </h2>
+                        
+                        	<a href="../view.eat/eatplace2.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지"> </a>
+                      <h2>광장시장  </h2>
                     </div>
                     <div class="card">
-						<h2>
-                         	<a href="../view.eat/eatplace3.html"><img src="../img/eatplace_img3.jpg" alt="호두나무카페 대표 이미지">호두나무카페</a>
-                        </h2>
+						
+                         	<a href="../view.eat/eatplace3.html"><img src="../img/eatplace_img3.jpg" alt="호두나무카페 대표 이미지"></a>
+                       <h2> 호두나무카페</h2>
                     </div>
                     <div class="card">
-                        <h2>
-                        	<a href="../view.eat/eatplace4.html"><img src="../img/eatplace_img4.jpg" alt="성곡미술관찻집 대표 이미지">성곡미술관찻집</a>
-						</h2>
+                        
+                        	<a href="../view.eat/eatplace4.html"><img src="../img/eatplace_img4.jpg" alt="성곡미술관찻집 대표 이미지"></a>
+						<h2>성곡미술관찻집</h2>
                     </div>
                 </div>
             </div>

@@ -128,10 +128,14 @@
 
 .card {
 	width: 200px;
-	height: 200px;
+	height: 230px;
 	align-items: center;
 	margin-top: 40px;
 	text-align: center;
+}
+.card a{
+	display:block;
+	
 }
 
 .card img {
@@ -146,7 +150,8 @@
 	/* vertical-align: middle; */
 	height: 40px;
 	/* padding-left: 5px; */
-	padding-top: 20px; font-weight : bold;
+	padding-top: 20px;
+	font-weight : bold;
 	background-color: white;
 	font-weight: bold;
 }
