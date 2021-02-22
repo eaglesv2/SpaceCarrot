@@ -3,6 +3,9 @@ package article.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.comment.sc.CommentVO;
+import com.comment.sc.Community_CommentDAO;
+
 import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
 import spacecarrotVO.SpaceCarrotVO_Board_Community;
 
@@ -10,7 +13,8 @@ public class Community_ListArticleService {
 
 	private SpaceCarrotDAO_Board_Community boardDao = null;
 	private int size = 15; // 한 페이지에 나타낼 게시글 수
-
+	private Community_CommentDAO commentDao = null;
+	
 	public Community_ArticlePage getArticlePage(int pageNum) throws ClassNotFoundException {
 		// pageNum에 해당하는 게시글 목록을 구한다. select() 첫번째 파라미터는 조회할 레코드의 시작행이다.
 		try {
@@ -77,19 +81,32 @@ public class Community_ListArticleService {
 		}
 	}
 	
-	public Community_ArticlePage Writer_search(int pageNum, String input_UserID) throws ClassNotFoundException {
-		// 글 작성자 검색 후 ArticlePage로 반환 
+	public Community_ArticlePage Writer_search(int pageNum, String input_UserNickName) throws ClassNotFoundException {
+		// 글 작성자 게시글 검색 후 ArticlePage로 반환 
 		try {
-			String userID = input_UserID;
+			String userNickName = input_UserNickName;
 			boardDao = new SpaceCarrotDAO_Board_Community();
-			int total = boardDao.selectCount_Writer(userID);
+			int total = boardDao.selectCount_Writer(userNickName);
 			// 테스트 System.out.println("List Page userID = " + userID);
-			List<SpaceCarrotVO_Board_Community> content = boardDao.select_Search_Writer(userID, (pageNum - 1) * size, size);
+			List<SpaceCarrotVO_Board_Community> content = boardDao.select_Search_Writer(userNickName, (pageNum - 1) * size, size);
 			return new Community_ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	
+	public Community_CommentPage Writer_search_comment(int pageNum, String input_UserNickName) throws ClassNotFoundException {
+		// 글 작성자 댓글 검색 후 ArticlePage로 반환 
+		try {
+			String userNickName = input_UserNickName;
+			commentDao = new Community_CommentDAO();
+			int total = commentDao.selectCount_Writer_Comment(userNickName);
+			// 테스트 System.out.println("List Page userID = " + userID);
+			List<CommentVO> content = commentDao.select_Search_Writer_Comment(userNickName, (pageNum - 1) * size, size);
+			return new Community_CommentPage(total, pageNum, size, content);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	
 }

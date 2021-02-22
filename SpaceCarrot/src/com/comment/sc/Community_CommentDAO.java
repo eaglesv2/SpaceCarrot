@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import spacecarrotDBConn.SpaceCarrotDBConn;
+import spacecarrotVO.SpaceCarrotVO_Board_Community;
 
 public class Community_CommentDAO {
 
@@ -103,4 +104,57 @@ public class Community_CommentDAO {
 				rs.getString(COL_CONTENT));
 	}
 
+	// 작성자 검색시 총 댓글 반환 메소드
+	public int selectCount_Writer_Comment(String input_UserNickName) {
+		// 게시글 수 int로 반환 메서드
+		String sql = "SELECT count(*) FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_COMMUNITY_COMMENT + " WHERE "
+				+ COL_NICKNAME + " = ? "; 
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, input_UserNickName);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("count success");
+				return rs.getInt(1);
+			}
+			return 0;
+		} catch (SQLException e) {
+			System.out.println("count Exception");
+			return 0;
+		} catch (NullPointerException e) {
+			System.out.println("nullpointerror");
+			return 0;
+		} finally {
+
+		}
+	}
+	
+	public List<CommentVO> select_Search_Writer_Comment(String input_userNickName, int startRow, int size)
+			throws SQLException {
+		// 특정 작성자가 쓴 글을 찾는 메소드
+		String sql = "SELECT * FROM " + DB_DBNAME + DB_DBNAME_SUFFIX + DB_TABLE_COMMUNITY_COMMENT + " WHERE "
+				+ COL_NICKNAME + " = ? ORDER BY " + COL_COMMENTNUM + " desc limit ?, ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, input_userNickName);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, size);
+			rs = pstmt.executeQuery();
+			List<CommentVO> result = new ArrayList<CommentVO>();
+			while (rs.next()) {
+				result.add(convertVO(rs));
+				System.out.println("select_Search success");
+			}
+			return result;
+		} catch(SQLException e) {
+			System.out.println("select_Search fail");
+			e.printStackTrace();
+			return null;
+		} finally {
+
+		}
+	}
+	
 }

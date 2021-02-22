@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import article.service.Community_ArticlePage;
+import article.service.Community_CommentPage;
 import article.service.Community_ListArticleService;
 import spacecarrotDAO.SpaceCarrotDAO_Board_Community;
 
@@ -15,6 +16,7 @@ public class ArticleInfoList implements ArticleImpl {
 	SpaceCarrotDAO_Board_Community boarddao = null;	
 	Community_ListArticleService listService = null;
 	Community_ArticlePage articlePage = null;
+	Community_CommentPage commentPage = null;
 	
 	@Override
 	public Community_ArticlePage execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -193,8 +195,35 @@ public class ArticleInfoList implements ArticleImpl {
 		return articlePage;
 	}
 	
-	public Community_ArticlePage search_Writer(HttpServletRequest request, HttpServletResponse response, String input_UserID) throws Exception {
-		// 게시판에서 특정 카테고리 리스트를 반환한다.
+	public Community_ArticlePage search_Writer(HttpServletRequest request, HttpServletResponse response, String input_UserNickName) throws Exception {
+		// 특정 작성자가 쓴 글을 VO에 담아 반환하는 메소드
+		HttpSession session = request.getSession();
+	
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		String userNickName = input_UserNickName;
+		String pageNoVal = request.getParameter("pageNo");
+		
+		// 현재페이지를 입력해 ArticlePage 객체 정보를 가져온다
+		listService = new Community_ListArticleService();
+
+		// 현재페이지 넘버 구하기 만약 받아올 pageNo가 없다면 1로 설정
+		int pageNo = 1;
+		if(pageNoVal != null) {
+			pageNo = Integer.parseInt(pageNoVal);
+		}
+		
+		try {
+			// 테스트 System.out.println("Action Page userID = " + userID);
+			articlePage= listService.Writer_search(pageNo, userNickName);
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		return articlePage;
+	}
+	
+	public Community_CommentPage search_Writer_comment(HttpServletRequest request, HttpServletResponse response, String input_UserID) throws Exception {
+		// 특정 작성자가 쓴 댓글을 VO에 담아 반환하는 메소드
 		HttpSession session = request.getSession();
 	
 		request.setCharacterEncoding("UTF-8");
@@ -213,11 +242,10 @@ public class ArticleInfoList implements ArticleImpl {
 		
 		try {
 			// 테스트 System.out.println("Action Page userID = " + userID);
-			articlePage= listService.Writer_search(pageNo, userID);
+			commentPage= listService.Writer_search_comment(pageNo, userID);
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
-		return articlePage;
+		return commentPage;
 	}
-	
 }
