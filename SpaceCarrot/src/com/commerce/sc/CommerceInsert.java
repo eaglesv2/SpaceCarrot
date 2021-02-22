@@ -126,17 +126,17 @@ public class CommerceInsert {
 	// 카테고리에 따라 url 찾기 메소드
 	public String find_url(String category) {
 		String result = null;
-		if(category.equals("book")) {
+		if(category.equals("도서/티켓/취미/애완")) {
 			result = "/view.board/Board_Commerce_List_Book.jsp";
-		} else if (category.equals("fashion")) {
+		} else if (category.equals("의류/패션")) {
 			result = "/view.board/Board_Commerce_List_Fashion.jsp";
-		} else if (category.equals("digit")) {
+		} else if (category.equals("디지털/가전")) {
 			result = "/view.board/Board_Commerce_List_Digital.jsp";
-		} else if (category.equals("life")) {
+		} else if (category.equals("생활/문구/가구")) {
 			result = "/view.board/Board_Commerce_List_Life.jsp";
-		} else if (category.equals("sports")) {
+		} else if (category.equals("스포츠/레저")) {
 			result = "/view.board/Board_Commerce_List_Sports.jsp";
-		} else if (category.equals("other")) {
+		} else if (category.equals("기타")) {
 			result = "/view.board/Board_Commerce_List_Other.jsp";
 		} else {
 			result = "/view.board/error.jsp";
