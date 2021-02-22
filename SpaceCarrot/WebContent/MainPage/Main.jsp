@@ -146,7 +146,7 @@
                     </div>
                     <div class="card">
                         <h2>
-                        	<a href="../view.eat/eatplace2.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지"> 광장시장></a>
+                        	<a href="../view.eat/eatplace2.html"><img src="../img/eatplace_img2.jpg" alt="광장시장 대표 이미지"> 광장시장</a>
                         </h2>
                     </div>
                     <div class="card">
