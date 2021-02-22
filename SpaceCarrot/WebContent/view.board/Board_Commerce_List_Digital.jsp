@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="../Base/reset.css" />
 <c:if test="${empty articlePage}">
 	<% 
-	String category = "digit";
+	String category = "디지털/가전";
 	request.setAttribute("category", category);
 	RequestDispatcher rd = request.getRequestDispatcher("Search_Category_Commerce.do");
 	  rd.forward(request, response);
@@ -257,14 +257,14 @@
 				<!-- 현재페이지가 5 이상일 시 이전 링크--> <c:if
 					test="${articlePage.startPage > 5}">
 					<a
-						href="Search_Category_Commerce.do?category=digit&pageNo=${articlePage.startPage - 5}">[이전]</a>
+						href="Search_Category_Commerce.do?category=%EB%94%94%EC%A7%80%ED%84%B8%2F%EA%B0%80%EC%A0%84&pageNo=${articlePage.startPage - 5}">[이전]</a>
 				</c:if> <!-- startPage to endPage --> <c:forEach var="pNo"
 					begin="${articlePage.startPage}" end="${articlePage.endPage}">
-					<a href="Search_Category_Commerce.do?category=digit&pageNo=${pNo}">${pNo}</a>
+					<a href="Search_Category_Commerce.do?category=%EB%94%94%EC%A7%80%ED%84%B8%2F%EA%B0%80%EC%A0%84&pageNo=${pNo}">${pNo}</a>
 				</c:forEach> <!-- endPage가 총페이지보다 작을 시에 다음 링크 --> <c:if
 					test="${articlePage.endPage < articlePage.totalPages}">
 					<a
-						href="Search_Category_Commerce.do?category=digit&pageNo=${articlePage.startPage + 5 }">[다음]</a>
+						href="Search_Category_Commerce.do?category=%EB%94%94%EC%A7%80%ED%84%B8%2F%EA%B0%80%EC%A0%84&pageNo=${articlePage.startPage + 5 }">[다음]</a>
 				</c:if>
 			</li>
 		</ul>
