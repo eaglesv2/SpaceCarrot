@@ -39,7 +39,8 @@
 	margin-bottom: 35px;
 }
 
-.title_wrap p {
+
+.title_wrap a {
 	color: #fff;
 	background-color: #fc585e;
 	padding: 25px 0px;
@@ -97,7 +98,6 @@
 	border-bottom: 2px solid #000;
 	margin-top: 8px;
 }
-
 
 a {
 	text-decoration: none;
@@ -174,7 +174,7 @@ td {
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><p>커뮤니티 - 작성자가 올린 글 보기</p></li>
+				<li class = "title_wrap"><p><a href="Community_List_Default.jsp">커뮤니티 - 작성자가 올린 글 보기</a></p></li>
 			</ul>
 		</div>
 

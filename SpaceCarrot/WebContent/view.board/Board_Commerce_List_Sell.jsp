@@ -15,136 +15,177 @@
 	})
 </script>
 <style>
-      #container { margin : 0 auto;
-                   width : 1080px;
-                 }
-	  
-	  /* 중고거래 타이틀 */
-      #title ul li { list-style: none; }
-      .title_wrap { text-align: center; }
-	  .title_wrap p { color: #fff; 
-				  	  background-color: #fc585e; 
-				  	  padding : 25px 0px;
-				  	  font-size : 16pt;
-				  	  font-weight: bold; 
-				  	  display: block; 
-				 	  margin: 0 auto;
-				    }
-     /* 판매하기 서브타이틀 */       
-     #subtitle ul li { list-style: none; }
-     .subtitle_wrap { text-align: center; }
-	 .subtitle_wrap p { padding : 25px 0px;
-				  	  font-size : 18pt;
-				  	  font-weight: bold; 
-				  	  display: block; 
-				 	  margin: 0 auto;
-				 	  text-decoration: underline;
-				    }
-     
-     /* 게시 형식 */
-       #board_form { margin : 0 auto;
-              	 width : 800px;
-              	 margin-top : 40px;
-              	 margin-left: 150px;
-    		   }
-    #board_form table { border-spacing: 0;
-    				   margin: 0;
-    				   padding: 0; 
-    				   border: 0;
-    				 }
-    				 
-    #board_form table select { width:300px;
-    
-    }
-    
-    #board_form table option { font-size: 13pt;
-    
-    }
-	#board_form table input { border: 1px solid #ececec;
-							 font-size: 13pt;
-							 color: #4c4c4c;  
-							 padding: 10px; 
-						   }
-						   
-	#board_title { height: 30px;
-				   width: 500px;
-	
-	}
-	#price { height: 20px;
-			 width: 150px;
-	
-	}
- 
- 	#amount { height: 20px;
-			  width: 150px;
- 	
- 	}
- 	
- 	#content { height: 400px;
-			   width: 620px;
-			   
- 	
- 	}
- 	
- 	#board_form .file_upload { border:0;
- 								
- 	}
- 	#board_form table tr{margin-left: 150px;
- 							
- 	 }
-    #board_form table th { text-align : center; margin-left: 150px;
-    						vertical-align: middle;
-    						}
-   	#board_form table th span { color: #404040;
-   							   font-size: 15px; 
-   							   display: inline-block; 
-   							   padding: 0 20px 0 0;
-   							   font-weight:bold;
-   							   margin:0 auto;
-   							  }
-   	#board_form table td { padding: 6px 0;
-   						  position: relative;
-   						  display: block;
-   						}
-   	
-    #btn { margin-left : 255px }
-    #btn ul li { list-style: none; }
-	.complete_btn_wrap { text-align: center; 
-			   			 margin: 20px 30px 30px;
-			   			 float: left;
-			  		   }
-	.complete_btn_wrap button { color: #fff; 
-				  		   		background-color: #fc585e;
-				  		   		border: 3px solid #fc585e; 
-				  		   		font-size: 12pt;
-				 		   		font-weight: bold; 
-				  		   		padding: 10px;  
-				 		   		height: 56px; 
-				  		   		vertical-align: middle;
-				 		  		width: 100px; 
-				  		  		display: block; 
-				 		   		text-align: center; 
-				 		  		margin: 0 auto;
-				 		  		cursor: pointer;
-				 		 	  }
-	.cancel_btn_wrap { text-align: center; 
-			   		   margin: 20px 0 30px;
-			   		   float: left;
-			  		 }
-	.cancel_btn_wrap button { color: #fc585e; 
-				  		 	  background-color: #fff; 
-				  			  border: 3px solid #fc585e;
-				  			  font-size: 12pt;
-				 			  font-weight: bold; 
-				  	  		  padding: 10px;  
-				 	     	  height: 56px; 
-				  		 	  vertical-align: middle;
-				 		 	  width: 100px; 
-				  		 	  display: block; 
-				 		 	  text-align: center; 
-				 		 	  margin: 0 auto;
-				 		 	  cursor: pointer;
-				 			}
+#container {
+	margin: 0 auto;
+	width: 1080px;
+}
+
+/* 중고거래 타이틀 */
+#title ul li {
+	list-style: none;
+}
+
+.title_wrap {
+	text-align: center;
+}
+
+.title_wrap a {
+	color: #fff;
+	background-color: #fc585e;
+	padding: 25px 0px;
+	font-size: 16pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+}
+/* 판매하기 서브타이틀 */
+#subtitle ul li {
+	list-style: none;
+}
+
+.subtitle_wrap {
+	text-align: center;
+}
+
+.subtitle_wrap p {
+	padding: 25px 0px;
+	font-size: 18pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	text-decoration: underline;
+}
+
+/* 게시 형식 */
+#board_form {
+	margin: 0 auto;
+	width: 800px;
+	margin-top: 40px;
+	margin-left: 150px;
+}
+
+#board_form table {
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+#board_form table select {
+	width: 300px;
+}
+
+#board_form table option {
+	font-size: 13pt;
+}
+
+#board_form table input {
+	border: 1px solid #ececec;
+	font-size: 13pt;
+	color: #4c4c4c;
+	padding: 10px;
+}
+
+#board_title {
+	height: 30px;
+	width: 500px;
+}
+
+#price {
+	height: 20px;
+	width: 150px;
+}
+
+#amount {
+	height: 20px;
+	width: 150px;
+}
+
+#content {
+	height: 400px;
+	width: 620px;
+}
+
+#board_form .file_upload {
+	border: 0;
+}
+
+#board_form table tr {
+	margin-left: 150px;
+}
+
+#board_form table th {
+	text-align: center;
+	margin-left: 150px;
+	vertical-align: middle;
+}
+
+#board_form table th span {
+	color: #404040;
+	font-size: 15px;
+	display: inline-block;
+	padding: 0 20px 0 0;
+	font-weight: bold;
+	margin: 0 auto;
+}
+
+#board_form table td {
+	padding: 6px 0;
+	position: relative;
+	display: block;
+}
+
+#btn {
+	margin-left: 255px
+}
+
+#btn ul li {
+	list-style: none;
+}
+
+.complete_btn_wrap {
+	text-align: center;
+	margin: 20px 30px 30px;
+	float: left;
+}
+
+.complete_btn_wrap button {
+	color: #fff;
+	background-color: #fc585e;
+	border: 3px solid #fc585e;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px;
+	height: 56px;
+	vertical-align: middle;
+	width: 100px;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.cancel_btn_wrap {
+	text-align: center;
+	margin: 20px 0 30px;
+	float: left;
+}
+
+.cancel_btn_wrap button {
+	color: #fc585e;
+	background-color: #fff;
+	border: 3px solid #fc585e;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px;
+	height: 56px;
+	vertical-align: middle;
+	width: 100px;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+	cursor: pointer;
+}
 </style>
 </head>
 <meta charset="EUC-KR">
@@ -152,8 +193,8 @@
 </head>
 <body>
 <%
-session.getAttribute("sessionID");
-session.getAttribute("sessionNickName");
+	session.getAttribute("sessionID");
+	session.getAttribute("sessionNickName");
 %>
 
 	<div id = "container">
@@ -163,7 +204,7 @@ session.getAttribute("sessionNickName");
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>중고거래</p></li>
+				<li class = "title_wrap"><p><a href = "Board_Commerce_List.jsp">중고거래</a></p></li>
 			</ul>
        	</div>
        	

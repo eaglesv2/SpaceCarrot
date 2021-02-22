@@ -15,118 +15,159 @@
 	})
 </script>
 <style>
-      #container { margin : 0 auto;
-                   width : 1080px;
-                 }
-	  
-	  /* 커뮤니티 타이틀 */
-      #title ul li { list-style: none; }
-      .title_wrap { text-align: center; }
-	  .title_wrap p { color: #fff; 
-				  	  background-color: #fc585e; 
-				  	  padding : 25px 0px;
-				  	  font-size : 16pt;
-				  	  font-weight: bold; 
-				  	  display: block; 
-				 	  margin: 0 auto;
-				    }
-     /* 글쓰기 서브타이틀 */       
-     #subtitle ul li { list-style: none; }
-     .subtitle_wrap { text-align: center; }
-	 .subtitle_wrap p { padding : 25px 0px;
-				  	  font-size : 18pt;
-				  	  font-weight: bold; 
-				  	  display: block; 
-				 	  margin: 0 auto;
-				 	  text-decoration: underline;
-				    }
-     
-     /* 게시 형식 */
-       #board_form { margin : 0 auto;
-              	 width : 1000px;
-              	 margin-top : 40px;
-             	 margin-left : 200px;
-    		   }
-    #board_form table { border-spacing: 0;
-    				   margin: 0;
-    				   padding: 0; 
-    				   border: 0;
-    				 }
-    				 
-    #board_form table select { text-align:center;
-    						   width:230px;
-    						   height:35px;
-    						   padding: .5em .5em;
-    }
-    
-    #board_form table option { font-size: 13pt;
-    
-    }
-	#board_form table input { border: 1px solid #ececec;
-							 font-size: 13pt;
-							 color: #4c4c4c;  
-							 padding: 10px; 
-						   }
-						   
-	#board_title { height: 40px;
-				   width: 622px;
-	
-	}
- 	
- 	#content { height: 500px;
-			   width: 622px;
-			   font-size: 11.5pt;
- 			   padding: .8em .5em;
- 	}
- 	
-    #board_form table th { text-align : center;
-    					   vertical-align: middle;
-     }
-   	#board_form table th span { color: #404040;
-   							   font-size: 15px; 
-   							   display: inline-block; 
-   							   padding: 0 20px 0 0;
-   							   font-weight:bold;  
-   							  }
-   	#board_form table td { padding: 6px 0;
-   						  position: relative;
-   						}
-   	#btn { margin-left : 190px; }
-    #btn ul li { list-style: none; }
-	.complete_btn_wrap { text-align: center; 
-			   			 margin: 20px 30px 30px;
-			   			 float: left;
-			  		   }
-	.complete_btn_wrap button { color: #fff; 
-				  		   		background-color: #fc585e;
-				  		   		border: 3px solid #fc585e; 
-				  		   		font-size: 12pt;
-				 		   		font-weight: bold; 
-				  		   		padding: 10px;  
-				 		   		height: 56px; 
-				  		   		vertical-align: middle;
-				 		  		width: 100px; 
-				  		  		display: block; 
-				 		   		text-align: center; 
-				 		  		margin: 0 auto;
-				 		 	  }
-	.cancel_btn_wrap { text-align: center; 
-			   		   margin: 20px 0 30px;
-			   		   float: left;
-			  		 }
-	.cancel_btn_wrap button { color: #fc585e; 
-				  		 	  background-color: #fff; 
-				  			  border: 3px solid #fc585e;
-				  			  font-size: 12pt;
-				 			  font-weight: bold; 
-				  	  		  padding: 10px;  
-				 	     	  height: 56px; 
-				  		 	  vertical-align: middle;
-				 		 	  width: 100px; 
-				  		 	  display: block; 
-				 		 	  text-align: center; 
-				 		 	  margin: 0 auto;
-				 			}	
+#container {
+	margin: 0 auto;
+	width: 1080px;
+}
+
+/* 커뮤니티 타이틀 */
+#title ul li {
+	list-style: none;
+}
+
+.title_wrap {
+	text-align: center;
+}
+
+.title_wrap a {
+	color: #fff;
+	background-color: #fc585e;
+	padding: 25px 0px;
+	font-size: 16pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+}
+/* 글쓰기 서브타이틀 */
+#subtitle ul li {
+	list-style: none;
+}
+
+.subtitle_wrap {
+	text-align: center;
+}
+
+.subtitle_wrap p {
+	padding: 25px 0px;
+	font-size: 18pt;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	text-decoration: underline;
+}
+
+/* 게시 형식 */
+#board_form {
+	margin: 0 auto;
+	width: 1000px;
+	margin-top: 40px;
+	margin-left: 200px;
+}
+
+#board_form table {
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+#board_form table select {
+	text-align: center;
+	width: 230px;
+	height: 35px;
+	padding: .5em .5em;
+}
+
+#board_form table option {
+	font-size: 13pt;
+}
+
+#board_form table input {
+	border: 1px solid #ececec;
+	font-size: 13pt;
+	color: #4c4c4c;
+	padding: 10px;
+}
+
+#board_title {
+	height: 40px;
+	width: 622px;
+}
+
+#content {
+	height: 500px;
+	width: 622px;
+	font-size: 11.5pt;
+	padding: .8em .5em;
+}
+
+#board_form table th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+#board_form table th span {
+	color: #404040;
+	font-size: 15px;
+	display: inline-block;
+	padding: 0 20px 0 0;
+	font-weight: bold;
+}
+
+#board_form table td {
+	padding: 6px 0;
+	position: relative;
+}
+
+#btn {
+	margin-left: 190px;
+}
+
+#btn ul li {
+	list-style: none;
+}
+
+.complete_btn_wrap {
+	text-align: center;
+	margin: 20px 30px 30px;
+	float: left;
+}
+
+.complete_btn_wrap button {
+	color: #fff;
+	background-color: #fc585e;
+	border: 3px solid #fc585e;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px;
+	height: 56px;
+	vertical-align: middle;
+	width: 100px;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.cancel_btn_wrap {
+	text-align: center;
+	margin: 20px 0 30px;
+	float: left;
+}
+
+.cancel_btn_wrap button {
+	color: #fc585e;
+	background-color: #fff;
+	border: 3px solid #fc585e;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px;
+	height: 56px;
+	vertical-align: middle;
+	width: 100px;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+}
 </style>
 </head>
 <meta charset="UTF-8">
@@ -141,7 +182,7 @@
        	
        	<div id = "title">
 			<ul>
-				<li class = "title_wrap"><p>커뮤니티</p></li>
+				<li class = "title_wrap"><p><a href="Community_List_Default.jsp">커뮤니티</a></p></li>
 			</ul>
        	</div>
        	

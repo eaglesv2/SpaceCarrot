@@ -29,7 +29,7 @@
 	text-align: center;
 }
 
-.title_wrap p {
+.title_wrap a {
 	color: #fff;
 	background-color: #fc585e;
 	padding: 25px 0px;
@@ -272,7 +272,7 @@ margin-top: 7px;
 
 		<div id="title">
 			<ul>
-				<li class="title_wrap"><p>중고거래</p></li>
+				<li class="title_wrap"><p><a href = "Board_Commerce_List.jsp">중고거래</a></p></li>
 			</ul>
 		</div>
 
