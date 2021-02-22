@@ -55,6 +55,7 @@ public class ArticleInfoList implements ArticleImpl {
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
 		}
+		boarddao.getAllInfoClose();
 		return articlePage;
 	}
 	
