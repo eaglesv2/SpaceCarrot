@@ -22,15 +22,7 @@
 		
 		
 		var category = $(".category").val();
-		if (category == null) {
-			$("#category1").css("display", "none");
-			$("#category2").css("display", "none");
-			$("#category3").css("display", "none");
-			$("#category4").css("display", "none");
-			$("#category5").css("display", "none");
-			$("#category6").css("display", "none");
-			$("#category7").css("display", "block");
-		} else if (category == "의류/패션") {
+		if (category == "의류/패션") {
 			$("#category1").css("display", "block");
 			$("#category2").css("display", "none");
 			$("#category3").css("display", "none");
@@ -78,6 +70,14 @@
 			$("#category5").css("display", "none");
 			$("#category6").css("display", "block");
 			$("#category7").css("display", "none");
+		} else {
+			$("#category1").css("display", "none");
+			$("#category2").css("display", "none");
+			$("#category3").css("display", "none");
+			$("#category4").css("display", "none");
+			$("#category5").css("display", "none");
+			$("#category6").css("display", "none");
+			$("#category7").css("display", "block");
 		}
 	})
 </script>
@@ -398,10 +398,12 @@
 							<button style="cursor:pointer;" onclick="location='Board_Commerce_List_Sell.jsp'">판매하기</button>
 					 <% } %>
        			</div>
+       			<form action="Commerce_Search_Product.do" method="post">
        			<div id = "search">
-       					<input type = "text" name = "searchArea" value = <%= (String)request.getAttribute("search") %>>
-       					<button><img src = "../img/SearchButton.png"></button>
+       					<input type = "text" name = "searchArea">
+       					<button type = "submit"><img src = "../img/SearchButton.png"></button>
        			</div>
+       			</form>
        		</div>
        		<c:if test="${not empty articlePage}">
 
@@ -409,12 +411,18 @@
 
 					<c:forEach var="article" items="${articlePage.content}">
        					<li class = "goods">
-
-       						<img src = "data:x-image/jpg;base64,${article.repImage}" >
-        					
-       						<p><c:out value="${article.subject}"></c:out></p>
-       						<span class = "price"><%-- <% price %>원 --%>${article.price}</span>
-       						<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
+       						<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">
+       							<img src = "data:x-image/jpg;base64,${article.repImage}" >
+       						</a>
+        				
+							<p>
+        						<a href="Read_Commerce.do?no=${article.postNum}&pageNo=${articlePage.currentPage}">	
+       								<c:out value="${article.subject}"></c:out>
+       							</a>
+       						</p>
+       					
+       						<span class = "price">${article.price}</span>
+       						<span class = "time">${article.regDate}</span>
        					</li>
        				</c:forEach>
        			</div>
