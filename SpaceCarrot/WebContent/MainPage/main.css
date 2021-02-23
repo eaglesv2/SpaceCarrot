@@ -128,15 +128,19 @@
 
 .card {
 	width: 200px;
-	height: 230px;
+	height: 270px;
 	align-items: center;
 	margin-top: 40px;
 	text-align: center;
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+    text-align: center;
+
 }
-.card a{
-	display:block;
-	
-}
+
+
+
 
 .card img {
 	width: 200px;
@@ -149,11 +153,14 @@
 	text-align: center;
 	/* vertical-align: middle; */
 	height: 40px;
+	padding-top:10px;
 	/* padding-left: 5px; */
-	padding-top: 20px;
 	font-weight : bold;
 	background-color: white;
 	font-weight: bold;
+		overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 /* .card p{
 
@@ -236,21 +243,27 @@
 }
 
 #content5 .card h2{
-    text-align: center;
-    vertical-align: middle;
-    height: 25px;
+
     /* padding-left: 5px; */
     padding-top: 20px;
+    padding-left:10px;
     font-weight: bold;
     background-color: white;
+    	font-weight: bold;
+		
 }
 
 #content5 .card p{
     text-align: center;
     height: 25px;
+   
     /* padding-left: 10px; */
     padding-top: 5px;
     background-color: white;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+    text-align: center;
+    vertical-align: middle;
 }
 
 /*footer*/
