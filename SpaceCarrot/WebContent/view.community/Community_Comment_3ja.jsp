@@ -262,7 +262,7 @@ li {
 			<ul>
 				<li><c:out value="${article_VO.subject}" /></li>
 				<li><span>작성자</span><span>
-					<a href="Community_Writer_Writting.jsp">${article_VO.userNickName}</a></span><span>작성일</span><span>${article_VO.regDate }</span><span>조회수</span><span>${article_VO.views}</span></li>
+					<a href="Writer_Search.do?userNickName=${article_VO.userNickName}">${article_VO.userNickName}</a></span><span>작성일</span><span>${article_VO.regDate }</span><span>조회수</span><span>${article_VO.views}</span></li>
 				<li><u:pre value="${article_VO.content}" /></li>
 			</ul>
 		</div>
