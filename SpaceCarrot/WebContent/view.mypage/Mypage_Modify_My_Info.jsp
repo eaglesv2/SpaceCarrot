@@ -68,7 +68,7 @@
             $("#standard_pw_check").css("color","red");
             $(".pwCheck").val("0");
          } else if (!pwReg.test(pw)) {
-            $("#standard_pw_check").html("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br> 특수문자는 ' ! @ # $ % ^ & + ='만 사용할 수 있습니다.");
+            $("#standard_pw_check").html("영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br>' ! @ # $ % ^ & + = ' 만 사용 가능");
             $("#standard_pw_check").css("color","red");
             $(".pwCheck").val("0");
          } else {
@@ -349,7 +349,8 @@
                   		<td><input type="password" value = <%= scv.getUserPW() %> name = "pw"></td>
                 	</tr>
                 	<tr>
-                		<td class = "check" colspan = 2>
+                		<th></th>
+                		<td class = "check">
                 			<div id = "standard_pw_check"></div>
                 		</td>
                 	</tr>
@@ -358,7 +359,8 @@
                   		<td><input type="password" placeholder="비밀번호를 확인하세요" name = "pwcheck"></td> <!-- 비밀번호 불일치시 수정 비활성 -->
                		 </tr>
                		 <tr>
-                		<td class = "check" colspan = 2>
+               		 	<th></th>
+                		<td class = "check">
                 			<div id = "pw_check"></div>
                 		</td>
                 	</tr>
@@ -367,7 +369,8 @@
                   		<td><input type="text" value = <%= scv.getUserNickName() %> name = "nickname"></td>
                 	</tr>
                 	 <tr>
-                		<td class = "check" colspan = 2>
+                	 	<th></th>
+                		<td class = "check">
                 			<div id = "nickname_check"></div>
                 		</td>
                 	</tr>
@@ -376,7 +379,8 @@
                   		<td><input type="text" value = <%= scv.getUserTel() %> name = "tel"></td>
                		 </tr>
                		 <tr>
-                		<td class = "check" colspan = 2>
+               		 	<th></th>
+                		<td class = "check">
                 			<div id = "tel_check"></div>
                 		</td>
                 	</tr>
@@ -410,7 +414,7 @@
         	<div id = "btn">
         		<ul>
 					<li class = "complete_btn_wrap">
-						<button id = "submit" type = "submit" disabled>수정</button>
+						<button id = "submit" type = "submit">수정</button>
 					</li>
 					<li class = "cancel_btn_wrap">
 						<button type = "button" onclick = "location.href='../MainPage/Main.jsp'">취소</button>

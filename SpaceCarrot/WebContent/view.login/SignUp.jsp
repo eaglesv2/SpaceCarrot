@@ -103,7 +103,7 @@
             $("#standard_pw_check").css("color","red");
             $(".pwCheck").val("0");
          } else if (!pwReg.test(pw)) {
-            $("#standard_pw_check").html("비밀번호는 영문, 숫자, 특수문자를 혼합하여 입력해주세요. <br> 특수문자는 ' ! @ # $ % ^ & + ='만 사용할 수 있습니다.");
+            $("#standard_pw_check").html("영문, 숫자, 특수문자를 혼합하여 입력해주세요.<br>' ! @ # $ % ^ & + = ' 만 사용 가능");
             $("#standard_pw_check").css("color","red");
             $(".pwCheck").val("0");
          } else {
@@ -206,7 +206,7 @@
 	width: 715px;
 	text-align: center;
 	margin-top: 40px;
-	margin-left: 350px;
+	margin-left: 320px;
 }
 
 #join_form table {
@@ -269,7 +269,7 @@
 }
 
 #btn {
-	margin-left: 50px;
+	margin-left: 80px;
 	margin-bottom: 150px;
 }
 
@@ -326,6 +326,7 @@
 	text-align: left;
 	color: #9a9a9a;
 	font-size: 13px;
+	margin-left: 30px;
 }
 
 .exform_txt span {
@@ -368,6 +369,7 @@
 
 						</tr>
 						<tr>
+							<th></th>
 							<td class="check" colspan=2>
 								<div id="id_check"></div>
 							</td>
@@ -378,6 +380,7 @@
 								id="user_pw" name="pw" required></td>
 						</tr>
 						<tr>
+							<th></th>
 							<td class="check" colspan=2>
 								<div id="standard_pw_check"></div>
 							</td>
@@ -388,6 +391,7 @@
 								name="pwcheck" required></td>
 						</tr>
 						<tr>
+							<th></th>
 							<td class="check" colspan=2>
 								<div id="pw_check"></div>
 							</td>
@@ -402,6 +406,7 @@
 								required></td>
 						</tr>
 						<tr>
+							<th></th>
 							<td class="check" colspan=2>
 								<div id="nickname_check"></div>
 							</td>
@@ -423,6 +428,7 @@
 								name="tel" required></td>
 						</tr>
 						<tr>
+							<th></th>
 							<td class="check" colspan=2>
 								<div id="tel_check"></div>
 							</td>

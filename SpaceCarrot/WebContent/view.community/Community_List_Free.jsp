@@ -75,13 +75,13 @@ var num = 1;
 #category ul {
    height: 40px;
    padding: 0;
-   margin-left: 340px;
+   margin-left: 365px;
 }
 
 /*카테고리 하단 바*/
 #bottomLine #category1{
    display:block;
-   margin-left:342px;
+   margin-left:365px;
    width:30px;
    height:2px;
    background:black;
