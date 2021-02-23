@@ -422,7 +422,7 @@
        							</a>
        						</p>
        					
-       						<span class = "price"><fmt:formatNumber value="${article.price}" pattern="#,###"/></span>
+       						<span class = "price"><fmt:formatNumber value="${article.price}" pattern="#,###"/>원</span>
        						<span class = "time">${article.regDate}</span>
        					</li>
        				</c:forEach>
