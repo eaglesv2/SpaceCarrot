@@ -296,8 +296,8 @@
        							<c:out value="${article.subject}"></c:out>
        						</a>
        					</p>
-       					<span class = "price"><%-- <% price %>원 --%><fmt:formatNumber value="${article.price}" pattern="#,###"/>원</span>
-       					<span class = "time"><%-- <% time %> 분전 --%>${article.regDate}</span>
+       					<span class = "price"><fmt:formatNumber value="${article.price}" pattern="#,###"/>원</span>
+       					<span class = "time">${article.regDate}</span>
        				</li>
 
        				</c:forEach>
