@@ -51,8 +51,8 @@
             <div id="content1">
                 <ul class="bxslider">
                     <li><a href="../view.see/SeePlace_List.html"><img src="../img/AttractionsBanner.jpg" alt=""></a></li>
-                    <li><a href="../view.board/Board_Commerce_List_Fashion.jsp"><img src="../img/CommerceBanner.jpg" alt=""></a></li>
-                    <li><a href="../view.community/Community_List.jsp"><img src="../img/CommunityBanner.jpg" alt=""></a></li>
+                    <li><a href="../view.board/Board_Commerce_List.jsp"><img src="../img/CommerceBanner.jpg" alt=""></a></li>
+                    <li><a href="../view.community/Community_List_Default.jsp"><img src="../img/CommunityBanner.jpg" alt=""></a></li>
                     <li><a href="../view.eat/EatPlace_List.html"><img src="../img/FoodBanner.jpg" alt=""></a></li>
                 </ul>
             </div>
